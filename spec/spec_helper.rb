@@ -1,5 +1,6 @@
 require 'rspec'
 require 'webmock/rspec'
+require 'tapp'
 
 $: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 
