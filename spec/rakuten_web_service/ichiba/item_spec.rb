@@ -16,20 +16,38 @@ describe RakutenWebService::Ichiba::Item do
   end
 
   before do
+    response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
     @expected_request = stub_request(:get, endpoint).
-      with(:query => expected_query).
-      to_return(:body => fixture('ichiba/item_search_with_keyword_Ruby.json'))
+      with(:query => expected_query).to_return(:body => response.to_json)
 
-    @items = RakutenWebService::Ichiba::Item.search(:affiliate_id => affiliate_id,
-      :developer_id => developer_id,
-      :keyword => 'Ruby')
+    response['page'] = 2
+    response['first'] = 31
+    response['last'] = 60
+    @second_request = stub_request(:get, endpoint).
+      with(:query => expected_query.merge(:page => 2)).
+      to_return(:body => response.to_json)
   end
 
-  specify 'endpoint should be called once' do
-    expect(@expected_request).to have_been_made.once
-  end
+  context 'just call the search method' do
+    before do
+      @items = RakutenWebService::Ichiba::Item.search(:affiliate_id => affiliate_id,
+        :developer_id => developer_id,
+        :keyword => 'Ruby')
+    end
 
-  specify 'should returns Item objects' do
-    expect(@items.size).to eq(30)
+    specify 'endpoint should not be called' do
+      expect(@expected_request).to_not have_been_made
+    end
+
+    context 'after that, call each' do
+      before do
+        @items.each { |i| i }
+      end
+
+      specify 'endpoint should be called' do
+        expect(@expected_request).to have_been_made.once
+        expect(@second_request).to have_been_made.once
+      end
+    end
   end
 end
