@@ -1,4 +1,5 @@
 require 'faraday'
+require 'faraday_middleware'
 
 module RakutenWebService
   module Ichiba
@@ -20,6 +21,7 @@ module RakutenWebService
         return @connection if @connection
         @connection = Faraday.new(:url => url) do |conn|
           conn.request :url_encoded
+          conn.response :json
           conn.adapter Faraday.default_adapter
         end
       end
@@ -35,9 +37,6 @@ module RakutenWebService
         private
         def endpoint
           'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20120805'
-        end
-
-        def connection
         end
       end
     end

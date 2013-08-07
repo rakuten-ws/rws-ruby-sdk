@@ -17,7 +17,8 @@ describe RakutenWebService::Ichiba::Item do
 
   before do
     @expected_request = stub_request(:get, endpoint).
-                          with(:query => expected_query)
+                          with(:query => expected_query).
+                          to_return(:body => fixture('ichiba/item_search_with_keyword_Ruby.json'))
 
     RakutenWebService::Ichiba::Item.search(:affiliate_id => affiliate_id,
                                            :developer_id => developer_id,
