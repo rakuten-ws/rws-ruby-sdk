@@ -2,10 +2,13 @@ require 'rakuten_web_service/client'
 
 module RakutenWebService
   module Ichiba
-    class Item
+    class Item 
       class << self
         def search(options)
-          client.get(options)
+          response = client.get(options)
+          response.body['Items'].map do |item|
+            Item.new(item['Item'])
+          end
         end
 
         private
@@ -16,6 +19,16 @@ module RakutenWebService
         def client
           @client ||= RakutenWebService::Client.new(endpoint)
         end
+
+        protected :new
+      end
+
+      def initialize(params)
+        @params = params
+      end
+
+      def [](key)
+        @params[key]
       end
     end
   end
