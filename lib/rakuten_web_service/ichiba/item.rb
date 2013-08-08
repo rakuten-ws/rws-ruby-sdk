@@ -10,23 +10,28 @@ module RakutenWebService
         @client = client
       end
 
-      def each(&block)
-        return @results if @results
-
-        @results = []
-        params = @params
-        response = query
-        begin
-          response.body['Items'].each do |item|
-            @results << Item.new(item['Item'])
+      def each
+        if @results 
+          @results.each do |item|
+            yield item
           end
-          if response.body['page'] < response.body['pageCount']
-            response = query(params.merge('page' => response.body['page'] + 1))
-          else 
-            response = nil
-          end
-        end while(response) 
-        @results
+        else
+          @results = []
+          params = @params
+          response = query
+          begin
+            response.body['Items'].each do |item|
+              item = Item.new(item['Item'])
+              yield item
+              @results << item
+            end
+            if response.body['page'] < response.body['pageCount']
+              response = query(params.merge('page' => response.body['page'] + 1))
+            else 
+              response = nil
+            end
+          end while(response) 
+        end
       end
 
       private
@@ -43,7 +48,7 @@ module RakutenWebService
 
         private
         def endpoint
-          'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20120805'
+          'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
         end
 
         def client
