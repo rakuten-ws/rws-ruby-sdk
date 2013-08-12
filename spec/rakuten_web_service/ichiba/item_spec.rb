@@ -39,6 +39,21 @@ describe RakutenWebService::Ichiba::Item do
       expect(@expected_request).to_not have_been_made
     end
 
+    describe 'a respond object' do
+      let(:expected_json) do
+        response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
+        response['Items'][0]['Item']
+      end
+
+      subject { @items.first }
+
+      it { should be_a RakutenWebService::Ichiba::Item }
+      specify 'shoud be access by key' do
+        expect(subject['itemName']).to eq(expected_json['itemName'])
+        expect(subject['item_name']).to eq(expected_json['itemName'])
+      end 
+    end
+
     context 'after that, call each' do
       before do
         @items.each { |i| i }

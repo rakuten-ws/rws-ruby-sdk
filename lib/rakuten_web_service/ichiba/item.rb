@@ -61,7 +61,8 @@ module RakutenWebService
       end
 
       def [](key)
-        @params[key]
+        camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
+        @params[key] || @params[camel_key]
       end
     end
   end
