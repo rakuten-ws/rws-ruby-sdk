@@ -53,6 +53,7 @@ describe RakutenWebService::Ichiba::Item do
         expect(subject['itemName']).to eq(expected_json['itemName'])
         expect(subject['item_name']).to eq(expected_json['itemName'])
       end 
+      its(:name) { should eq(expected_json['itemName']) }
     end
 
     context 'after that, call each' do
