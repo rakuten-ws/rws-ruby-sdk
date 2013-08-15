@@ -6,11 +6,11 @@ require 'rakuten_web_service/ichiba/item'
 describe RakutenWebService::Ichiba::Item do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
-  let(:developer_id) { 'dummy_developer_id' }
+  let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
       :affiliate_id => affiliate_id,
-      :developer_id => developer_id,
+      :application_id => application_id,
       :keyword => 'Ruby'
     }
   end
@@ -30,8 +30,9 @@ describe RakutenWebService::Ichiba::Item do
 
   context 'just call the search method' do
     before do
-      @items = RakutenWebService::Ichiba::Item.search(:affiliate_id => affiliate_id,
-        :developer_id => developer_id,
+      @items = RakutenWebService::Ichiba::Item.search(
+        :affiliate_id => affiliate_id,
+        :application_id => application_id,
         :keyword => 'Ruby')
     end
 
