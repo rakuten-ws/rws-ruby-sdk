@@ -46,22 +46,18 @@ module RakutenWebService
           SearchResult.new(options, client)
         end
 
-        def attributes
-          %w[
-            itemName catchcopy itemCode itemPrice
-            itemCaption itemUrl affiliateUrl imageFlag
-            smallImageUrls mediumImageUrls
-            availability taxFlag 
-            postageFlag creditCardFlag
-            shopOfTheYearFlag
-            shipOverseasFlag shipOverseasArea
-            asurakuFlag asurakuClosingTime asurakuArea
-            affiliateRate
-            startTime endTime
-            reviewCount reviewAverage
-            pointRate pointRateStartTime pointRateEndTime
-            shopName shopCode shopUrl
-          ]
+        def attribute(*attributes)
+          attributes.each do |attribute|
+            method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do
+              "#{$1}_#{$2.downcase}"
+            end
+            method_name = method_name.sub(/^item_(\w+)$/) { $1 }
+            self.class_eval <<-CODE
+              def #{method_name}
+                @params['#{attribute.to_s}']
+              end
+            CODE
+          end
         end
 
         private
@@ -74,17 +70,19 @@ module RakutenWebService
         end
       end
 
-      attributes.each do |attribute|
-        method_name = attribute.gsub(/([a-z]+)([A-Z]{1})/) do
-          "#{$1}_#{$2.downcase}"
-        end
-        method_name = method_name.sub(/^item_(\w+)$/) { $1 }
-        self.class_eval <<-CODE
-          def #{method_name}
-            @params['#{attribute.to_s}']
-          end
-        CODE
-      end
+      attribute :itemName, :catchcopy, :itemCode, :itemPrice,
+        :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
+        :smallImageUrls, :mediumImageUrls,
+        :availability, :taxFlag, 
+        :postageFlag, :creditCardFlag,
+        :shopOfTheYearFlag,
+        :shipOverseasFlag, :shipOverseasArea,
+        :asurakuFlag, :asurakuClosingTime, :asurakuArea,
+        :affiliateRate,
+        :startTime, :endTime,
+        :reviewCount, :reviewAverage,
+        :pointRate, :pointRateStartTime, :pointRateEndTime<
+        :shopName, :shopCode, :shopUrl
 
       def initialize(params)
         @params = params
