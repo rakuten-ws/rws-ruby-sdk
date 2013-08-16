@@ -9,8 +9,8 @@ describe RakutenWebService::Ichiba::Item do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliate_id => affiliate_id,
-      :application_id => application_id,
+      :affiliateId => affiliate_id,
+      :applicationId => application_id,
       :keyword => 'Ruby'
     }
   end

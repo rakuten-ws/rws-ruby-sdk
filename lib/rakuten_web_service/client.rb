@@ -12,6 +12,7 @@ module RakutenWebService
     end
 
     def get(query)
+      query = convert_snake_key_to_camel_key(query)
       connection.get(path, query)
     end
 
@@ -23,6 +24,15 @@ module RakutenWebService
         conn.response :json
         conn.adapter Faraday.default_adapter
       end
+    end
+
+    def convert_snake_key_to_camel_key(params)
+      converted = {}
+      params.each do |k, v|
+        k = k.to_s.gsub(/([a-z]+)_([a-z]+)/) { "#{$1}#{$2.capitalize}" }
+        converted[k] = v
+      end
+      return converted
     end
   end
 end
