@@ -19,6 +19,10 @@ module RakutenWebService
         self.name.split('::').last.downcase
       end
 
+      def endpoint(url=nil)
+        @endpoint = url || @endpoint 
+      end
+
       def client
         @client ||= RakutenWebService::Client.new(endpoint)
       end

@@ -41,18 +41,14 @@ module RakutenWebService
       end
     end
 
-    class Item < RakutenWebService::Resource
+    class Item < Resource
       class << self
         def search(options)
           SearchResult.new(options, client)
         end
-
-        private
-        def endpoint
-          'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
-        end
-
       end
+      
+      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
         :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
