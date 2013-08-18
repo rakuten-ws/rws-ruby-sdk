@@ -12,6 +12,7 @@ module RakutenWebService
     end
 
     def get(query)
+      query = RakutenWebService.configuration.generate_parameters.merge(query)
       query = convert_snake_key_to_camel_key(query)
       connection.get(path, query)
     end
