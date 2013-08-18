@@ -41,6 +41,8 @@ describe RakutenWebService::Ichiba::Genre do
     end
     specify 'should be access by key' do
       expect(subject['genreName']).to eq(expected_json['current']['genreName'])
+      expect(subject['genre_name']).to eq(expected_json['current']['genreName'])
     end
+    its(:name) { should eq(expected_json['current']['genreName']) }
   end
 end

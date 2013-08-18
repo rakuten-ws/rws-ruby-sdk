@@ -1,4 +1,5 @@
 require 'rakuten_web_service/client'
+require 'rakuten_web_service/resource'
 
 module RakutenWebService
   module Ichiba
@@ -40,24 +41,10 @@ module RakutenWebService
       end
     end
 
-    class Item 
+    class Item < RakutenWebService::Resource
       class << self
         def search(options)
           SearchResult.new(options, client)
-        end
-
-        def attribute(*attributes)
-          attributes.each do |attribute|
-            method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do
-              "#{$1}_#{$2.downcase}"
-            end
-            method_name = method_name.sub(/^item_(\w+)$/) { $1 }
-            self.class_eval <<-CODE
-              def #{method_name}
-                @params['#{attribute.to_s}']
-              end
-            CODE
-          end
         end
 
         private
@@ -65,9 +52,6 @@ module RakutenWebService
           'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
         end
 
-        def client
-          @client ||= RakutenWebService::Client.new(endpoint)
-        end
       end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
@@ -84,14 +68,6 @@ module RakutenWebService
         :pointRate, :pointRateStartTime, :pointRateEndTime<
         :shopName, :shopCode, :shopUrl
 
-      def initialize(params)
-        @params = params
-      end
-
-      def [](key)
-        camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
-        @params[key] || @params[camel_key]
-      end
     end
   end
 end
