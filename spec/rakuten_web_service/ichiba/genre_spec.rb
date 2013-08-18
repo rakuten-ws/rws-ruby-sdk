@@ -20,6 +20,11 @@ describe RakutenWebService::Ichiba::Genre do
     @expected_request = stub_request(:get, endpoint).
       with(:query => expected_query).
       to_return(:body => fixture('ichiba/genre_search.json'))
+
+    RakutenWebService.configuration do |c|
+      c.affiliate_id = affiliate_id
+      c.application_id = application_id
+    end
   end
 
   describe '.search' do
@@ -28,10 +33,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     before do
-      @genre = RakutenWebService::Ichiba::Genre.search(
-        :affiliate_id => affiliate_id,
-        :application_id => application_id,
-        :genreId => genre_id)
+      @genre = RakutenWebService::Ichiba::Genre.search(:genreId => genre_id)
     end
 
     subject { @genre }

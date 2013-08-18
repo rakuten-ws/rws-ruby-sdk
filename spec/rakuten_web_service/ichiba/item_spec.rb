@@ -26,14 +26,16 @@ describe RakutenWebService::Ichiba::Item do
     @second_request = stub_request(:get, endpoint).
       with(:query => expected_query.merge(:page => 2)).
       to_return(:body => response.to_json)
+
+    RakutenWebService.configuration do |c|
+      c.affiliate_id = affiliate_id
+      c.application_id = application_id
+    end
   end
 
   context 'just call the search method' do
     before do
-      @items = RakutenWebService::Ichiba::Item.search(
-        :affiliate_id => affiliate_id,
-        :application_id => application_id,
-        :keyword => 'Ruby')
+      @items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby')
     end
 
     specify 'endpoint should not be called' do
