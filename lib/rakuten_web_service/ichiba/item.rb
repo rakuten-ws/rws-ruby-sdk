@@ -6,10 +6,6 @@ module RakutenWebService
   module Ichiba
     class Item < Resource
       class << self
-        def search(options)
-          SearchResult.new(options, self, client)
-        end
-
         def parse_response(response)
           response['Items'].map { |item| Item.new(item['Item']) }
         end

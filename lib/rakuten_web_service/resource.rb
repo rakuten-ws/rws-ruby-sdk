@@ -1,3 +1,5 @@
+require 'rakuten_web_service/search_result'
+
 module RakutenWebService
   class Resource
     class << self
@@ -15,6 +17,10 @@ module RakutenWebService
         end
       end
 
+      def search(options)
+        SearchResult.new(options, self, client)
+      end
+
       def resource_name
         self.name.split('::').last.downcase
       end
@@ -25,10 +31,6 @@ module RakutenWebService
 
       def client
         @client ||= RakutenWebService::Client.new(endpoint)
-      end
-
-      def search(options)
-        SearchResult.new(options, client)
       end
     end
 
