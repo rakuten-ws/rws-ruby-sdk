@@ -33,7 +33,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     before do
-      @genre = RakutenWebService::Ichiba::Genre.search(:genreId => genre_id)
+      @genre = RakutenWebService::Ichiba::Genre.search(:genreId => genre_id).first
     end
 
     subject { @genre }

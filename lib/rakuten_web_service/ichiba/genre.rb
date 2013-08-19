@@ -7,10 +7,8 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20120723'
       attribute :genreId, :genreName, :genreLevel
 
-      class << self
-        def search(params)
-          Genre.new(client.get(params).body['current'])
-        end
+      def self.parse_response(response)
+        [Genre.new(response['current'])]
       end
     end
   end
