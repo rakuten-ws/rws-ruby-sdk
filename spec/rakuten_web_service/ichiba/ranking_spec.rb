@@ -23,13 +23,26 @@ describe RakutenWebService::Ichiba::RankingItem do
   end
 
   describe '.search' do
-    before do 
-      @ranking_items = RakutenWebService::Ichiba::RankingItem.search({}).first
+    let(:expected_json) do
+      response = JSON.parse(fixture('ichiba/ranking_search.json'))
+      response['Items'][0]['Item']
     end
+
+    before do 
+      @ranking_item = RakutenWebService::Ichiba::RankingItem.search({}).first
+    end
+
+    subject { @ranking_item }
 
     specify 'should call the endpoint once' do
       expect(@expected_request).to have_been_made.once
     end
+    specify 'should be access by key' do
+      expect(subject['itemName']).to eq(expected_json['itemName'])
+      expect(subject['item_name']).to eq(expected_json['itemName'])
+    end
+    its(:rank) { should eq(1) }
+    its(:name) { should eq(expected_json['itemName']) }
   end
 
 end
