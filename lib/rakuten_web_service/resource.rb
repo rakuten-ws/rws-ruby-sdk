@@ -26,6 +26,10 @@ module RakutenWebService
       def client
         @client ||= RakutenWebService::Client.new(endpoint)
       end
+
+      def search(options)
+        SearchResult.new(options, client)
+      end
     end
 
     def initialize(params)
