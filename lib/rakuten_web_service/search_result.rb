@@ -24,7 +24,7 @@ module RakutenWebService
             @results << resource
           end
 
-          if response.body['page'] < response.body['pageCount']
+          if response.body['page'] && response.body['page'] < response.body['pageCount']
             response = query(params.merge('page' => response.body['page'] + 1))
           else 
             response = nil
