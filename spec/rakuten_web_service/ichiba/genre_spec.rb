@@ -15,6 +15,9 @@ describe RakutenWebService::Ichiba::Genre do
       :genreId => genre_id
     }
   end
+  let(:expected_json) do
+    JSON.parse(fixture('ichiba/genre_search.json'))
+  end
 
   before do
     @expected_request = stub_request(:get, endpoint).
@@ -28,9 +31,6 @@ describe RakutenWebService::Ichiba::Genre do
   end
 
   describe '.search' do
-    let(:expected_json) do
-      JSON.parse(fixture('ichiba/genre_search.json'))
-    end
 
     before do
       @genre = RakutenWebService::Ichiba::Genre.search(:genreId => genre_id).first
@@ -46,5 +46,50 @@ describe RakutenWebService::Ichiba::Genre do
       expect(subject['genre_name']).to eq(expected_json['current']['genreName'])
     end
     its(:name) { should eq(expected_json['current']['genreName']) }
+  end
+
+  describe '.new' do
+    before do 
+      RakutenWebService::Ichiba::Genre.search(:genreId => genre_id).first
+    end
+
+    context 'given genre_id' do
+      context 'the genre_id has been already fetched' do
+        before do
+          @genre = RakutenWebService::Ichiba::Genre.new(genre_id)
+        end
+
+        subject { @genre }
+
+        specify 'should call the API only once' do
+          expect(@expected_request).to have_been_made.once
+          expect(@expected_request).to_not have_been_made.twice
+        end
+        specify 'should be access by key' do
+          expect(subject['genreName']).to eq(expected_json['current']['genreName'])
+          expect(subject['genre_name']).to eq(expected_json['current']['genreName'])
+        end
+      end
+
+      context 'the genre_id has not fetched yet' do
+        let(:new_genre_id) { 1981 }
+        before do
+          @expected_request = stub_request(:get, endpoint).
+            with(:query => { 
+                 :affiliateId => affiliate_id,
+                 :applicationId => application_id,
+                 :genreId => new_genre_id }).
+            to_return(:body => { :genreId => new_genre_id,
+                                 :genreName => 'DummyGenre',
+                                 :genreLevel => 3 }.to_json)
+
+          @genre = RakutenWebService::Ichiba::Genre.new(new_genre_id)
+        end
+
+        specify 'should call the API' do
+          expect(@expected_request).to have_been_made.once
+        end
+      end
+    end
   end
 end
