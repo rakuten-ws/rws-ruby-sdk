@@ -103,4 +103,18 @@ describe RakutenWebService::Ichiba::Genre do
         to eq(RakutenWebService::Ichiba::Genre[0])
     end
   end
+
+  describe '#ranking' do
+    let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
+
+    before do
+      stub_request(:get, endpoint).with(:query => expected_query).
+        to_return(:body => fixture('ichiba/genre_search.json'))
+    end
+
+    specify "should call RankingItem's search with genre_id option" do
+      RakutenWebService::Ichiba::RankingItem.should_receive(:search).with(:genre_id => genre_id)
+      expect { genre.ranking }.to_not raise_error
+    end
+  end
 end

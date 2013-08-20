@@ -1,4 +1,5 @@
 require 'rakuten_web_service/version'
+require 'rakuten_web_service/configuration'
 require 'rakuten_web_service/client'
 require 'rakuten_web_service/search_result'
 require 'rakuten_web_service/resource'

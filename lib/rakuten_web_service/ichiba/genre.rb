@@ -37,6 +37,10 @@ module RakutenWebService
         super
         Genre[self.id.to_s] = self
       end
+
+      def ranking(options={})
+        RakutenWebService::Ichiba::RankingItem.search(:genre_id => self.id)
+      end
     end
   end
 end
