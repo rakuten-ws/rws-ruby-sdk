@@ -1,12 +1,13 @@
-require 'rakuten_web_service/client'
-require 'rakuten_web_service/resource'
-
 module RakutenWebService
   module Ichiba
     class Genre < Resource
       @@repository = {}
 
       class << self
+        def parse_response(response)
+          [Genre.new(response['current'])]
+        end
+
         def new(params)
           case params
           when Integer, String
@@ -35,10 +36,6 @@ module RakutenWebService
       def initialize(params)
         super
         Genre[self.id.to_s] = self
-      end
-
-      def self.parse_response(response)
-        [Genre.new(response['current'])]
       end
     end
   end
