@@ -1,13 +1,13 @@
-require 'rakuten_web_service/client'
-require 'rakuten_web_service/search_result'
-require 'rakuten_web_service/resource'
-
 module RakutenWebService
   module Ichiba
     class Item < Resource
       class << self
         def parse_response(response)
           response['Items'].map { |item| Item.new(item['Item']) }
+        end
+
+        def ranking(options)
+          RakutenWebService::Ichiba::RankingItem.search(options)
         end
       end
       
