@@ -92,4 +92,15 @@ describe RakutenWebService::Ichiba::Genre do
       end
     end
   end
+
+  describe '.root' do
+    before do
+      @genre = RakutenWebService::Ichiba::Genre.new(0)
+    end
+
+    specify 'should be equal genre object with id 0' do
+      expect(RakutenWebService::Ichiba::Genre.root).
+        to eq(RakutenWebService::Ichiba::Genre[0])
+    end
+  end
 end

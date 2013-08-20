@@ -16,12 +16,16 @@ module RakutenWebService
           end
         end
 
+        def root
+          self.new(0)
+        end
+
         def [](id)
-          @@repository[id]
+          @@repository[id.to_s]
         end
 
         def []=(id, genre)
-          @@repository[id] = genre
+          @@repository[id.to_s] = genre
         end
       end
 
