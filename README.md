@@ -1,6 +1,6 @@
 # RakutenWebService
 
-TODO: Write a gem description
+[![Build Status](https://travis-ci.org/satoryu/rakuten_web_service.png?branch=master)](https://travis-ci.org/satoryu/rakuten_web_service)
 
 ## Installation
 
