@@ -2,11 +2,15 @@
 
 require 'rakuten_web_service'
 
-developer_id = ARGV.shift
+application_id = ARGV.shift
 keyword = ARGV[0..-1].join(' ')
 
-puts items = RakutenWebService::Ichiba::Item.search(:applicationId => developer_id, :keyword => keyword)
+RakutenWebService.configuration do |c|
+  c.application_id = application_id
+end
 
-items.each do |item|
+items = RakutenWebService::Ichiba::Item.search(:keyword => keyword)
+
+items.first(10).each do |item|
   puts "#{item['itemName']}, #{item['itemPrice']} yen"
 end
