@@ -4,18 +4,25 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Ichiba::Item do
-  describe '.search' do
-    let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
-    let(:affiliate_id) { 'dummy_affiliate_id' }
-    let(:application_id) { 'dummy_application_id' }
-    let(:expected_query) do
-      {
-        :affiliateId => affiliate_id,
-        :applicationId => application_id,
-        :keyword => 'Ruby'
-      }
-    end
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
+  let(:affiliate_id) { 'dummy_affiliate_id' }
+  let(:application_id) { 'dummy_application_id' }
+  let(:expected_query) do
+    {
+      :affiliateId => affiliate_id,
+      :applicationId => application_id,
+      :keyword => 'Ruby'
+    }
+  end
 
+  before do
+    RakutenWebService.configuration do |c|
+      c.affiliate_id = affiliate_id
+      c.application_id = application_id
+    end
+  end
+
+  describe '.search' do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
@@ -27,11 +34,6 @@ describe RakutenWebService::Ichiba::Item do
       @second_request = stub_request(:get, endpoint).
         with(:query => expected_query.merge(:page => 2)).
         to_return(:body => response.to_json)
-
-      RakutenWebService.configuration do |c|
-        c.affiliate_id = affiliate_id
-        c.application_id = application_id
-      end
     end
 
     context 'just call the search method' do
@@ -79,6 +81,24 @@ describe RakutenWebService::Ichiba::Item do
 
     specify "call RakutenWebService::Ichiba::RankingItem's search" do
       RakutenWebService::Ichiba::Item.ranking({})
+    end
+  end
+
+  describe '#genre' do
+    let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
+
+    before do
+      stub_request(:get, endpoint).with(:query => expected_query).
+        to_return(:body => response.to_json)
+
+      expected_item = response['Items'][0]['Item']
+      RakutenWebService::Ichiba::Genre.should_receive('[]').with(expected_item['genreId']) 
+    end
+
+    subject { RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.genre }
+
+    specify 'respond Genre object' do
+      expect { subject }.to_not raise_error
     end
   end
 end

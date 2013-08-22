@@ -25,7 +25,12 @@ module RakutenWebService
         :startTime, :endTime,
         :reviewCount, :reviewAverage,
         :pointRate, :pointRateStartTime, :pointRateEndTime<
-        :shopName, :shopCode, :shopUrl
+        :shopName, :shopCode, :shopUrl,
+        :genreId
+
+      def genre
+        Genre[self.genre_id]
+      end
     end
   end
 end
