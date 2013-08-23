@@ -79,9 +79,11 @@ describe RakutenWebService::Ichiba::Genre do
                  :affiliateId => affiliate_id,
                  :applicationId => application_id,
                  :genreId => new_genre_id }).
-            to_return(:body => { :genreId => new_genre_id,
-                                 :genreName => 'DummyGenre',
-                                 :genreLevel => 3 }.to_json)
+            to_return(:body => {:current => 
+                                  { :genreId => new_genre_id,
+                                    :genreName => 'DummyGenre',
+                                    :genreLevel => 3 }
+                               }.to_json)
 
           @genre = RakutenWebService::Ichiba::Genre.new(new_genre_id)
         end
@@ -101,6 +103,40 @@ describe RakutenWebService::Ichiba::Genre do
     specify 'should be equal genre object with id 0' do
       expect(RakutenWebService::Ichiba::Genre.root).
         to eq(RakutenWebService::Ichiba::Genre[0])
+    end
+  end
+
+  describe '#children' do
+    let(:root_genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
+
+    subject { root_genre.children }
+
+    specify 'children respond genres under the specified genre' do
+      expect(root_genre.children.size).to eq(expected_json['children'].size)
+    end
+
+    context 'when children of the genre have not been fetched' do
+      let(:target_genre) { expected_json['children'].first['child'] }
+
+      before do
+        @additional_request = stub_request(:get, endpoint).
+          with(:query => {
+               :affiliateId => affiliate_id,
+               :applicationId => application_id,
+               :genreId => target_genre['genreId']
+          }).to_return(:body => {
+            :current => target_genre,
+            :children => []
+          }.to_json)
+      end
+
+      subject { root_genre.children.first }
+
+      specify 'should call ' do
+        expect(subject.children.size).to eq(0)
+        expect(@additional_request).to have_been_made
+      end
+
     end
   end
 

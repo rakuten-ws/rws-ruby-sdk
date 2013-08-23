@@ -5,7 +5,18 @@ module RakutenWebService
 
       class << self
         def parse_response(response)
-          [Genre.new(response['current'])]
+          current = response['current']
+          if children = response['children']
+            children = children.map { |child| Genre.new(child['child']) }
+            current.merge!('children' => children)
+          end
+          if parents = response['parents']
+            parents = parents.map { |parent| Genre.new(parent['parent']) }
+            current.merge!('parents' => parents)
+          end
+
+          genre = Genre.new(current)
+          [genre]
         end
 
         def new(params)
@@ -40,6 +51,11 @@ module RakutenWebService
 
       def ranking(options={})
         RakutenWebService::Ichiba::RankingItem.search(:genre_id => self.id)
+      end
+
+      def children
+        return @params['children'] if @params['children']
+        Genre.search(:genre_id => self.id).first.children
       end
     end
   end
