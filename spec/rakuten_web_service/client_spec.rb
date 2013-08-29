@@ -79,5 +79,17 @@ describe RakutenWebService::Client do
       end
     end
 
+    context 'Internal error in Rakuten Web Service' do
+      let(:expected_response) do
+        { :status => 500,
+          :body => '{ "error": "system_error",
+                      "error_description": "api logic error" }'
+        }
+      end
+
+      specify 'raises SystemError exception' do
+        expect { client.get({}) }.to raise_error(RWS::SystemError, 'api logic error')
+      end
+    end
   end
 end
