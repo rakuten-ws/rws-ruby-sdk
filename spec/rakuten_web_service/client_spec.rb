@@ -91,5 +91,18 @@ describe RakutenWebService::Client do
         expect { client.get({}) }.to raise_error(RWS::SystemError, 'api logic error')
       end
     end
+
+    context 'Unavaiable due to maintainance or overloaded' do
+      let(:expected_response) do
+        { :status => 503,
+          :body => '{ "error": "service_unavailable",
+                      "error_description": "XXX/XXX is under maintenance" }'
+        }
+      end
+
+      specify 'raises ServiceUnavailable exception' do
+        expect { client.get({}) }.to raise_error(RWS::ServiceUnavailable, 'XXX/XXX is under maintenance')
+      end
+    end
   end
 end
