@@ -3,6 +3,7 @@ require 'faraday_middleware'
 
 module RakutenWebService
   class WrongParameter < StandardError; end
+  class TooManyRequests < StandardError; end
 
   class Client
     attr_reader :url, :path
@@ -22,6 +23,8 @@ module RakutenWebService
         return response
       when 400
         raise WrongParameter, response.body['error_description']
+      when 429
+        raise TooManyRequests, response.body['error_description']
       end
     end
 

@@ -65,5 +65,19 @@ describe RakutenWebService::Client do
 
     end
 
+    context 'Too many requests' do
+      let(:expected_response) do
+        { :status => 429,
+          :body => '{ "error": "too_many_requests",
+            "error_description": "number of allowed requests has been exceeded for this API. please try again soon." }'
+        }
+      end
+
+      specify 'raises TooManyRequests exception' do
+        expect { client.get({}) }.to raise_error(RWS::TooManyRequests,
+          'number of allowed requests has been exceeded for this API. please try again soon.')
+      end
+    end
+
   end
 end
