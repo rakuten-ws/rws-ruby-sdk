@@ -9,11 +9,14 @@ describe RakutenWebService::Client do
   let(:expected_query) do
     { :affiliateId => affiliate_id, :applicationId => application_id }
   end
+  let(:expected_response) do
+    { :body => '{"status":"ok"}' }
+  end
 
   before do
     @expected_request = stub_request(:get, endpoint).
       with(:query => expected_query).
-      to_return(:body => '{"status":"ok"}')
+      to_return(expected_response)
 
     RakutenWebService.configuration do |c|
       c.affiliate_id = 'default_affiliate_id'
@@ -21,28 +24,46 @@ describe RakutenWebService::Client do
     end
   end
 
-  context 'call get without any parameters' do
-    before do
-      client.get({})
+  describe '#get' do
+    context 'call get without any parameters' do
+      before do
+        client.get({})
+      end
+
+      specify 'call endpoint with default parameters' do
+        expect(@expected_request).to have_been_made.once
+      end
     end
 
-    specify 'call endpoint with default parameters' do
-      expect(@expected_request).to have_been_made.once
+    context 'call get with parameters' do
+      let(:affiliate_id) { 'latest_affiliate_id' }
+      let(:application_id) { 'latest_application_id' }
+
+      before do
+        client.get(:affiliate_id => affiliate_id,
+                   :application_id => application_id)
+      end
+
+      specify 'call endpoint with given parameters' do
+        expect(@expected_request).to have_been_made.once
+      end
     end
   end
 
-  context 'call get with parameters' do
-    let(:affiliate_id) { 'latest_affiliate_id' }
-    let(:application_id) { 'latest_application_id' }
+  describe 'about exceptions' do
+    context 'parameter error' do
+      let(:expected_response) do
+        { :status => 400,
+          :body => '{"error": "wrong_parameter",
+                     "error_description": "specify valid applicationId"}'
+        }
+      end
 
-    before do
-      client.get(:affiliate_id => affiliate_id,
-                 :application_id => application_id)
+      specify 'raises WrongParameter exception' do
+        expect { client.get({}) }.to raise_error(RWS::WrongParameter, 'specify valid applicationId')
+      end
+
     end
 
-    specify 'call endpoint with given parameters' do
-      expect(@expected_request).to have_been_made.once
-    end
   end
-
 end

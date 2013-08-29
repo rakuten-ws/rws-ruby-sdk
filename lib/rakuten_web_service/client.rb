@@ -2,6 +2,8 @@ require 'faraday'
 require 'faraday_middleware'
 
 module RakutenWebService
+  class WrongParameter < StandardError; end
+
   class Client
     attr_reader :url, :path
 
@@ -14,7 +16,13 @@ module RakutenWebService
     def get(query)
       query = RakutenWebService.configuration.generate_parameters.merge(query)
       query = convert_snake_key_to_camel_key(query)
-      connection.get(path, query)
+      response = connection.get(path, query)
+      case response.status
+      when 200
+        return response
+      when 400
+        raise WrongParameter, response.body['error_description']
+      end
     end
 
     private
