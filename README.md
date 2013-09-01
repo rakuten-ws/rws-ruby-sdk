@@ -26,7 +26,7 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
 * [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
 
-## Configuration
+### Configuration
 
 `RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional). 
 
