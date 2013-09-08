@@ -1,7 +1,7 @@
 module RakutenWebService
   module Ichiba
-    class Shop
-
+    class Shop < Resource
+      attribute :shopName, :shopCode, :shopUrl
     end
   end
 end
