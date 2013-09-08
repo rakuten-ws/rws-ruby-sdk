@@ -24,12 +24,20 @@ module RakutenWebService
         :affiliateRate,
         :startTime, :endTime,
         :reviewCount, :reviewAverage,
-        :pointRate, :pointRateStartTime, :pointRateEndTime<
+        :pointRate, :pointRateStartTime, :pointRateEndTime,
         :shopName, :shopCode, :shopUrl,
         :genreId
 
       def genre
         Genre[self.genre_id]
+      end
+
+      def shop
+        Shop.new({
+          'shopName' => self.shop_name,
+          'shopCode' => self.shop_code,
+          'shopUrl' => self.shop_url
+        })
       end
     end
   end
