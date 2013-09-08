@@ -101,4 +101,24 @@ describe RakutenWebService::Ichiba::Item do
       expect { subject }.to_not raise_error
     end
   end
+
+  describe '#shop' do
+    let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
+    let(:expected_item) { response['Items'][0]['Item'] }
+
+    before do
+      stub_request(:get, endpoint).with(:query => expected_query).
+        to_return(:body => response.to_json)
+    end
+
+    subject do
+      RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.shop
+    end
+
+    specify 'responds Shop object' do
+      expect(subject.name).to eq(expected_item['shopName'])
+      expect(subject.code).to eq(expected_item['shopCode'])
+      expect(subject.url).to eq(expected_item['shopUrl'])
+    end
+  end
 end
