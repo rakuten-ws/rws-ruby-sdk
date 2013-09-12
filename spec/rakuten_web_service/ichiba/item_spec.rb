@@ -92,7 +92,7 @@ describe RakutenWebService::Ichiba::Item do
         to_return(:body => response.to_json)
 
       expected_item = response['Items'][0]['Item']
-      RakutenWebService::Ichiba::Genre.should_receive('[]').with(expected_item['genreId']) 
+      RakutenWebService::Ichiba::Genre.should_receive('new').with(expected_item['genreId']) 
     end
 
     subject { RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.genre }

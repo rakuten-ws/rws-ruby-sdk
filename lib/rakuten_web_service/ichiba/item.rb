@@ -29,7 +29,7 @@ module RakutenWebService
         :genreId
 
       def genre
-        Genre[self.genre_id]
+        Genre.new(self.genre_id)
       end
 
       def shop
