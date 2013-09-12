@@ -3,6 +3,7 @@ require 'faraday_middleware'
 
 module RakutenWebService
   class WrongParameter < StandardError; end
+  class NotFound < StandardError; end
   class TooManyRequests < StandardError; end
   class SystemError < StandardError; end
   class ServiceUnavailable < StandardError; end
@@ -25,6 +26,8 @@ module RakutenWebService
         return response
       when 400
         raise WrongParameter, response.body['error_description']
+      when 404
+        raise NotFound, response.body['error_description']
       when 429
         raise TooManyRequests, response.body['error_description']
       when 500

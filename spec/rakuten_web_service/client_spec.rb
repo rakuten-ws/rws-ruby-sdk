@@ -104,5 +104,18 @@ describe RakutenWebService::Client do
         expect { client.get({}) }.to raise_error(RWS::ServiceUnavailable, 'XXX/XXX is under maintenance')
       end
     end
+
+    context 'The specified genre has no ranking data' do
+      let(:expected_response) do
+        { :status => 404,
+          :body => '{ "error": "not_found",
+                      "error_description": "This genre data does not exist"}'
+        }
+      end
+
+      specify 'raises NotFound exception' do
+        expect { client.get({}) }.to raise_error(RWS::NotFound, 'This genre data does not exist')
+      end
+    end
   end
 end
