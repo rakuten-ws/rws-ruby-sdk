@@ -6,7 +6,7 @@ module RakutenWebService
           response['Items'].map { |item| Item.new(item['Item']) }
         end
 
-        def ranking(options)
+        def ranking(options={})
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
       end

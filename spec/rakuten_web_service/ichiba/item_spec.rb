@@ -80,7 +80,7 @@ describe RakutenWebService::Ichiba::Item do
     end
 
     specify "call RakutenWebService::Ichiba::RankingItem's search" do
-      RakutenWebService::Ichiba::Item.ranking({})
+      RakutenWebService::Ichiba::Item.ranking
     end
   end
 
