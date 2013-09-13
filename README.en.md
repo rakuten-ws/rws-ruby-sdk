@@ -1,6 +1,7 @@
 # RakutenWebService
 
-[![Build Status](https://travis-ci.org/satoryu/rakuten_web_service.png?branch=master)](https://travis-ci.org/satoryu/rakuten_web_service) [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
+[![Build Status](https://travis-ci.org/rakuten-ws/rws-ruby-sdk.png?branch=master)](https://travis-ci.org/rakuten-ws/rws-ruby-sdk) [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
+
 
 ## Installation
 
