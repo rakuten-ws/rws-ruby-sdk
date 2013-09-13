@@ -2,40 +2,33 @@
 
 [![Build Status](https://travis-ci.org/satoryu/rakuten_web_service.png?branch=master)](https://travis-ci.org/satoryu/rakuten_web_service) [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
 
-rakuten\_web\_serviceは、 Rubyから楽天が提供しているAPIに簡単にアクセスできるSDK(Software Development Kit)です。
+## Installation
 
-English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.en.md).
-
-## インストール方法
-
-bundlerを利用したアプリケーションの場合、Gemfileに以下の1行を追加します。
+Add this line to your application's Gemfile:
 
 ```ruby
   gem 'rakuten_web_service'
 ```
 
-そして`bundle`コマンドでインストール。
+And then execute:
 
     $ bundle
 
-もしくは、`gem`コマンドにより
+Or install it yourself as:
 
     $ gem install rakuten_web_service
 
-とすることでインストールできます。
-
-## 使用方法
+## Usage
 
 Now rakuten\_web\_service is supporting the following APIs: 
-現在rakuten\_web\_serviceは下記のAPIをサポートしています。
 
 * [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
 * [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
 
-### 設定
+### Configuration
 
-`RakutenWebService.configuration` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
+`RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional). 
 
 ```ruby
   RakutenWebService.configuration do |c|
@@ -44,7 +37,7 @@ Now rakuten\_web\_service is supporting the following APIs:
   end
 ```
 
-### 市場商品の検索
+### Search Ichiba Items
 
 ```ruby
   items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enamerable object
@@ -53,9 +46,9 @@ Now rakuten\_web\_service is supporting the following APIs:
   end
 ```
 
-### ジャンル
+### Genre
 
-Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。 
+Genre class provides an interface to traverse sub genres.
 
 ```ruby
   root = RakutenWebService::Ichiba::Genre.root # root genre
@@ -69,11 +62,11 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
 ```
 
 
-### 市場商品ランキング
+### Ichiba Item Ranking
 
 ```ruby
-  RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 0) # 30代男性 のランキングTOP 30
-  RakutenWebService::Ichiba::Genre[100316].ranking # "水・ソフトドリンク" ジャンルのTOP 30
+  RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 0) # returns the TOP 30 items for Male in 30s
+  RakutenWebService::Ichiba::Genre[100316].ranking # the TOP 30 items in "水・ソフトドリンク" genre
 ```
 
 ## Contributing
