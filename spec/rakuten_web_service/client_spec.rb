@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'rakuten_web_service/client'
+require 'rakuten_web_service'
 
 describe RakutenWebService::Client do
   let(:endpoint) { 'http://api.example.com/resources' }
@@ -15,7 +15,7 @@ describe RakutenWebService::Client do
 
   before do
     @expected_request = stub_request(:get, endpoint).
-      with(:query => expected_query).
+      with(:query => expected_query, headers: { 'User-Agent' => "RakutenWebService SDK for Ruby-#{RakutenWebService::VERSION}" }).
       to_return(expected_response)
 
     RakutenWebService.configuration do |c|

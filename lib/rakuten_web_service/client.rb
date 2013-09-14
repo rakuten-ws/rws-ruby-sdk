@@ -44,6 +44,7 @@ module RakutenWebService
         conn.request :url_encoded
         conn.response :json
         conn.adapter Faraday.default_adapter
+        conn.headers['User-Agent'] = "RakutenWebService SDK for Ruby-#{RWS::VERSION}"
       end
     end
 
