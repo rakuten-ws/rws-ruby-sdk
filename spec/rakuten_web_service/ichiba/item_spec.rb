@@ -121,4 +121,12 @@ describe RakutenWebService::Ichiba::Item do
       expect(subject.url).to eq(expected_item['shopUrl'])
     end
   end
+
+  describe '#order' do
+    specify 'convert sort parameter' do
+      query = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').order(affiliate_rate: :desc)
+
+      expect(query.params[:sort]).to eq('-affiliateRate')
+    end
+  end
 end

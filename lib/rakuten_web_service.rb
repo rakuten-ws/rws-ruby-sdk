@@ -1,3 +1,4 @@
+require 'active_support/core_ext/string/inflections'
 require 'rakuten_web_service/version'
 require 'rakuten_web_service/configuration'
 require 'rakuten_web_service/client'
