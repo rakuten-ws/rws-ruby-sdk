@@ -2,16 +2,16 @@ module RakutenWebService
   module Ichiba
     class Item < Resource
       class << self
-        def parse_response(response)
-          response['Items'].map { |item| Item.new(item['Item']) }
-        end
-
         def ranking(options={})
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
       end
       
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
+
+      set_parser do |response|
+        response['Items'].map { |item| Item.new(item['Item']) }
+      end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
         :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,

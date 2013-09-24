@@ -32,6 +32,14 @@ module RakutenWebService
       def client
         @client ||= RakutenWebService::Client.new(endpoint)
       end
+
+      def set_parser(&block)
+        @parse_proc = block
+      end
+
+      def parse_response(response)
+        @parse_proc.call(response)
+      end
     end
 
     def initialize(params)

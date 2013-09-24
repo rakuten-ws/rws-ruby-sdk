@@ -4,21 +4,6 @@ module RakutenWebService
       @@repository = {}
 
       class << self
-        def parse_response(response)
-          current = response['current']
-          if children = response['children']
-            children = children.map { |child| Genre.new(child['child']) }
-            current.merge!('children' => children)
-          end
-          if parents = response['parents']
-            parents = parents.map { |parent| Genre.new(parent['parent']) }
-            current.merge!('parents' => parents)
-          end
-
-          genre = Genre.new(current)
-          [genre]
-        end
-
         def new(params)
           case params
           when Integer, String
@@ -42,6 +27,22 @@ module RakutenWebService
       end
 
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20120723'
+
+      set_parser do |response|
+        current = response['current']
+        if children = response['children']
+          children = children.map { |child| Genre.new(child['child']) }
+          current.merge!('children' => children)
+        end
+        if parents = response['parents']
+          parents = parents.map { |parent| Genre.new(parent['parent']) }
+          current.merge!('parents' => parents)
+        end
+
+        genre = Genre.new(current)
+        [genre]
+      end
+
       attribute :genreId, :genreName, :genreLevel
 
       def initialize(params)
