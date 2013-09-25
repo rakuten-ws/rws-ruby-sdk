@@ -3,7 +3,7 @@ module RakutenWebService
     include Enumerable
 
     def initialize(params, resource_class, client)
-      @params = params
+      @params = params.dup
       @resource_class = resource_class
       @client = client
     end
@@ -39,21 +39,22 @@ module RakutenWebService
     end
 
     def order(options)
+      new_params = @params.dup
       if options.is_a? Hash
         key, sort_order = *(options.to_a.last)
         key = key.to_s.camelize(:lower)
-        @params[:sort] = case sort_order.to_s.downcase
+        new_params[:sort] = case sort_order.to_s.downcase
                          when 'desc'
                            "-#{key}"
                          when 'asc'
                            "+#{key}"
                          end
       elsif options.to_s == 'standard'
-        @params[:sort] = 'standard' 
+        new_params[:sort] = 'standard' 
       else 
         raise ArgumentError, "Invalid Sort Option: #{options.inspect}"
       end
-      self
+      self.class.new(new_params, @resource_class, @client)
     end
 
     private

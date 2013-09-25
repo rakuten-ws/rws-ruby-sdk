@@ -128,5 +128,13 @@ describe RakutenWebService::Ichiba::Item do
 
       expect(query.params[:sort]).to eq('-affiliateRate')
     end
+
+    specify 'reproduces new SearchResult object' do
+      first_query = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby')
+      second_query = first_query.order(affiliate_rate: :desc)
+
+      expect(first_query.params[:sort]).to be_nil
+      expect(second_query.params[:sort]).to eq('-affiliateRate')
+    end
   end
 end
