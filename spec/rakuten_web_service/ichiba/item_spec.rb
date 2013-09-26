@@ -59,6 +59,9 @@ describe RakutenWebService::Ichiba::Item do
           expect(subject['item_name']).to eq(expected_json['itemName'])
         end 
         its(:name) { should eq(expected_json['itemName']) }
+        specify 'should have xxx? method if the object has xxx_flag' do
+          expect(subject.tax?).to eq(expected_json['taxFlag'] == 1)
+        end
       end
 
       context 'after that, call each' do

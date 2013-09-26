@@ -14,6 +14,13 @@ module RakutenWebService
               @params['#{attribute.to_s}']
             end
           CODE
+          if method_name =~ /(.+)_flag$/
+            self.class_eval <<-CODE
+              def #{$1}?
+                @params['#{attribute.to_s}'] == 1
+              end
+            CODE
+          end
         end
       end
 
