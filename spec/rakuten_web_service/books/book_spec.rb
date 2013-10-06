@@ -22,7 +22,7 @@ describe RakutenWebService::Books::Book do
 
   describe '.search' do
     before do
-      response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
+      response = JSON.parse(fixture('books/book_search_with_keyword_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
         with(:query => expected_query).to_return(:body => response.to_json)
 
