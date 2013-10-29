@@ -1,3 +1,6 @@
+require 'rakuten_web_service/resource'
+require 'rakuten_web_service/ichiba/item'
+
 module RakutenWebService
   module Ichiba
     class Shop < Resource

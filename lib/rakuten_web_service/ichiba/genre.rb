@@ -1,3 +1,6 @@
+require 'rakuten_web_service/resource'
+require 'rakuten_web_service/ichiba/ranking'
+
 module RakutenWebService
   module Ichiba
     class Genre < Resource

@@ -1,3 +1,5 @@
+require 'rakuten_web_service/resource'
+
 module RakutenWebService
   module Books
     class Book < RakutenWebService::Resource

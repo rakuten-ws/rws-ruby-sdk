@@ -42,7 +42,7 @@ module RakutenWebService
       new_params = @params.dup
       if options.is_a? Hash
         key, sort_order = *(options.to_a.last)
-        key = key.to_s.camelize(:lower)
+        key = camelize(key.to_s)
         new_params[:sort] = case sort_order.to_s.downcase
                          when 'desc'
                            "-#{key}"
@@ -60,6 +60,15 @@ module RakutenWebService
     private
     def query(params=nil)
       @client.get(params || @params)
+    end
+
+    def camelize(str)
+      str = str.downcase
+      str = str.gsub(/([a-z]+)_([a-z]+)/) do
+        "#{$1.capitalize}#{$2.capitalize}"
+      end
+      str[0] = str[0].downcase
+      str
     end
   end
 end

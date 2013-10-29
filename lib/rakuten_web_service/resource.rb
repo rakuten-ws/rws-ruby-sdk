@@ -1,3 +1,4 @@
+require 'rakuten_web_service/client'
 require 'rakuten_web_service/search_result'
 
 module RakutenWebService
