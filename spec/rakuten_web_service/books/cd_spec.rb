@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Books::CD do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20130522' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksCD/Search/20130522' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
@@ -35,11 +35,12 @@ describe RakutenWebService::Books::CD do
     end
 
     specify 'call endpoint when accessing results' do
-      books = RakutenWebService::Books::Book.search(:keyword => 'Ruby')
+      cds = RakutenWebService::Books::CD.search(:keyword => 'Ruby')
       expect(@expected_request).to_not have_been_made
 
-      books.first
+      cd = cds.first
       expect(@expected_request).to have_been_made.once
+      expect(cd).to be_a(RWS::Books::CD)
     end
   end
 end

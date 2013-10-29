@@ -9,17 +9,17 @@ module RakutenWebService
             "#{$1}_#{$2.downcase}"
           end
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
-          self.class_eval <<-CODE
-            def #{method_name}
-              @params['#{attribute.to_s}']
+          instance_eval do
+            define_method method_name do
+              (instance_variable_get(:@params))[attribute.to_s]
             end
-          CODE
+          end
           if method_name =~ /(.+)_flag$/
-            self.class_eval <<-CODE
-              def #{$1}?
-                @params['#{attribute.to_s}'] == 1
+            instance_eval do
+              define_method "#{$1}?" do
+                instance_variable_get(:@params)[attribute.to_s] == 1
               end
-            CODE
+            end
           end
         end
       end

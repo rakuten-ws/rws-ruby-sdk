@@ -9,6 +9,7 @@ require 'rakuten_web_service/ichiba/item'
 require 'rakuten_web_service/ichiba/genre'
 require 'rakuten_web_service/ichiba/ranking'
 require 'rakuten_web_service/books/book'
+require 'rakuten_web_service/books/cd'
 
 module RakutenWebService
 end
