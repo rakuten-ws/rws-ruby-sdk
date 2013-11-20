@@ -22,7 +22,7 @@ module RakutenWebService
                 :chirayomiUrl,
                 :availability,
                 :postageFlag, :limitedFlag,
-                :reviewCount, :reviwAverage,
+                :reviewCount, :reviewAverage,
                 :booksGenreId
     end
   end
