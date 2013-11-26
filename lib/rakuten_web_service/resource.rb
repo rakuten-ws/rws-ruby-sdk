@@ -30,7 +30,11 @@ module RakutenWebService
       end
 
       def resource_name
-        self.name.split('::').last.downcase
+        @resource_name ||= self.name.split('::').last.downcase
+      end
+
+      def set_resource_name(name)
+        @resource_name = name
       end
 
       def endpoint(url=nil)
