@@ -4,7 +4,6 @@ require 'rakuten_web_service/ichiba/ranking'
 module RakutenWebService
   module Ichiba
     class Genre < Resource
-      @@repository = {}
 
       class << self
         def new(params)
@@ -21,11 +20,16 @@ module RakutenWebService
         end
 
         def [](id)
-          @@repository[id.to_s]
+          repository[id.to_s]
         end
 
         def []=(id, genre)
-          @@repository[id.to_s] = genre
+          repository[id.to_s] = genre
+        end
+
+        private
+        def repository
+          @repository ||= {}
         end
       end
 
