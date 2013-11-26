@@ -23,6 +23,30 @@ module RakutenWebService
       end
 
       attribute :booksGenreId, :booksGenreName, :genreLevel
+
+      def self.new(params)
+        case params
+        when String
+          Genre[params] ||= self.search(:booksGenreId => params).first
+        when Hash
+          super
+        else
+          raise ArgumentError, 'Invalid parameter for initializing Books::Genre'
+        end
+      end
+
+      def self.[](id)
+        repository[id]
+      end
+
+      def self.[]=(id, genre)
+        repository[id] = genre
+      end
+
+      private
+      def self.repository
+        @repository ||= {}
+      end
     end
   end
 end

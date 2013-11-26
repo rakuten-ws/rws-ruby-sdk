@@ -10,7 +10,7 @@ describe RWS::Books::Genre do
     {
       :affiliateId => affiliate_id,
       :applicationId => application_id,
-      :genreId => genre_id
+      :booksGenreId => genre_id
     }
   end
   let(:expected_json) do
@@ -20,7 +20,7 @@ describe RWS::Books::Genre do
   before do
     @expected_request = stub_request(:get, endpoint).
       with(:query => expected_query).
-      to_return(:body => fixture('books/genre_search.json'))
+      to_return(:body => expected_json)
 
     RakutenWebService.configuration do |c|
       c.affiliate_id = affiliate_id
@@ -30,7 +30,7 @@ describe RWS::Books::Genre do
 
   describe '.search' do
     before do
-      @genre = RWS::Books::Genre.search(:genreId => genre_id).first
+      @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
     end
 
     specify 'call the endpoint once' do
@@ -47,6 +47,33 @@ describe RWS::Books::Genre do
     specify 'has interfaces to get each attribute' do
       expect(@genre.id).to eq(expected_json['current']['booksGenreId'])
       expect(@genre.name).to eq(expected_json['current']['booksGenreName'])
+    end
+  end
+
+  describe '.new' do
+    let(:genre_id) { '007' }
+    let(:expected_json) do
+      {
+        :current => {
+          :booksGenreId => genre_id,
+          :booksGenreName => 'DummyGenre',
+          :genreLevel => '2'
+        }
+      }.to_json
+    end
+
+    before do
+      @genre = RWS::Books::Genre.new(param)
+    end
+
+    context  'given a genre id' do
+      let(:param) { genre_id }
+
+      specify 'only call endpint only at the first time to initialize' do
+        RWS::Books::Genre.new(param)
+
+        expect(@expected_request).to have_been_made.once
+      end
     end
   end
 end
