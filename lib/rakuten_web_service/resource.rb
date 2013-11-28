@@ -55,7 +55,8 @@ module RakutenWebService
     end
 
     def initialize(params)
-      @params = params
+      @params = params.dup
+      params.each { |k, v| @params[k.to_s] = v }
     end
 
     def [](key)

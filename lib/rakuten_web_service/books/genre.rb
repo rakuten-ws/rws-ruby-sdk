@@ -48,7 +48,7 @@ module RakutenWebService
       end
 
       def children
-        return @params['children']
+        @params['children'] ||= RWS::Books::Genre.search(:booksGenreId => self.id).first.children
       end
 
       private

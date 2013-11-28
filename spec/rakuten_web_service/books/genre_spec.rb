@@ -86,15 +86,33 @@ describe RWS::Books::Genre do
   end
 
   describe '#children' do
-    before do
-      @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
-    end
+    context 'When get search method' do
+      before do
+        @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
+      end
 
-    specify 'are Books::Genre objects' do
-      expect(@genre.children).to be_all { |child| child.is_a? RWS::Books::Genre }
-      expect(@genre.children).to be_all do |child|
-        expected_json['children'].is_any? { |c| c['booksGenreId'] == child['booksGenreId'] }
+      specify 'are Books::Genre objects' do
+        expect(@genre.children).to be_all { |child| child.is_a? RWS::Books::Genre }
+        expect(@genre.children).to be_all do |child|
+          expected_json['children'].is_any? { |c| c['booksGenreId'] == child['booksGenreId'] }
+        end
       end
     end
+
+    context 'when the genre object has no children information' do
+      specify 'call the endpoint to get children' do
+        genre = RWS::Books::Genre.new(:booksGenreId => genre_id)
+        genre.children
+
+        expect(@expected_request).to have_been_made.once
+      end
+    end
+  end
+
+  describe '#search' do
+    before do
+      @genre = RWS::Books::Genre.new(:booksGenreId => genre_id)
+    end
+
   end
 end
