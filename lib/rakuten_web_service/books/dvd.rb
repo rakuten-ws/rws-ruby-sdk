@@ -1,13 +1,9 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/books/resource'
 
 module RakutenWebService
   module Books
-    class DVD < RakutenWebService::Resource
+    class DVD < Books::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/BooksDVD/Search/20130522'
-
-      set_parser do |response|
-        response['Items'].map { |item| DVD.new(item['Item']) }
-      end
 
       attribute :title, :titleKana, :artistName, :artistNameKana,
                 :label, :jan, :makerCode,

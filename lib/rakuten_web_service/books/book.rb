@@ -1,13 +1,9 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/books/resource'
 
 module RakutenWebService
   module Books
-    class Book < RakutenWebService::Resource
+    class Book < Books::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20130522'
-
-      set_parser do |response|
-        response['Items'].map { |item| Book.new(item['Item']) }
-      end
 
       attribute :title, :titleKana, :subTitle, :subTitleKana,
                 :seriesName, :seriesNameKana,

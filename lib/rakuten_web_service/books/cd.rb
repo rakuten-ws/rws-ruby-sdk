@@ -1,13 +1,9 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/books/resource'
 
 module RakutenWebService
   module Books
-    class CD < RakutenWebService::Resource
+    class CD < Books::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/BooksCD/Search/20130522'
-
-      set_parser do |response|
-        response['Items'].map { |item| CD.new(item['Item']) }
-      end
 
       attribute :title, :titleKana, :artistName, :artistNameKana,
                 :label, :jan, :makerCode,
