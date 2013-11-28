@@ -84,4 +84,17 @@ describe RWS::Books::Genre do
       RWS::Books::Genre.root
     end
   end
+
+  describe '#children' do
+    before do
+      @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
+    end
+
+    specify 'are Books::Genre objects' do
+      expect(@genre.children).to be_all { |child| child.is_a? RWS::Books::Genre }
+      expect(@genre.children).to be_all do |child|
+        expected_json['children'].is_any? { |c| c['booksGenreId'] == child['booksGenreId'] }
+      end
+    end
+  end
 end

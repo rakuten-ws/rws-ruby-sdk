@@ -47,6 +47,10 @@ module RakutenWebService
         repository[id] = genre
       end
 
+      def children
+        return @params['children']
+      end
+
       private
       def self.repository
         @repository ||= {}
