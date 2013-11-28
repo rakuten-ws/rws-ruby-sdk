@@ -62,8 +62,7 @@ module RakutenWebService
       end
 
       def children
-        return @params['children'] if @params['children']
-        Genre.search(:genre_id => self.id).first.children
+        @params['children'] ||= Genre.search(:genre_id => self.id).first.children
       end
     end
   end
