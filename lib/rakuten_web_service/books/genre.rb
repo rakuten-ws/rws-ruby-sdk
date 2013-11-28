@@ -24,6 +24,10 @@ module RakutenWebService
 
       attribute :booksGenreId, :booksGenreName, :genreLevel
 
+      def self.root
+        new('000')
+      end
+
       def self.new(params)
         case params
         when String

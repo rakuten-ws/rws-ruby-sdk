@@ -66,7 +66,7 @@ describe RWS::Books::Genre do
       @genre = RWS::Books::Genre.new(param)
     end
 
-    context  'given a genre id' do
+    context 'given a genre id' do
       let(:param) { genre_id }
 
       specify 'only call endpint only at the first time to initialize' do
@@ -74,6 +74,14 @@ describe RWS::Books::Genre do
 
         expect(@expected_request).to have_been_made.once
       end
+    end
+  end
+
+  describe '.root' do
+    specify 'alias of constructor with the root genre id "000"' do
+      RWS::Books::Genre.should_receive(:new).with('000')
+
+      RWS::Books::Genre.root
     end
   end
 end
