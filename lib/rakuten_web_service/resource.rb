@@ -46,11 +46,9 @@ module RakutenWebService
       end
 
       def set_parser(&block)
-        @parse_proc = block
-      end
-
-      def parse_response(response)
-        @parse_proc.call(response)
+        instance_eval do
+          define_singleton_method :parse_response, block
+        end
       end
     end
 
