@@ -53,23 +53,8 @@ module RakutenWebService
 
       def search(params={})
         params = params.merge(:booksGenreId => self.id)
-
-        case self.id
-        when /^001/
-          RWS::Books::Book.search(params)
-        when /^002/
-          RWS::Books::CD.search(params)
-        when /^003/
-          RWS::Books::DVD.search(params)
-        when /^004/
-          RWS::Books::Software.search(params)
-        when /^005/
-          RWS::Books::ForeignBook.search(params)
-        when /^006/
-          RWS::Books::Game.search(params)
-        when /^007/
-          RWS::Books::Magazine.search(params)
-        end
+        resource = Books::Resource.find_resource_by_genre_id(self.id)
+        resource.search(params)
       end
 
       private
