@@ -9,7 +9,7 @@ describe RakutenWebService::Books::Book do
     {
       :affiliateId => affiliate_id,
       :applicationId => application_id,
-      :keyword => 'Ruby'
+      :title => 'Ruby'
     }
   end
 
@@ -35,11 +35,32 @@ describe RakutenWebService::Books::Book do
     end
 
     specify 'call endpoint when accessing results' do
-      books = RakutenWebService::Books::Book.search(:keyword => 'Ruby')
+      books = RakutenWebService::Books::Book.search(:title => 'Ruby')
       expect(@expected_request).to_not have_been_made
 
       books.first
       expect(@expected_request).to have_been_made.once
+    end
+  end
+
+  describe '#genre' do
+    let(:response) { JSON.parse(fixture('books/book_search_with_keyword_Ruby.json')) }
+
+    before do
+      res = response.dup
+      res['page'] = 1
+      res['first'] = 1
+      res['last'] = 30
+
+      stub_request(:get, endpoint).
+        with(:query => expected_query).to_return(:body => res.to_json)
+    end
+
+    specify 'genretes RWS::Books::Genre object' do
+      book = RWS::Books::Book.search(:title => 'Ruby').first
+
+      RWS::Books::Genre.should_receive(:new).with(response['Items'][0]['Item']['booksGenreId'])
+      book.genre
     end
   end
 end
