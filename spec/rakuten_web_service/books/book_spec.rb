@@ -60,7 +60,17 @@ describe RakutenWebService::Books::Book do
       book = RWS::Books::Book.search(:title => 'Ruby').first
 
       RWS::Books::Genre.should_receive(:new).with(response['Items'][0]['Item']['booksGenreId'])
-      book.genre
+      expect(book.genre).to be_a(Array)
+    end
+
+    specify 'generate an array of Books::Genre object if books_genre_id includes 2 ids' do
+      genre_id = '001004008007/001021001010'
+      book = RWS::Books::Book.new(:booksGenreId => genre_id) 
+      genre_id.split('/').each do |id|
+        RWS::Books::Genre.should_receive(:new).with(id)
+      end
+      
+      expect(book.genres).to be_a(Array)
     end
   end
 end
