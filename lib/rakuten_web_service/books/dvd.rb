@@ -16,6 +16,10 @@ module RakutenWebService
                 :postageFlag, :limitedFlag,
                 :reviewCount, :reviewAverage,
                 :booksGenreId
+
+      def update_key
+        'jan'
+      end
     end
   end
 end

@@ -36,4 +36,21 @@ describe RakutenWebService::Books::Software do
       expect(software).to be_a(RWS::Books::Software)
     end
   end
+
+  context 'When using Books::Total.search' do
+    let(:software) do
+      RWS::Books::Software.new(:jan => '12345')
+    end
+
+    before do
+      @expected_request = stub_request(:get, endpoint).
+        with(:query => { :affiliateId => affiliate_id, :applicationId => application_id, :jan => '12345' }).
+        to_return(:body => { :Items => [ { :Item => { :title => 'foo' } } ] }.to_json)
+    end
+
+    specify 'retrieves automatically if accessing the value of lack attribute' do
+      expect(software.title).to eq('foo')
+      expect(@expected_request).to have_been_made.once
+    end
+  end
 end

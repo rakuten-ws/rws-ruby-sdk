@@ -17,6 +17,9 @@ module RakutenWebService
                 :reviewCount, :reviewAverage,
                 :booksGenreId
 
+      def update_key
+        'jan'
+      end
     end
   end
 end

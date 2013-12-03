@@ -26,6 +26,27 @@ module RakutenWebService
         end
       end
       alias genres genre
+
+      def get_attribute(name)
+        name = name.to_s
+        update_params unless @params[name]
+        @params[name] 
+      end
+
+      private
+      def update_params
+        item = self.class.search(update_key => self[update_key]).first
+        @params = item.params
+      end
+
+      def update_key
+        raise 'This method is required to be overwritten in subclasses.'
+      end
+
+      protected
+      def params
+        @params.dup
+      end
     end
   end
 end

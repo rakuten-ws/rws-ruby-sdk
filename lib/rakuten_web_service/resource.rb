@@ -12,13 +12,13 @@ module RakutenWebService
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
           instance_eval do
             define_method method_name do
-              (instance_variable_get(:@params))[attribute.to_s]
+              get_attribute(attribute.to_s)
             end
           end
           if method_name =~ /(.+)_flag$/
             instance_eval do
               define_method "#{$1}?" do
-                instance_variable_get(:@params)[attribute.to_s] == 1
+                get_attribute(attribute.to_s) == 1
               end
             end
           end
@@ -60,6 +60,10 @@ module RakutenWebService
     def [](key)
       camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
       @params[key] || @params[camel_key]
+    end
+
+    def get_attribute(name)
+      @params[name.to_s]
     end
   end
 end

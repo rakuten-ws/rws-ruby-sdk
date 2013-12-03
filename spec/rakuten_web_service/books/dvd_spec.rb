@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rakuten_web_service'
 
 describe RakutenWebService::Books::DVD do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksDVD/Search/20130522' }
@@ -43,4 +44,20 @@ describe RakutenWebService::Books::DVD do
     end
   end
 
+  context 'When using Books::Total.search' do
+    let(:dvd) do
+      RWS::Books::DVD.new(:jan => '12345')
+    end
+
+    before do
+      @expected_request = stub_request(:get, endpoint).
+        with(:query => { :affiliateId => affiliate_id, :applicationId => application_id, :jan => '12345' }).
+        to_return(:body => { :Items => [ { :Item => { :title => 'foo' } } ] }.to_json)
+    end
+
+    specify 'retrieves automatically if accessing the value of lack attribute' do
+      expect(dvd.title).to eq('foo')
+      expect(@expected_request).to have_been_made.once
+    end
+  end
 end

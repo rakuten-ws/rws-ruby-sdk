@@ -15,6 +15,10 @@ module RakutenWebService
                 :availability, :postageFlag, :limitedFlag,
                 :reviewCount, :reviewAverage,
                 :booksGenreId
+
+      def update_key
+        'isbn'
+      end
     end
   end
 end
