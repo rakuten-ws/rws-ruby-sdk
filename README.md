@@ -24,14 +24,29 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 
 とすることでインストールできます。
 
-## 使用方法
-
-Now rakuten\_web\_service is supporting the following APIs: 
 現在rakuten\_web\_serviceは下記のAPIをサポートしています。
+
+### 楽天市場API
 
 * [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
 * [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
+
+
+### 楽天ブックス系API
+
+* [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
+* [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
+* [Rakuten Books CD Search API](http://webservice.rakuten.co.jp/api/bookscdsearch/)
+* [Rakuten Books DVD/Blu-ray Search API](http://webservice.rakuten.co.jp/api/booksdvdsearch/)
+* [Rakuten Books ForeignBook Search API](http://webservice.rakuten.co.jp/api/booksforeignbooksearch/)
+* [Rakuten Books Magazine Search API](http://webservice.rakuten.co.jp/api/booksmagazinesearch/)
+* [Rakuten Books Game Search API](http://webservice.rakuten.co.jp/api/booksgamesearch/)
+* [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
+* [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
+
+
+## 使用方法
 
 ### 設定
 
