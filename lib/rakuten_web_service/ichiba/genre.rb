@@ -1,7 +1,9 @@
+require 'rakuten_web_service/resource'
+require 'rakuten_web_service/ichiba/ranking'
+
 module RakutenWebService
   module Ichiba
     class Genre < Resource
-      @@repository = {}
 
       class << self
         def new(params)
@@ -18,11 +20,16 @@ module RakutenWebService
         end
 
         def [](id)
-          @@repository[id.to_s]
+          repository[id.to_s]
         end
 
         def []=(id, genre)
-          @@repository[id.to_s] = genre
+          repository[id.to_s] = genre
+        end
+
+        private
+        def repository
+          @repository ||= {}
         end
       end
 
@@ -55,8 +62,7 @@ module RakutenWebService
       end
 
       def children
-        return @params['children'] if @params['children']
-        Genre.search(:genre_id => self.id).first.children
+        @params['children'] ||= Genre.search(:genre_id => self.id).first.children
       end
     end
   end

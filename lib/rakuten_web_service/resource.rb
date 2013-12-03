@@ -1,3 +1,4 @@
+require 'rakuten_web_service/client'
 require 'rakuten_web_service/search_result'
 
 module RakutenWebService
@@ -9,17 +10,17 @@ module RakutenWebService
             "#{$1}_#{$2.downcase}"
           end
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
-          self.class_eval <<-CODE
-            def #{method_name}
-              @params['#{attribute.to_s}']
+          instance_eval do
+            define_method method_name do
+              get_attribute(attribute.to_s)
             end
-          CODE
+          end
           if method_name =~ /(.+)_flag$/
-            self.class_eval <<-CODE
-              def #{$1}?
-                @params['#{attribute.to_s}'] == 1
+            instance_eval do
+              define_method "#{$1}?" do
+                get_attribute(attribute.to_s) == 1
               end
-            CODE
+            end
           end
         end
       end
@@ -29,7 +30,11 @@ module RakutenWebService
       end
 
       def resource_name
-        self.name.split('::').last.downcase
+        @resource_name ||= self.name.split('::').last.downcase
+      end
+
+      def set_resource_name(name)
+        @resource_name = name
       end
 
       def endpoint(url=nil)
@@ -41,21 +46,24 @@ module RakutenWebService
       end
 
       def set_parser(&block)
-        @parse_proc = block
-      end
-
-      def parse_response(response)
-        @parse_proc.call(response)
+        instance_eval do
+          define_singleton_method :parse_response, block
+        end
       end
     end
 
     def initialize(params)
-      @params = params
+      @params = params.dup
+      params.each { |k, v| @params[k.to_s] = v }
     end
 
     def [](key)
       camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
       @params[key] || @params[camel_key]
+    end
+
+    def get_attribute(name)
+      @params[name.to_s]
     end
   end
 end
