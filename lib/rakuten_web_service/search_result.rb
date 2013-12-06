@@ -9,33 +9,26 @@ module RakutenWebService
     end
 
     def each
-      if @results 
-        @results.each do |item|
-          yield item
+      params = @params
+      response = query
+      begin
+        resources = @resource_class.parse_response(response.body)
+        resources.each do |resource|
+          yield resource
         end
-      else
-        @results = []
-        params = @params
-        response = query
-        begin
-          resources = @resource_class.parse_response(response.body)
-          resources.each do |resource|
-            yield resource
-            @results << resource
-          end
 
-          if response.body['page'] && response.body['page'] < response.body['pageCount']
-            response = query(params.merge('page' => response.body['page'] + 1))
-          else 
-            response = nil
-          end
-        end while(response) 
-      end
+        break unless has_next_page?
+        response = query(params.merge('page' => response.body['page'] + 1))
+      end while(response) 
     end
 
     def params
       return {} if @params.nil?
       @params.dup 
+    end
+
+    def has_next_page?
+      @response.body['page'] && @response.body['page'] < @response.body['pageCount']
     end
 
     def order(options)
@@ -59,7 +52,7 @@ module RakutenWebService
 
     private
     def query(params=nil)
-      @client.get(params || @params)
+      @response = @client.get(params || @params)
     end
 
     def camelize(str)
