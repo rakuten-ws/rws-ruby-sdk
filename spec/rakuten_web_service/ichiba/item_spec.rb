@@ -74,6 +74,23 @@ describe RakutenWebService::Ichiba::Item do
           expect(@second_request).to have_been_made.once
         end
       end
+
+      context 'When TooManyRequest error raised' do
+        let(:client) do 
+          c = double('client')
+          c.stub(:get).and_raise(RWS::TooManyRequests)
+          c
+        end
+
+        before do
+          @items.instance_variable_set('@client', client)
+        end
+
+        specify 'retries automatically after sleeping 1 sec' do
+          expect(@items).to receive(:sleep).with(1).exactly(5).times.and_return(*([nil] * 5))
+          expect { @items.first.name }.to raise_error(RakutenWebService::TooManyRequests)
+        end
+      end
     end
   end
 

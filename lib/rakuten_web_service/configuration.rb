@@ -1,6 +1,10 @@
 module RakutenWebService
   class Configuration
-    attr_accessor :application_id, :affiliate_id
+    attr_accessor :application_id, :affiliate_id, :max_retries
+
+    def initialize
+      @max_retries = 5
+    end
 
     def generate_parameters
       { :application_id => application_id, :affiliate_id => affiliate_id }

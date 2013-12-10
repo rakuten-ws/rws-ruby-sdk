@@ -2,10 +2,10 @@ module RakutenWebService
   class SearchResult
     include Enumerable
 
-    def initialize(params, resource_class, client)
+    def initialize(params, resource_class)
       @params = params.dup
       @resource_class = resource_class
-      @client = client
+      @client = RakutenWebService::Client.new(@resource_class.endpoint)
     end
 
     def each
@@ -47,12 +47,24 @@ module RakutenWebService
       else 
         raise ArgumentError, "Invalid Sort Option: #{options.inspect}"
       end
-      self.class.new(new_params, @resource_class, @client)
+      self.class.new(new_params, @resource_class)
     end
 
     private
     def query(params=nil)
-      @response = @client.get(params || @params)
+      retries = RakutenWebService.configuration.max_retries
+      begin 
+        @response = @client.get(params || @params)
+      rescue RWS::TooManyRequests => e
+        if retries > 0
+          retries -= 1
+          sleep 1
+          retry
+        else
+          raise e
+        end
+      end
+      @response
     end
 
     def camelize(str)
