@@ -26,7 +26,7 @@ module RakutenWebService
       end
 
       def search(options)
-        SearchResult.new(options, self, client)
+        SearchResult.new(options, self)
       end
 
       def resource_name
