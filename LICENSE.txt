@@ -1,4 +1,4 @@
-Copyright (c) 2013 Tatsuya Sato
+Copyright (c) 2013 Rakuten, Inc
 
 MIT License
 
