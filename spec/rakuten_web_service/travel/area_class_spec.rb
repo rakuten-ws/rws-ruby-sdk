@@ -46,4 +46,19 @@ describe RakutenWebService::Travel::AreaClass do
       end
     end
   end
+
+  describe '#parent' do
+    before do
+      @area_class = RakutenWebService::Travel::AreaClass.search.first
+    end
+
+    specify 'parent is null' do
+      expect(@area_class.parent).to be_nil
+    end
+    specify 'the self is the parent of children' do
+      expect(@area_class.children).to be_all do |child|
+        child.parent == @area_class
+      end
+    end
+  end
 end

@@ -44,7 +44,7 @@ module RakutenWebService
 
           if not(children.nil?) and not(children.empty?)
             children_class = children.keys.map { |k| k[/\A(\w*)Classes\Z/, 1] }.first rescue data.tapp
-            @params["#{children_class}Classes"] = children["#{children_class}Classes"].each do |child_data|
+            @params["#{children_class}Classes"] = children["#{children_class}Classes"].map do |child_data|
               Base.area_classes[children_class].new(child_data, self)
             end
             @children = @params["#{children_class}Classes"]
