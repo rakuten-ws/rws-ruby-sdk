@@ -52,6 +52,16 @@ module RakutenWebService
             @children = []
           end
         end
+
+        def area_level
+          self.class.area_level
+        end
+
+        def to_query
+          query = { "#{area_level}ClassCode" => @params["#{area_level}ClassCode"] }
+          query = query.merge(parent.to_query) unless parent.nil?
+          query
+        end
       end
 
       class LargeClass < Base

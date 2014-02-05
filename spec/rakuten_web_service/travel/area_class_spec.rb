@@ -61,4 +61,19 @@ describe RakutenWebService::Travel::AreaClass do
       end
     end
   end
+
+  describe '#to_query' do
+    before do
+      @area_class = RakutenWebService::Travel::AreaClass.search.first
+    end
+
+    specify 'As for LargeClass object, returns only its class code.' do
+      expect(@area_class.to_query).to eq({ 'largeClassCode' => 'japan' })
+    end
+    specify 'As for MiddleClass object, returns only its class code.' do
+      @area_class.children.each do |child|
+        expect(child.to_query).to eq({ 'largeClassCode' => 'japan', 'middleClassCode' => child.middle_class_code })
+      end
+    end
+  end
 end
