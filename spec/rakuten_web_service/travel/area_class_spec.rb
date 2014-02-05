@@ -26,12 +26,24 @@ describe RakutenWebService::Travel::AreaClass do
 
   describe '.search' do
     before do
-      @area_class = RakutenWebService::Travel::AreaClass.search({}).first
+      @area_class = RakutenWebService::Travel::AreaClass.search.first
     end
 
     specify 'respond largeClass' do
       expect(@area_class['largeClassCode']).to eq('japan')
       expect(@area_class['largeClassName']).to eq('日本')
+    end
+    specify '#children method responds all middle claasses under a given large class' do
+      expect(@area_class.children).to_not be_empty
+      expect(@area_class.children).to be_all do |entity|
+        entity.is_a?(RWS::Travel::AreaClass::MiddleClass)
+      end
+    end
+    specify '["middle_classes"] responds all middle claasses under a given large class' do
+      expect(@area_class["middleClasses"]).to_not be_empty
+      expect(@area_class["middleClasses"]).to be_all do |entity|
+        entity.is_a?(RWS::Travel::AreaClass::MiddleClass)
+      end
     end
   end
 end
