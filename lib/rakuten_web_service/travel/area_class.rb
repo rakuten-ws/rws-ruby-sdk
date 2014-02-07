@@ -29,6 +29,20 @@ module RakutenWebService
 
             klass.attribute :"#{area_level}ClassCode", :"#{area_level}ClassName"
           end
+
+          def [](area_code)
+            repository[area_level][area_code]
+          end
+
+          def new(*args)
+            obj = super
+            repository[area_level][obj.class_code] = obj
+            obj
+          end
+
+          def repository
+            @@repository ||= Hash.new { |h, k| h[k] = {} }
+          end
         end
 
         attr_reader :parent, :children
@@ -57,8 +71,16 @@ module RakutenWebService
           self.class.area_level
         end
 
+        def class_code
+          self["#{area_level}ClassCode"]
+        end
+
+        def class_name
+          self["#{area_level}ClassName"]
+        end
+
         def to_query
-          query = { "#{area_level}ClassCode" => @params["#{area_level}ClassCode"] }
+          query = { "#{area_level}ClassCode" => class_code }
           query = query.merge(parent.to_query) unless parent.nil?
           query
         end
@@ -79,7 +101,14 @@ module RakutenWebService
       def search(options={})
         Base.search(options)
       end
-      module_function :search
+
+      def [](class_code)
+        LargeClass[class_code] or
+          MiddleClass[class_code] or
+          SmallClass[class_code] or
+          DetailClass[class_code]
+      end
+      module_function :search, :[]
     end
   end
 end
