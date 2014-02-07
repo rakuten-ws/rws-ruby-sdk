@@ -31,6 +31,7 @@ module RakutenWebService
           end
 
           def [](area_code)
+            AreaClass.search.first unless repository[area_level][area_code]
             repository[area_level][area_code]
           end
 

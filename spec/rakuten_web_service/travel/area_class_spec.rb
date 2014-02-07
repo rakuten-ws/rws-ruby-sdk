@@ -78,10 +78,6 @@ describe RakutenWebService::Travel::AreaClass do
   end
 
   describe '.[] method' do
-    before do
-      @area_class = RakutenWebService::Travel::AreaClass.search.first
-    end
-
     specify 'accepts a area code as argument and respond an class object with the given class code' do
       expect(RakutenWebService::Travel::AreaClass::LargeClass['japan']).to be_a(RakutenWebService::Travel::AreaClass::LargeClass)
       expect(RakutenWebService::Travel::AreaClass::LargeClass['japan'].large_class_code).to eq('japan')
