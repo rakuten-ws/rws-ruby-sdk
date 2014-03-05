@@ -18,7 +18,7 @@ module RakutenWebService
         end
 
         break unless has_next_page?
-        response = query(params.merge('page' => response.body['page'] + 1))
+        response = query(params_to_get_next_page)
       end while(response) 
     end
 
@@ -29,6 +29,10 @@ module RakutenWebService
 
     def has_next_page?
       @response.body['page'] && @response.body['page'] < @response.body['pageCount']
+    end
+
+    def params_to_get_next_page
+      @params.merge('page' => @response.body['page'] + 1)
     end
 
     def order(options)
