@@ -2,7 +2,7 @@ require 'rakuten_web_service/resource'
 
 module RakutenWebService
   module Travel
-    class Hotel < RakutenWebService::Resource
+    class Hotel < RakutenWebService::Travel::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20131024'
 
       set_parser do |response|

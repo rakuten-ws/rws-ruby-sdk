@@ -1,9 +1,9 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/travel/resource'
 
 module RakutenWebService
   module Travel
     module AreaClass
-      class Base < RakutenWebService::Resource
+      class Base < RakutenWebService::Travel::Resource
         endpoint 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
 
         set_parser do |response|
