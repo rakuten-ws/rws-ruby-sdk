@@ -1,5 +1,6 @@
 require 'rakuten_web_service/resource'
 require 'rakuten_web_service/travel/search_result'
+require 'rakuten_web_service/travel/open_struct'
 
 module RakutenWebService
   module Travel
