@@ -1,6 +1,8 @@
 module RakutenWebService
   module Travel
     class OpenStruct
+      include RakutenWebService::StringHelper
+
       def initialize(hash)
         @table = {}
         hash.keys.each do |key|
@@ -8,6 +10,7 @@ module RakutenWebService
           name = key.to_sym
           @table[name] = v
           define_singleton_method(name) { @table[name] }
+          define_singleton_method(to_snakecase(name.to_s)) { @table[name] }
         end
       end
     end

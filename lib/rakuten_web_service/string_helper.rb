@@ -8,5 +8,11 @@ module RakutenWebService
       str[0] = str[0].downcase
       str
     end
+
+    def to_snakecase(str)
+      str.gsub(/([a-z\d])([A-Z])/) { "#{$1}_#{$2}" }.
+        tr('-', '_').
+        downcase
+    end
   end
 end

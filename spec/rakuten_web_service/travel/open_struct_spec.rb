@@ -6,7 +6,7 @@ describe RakutenWebService::Travel::OpenStruct do
 
   context 'Given simple hash with pairs of key-value' do
     let(:params) do
-      { foo: 'bar', 'hoge' => 1 }
+      { foo: 'bar', 'hoge' => 1, 'min-size' => 10, 'maxSize' => 100 }
     end
 
     specify 'should have interfaces with the name of a given hash keys' do
@@ -14,6 +14,12 @@ describe RakutenWebService::Travel::OpenStruct do
       expect(object.foo).to eq(params[:foo])
       expect(object).to respond_to(:hoge)
       expect(object.hoge).to eq(params['hoge'])
+    end
+    specify 'should generate snakecase-method name' do
+      expect(object).to respond_to('min-size')
+      expect(object).to respond_to('min_size')
+      expect(object).to respond_to('maxSize')
+      expect(object).to respond_to('max_size')
     end
   end
 
