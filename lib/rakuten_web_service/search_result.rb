@@ -1,6 +1,9 @@
+require 'rakuten_web_service/string_helper'
+
 module RakutenWebService
   class SearchResult
     include Enumerable
+    include StringHelper
 
     def initialize(params, resource_class)
       @params = params.dup
@@ -39,7 +42,7 @@ module RakutenWebService
       new_params = @params.dup
       if options.is_a? Hash
         key, sort_order = *(options.to_a.last)
-        key = camelize(key.to_s)
+        key = to_camelcase(key.to_s)
         new_params[:sort] = case sort_order.to_s.downcase
                          when 'desc'
                            "-#{key}"
@@ -69,15 +72,6 @@ module RakutenWebService
         end
       end
       @response
-    end
-
-    def camelize(str)
-      str = str.downcase
-      str = str.gsub(/([a-z]+)_([a-z]+)/) do
-        "#{$1.capitalize}#{$2.capitalize}"
-      end
-      str[0] = str[0].downcase
-      str
     end
   end
 end

@@ -3,6 +3,8 @@ require 'rakuten_web_service/search_result'
 
 module RakutenWebService
   class Resource
+    include StringHelper
+
     class << self
       def attribute(*attributes)
         attributes.each do |attribute|
@@ -58,7 +60,7 @@ module RakutenWebService
     end
 
     def [](key)
-      camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
+      camel_key = to_camelcase(key)
       @params[key] || @params[camel_key]
     end
 
