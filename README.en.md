@@ -27,6 +27,7 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
 * [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
+* [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
 
 
 ### Rakuten Books APIs
