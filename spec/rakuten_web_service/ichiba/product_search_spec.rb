@@ -55,6 +55,11 @@ describe RakutenWebService::Ichiba::Product do
         expect(product.url_mobile).to eq(expected_product['productUrlMobile'])
         expect(product.caption).to eq(expected_product['productCaption'])
       end
+      specify 'should have genre method' do
+        expect(RakutenWebService::Ichiba::Genre).to receive(:new).with(expected_product['genreId'])
+
+        product.genre
+      end
     end
   end
 end

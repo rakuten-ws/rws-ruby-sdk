@@ -1,4 +1,5 @@
 require 'rakuten_web_service/resource'
+require 'rakuten_web_service/ichiba/genre'
 
 module RakutenWebService
   module Ichiba
@@ -22,7 +23,12 @@ module RakutenWebService
         :averagePrice,
         :reviewCount, :reviewAverage, :reviewUrlPC, :reviewUrlMobile,
         :rankTargetGenreId, :rankTargetProductCount,
-        :genreId, :genreName
+        :genreId, :genreName,
+        :ProductDetails
+
+      def genre
+        RakutenWebService::Ichiba::Genre.new(self.genre_id)
+      end
     end
   end
 end
