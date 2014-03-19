@@ -8,6 +8,21 @@ module RakutenWebService
       set_parser do |response|
         (response['Products'] || []).map { |prod| Product.new(prod) }
       end
+
+      attribute :productId, :productName, :productNo, :brandName,
+        :productUrlPC, :productUrlMobile, :affiliateUrl,
+        :smallImageUrl, :mediumImageUrl,
+        :productCaption, :releaseDate,
+        :makerCode, :makerName, :makerNameKana, :makerNameFormal,
+        :makerPageUrlPC, :makerPageUrlMobile,
+        :itemCount, :salesItemCount,
+        :usedExcludeCount, :usedExcludeSalesItemCount,
+        :maxPrice, :salesMaxPrice, :usedExcludeMaxPrice, :usedExcludeSalesMaxPrice,
+        :minPrice, :salesMinPrice, :usedExcludeMinPrice, :usedExcludeSalesMinPrice,
+        :averagePrice,
+        :reviewCount, :reviewAverage, :reviewUrlPC, :reviewUrlMobile,
+        :rankTargetGenreId, :rankTargetProductCount,
+        :genreId, :genreName
     end
   end
 end

@@ -41,5 +41,20 @@ describe RakutenWebService::Ichiba::Product do
     specify '' do
       expect(subject).to have(60).things
     end
+
+    describe 'For an response' do
+      let(:expected_product) do
+        JSON.parse(fixture('ichiba/product_search.json'))['Products'].first
+      end
+      let(:product) { RakutenWebService::Ichiba::Product.search(:keyword => 'Ruby').first }
+
+      specify 'should have methods to respond keys following with "product"' do
+        expect(product.id).to eq(expected_product['productId'])
+        expect(product.name).to eq(expected_product['productName'])
+        expect(product.url_pc).to eq(expected_product['productUrlPC'])
+        expect(product.url_mobile).to eq(expected_product['productUrlMobile'])
+        expect(product.caption).to eq(expected_product['productCaption'])
+      end
+    end
   end
 end
