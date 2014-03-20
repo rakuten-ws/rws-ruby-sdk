@@ -7,7 +7,7 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/Product/Search/20140305'
 
       set_parser do |response|
-        (response['Products'] || []).map { |prod| Product.new(prod) }
+        (response['Products'] || []).map { |prod| Product.new(prod['Product']) }
       end
 
       attribute :productId, :productName, :productNo, :brandName,
