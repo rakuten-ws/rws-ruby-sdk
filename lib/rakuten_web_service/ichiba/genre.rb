@@ -1,5 +1,6 @@
 require 'rakuten_web_service/resource'
 require 'rakuten_web_service/ichiba/ranking'
+require 'rakuten_web_service/ichiba/product'
 
 module RakutenWebService
   module Ichiba
@@ -59,6 +60,11 @@ module RakutenWebService
 
       def ranking(options={})
         RakutenWebService::Ichiba::RankingItem.search(:genre_id => self.id)
+      end
+
+      def products(options={})
+        options = options.merge(:genre_id => self.id)
+        RakutenWebService::Ichiba::Product.search(options)
       end
 
       def children
