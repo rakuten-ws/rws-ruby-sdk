@@ -8,6 +8,11 @@ module RakutenWebService
       @client = RakutenWebService::Client.new(@resource_class.endpoint)
     end
 
+    def fetch_result
+      response = query
+      @resource_class.parse_response(response.body)
+    end
+
     def each
       params = @params
       response = query

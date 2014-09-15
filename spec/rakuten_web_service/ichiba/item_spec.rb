@@ -75,6 +75,17 @@ describe RakutenWebService::Ichiba::Item do
         end
       end
 
+      context 'after that, call fetch_result' do
+        before do
+          @items.fetch_result
+        end
+
+        specify 'endpoint should be called' do
+          expect(@expected_request).to have_been_made.once
+          expect(@second_request).to_not have_been_made.once
+        end
+      end
+
       context 'When TooManyRequest error raised' do
         let(:client) do 
           c = double('client')
