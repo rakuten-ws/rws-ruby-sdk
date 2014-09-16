@@ -7,6 +7,15 @@ module RakutenWebService
     class Ebook < RakutenWebService::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20131010'
 
+      attribute :title, :titleKana, :subTitle,
+        :author, :authorKana, :publisherName,
+        :itemNumber, :itemCaption,
+        :salesDate, :itemPrice,
+        :itemUrl, :affiliateUrl,
+        :smallImageUrl, :mediumImageUrl, :largeImageUrl,
+        :reviewCount, :reviewAverage,
+        :koboGenreId
+
       set_parser do |response|
         response['Items'].map { |i| self.new(i['Item']) }
       end
