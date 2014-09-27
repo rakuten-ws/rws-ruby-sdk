@@ -17,6 +17,10 @@ describe RWS::Books::Genre do
     JSON.parse(fixture('books/genre_search.json'))
   end
 
+  after do
+    RWS::Books::Genre.instance_variable_set('@repository', {})
+  end
+
   before do
     @expected_request = stub_request(:get, endpoint).
       with(:query => expected_query).
