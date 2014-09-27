@@ -22,10 +22,14 @@ module RakutenWebService
     def self.new(params)
       case params
       when Integer, String
-        self[params.to_s] || search(:genre_id => params.to_s).first
+        self[params.to_s] || search(genre_id_key => params.to_s).first
       when Hash
         super
       end
+    end
+
+    def self.genre_id_key
+      :"#{resource_name}_id"
     end
 
     def self.root
@@ -50,7 +54,7 @@ module RakutenWebService
     end
 
     def children
-      @params['children'] ||= self.class.search(:genre_id => self.id).first.children
+      @params['children'] ||= self.class.search(self.class.genre_id_key => self.id).first.children
     end
   end
 end
