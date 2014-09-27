@@ -51,7 +51,7 @@ module RakutenWebService
     def convert_snake_key_to_camel_key(params)
       converted = {}
       params.each do |k, v|
-        k = k.to_s.gsub(/([a-z]+)_([a-z]+)/) { "#{$1}#{$2.capitalize}" }
+        k = k.to_s.gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
         converted[k] = v
       end
       return converted
