@@ -9,6 +9,8 @@ module RakutenWebService
 
       attribute :genreId, :genreName, :genreLevel
 
+      root_id 0
+
       def ranking(options={})
         RakutenWebService::Ichiba::RankingItem.search(:genre_id => self.id)
       end

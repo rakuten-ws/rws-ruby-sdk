@@ -32,8 +32,12 @@ module RakutenWebService
       :"#{resource_name}_id"
     end
 
+    def self.root_id(id=nil)
+      @root_id = id || @root_id
+    end
+
     def self.root
-      self.new(0)
+      self.new(root_id)
     end
 
     def self.[](id)

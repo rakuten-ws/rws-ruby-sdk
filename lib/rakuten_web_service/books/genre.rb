@@ -9,9 +9,7 @@ module RakutenWebService
 
       attribute :booksGenreId, :booksGenreName, :genreLevel
 
-      def self.root
-        new('000')
-      end
+      root_id '000'
 
       def search(params={})
         params = params.merge(:booksGenreId => self.id)
