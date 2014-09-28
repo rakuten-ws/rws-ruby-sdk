@@ -10,6 +10,11 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010'
 
       attribute :koboGenreId, :koboGenreName, :genreLevel
+
+      def search(options={})
+        options = options.merge(self.class.genre_id_key => self.id)
+        RWS::Kobo::Ebook.search(options)
+      end
     end
   end
 end

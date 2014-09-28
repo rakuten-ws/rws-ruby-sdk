@@ -38,4 +38,26 @@ describe RWS::Kobo::Genre do
     end
   end
 
+  describe '#search' do
+    before do
+      stub_request(:get, endpoint).with(:query => expected_query).
+        to_return(:body => expected_json)
+    end
+
+    context 'Without arguments' do
+      specify 'should call RWS::Kobo::Ebook.search with specifying genre id' do
+        expect(RWS::Kobo::Ebook).to receive(:search).with(RWS::Kobo::Genre.genre_id_key => genre_id)
+
+        RWS::Kobo::Genre.root.search
+      end
+    end
+    context 'With arguments' do
+      specify 'should call RWS::Kobo::Ebook.search with given arguments and genre id' do
+        options = { title: 'Ruby' }
+        expect(RWS::Kobo::Ebook).to receive(:search).with(:title => 'Ruby', RWS::Kobo::Genre.genre_id_key => genre_id)
+
+        RWS::Kobo::Genre.root.search(options)
+      end
+    end
+  end
 end
