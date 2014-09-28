@@ -46,6 +46,10 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 * [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
 * [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
 
+### 楽天Kobo系API
+
+* [楽天Kobo電子書籍検索API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
+* [楽天Koboジャンル検索API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
 ## 使用方法
 
@@ -65,13 +69,13 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 ```ruby
   items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enamerable object
   items.first(10).each do |item|
-    puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash. 
+    puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash.
   end
 ```
 
 ### ジャンル
 
-Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。 
+Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。
 
 ```ruby
   root = RakutenWebService::Ichiba::Genre.root # root genre
@@ -79,7 +83,7 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
   root.children.each do |child|
     puts "[#{child.id}] #{child.name}"
   end
-  
+
   # Use genre id to fetch genre object
   RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
 ```

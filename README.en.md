@@ -42,12 +42,16 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
 * [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
 
+### Rakuten Kobo APIs
+
+* [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
+* [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
 ## Usage
 
 ### Configuration
 
-`RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional). 
+`RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional).
 
 ```ruby
   RakutenWebService.configuration do |c|
@@ -61,7 +65,7 @@ Now rakuten\_web\_service is supporting the following APIs:
 ```ruby
   items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enamerable object
   items.first(10).each do |item|
-    puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash. 
+    puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash.
   end
 ```
 
@@ -75,7 +79,7 @@ Genre class provides an interface to traverse sub genres.
   root.children.each do |child|
     puts "[#{child.id}] #{child.name}"
   end
-  
+
   # Use genre id to fetch genre object
   RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
 ```
