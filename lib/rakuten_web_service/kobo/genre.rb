@@ -1,24 +1,15 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/genre'
 
 module RakutenWebService
   module Kobo
-    class Genre < RakutenWebService::Resource
+    class Genre < RakutenWebService::BaseGenre
+      set_resource_name :kobo_genre
+
+      root_id '101'
+
       endpoint 'https://app.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010'
 
-      set_parser do |response|
-        current = response['current']
-        if children = response['children']
-          children = children.map { |child| Kobo::Genre.new(child['child']) }
-          current.merge!('children' => children)
-        end
-        if parents = response['parents']
-          parents = parents.map { |parent| Kobo::Genre.new(parent['parent']) }
-          current.merge!('parents' => parents)
-        end
-
-        genre = Kobo::Genre.new(current)
-        [genre]
-      end
+      attribute :koboGenreId, :koboGenreName, :genreLevel
     end
   end
 end
