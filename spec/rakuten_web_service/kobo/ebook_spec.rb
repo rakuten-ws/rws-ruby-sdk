@@ -38,4 +38,18 @@ describe RakutenWebService::Kobo::Ebook do
       expect(ebook).to be_a(RWS::Kobo::Ebook)
     end
   end
+
+  describe '#genre' do
+    let(:response) { JSON.parse(fixture('kobo/ebook_search_with_Ruby.json')) }
+
+    specify 'respond Kobo::Genre object' do
+      stub_request(:get, endpoint).with(:query => expected_query).
+        to_return(:body => response.to_json)
+
+      expected_item = response['Items'][0]['Item']
+      RakutenWebService::Kobo::Genre.should_receive('new').with(expected_item['koboGenreId'])
+
+      RakutenWebService::Kobo::Ebook.search(:title => 'Ruby').first.genre
+    end
+  end
 end
