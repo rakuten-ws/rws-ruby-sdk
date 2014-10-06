@@ -1,5 +1,7 @@
 module RakutenWebService
   class Response
+    include Enumerable
+
     def initialize(resource_class, json)
       @resource_class = resource_class
       @json = json.dup
@@ -11,6 +13,12 @@ module RakutenWebService
 
     def []=(key, value)
       @json[key] = value
+    end
+
+    def each
+      @resource_class.parse_response(@json).each do |resource|
+        yield resource
+      end
     end
 
     def page
