@@ -1,6 +1,8 @@
 require 'faraday'
 require 'faraday_middleware'
 
+require 'rakuten_web_service/response'
+
 module RakutenWebService
   class WrongParameter < StandardError; end
   class NotFound < StandardError; end
@@ -23,7 +25,7 @@ module RakutenWebService
       response = connection.get(path, query)
       case response.status
       when 200
-        return response
+        return RakutenWebService::Response.new(response.body)
       when 400
         raise WrongParameter, response.body['error_description']
       when 404

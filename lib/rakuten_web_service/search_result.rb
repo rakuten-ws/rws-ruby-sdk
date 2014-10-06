@@ -10,30 +10,26 @@ module RakutenWebService
 
     def fetch_result
       response = query
-      @resource_class.parse_response(response.body)
+      @resource_class.parse_response(response)
     end
 
     def each
       params = @params
       response = query
       begin
-        resources = @resource_class.parse_response(response.body)
+        resources = @resource_class.parse_response(response)
         resources.each do |resource|
           yield resource
         end
 
-        break unless has_next_page?
-        response = query(params.merge('page' => response.body['page'] + 1))
+        break unless response.has_next_page?
+        response = query(params.merge('page' => response.page + 1))
       end while(response) 
     end
 
     def params
       return {} if @params.nil?
       @params.dup 
-    end
-
-    def has_next_page?
-      @response.body['page'] && @response.body['page'] < @response.body['pageCount']
     end
 
     def order(options)
