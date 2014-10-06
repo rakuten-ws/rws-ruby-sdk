@@ -1,6 +1,7 @@
 module RakutenWebService
   class Response
-    def initialize(json)
+    def initialize(resource_class, json)
+      @resource_class = resource_class
       @json = json.dup
     end
 
@@ -12,12 +13,16 @@ module RakutenWebService
       @json[key] = value
     end
 
-    def has_next_page?
-      page && (page < @json['pageCount'])
-    end
-
     def page
       @json['page']
+    end
+
+    def has_next_page?
+      page && (not last_page?)
+    end
+
+    def last_page?
+      page >= @json['pageCount']
     end
   end
 end

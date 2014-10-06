@@ -5,7 +5,7 @@ module RakutenWebService
     def initialize(params, resource_class)
       @params = params.dup
       @resource_class = resource_class
-      @client = RakutenWebService::Client.new(@resource_class.endpoint)
+      @client = RakutenWebService::Client.new(resource_class)
     end
 
     def fetch_result
