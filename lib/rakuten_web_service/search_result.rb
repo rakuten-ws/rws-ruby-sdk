@@ -9,20 +9,19 @@ module RakutenWebService
     end
 
     def fetch_result
-      response = query
-      @resource_class.parse_response(response)
+      query
     end
 
     def each
       params = @params
       response = query
-      begin
+      loop do
         response.each do |resource|
           yield resource
         end
         break unless response.has_next_page?
         response = query(params.merge('page' => response.page + 1))
-      end while(response) 
+      end
     end
 
     def params

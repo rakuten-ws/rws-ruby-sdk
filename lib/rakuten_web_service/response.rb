@@ -16,13 +16,17 @@ module RakutenWebService
     end
 
     def each
-      @resource_class.parse_response(@json).each do |resource|
+      resources.each do |resource|
         yield resource
       end
     end
 
     def page
       @json['page']
+    end
+
+    def resources
+      @resource_class.parse_response(@json)
     end
 
     def has_next_page?
