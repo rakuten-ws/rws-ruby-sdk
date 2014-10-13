@@ -1,6 +1,8 @@
 require 'faraday'
 require 'faraday_middleware'
 
+require 'rakuten_web_service/response'
+
 module RakutenWebService
   class WrongParameter < StandardError; end
   class NotFound < StandardError; end
@@ -11,8 +13,9 @@ module RakutenWebService
   class Client
     attr_reader :url, :path
 
-    def initialize(endpoint)
-      url = URI.parse(endpoint)
+    def initialize(resource_class)
+      @resource_class = resource_class
+      url = URI.parse(@resource_class.endpoint)
       @url = "#{url.scheme}://#{url.host}"
       @path = url.path
     end
@@ -23,7 +26,7 @@ module RakutenWebService
       response = connection.get(path, query)
       case response.status
       when 200
-        return response
+        return RakutenWebService::Response.new(@resource_class, response.body)
       when 400
         raise WrongParameter, response.body['error_description']
       when 404

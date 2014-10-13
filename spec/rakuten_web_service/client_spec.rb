@@ -3,7 +3,10 @@ require 'rakuten_web_service'
 
 describe RakutenWebService::Client do
   let(:endpoint) { 'http://api.example.com/resources' }
-  let(:client) { RakutenWebService::Client.new(endpoint) }
+  let(:resource_class) do
+    double('resource_class', endpoint: endpoint)
+  end
+  let(:client) { RakutenWebService::Client.new(resource_class) }
   let(:application_id) { 'default_application_id' }
   let(:affiliate_id) { 'default_affiliate_id' }
   let(:expected_query) do

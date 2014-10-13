@@ -5,35 +5,28 @@ module RakutenWebService
     def initialize(params, resource_class)
       @params = params.dup
       @resource_class = resource_class
-      @client = RakutenWebService::Client.new(@resource_class.endpoint)
+      @client = RakutenWebService::Client.new(resource_class)
     end
 
     def fetch_result
-      response = query
-      @resource_class.parse_response(response.body)
+      query
     end
 
     def each
       params = @params
       response = query
-      begin
-        resources = @resource_class.parse_response(response.body)
-        resources.each do |resource|
+      loop do
+        response.each do |resource|
           yield resource
         end
-
-        break unless has_next_page?
-        response = query(params.merge('page' => response.body['page'] + 1))
-      end while(response) 
+        break unless response.has_next_page?
+        response = query(params.merge('page' => response.page + 1))
+      end
     end
 
     def params
       return {} if @params.nil?
       @params.dup 
-    end
-
-    def has_next_page?
-      @response.body['page'] && @response.body['page'] < @response.body['pageCount']
     end
 
     def order(options)
