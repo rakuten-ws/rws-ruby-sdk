@@ -50,19 +50,21 @@ module RakutenWebService
 
     private
     def query(params=nil)
-      retries = RakutenWebService.configuration.max_retries
+      @response = ensure_retries { @client.get(params || @params) }
+    end
+
+    def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)
       begin 
-        @response = @client.get(params || @params)
+        yield
       rescue RWS::TooManyRequests => e
-        if retries > 0
-          retries -= 1
+        if max_retries > 0
+          max_retries -= 1
           sleep 1
           retry
         else
           raise e
         end
       end
-      @response
     end
 
     def camelize(str)
