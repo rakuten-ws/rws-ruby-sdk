@@ -8,10 +8,6 @@ module RakutenWebService
       @client = RakutenWebService::Client.new(resource_class)
     end
 
-    def fetch_result
-      query
-    end
-
     def each
       params = @params
       response = query
@@ -48,11 +44,12 @@ module RakutenWebService
       self.class.new(new_params, @resource_class)
     end
 
-    private
     def query(params=nil)
       @response = ensure_retries { @client.get(params || @params) }
     end
+    alias fetch_result query
 
+    private
     def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)
       begin 
         yield
