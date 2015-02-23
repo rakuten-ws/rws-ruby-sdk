@@ -75,7 +75,7 @@ describe RakutenWebService::Ichiba::Item do
         end
       end
 
-      describe '' do
+      describe '#all' do
         before do
           @items.all
         end
@@ -101,6 +101,29 @@ describe RakutenWebService::Ichiba::Item do
           expect(@items).to receive(:sleep).with(1).exactly(5).times.and_return(*([nil] * 5))
           expect { @items.first.name }.to raise_error(RakutenWebService::TooManyRequests)
         end
+      end
+    end
+  end
+
+  describe '.all' do
+    before do
+      response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
+      @expected_request = stub_request(:get, endpoint).
+        with(:query => expected_query).to_return(:body => response.to_json)
+
+      response['page'] = 2
+      response['first'] = 31
+      response['last'] = 60
+      @second_request = stub_request(:get, endpoint).
+        with(:query => expected_query.merge(:page => 2)).
+        to_return(:body => response.to_json)
+    end
+
+    context 'When givne a block' do
+      specify '' do
+        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_control.exactly(60).times
+
+        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
       end
     end
   end
