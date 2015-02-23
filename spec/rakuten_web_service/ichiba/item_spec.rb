@@ -71,18 +71,18 @@ describe RakutenWebService::Ichiba::Item do
 
         specify 'endpoint should be called' do
           expect(@expected_request).to have_been_made.once
-          expect(@second_request).to have_been_made.once
+          expect(@second_request).to_not have_been_made
         end
       end
 
-      context 'after that, call fetch_result' do
+      describe '' do
         before do
-          @items.fetch_result
+          @items.all
         end
 
         specify 'endpoint should be called' do
           expect(@expected_request).to have_been_made.once
-          expect(@second_request).to_not have_been_made.once
+          expect(@second_request).to have_been_made.once
         end
       end
 

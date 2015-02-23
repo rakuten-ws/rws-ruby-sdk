@@ -9,14 +9,28 @@ module RakutenWebService
     end
 
     def each
-      params = @params
-      response = query
-      loop do
-        response.each do |resource|
-          yield resource
+      query.each do |resource|
+        yield resource
+      end
+    end
+
+    def all
+      if block_given?
+        params = @params
+        response = query
+        loop do
+          response.each do |resource|
+            yield resource
+          end
+          break unless response.has_next_page?
+          response = query(params.merge('page' => response.page + 1))
         end
-        break unless response.has_next_page?
-        response = query(params.merge('page' => response.page + 1))
+      else
+        resources = []
+        self.all do |resource| 
+          resources << resource
+        end
+        return resources
       end
     end
 
