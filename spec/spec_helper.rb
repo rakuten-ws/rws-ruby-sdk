@@ -13,7 +13,7 @@ RSpec.configure do |c|
   c.mock_with :rspec
 
   c.before :all do
-    WebMock.disable_net_connect!
+    WebMock.disable_net_connect!(:allow => "codeclimate.com")
   end
 
   c.after :each do
