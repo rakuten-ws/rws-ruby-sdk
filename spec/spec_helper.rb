@@ -2,6 +2,9 @@ require 'rspec'
 require 'webmock/rspec'
 require 'tapp'
 
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 $: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__), "support/**/*.rb"))].each { |f| require f }
