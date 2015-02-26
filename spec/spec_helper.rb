@@ -2,8 +2,10 @@ require 'rspec'
 require 'webmock/rspec'
 require 'tapp'
 
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+if ENV['CODE_CLIMATE_TOKEN']
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
+end
 
 $: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 
