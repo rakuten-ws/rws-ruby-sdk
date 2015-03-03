@@ -75,6 +75,17 @@ describe RakutenWebService::Ichiba::Item do
         end
       end
 
+      context 'chain calling' do
+        before do
+          @items2 = @items.search(:keyword => 'Go')
+        end
+
+        specify "2 search resutls should be independent" do
+          expect(@items.params[:keyword]).to eq('Ruby')
+          expect(@items2.params[:keyword]).to eq('Go')
+        end
+      end
+
       describe '#all' do
         before do
           @items.all

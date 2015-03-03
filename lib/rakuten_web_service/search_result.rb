@@ -8,6 +8,10 @@ module RakutenWebService
       @client = RakutenWebService::Client.new(resource_class)
     end
 
+    def search(params)
+      SearchResult.new(self.params.merge!(params), @resource_class)
+    end
+
     def each
       query.each do |resource|
         yield resource
