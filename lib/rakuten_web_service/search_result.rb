@@ -1,3 +1,5 @@
+require 'rakuten_web_service/all_proxy'
+
 module RakutenWebService
   class SearchResult
     include Enumerable
@@ -18,23 +20,12 @@ module RakutenWebService
       end
     end
 
-    def all
-      if block_given?
-        params = @params
-        response = query
-        loop do
-          response.each do |resource|
-            yield resource
-          end
-          break unless response.has_next_page?
-          response = query(params.merge('page' => response.page + 1))
-        end
+    def all(&block)
+      proxy = AllProxy.new(self)
+      if block
+        proxy.each(&block)
       else
-        resources = []
-        self.all do |resource| 
-          resources << resource
-        end
-        return resources
+        return proxy
       end
     end
 
@@ -66,6 +57,10 @@ module RakutenWebService
       @response = ensure_retries { @client.get(params || @params) }
     end
     alias fetch_result query
+
+    def has_next_page?
+      !@response && @response.has_next_page?
+    end
 
     private
     def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)

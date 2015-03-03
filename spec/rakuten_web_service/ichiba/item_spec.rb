@@ -91,9 +91,20 @@ describe RakutenWebService::Ichiba::Item do
           @items.all
         end
 
-        specify 'endpoint should be called' do
-          expect(@expected_request).to have_been_made.once
-          expect(@second_request).to have_been_made.once
+        specify 'endpoint should not be called' do
+          expect(@expected_request).to_not have_been_made.once
+          expect(@second_request).to_not have_been_made.once
+        end
+
+        context 'call an enumerable method like each' do
+          before do
+            @items.all.each { |i| i.to_s }
+          end
+
+          specify 'endpoint should be called' do
+            expect(@expected_request).to have_been_made.once
+            expect(@second_request).to have_been_made.once
+          end
         end
       end
 
