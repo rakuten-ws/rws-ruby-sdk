@@ -15,7 +15,7 @@ module RakutenWebService
     end
 
     def each
-      query.each do |resource|
+      response.each do |resource|
         yield resource
       end
     end
@@ -54,12 +54,20 @@ module RakutenWebService
     end
 
     def query(params=nil)
-      @response = ensure_retries { @client.get(params || @params) }
+      ensure_retries { @client.get(params || @params) }
     end
     alias fetch_result query
 
+    def response
+      @response ||= query
+    end
+
     def has_next_page?
-      !@response && @response.has_next_page?
+      response.has_next_page?
+    end
+
+    def next_page
+      search(:page => response.page + 1)
     end
 
     private

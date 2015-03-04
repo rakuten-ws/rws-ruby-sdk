@@ -8,13 +8,12 @@ module RakutenWebService
 
     def each
       search_result = @search_result
-      response = search_result.query
       loop do
-        response.each do |resource|
+        search_result.each do |resource|
           yield resource
         end
-        break unless response.has_next_page?
-        response = search_result.search('page' => response.page + 1)
+        break unless search_result.has_next_page?
+        search_result = search_result.next_page
       end
     end
   end
