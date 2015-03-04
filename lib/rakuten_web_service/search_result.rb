@@ -13,6 +13,7 @@ module RakutenWebService
     def search(params)
       SearchResult.new(self.params.merge!(params), @resource_class)
     end
+    alias with search
 
     def each
       response.each do |resource|
@@ -68,6 +69,10 @@ module RakutenWebService
 
     def next_page
       search(:page => response.page + 1)
+    end
+
+    def page(num)
+      search(:page => num)
     end
 
     private
