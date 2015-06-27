@@ -17,7 +17,7 @@ module RakutenWebService
     end
 
     def debug_mode?
-      debug
+      ENV.has_key?('RWS_SDK_DEBUG') || debug
     end
 
     private
