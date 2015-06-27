@@ -33,4 +33,16 @@ describe RakutenWebService::Configuration do
       end
     end
   end
+
+  describe '#debug_mode?' do
+    let(:configuration) { RakutenWebService.configuration }
+
+    before do
+      configuration.debug = true
+    end
+
+    it 'should return true' do
+      expect(configuration).to be_debug_mode
+    end
+  end
 end

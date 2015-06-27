@@ -16,6 +16,10 @@ module RakutenWebService
       { :application_id => application_id, :affiliate_id => affiliate_id }
     end
 
+    def debug_mode?
+      debug
+    end
+
     private
     def convert_snake_key_to_camel_key(params)
       params.inject({}) do |h, (k, v)|
