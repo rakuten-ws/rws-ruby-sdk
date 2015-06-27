@@ -1,6 +1,8 @@
+require 'logger'
+
 module RakutenWebService
   class Configuration
-    attr_accessor :application_id, :affiliate_id, :max_retries
+    attr_accessor :application_id, :affiliate_id, :max_retries, :debug
 
     def initialize
       @max_retries = 5
