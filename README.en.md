@@ -49,16 +49,23 @@ Now rakuten\_web\_service is supporting the following APIs:
 
 ## Usage
 
+### Prerequisite: Getting Application ID
+
+You need to get Application ID for your application to access to Rakuten Web Service APIs. 
+If you have not got it, register your appplication [here](https://webservice.rakuten.co.jp/app/create). 
+
 ### Configuration
 
 `RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional).
 
 ```ruby
   RakutenWebService.configuration do |c|
-    c.application_id = YOUR_APPLICATION_ID
-    c.affiliate_id = YOUR_AFFILIATE_ID
+    c.application_id = 'YOUR_APPLICATION_ID'
+    c.affiliate_id = 'YOUR_AFFILIATE_ID'
   end
 ```
+
+Please note that you neet to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIATE_ID'` with actual ones you have.
 
 ### Search Ichiba Items
 
