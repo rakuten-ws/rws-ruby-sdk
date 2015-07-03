@@ -1,3 +1,4 @@
+require 'open-uri'
 require 'faraday'
 require 'faraday_middleware'
 
@@ -15,7 +16,7 @@ module RakutenWebService
 
     def initialize(resource_class)
       @resource_class = resource_class
-      url = URI.parse(@resource_class.endpoint)
+      url = ::URI.parse(@resource_class.endpoint)
       @url = "#{url.scheme}://#{url.host}"
       @path = url.path
     end
