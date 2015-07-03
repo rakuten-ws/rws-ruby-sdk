@@ -22,7 +22,7 @@ module RakutenWebService
     def self.new(params)
       case params
       when Integer, String
-        self[params.to_s] || search(genre_id_key => params.to_s).first
+        repository[params.to_s] || search(genre_id_key => params.to_s).first
       when Hash
         super
       end
@@ -41,7 +41,7 @@ module RakutenWebService
     end
 
     def self.[](id)
-      repository[id.to_s]
+      repository[id.to_s] || new(id)
     end
 
     def self.[]=(id, genre)
