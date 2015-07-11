@@ -99,8 +99,15 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
 ### 市場商品ランキング
 
 ```ruby
-  RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 0) # 30代男性 のランキングTOP 30
-  RakutenWebService::Ichiba::Genre[100316].ranking # "水・ソフトドリンク" ジャンルのTOP 30
+  ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # 30代男性 のランキングTOP 30
+  ranking_by_age.each do |ranking|
+    puts ranking['itemName']
+  end
+
+  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking　# "水・ソフトドリンク" ジャンルのTOP 30
+  ranking_by_genre.each do |ranking|
+    puts ranking['itemName']
+  end
 ```
 
 ## Contributing
