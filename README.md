@@ -101,6 +101,7 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
 ```ruby
   ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # 30代男性 のランキングTOP 30
   ranking_by_age.each do |ranking|
+    # 'itemName'以外の属性については右記を参照 http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
     puts ranking['itemName']
   end
 
