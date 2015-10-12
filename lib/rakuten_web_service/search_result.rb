@@ -53,8 +53,8 @@ module RakutenWebService
       self.class.new(new_params, @resource_class)
     end
 
-    def query(params=nil)
-      ensure_retries { @client.get(params || @params) }
+    def query
+      ensure_retries { @client.get(params) }
     end
     alias fetch_result query
 
