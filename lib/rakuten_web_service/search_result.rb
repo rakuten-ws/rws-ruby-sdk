@@ -11,7 +11,7 @@ module RakutenWebService
     end
 
     def search(params)
-      SearchResult.new(self.params.merge!(params), @resource_class)
+      SearchResult.new(self.params.dup.merge!(params), @resource_class)
     end
     alias with search
 
@@ -31,12 +31,11 @@ module RakutenWebService
     end
 
     def params
-      return {} if @params.nil?
-      @params.dup 
+      @params ||= {}
     end
 
     def order(options)
-      new_params = @params.dup
+      new_params = params.dup
       if options.is_a? Hash
         key, sort_order = *(options.to_a.last)
         key = camelize(key.to_s)
