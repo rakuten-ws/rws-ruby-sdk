@@ -53,6 +53,12 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 * [楽天Kobo電子書籍検索API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
 * [楽天Koboジャンル検索API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
+### 楽天GORA系API
+
+* [楽天GORAゴルフ場検索API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
+* [楽天GORAゴルフ場詳細API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
+* [楽天GORAプラン検索API](https://webservice.rakuten.co.jp/api/goraplansearch/)
+
 ## 使用方法
 
 ### 事前準備: アプリケーションIDの取得
