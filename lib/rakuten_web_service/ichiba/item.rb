@@ -8,7 +8,7 @@ module RakutenWebService
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
       end
-      
+
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
 
       set_parser do |response|

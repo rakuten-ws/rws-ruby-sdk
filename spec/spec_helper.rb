@@ -20,6 +20,13 @@ RSpec.configure do |c|
     WebMock.disable_net_connect!(:allow => "codeclimate.com")
   end
 
+  c.before :suite, integration: true do
+    WebMock.allow_net_connect!
+    RakutenWebService.configuration do |c|
+      c.application_id = ENV['RWS_APPLICATION_ID']
+    end
+  end
+
   c.after :each do
     WebMock.reset!
   end
