@@ -5,6 +5,9 @@ rvm:
   - 2.1.5
   - 2.2.2
 
+before_install:
+  - gem install bundler
+
 env:
   global:
     - secure: fnXsBICev1nEICozfTKxJtCkMUGII3Ogn0uOVBbU5xO5x93IwWwEKWigtFU5kBKN7n/9lXvW6lp+YBtiljwbPf4ABiod3l9voycGRRK8ywfhe3dcVuh+o7kgi7wyNrK+3hzuKCsO8gkV3GIfPT9NkfL7ywvmzdJ4Samj0G9Xi1g=
