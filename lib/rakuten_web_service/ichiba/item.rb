@@ -8,8 +8,8 @@ module RakutenWebService
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
       end
-      
-      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805'
+
+      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222'
 
       set_parser do |response|
         response['Items'].map { |item| Item.new(item['Item']) }
@@ -27,7 +27,7 @@ module RakutenWebService
         :startTime, :endTime,
         :reviewCount, :reviewAverage,
         :pointRate, :pointRateStartTime, :pointRateEndTime,
-        :shopName, :shopCode, :shopUrl,
+        :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
         :genreId
 
       def genre
@@ -38,7 +38,8 @@ module RakutenWebService
         Shop.new({
           'shopName' => self.shop_name,
           'shopCode' => self.shop_code,
-          'shopUrl' => self.shop_url
+          'shopUrl' => self.shop_url,
+          'shopAffiliateUrl' => self.shop_affiliate_url
         })
       end
     end

@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Ichiba::Item do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
@@ -195,6 +195,7 @@ describe RakutenWebService::Ichiba::Item do
       expect(subject.name).to eq(expected_item['shopName'])
       expect(subject.code).to eq(expected_item['shopCode'])
       expect(subject.url).to eq(expected_item['shopUrl'])
+      expect(subject.affiliate_url).to eq(expected_item['shopAffiliateUrl'])
     end
   end
 
