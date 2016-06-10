@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Ichiba::Item do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
@@ -71,18 +71,40 @@ describe RakutenWebService::Ichiba::Item do
 
         specify 'endpoint should be called' do
           expect(@expected_request).to have_been_made.once
-          expect(@second_request).to have_been_made.once
+          expect(@second_request).to_not have_been_made
         end
       end
 
-      context 'after that, call fetch_result' do
+      context 'chain calling' do
         before do
-          @items.fetch_result
+          @items2 = @items.search(:keyword => 'Go')
         end
 
-        specify 'endpoint should be called' do
-          expect(@expected_request).to have_been_made.once
+        specify "2 search resutls should be independent" do
+          expect(@items.params[:keyword]).to eq('Ruby')
+          expect(@items2.params[:keyword]).to eq('Go')
+        end
+      end
+
+      describe '#all' do
+        before do
+          @items.all
+        end
+
+        specify 'endpoint should not be called' do
+          expect(@expected_request).to_not have_been_made.once
           expect(@second_request).to_not have_been_made.once
+        end
+
+        context 'call an enumerable method like each' do
+          before do
+            @items.all.each { |i| i.to_s }
+          end
+
+          specify 'endpoint should be called' do
+            expect(@expected_request).to have_been_made.once
+            expect(@second_request).to have_been_made.once
+          end
         end
       end
 
@@ -101,6 +123,29 @@ describe RakutenWebService::Ichiba::Item do
           expect(@items).to receive(:sleep).with(1).exactly(5).times.and_return(*([nil] * 5))
           expect { @items.first.name }.to raise_error(RakutenWebService::TooManyRequests)
         end
+      end
+    end
+  end
+
+  describe '.all' do
+    before do
+      response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
+      @expected_request = stub_request(:get, endpoint).
+        with(:query => expected_query).to_return(:body => response.to_json)
+
+      response['page'] = 2
+      response['first'] = 31
+      response['last'] = 60
+      @second_request = stub_request(:get, endpoint).
+        with(:query => expected_query.merge(:page => 2)).
+        to_return(:body => response.to_json)
+    end
+
+    context 'When givne a block' do
+      specify '' do
+        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_control.exactly(60).times
+
+        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
       end
     end
   end
@@ -150,6 +195,7 @@ describe RakutenWebService::Ichiba::Item do
       expect(subject.name).to eq(expected_item['shopName'])
       expect(subject.code).to eq(expected_item['shopCode'])
       expect(subject.url).to eq(expected_item['shopUrl'])
+      expect(subject.affiliate_url).to eq(expected_item['shopAffiliateUrl'])
     end
   end
 

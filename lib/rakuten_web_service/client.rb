@@ -21,10 +21,9 @@ module RakutenWebService
       @path = url.path
     end
 
-    def get(query)
-      query = RakutenWebService.configuration.generate_parameters.merge(query)
-      query = convert_snake_key_to_camel_key(query)
-      response = connection.get(path, query)
+    def get(params)
+      params = RakutenWebService.configuration.generate_parameters(params)
+      response = connection.get(path, params)
       case response.status
       when 200
         return RakutenWebService::Response.new(@resource_class, response.body)
@@ -47,16 +46,9 @@ module RakutenWebService
       @connection = Faraday.new(:url => url) do |conn|
         conn.request :url_encoded
         conn.response :json
+        conn.response :logger if RakutenWebService.configuration.debug
         conn.adapter Faraday.default_adapter
         conn.headers['User-Agent'] = "RakutenWebService SDK for Ruby-#{RWS::VERSION}"
-      end
-    end
-
-    def convert_snake_key_to_camel_key(params)
-      params.inject({}) do |h, (k, v)|
-        k = k.to_s.gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
-        h[k] = v
-        h
       end
     end
   end

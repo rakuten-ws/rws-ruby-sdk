@@ -5,9 +5,9 @@ require 'rakuten_web_service/resource'
 module RakutenWebService
   module Kobo
     class Ebook < RakutenWebService::Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20131010'
+      endpoint 'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20140811'
 
-      attribute :title, :titleKana, :subTitle,
+      attribute :title, :titleKana, :subTitle, :seriesName,
         :author, :authorKana, :publisherName,
         :itemNumber, :itemCaption,
         :salesDate, :itemPrice,

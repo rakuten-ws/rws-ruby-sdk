@@ -8,7 +8,7 @@ describe RakutenWebService::Ichiba::Shop do
       'shopUrl' => 'http://www.rakuten.co.jp/hogeshop' }
   end
   let(:shop) { RakutenWebService::Ichiba::Shop.new(params) }
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

@@ -33,4 +33,32 @@ describe RakutenWebService::Configuration do
       end
     end
   end
+
+  describe '#debug_mode?' do
+    let(:configuration) { RakutenWebService.configuration }
+
+    before do
+      configuration.debug = true
+    end
+
+    it 'should return true' do
+      expect(configuration).to be_debug_mode
+    end
+
+    context 'When RWS_SDK_DEBUG is defined' do
+      before do
+        ENV['RWS_SDK_DEBUG'] = 'true'
+        configuration.debug = false
+      end
+
+      after do
+        ENV.delete('RWS_SDK_DEBUG')
+      end
+
+      it 'should return true' do
+        expect(configuration).to be_debug_mode
+        expect(configuration.debug).to be_false
+      end
+    end
+  end
 end

@@ -39,7 +39,7 @@ describe RakutenWebService::Ichiba::Product do
     subject { RakutenWebService::Ichiba::Product.search(:keyword => 'Ruby') }
 
     specify '' do
-      expect(subject).to have(60).things
+      expect(subject).to have(30).things
     end
 
     describe 'For an response' do

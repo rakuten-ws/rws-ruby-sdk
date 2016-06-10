@@ -29,6 +29,14 @@ module RakutenWebService
         SearchResult.new(options, self)
       end
 
+      def all(options, &block)
+        if block
+          search(options).all(&block)
+        else
+          search(options).all
+        end
+      end
+
       def resource_name
         @resource_name ||= self.name.split('::').last.downcase
       end

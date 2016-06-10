@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Kobo::Ebook do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20131010' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20140811' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

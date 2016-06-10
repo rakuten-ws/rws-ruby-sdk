@@ -1,13 +1,32 @@
+require 'logger'
+
 module RakutenWebService
   class Configuration
-    attr_accessor :application_id, :affiliate_id, :max_retries
+    attr_accessor :application_id, :affiliate_id, :max_retries, :debug
 
     def initialize
       @max_retries = 5
     end
 
-    def generate_parameters
+    def generate_parameters(params)
+      convert_snake_key_to_camel_key(default_parameters.merge(params))
+    end
+
+    def default_parameters 
       { :application_id => application_id, :affiliate_id => affiliate_id }
+    end
+
+    def debug_mode?
+      ENV.has_key?('RWS_SDK_DEBUG') || debug
+    end
+
+    private
+    def convert_snake_key_to_camel_key(params)
+      params.inject({}) do |h, (k, v)|
+        k = k.to_s.gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
+        h[k] = v
+        h
+      end
     end
   end
 

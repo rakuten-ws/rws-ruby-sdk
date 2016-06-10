@@ -1,3 +1,5 @@
+require 'rakuten_web_service/all_proxy'
+
 module RakutenWebService
   class SearchResult
     include Enumerable
@@ -8,29 +10,32 @@ module RakutenWebService
       @client = RakutenWebService::Client.new(resource_class)
     end
 
-    def fetch_result
-      query
+    def search(params)
+      SearchResult.new(self.params.dup.merge!(params), @resource_class)
     end
+    alias with search
 
     def each
-      params = @params
-      response = query
-      loop do
-        response.each do |resource|
-          yield resource
-        end
-        break unless response.has_next_page?
-        response = query(params.merge('page' => response.page + 1))
+      response.each do |resource|
+        yield resource
+      end
+    end
+
+    def all(&block)
+      proxy = AllProxy.new(self)
+      if block
+        proxy.each(&block)
+      else
+        return proxy
       end
     end
 
     def params
-      return {} if @params.nil?
-      @params.dup 
+      @params ||= {}
     end
 
     def order(options)
-      new_params = @params.dup
+      new_params = params.dup
       if options.is_a? Hash
         key, sort_order = *(options.to_a.last)
         key = camelize(key.to_s)
@@ -48,21 +53,40 @@ module RakutenWebService
       self.class.new(new_params, @resource_class)
     end
 
+    def query
+      ensure_retries { @client.get(params) }
+    end
+    alias fetch_result query
+
+    def response
+      @response ||= query
+    end
+
+    def has_next_page?
+      response.has_next_page?
+    end
+
+    def next_page
+      search(:page => response.page + 1)
+    end
+
+    def page(num)
+      search(:page => num)
+    end
+
     private
-    def query(params=nil)
-      retries = RakutenWebService.configuration.max_retries
+    def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)
       begin 
-        @response = @client.get(params || @params)
+        yield
       rescue RWS::TooManyRequests => e
-        if retries > 0
-          retries -= 1
+        if max_retries > 0
+          max_retries -= 1
           sleep 1
           retry
         else
           raise e
         end
       end
-      @response
     end
 
     def camelize(str)
