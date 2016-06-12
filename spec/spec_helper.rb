@@ -1,6 +1,9 @@
 if ENV['CI']
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
+
+  require 'coveralls'
+  Coveralls.wear!
 end
 
 require File.expand_path(File.join(__dir__, '..', 'lib', 'rakuten_web_service'))
