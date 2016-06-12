@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Client do
   let(:endpoint) { 'http://api.example.com/resources' }

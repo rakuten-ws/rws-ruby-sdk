@@ -1,13 +1,14 @@
-require 'rspec'
-require 'webmock/rspec'
-require 'tapp'
-
 if ENV['CI']
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
+
+  require 'coveralls'
+  Coveralls.wear!
 end
 
-$: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+require File.expand_path(File.join(__dir__, '..', 'lib', 'rakuten_web_service'))
+
+require 'webmock/rspec'
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__), "support/**/*.rb"))].each { |f| require f }
 
