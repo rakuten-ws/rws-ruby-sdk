@@ -18,4 +18,5 @@ matrix:
 
 addons:
   code_climate:
-    secure: nYbre3WtdZCUnUnyX5wrw2YhmiGyrF2X0yVpaEpwCYWNE2S9wNO6gb1D5bPdz7IjAkinpSwJSN6Yjtvz2dPfWZhCcF+eBHgQw2cyVyBKrebWdnqAR64uuQfsH/MUOAYLRPl4uTEbVfFGR4Vw63WCN2ikLFVs6du+NV2w/muU+AQ=
+    repo_token:
+      secure: nYbre3WtdZCUnUnyX5wrw2YhmiGyrF2X0yVpaEpwCYWNE2S9wNO6gb1D5bPdz7IjAkinpSwJSN6Yjtvz2dPfWZhCcF+eBHgQw2cyVyBKrebWdnqAR64uuQfsH/MUOAYLRPl4uTEbVfFGR4Vw63WCN2ikLFVs6du+NV2w/muU+AQ=
