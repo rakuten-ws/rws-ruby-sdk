@@ -4,26 +4,31 @@
 [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
 [![Coverage Status](https://coveralls.io/repos/github/rakuten-ws/rws-ruby-sdk/badge.svg?branch=master)](https://coveralls.io/github/rakuten-ws/rws-ruby-sdk?branch=master)
 
-## Installation
+rakuten\_web\_serviceは、 Rubyから楽天が提供しているAPIに簡単にアクセスできるSDK(Software Development Kit)です。
 
-Add this line to your application's Gemfile:
+English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.en.md).
+
+## インストール方法
+
+bundlerを利用したアプリケーションの場合、Gemfileに以下の1行を追加します。
 
 ```ruby
   gem 'rakuten_web_service'
 ```
 
-And then execute:
+そして`bundle`コマンドでインストール。
 
     $ bundle
 
-Or install it yourself as:
+もしくは、`gem`コマンドにより
 
     $ gem install rakuten_web_service
 
+とすることでインストールできます。
 
-Now rakuten\_web\_service is supporting the following APIs:
+現在rakuten\_web\_serviceは下記のAPIをサポートしています。
 
-### Rakuten Ichiba APIs
+### 楽天市場API
 
 * [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
@@ -31,7 +36,7 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
 
 
-### Rakuten Books APIs
+### 楽天ブックス系API
 
 * [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
 * [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
@@ -43,21 +48,21 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
 * [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
 
-### Rakuten Kobo APIs
+### 楽天Kobo系API
 
-* [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
-* [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
+* [楽天Kobo電子書籍検索API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
+* [楽天Koboジャンル検索API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
-## Usage
+## 使用方法
 
-### Prerequisite: Getting Application ID
+### 事前準備: アプリケーションIDの取得
 
-You need to get Application ID for your application to access to Rakuten Web Service APIs. 
-If you have not got it, register your appplication [here](https://webservice.rakuten.co.jp/app/create). 
+楽天ウェブサービスAPIを利用の際に、アプリケーションIDが必要です。
+まだ取得していない場合は、楽天ウェブサービスAPIの[アプリケーション登録](https://webservice.rakuten.co.jp/app/create)を行い、アプリケーションIDを取得してください。
 
-### Configuration
+### 設定
 
-`RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional).
+`RakutenWebService.configuration` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
 
 ```ruby
   RakutenWebService.configuration do |c|
@@ -66,9 +71,9 @@ If you have not got it, register your appplication [here](https://webservice.rak
   end
 ```
 
-Please note that you neet to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIATE_ID'` with actual ones you have.
+`'YOUR_APPLICATION_ID'` と `'YOUR_AFFILIATE_ID'` は、実際のアプリケーションIDとアフィリエイトIDに置き換えてください。
 
-### Search Ichiba Items
+### 市場商品の検索
 
 ```ruby
   items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enumerable object
@@ -77,9 +82,9 @@ Please note that you neet to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIAT
   end
 ```
 
-### Genre
+### ジャンル
 
-Genre class provides an interface to traverse sub genres.
+Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。
 
 ```ruby
   root = RakutenWebService::Ichiba::Genre.root # root genre
@@ -93,16 +98,16 @@ Genre class provides an interface to traverse sub genres.
 ```
 
 
-### Ichiba Item Ranking
+### 市場商品ランキング
 
 ```ruby
-  ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # returns the TOP 30 items for Male in 30s
-  # For attributes other than 'itemName', see: http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
+  ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # 30代男性 のランキングTOP 30
   ranking_by_age.each do |ranking|
+    # 'itemName'以外の属性については右記を参照 http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
     puts ranking['itemName']
   end
 
-  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking　# the TOP 30 items in "水・ソフトドリンク" genre
+  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking　# "水・ソフトドリンク" ジャンルのTOP 30
   ranking_by_genre.each do |ranking|
     puts ranking['itemName']
   end
