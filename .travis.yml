@@ -1,22 +1,17 @@
 language: ruby
-
 rvm:
-  - 2.0.0-p598
-  - 2.1.5
-  - 2.2.2
-  - 2.3.1
-  - ruby-head
-
+- 2.0.0-p598
+- 2.1.5
+- 2.2.2
+- 2.3.1
+- ruby-head
 cache: bundler
-
 before_install:
-  - gem install bundler
-
+- gem install bundler
 matrix:
   allow_failures:
-    - rvm: ruby-head
-
+  - rvm: ruby-head
 addons:
   code_climate:
     repo_token:
-      secure: nYbre3WtdZCUnUnyX5wrw2YhmiGyrF2X0yVpaEpwCYWNE2S9wNO6gb1D5bPdz7IjAkinpSwJSN6Yjtvz2dPfWZhCcF+eBHgQw2cyVyBKrebWdnqAR64uuQfsH/MUOAYLRPl4uTEbVfFGR4Vw63WCN2ikLFVs6du+NV2w/muU+AQ=
+      secure: Z23O936LoCDGJ/OyYsLzxTUI+CMWyrfeN1PtQdCNMdF4vxwaCsAHr3ulTdudGhKMrVZGENSEK6fq0Xal3o3oPaH9aGM9sUQ/ibRM+J94Lx6Owu4okTsIHoEy4vFeW+A/62aiwxPcoi7PFrvC8FOfaZg+b+vvYAQcitVe6qwBHiE=
