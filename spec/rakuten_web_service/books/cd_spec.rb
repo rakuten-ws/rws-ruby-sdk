@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Books::CD do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksCD/Search/20130522' }

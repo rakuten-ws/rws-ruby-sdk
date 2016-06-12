@@ -1,6 +1,5 @@
 # encoding: utf-8
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Ichiba::Product do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Product/Search/20140305' }

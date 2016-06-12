@@ -1,5 +1,4 @@
 require 'rspec'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Books::Total do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522' }
