@@ -2,10 +2,10 @@ require 'spec_helper'
 require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
-  describe '.configuration' do
+  describe '.configure' do
     context 'given block has one arity' do
       before do
-        RakutenWebService.configuration do |c|
+        RakutenWebService.configure do |c|
           c.affiliate_id = 'dummy_affiliate_id'
           c.application_id = 'dummy_application_id'
         end
@@ -20,16 +20,29 @@ describe RakutenWebService::Configuration do
     context 'given block has more or less one arity' do
       specify 'raise ArgumentError' do
         expect do
-          RakutenWebService.configuration do
+          RakutenWebService.configure do
           end
         end.to raise_error(ArgumentError)
 
         expect do
-          RakutenWebService.configuration do |c, _|
+          RakutenWebService.configure do |c, _|
             c.affiliate_id = 'dummy_affiliate_id'
             c.application_id = 'dummy_application_id'
           end
         end.to raise_error(ArgumentError)
+      end
+    end
+  end
+
+  describe '.configuration' do
+    context 'When calling with a block' do
+      specify 'should show warning message' do
+        $stderr = StringIO.new
+        RakutenWebService.configuration do |c|
+          c.application_id = 'dummy_affiliate_id'
+        end
+        expect($stderr.string).to match(/Warning: /)
+        $stderr = STDERR
       end
     end
   end

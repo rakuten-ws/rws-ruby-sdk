@@ -30,7 +30,7 @@ module RakutenWebService
     end
   end
 
-  def configuration(&block)
+  def configure(&block)
     @configuration ||= Configuration.new
     if block
       if block.arity != 1
@@ -41,5 +41,10 @@ module RakutenWebService
     return @configuration
   end
 
-  module_function :configuration
+  def configuration(&block)
+    $stderr.puts "Warning: RakutenWebService.configuration is deprecated. Use RakutenWebService.configure." if block_given?
+    self.configure(&block)
+  end
+
+  module_function :configure, :configuration
 end
