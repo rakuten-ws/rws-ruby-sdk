@@ -48,7 +48,7 @@ module RakutenWebService
         conn.response :json
         conn.response :logger if RakutenWebService.configuration.debug
         conn.adapter Faraday.default_adapter
-        conn.headers['User-Agent'] = "RakutenWebService SDK for Ruby-#{RWS::VERSION}"
+        conn.headers['User-Agent'] = "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
       end
     end
   end

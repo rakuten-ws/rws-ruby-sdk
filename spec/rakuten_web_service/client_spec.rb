@@ -17,7 +17,8 @@ describe RakutenWebService::Client do
 
   before do
     @expected_request = stub_request(:get, endpoint).
-      with(:query => expected_query, headers: { 'User-Agent' => "RakutenWebService SDK for Ruby-#{RakutenWebService::VERSION}" }).
+      with(query: expected_query,
+           headers: { 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])" }).
       to_return(expected_response)
 
     RakutenWebService.configuration do |c|
