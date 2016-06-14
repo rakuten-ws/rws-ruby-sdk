@@ -23,7 +23,7 @@ describe RakutenWebService::Ichiba::Genre do
       with(:query => expected_query).
       to_return(:body => fixture('ichiba/genre_search.json'))
 
-    RakutenWebService.configuration do |c|
+    RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
     end

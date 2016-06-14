@@ -13,7 +13,7 @@ describe RakutenWebService::Books::DVD do
   end
 
   before do
-    RakutenWebService.configuration do |c|
+    RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
     end
