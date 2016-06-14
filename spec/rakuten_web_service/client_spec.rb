@@ -21,7 +21,7 @@ describe RakutenWebService::Client do
            headers: { 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])" }).
       to_return(expected_response)
 
-    RakutenWebService.configuration do |c|
+    RakutenWebService.configure do |c|
       c.affiliate_id = 'default_affiliate_id'
       c.application_id = 'default_application_id'
     end
