@@ -14,7 +14,7 @@ require 'date'
 application_id = ARGV.shift
 keyword = ARGV.shift || '軽井沢'
 
-RakutenWebService.configuration do |c|
+RakutenWebService.configure do |c|
   c.application_id = application_id
 end
 
