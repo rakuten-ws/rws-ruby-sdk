@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Gora::CourseDetail do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20140410' }

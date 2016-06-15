@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Gora::Plan do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20150706' }
