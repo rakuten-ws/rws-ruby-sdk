@@ -68,7 +68,7 @@ describe RakutenWebService::Gora::Course do
 
         specify 'endpoint should be called' do
           expect(@expected_request).to have_been_made.once
-          expect(@second_request).to have_been_made.once
+          expect(@second_request).not_to have_been_made.once
         end
       end
 
