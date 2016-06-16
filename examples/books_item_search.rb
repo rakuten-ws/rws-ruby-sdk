@@ -5,7 +5,7 @@
 # If you want to search CDs dealt in Rakuten Books, you can do it with `RakutenWebService::Books::CD`. 
 # As for other resources, there are `RakutenWebService::Books::Book`, `RakutenWebService::Books::DVD` and so on. 
 # Please refer to the following documents if you want more detail of input/output parameters: 
-#   http://webservice.rakuten.co.jp/document/  
+#   http://webservice.rakuten.co.jp/document/
 #
 
 require 'rakuten_web_service'
@@ -13,7 +13,7 @@ require 'rakuten_web_service'
 application_id = ARGV.shift
 keyword = ARGV[0..-1].join(' ')
 
-RakutenWebService.configuration do |c|
+RakutenWebService.configure do |c|
   c.application_id = application_id
 end
 
