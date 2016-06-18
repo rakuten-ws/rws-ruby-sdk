@@ -43,4 +43,21 @@ describe RakutenWebService::Recipe::Category do
       expect(subject).to be_all { |c| c.is_a?(RakutenWebService::Recipe::Category) }
     end
   end
+
+  describe '.medium_categories' do
+    it 'should call categories' do
+      expect(RWS::Recipe).to receive(:categories).with('medium')
+
+      RakutenWebService::Recipe.medium_categories
+    end
+  end
+
+  describe '.small_categories' do
+    it 'should call categories' do
+      expect(RWS::Recipe).to receive(:categories).with('small')
+
+      RakutenWebService::Recipe.small_categories
+
+    end
+  end
 end
