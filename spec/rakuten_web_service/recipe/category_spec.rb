@@ -29,10 +29,18 @@ describe RakutenWebService::Recipe::Category do
         with(query: expected_query).to_return(body: response.to_json)
     end
 
-    subject { RakutenWebService::Recipe::Category.large_categories }
+    subject { RakutenWebService::Recipe.large_categories }
 
     it 'should return' do
       expect(subject).to be_a(Array)
+    end
+    it 'should call the endpoint once' do
+      subject.first
+
+      expect(@expected_request).to have_been_made.once
+    end
+    it 'should be Category resources' do
+      expect(subject).to be_all { |c| c.is_a?(RakutenWebService::Recipe::Category) }
     end
   end
 end
