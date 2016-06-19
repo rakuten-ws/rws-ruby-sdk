@@ -46,7 +46,7 @@ module RakutenWebService
       end
 
       def endpoint(url=nil)
-        @endpoint = url || @endpoint 
+        @endpoint = url || @endpoint
       end
 
       def client
