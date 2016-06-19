@@ -15,13 +15,9 @@ module RakutenWebService
 
     def self.categories(category_type)
       @categories ||= {}
-      @categories[category_type] = if @categories[category_type]
-                                     @categories[category_type]
-                                   else
-                                     Category.search(category_type: category_type).response['result'][category_type].map do |category|
+      @categories[category_type] ||= Category.search(category_type: category_type).response['result'][category_type].map do |category|
                                        Category.new(category)
                                      end
-                                   end
     end
 
     class << self
