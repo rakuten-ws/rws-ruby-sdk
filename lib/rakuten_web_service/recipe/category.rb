@@ -14,15 +14,24 @@ module RakutenWebService
     end
 
     def self.categories(category_type)
-      Category.search(category_type: category_type).response['result'][category_type].map do |category|
-        Category.new(category)
-      end
+      @categories ||= {}
+      @categories[category_type] = if @categories[category_type]
+                                     @categories[category_type]
+                                   else
+                                     Category.search(category_type: category_type).response['result'][category_type].map do |category|
+                                       Category.new(category)
+                                     end
+                                   end
     end
 
     class Category < Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20121121'
 
-      attribute :categoryId, :categoryName, :categoryUrl
+      attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId
+
+      def parent_category
+        Category.new(categoryId: parent_category_id)
+      end
     end
   end
 end

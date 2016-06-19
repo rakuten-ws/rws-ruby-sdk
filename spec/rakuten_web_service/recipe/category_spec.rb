@@ -29,6 +29,10 @@ describe RakutenWebService::Recipe::Category do
         with(query: expected_query).to_return(body: response.to_json)
     end
 
+    after do
+      RWS::Recipe.instance_variable_set(:@categories, nil)
+    end
+
     subject { RakutenWebService::Recipe.large_categories }
 
     it 'should return' do
@@ -41,6 +45,14 @@ describe RakutenWebService::Recipe::Category do
     end
     it 'should be Category resources' do
       expect(subject).to be_all { |c| c.is_a?(RakutenWebService::Recipe::Category) }
+    end
+
+    context 'When called twice or more' do
+      specify 'should call the endpoint only once' do
+        2.times { RakutenWebService::Recipe.large_categories }
+
+        expect(@expected_request).to have_been_made.once
+      end
     end
   end
 
@@ -58,6 +70,21 @@ describe RakutenWebService::Recipe::Category do
 
       RakutenWebService::Recipe.small_categories
 
+    end
+  end
+
+  describe "#parent_category" do
+    let(:category) do
+      RWS::Recipe::Category.new \
+        categoryId: '2007',
+        categoryName: 'もち麦',
+        parentCategoryId: '706'
+    end
+
+    subject { category.parent_category }
+
+    it "should be a Category" do
+      expect(subject).to be_a(RWS::Recipe::Category)
     end
   end
 end
