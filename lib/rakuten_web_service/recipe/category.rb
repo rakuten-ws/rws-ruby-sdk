@@ -24,6 +24,10 @@ module RakutenWebService
                                    end
     end
 
+    class << self
+      protected :search
+    end
+
     class Category < Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20121121'
 
