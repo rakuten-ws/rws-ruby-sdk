@@ -13,8 +13,12 @@ module RakutenWebService
       :recipeIndication, :recipeCost,
       :recipePublishday, :rank
 
+    def self.ranking(category)
+      self.search(category_id: category)
+    end
+
     class << self
-      private :search
+      protected :search
     end
   end
 end
