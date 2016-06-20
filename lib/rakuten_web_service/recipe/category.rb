@@ -16,8 +16,8 @@ module RakutenWebService
     def self.categories(category_type)
       @categories ||= {}
       @categories[category_type] ||= Category.search(category_type: category_type).response['result'][category_type].map do |category|
-                                       Category.new(category)
-                                     end
+        Category.new(category.merge(categoryType: category_type))
+      end
     end
 
     class << self
@@ -30,8 +30,16 @@ module RakutenWebService
       attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId, :categoryType
 
       def parent_category
-        return if parent_category_type.nil?
-        Recipe.categories(parent_category_type).find { |c| c.id === parent_category_id.to_i }
+        return nil if parent_category_type.nil?
+        Recipe.categories(parent_category_type).find { |c| c.id.to_i === parent_category_id.to_i }
+      end
+
+      def absolute_category_id
+        if parent_category
+          [parent_category.absolute_category_id, id.to_s].join('-')
+        else
+          id.to_s
+        end
       end
 
       private
