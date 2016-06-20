@@ -78,13 +78,30 @@ describe RakutenWebService::Recipe::Category do
       RWS::Recipe::Category.new \
         categoryId: '2007',
         categoryName: 'もち麦',
-        parentCategoryId: '706'
+        categoryType: 'small',
+        parentCategoryId: 706
+    end
+    let(:category_type) { 'medium' }
+
+    before do
+      response = JSON.parse(fixture('recipe/category.json'))
+
+      @expected_request = stub_request(:get, endpoint).
+        with(query: expected_query).to_return(body: response.to_json)
+    end
+
+    after do
+      RakutenWebService::Recipe.instance_variable_set(:@categories, nil)
     end
 
     subject { category.parent_category }
 
     it "should be a Category" do
       expect(subject).to be_a(RWS::Recipe::Category)
+    end
+    it "should call the endpoint once to get medium categories" do
+      subject
+      expect(@expected_request).to have_been_made.once
     end
   end
 end

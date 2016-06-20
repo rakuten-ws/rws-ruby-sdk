@@ -27,11 +27,22 @@ module RakutenWebService
     class Category < Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20121121'
 
-      attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId
+      attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId, :categoryType
 
       def parent_category
-        Category.new(categoryId: parent_category_id)
+        return if parent_category_type.nil?
+        Recipe.categories(parent_category_type).find { |c| c.id === parent_category_id }
       end
+
+      private
+        def parent_category_type
+          case type
+          when 'small' then 'medium'
+          when 'medium' then 'large'
+          else
+            nil
+          end
+        end
     end
   end
 end
