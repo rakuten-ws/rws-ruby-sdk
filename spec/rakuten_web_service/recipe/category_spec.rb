@@ -111,7 +111,7 @@ describe RakutenWebService::Recipe::Category do
         categoryId: 706,
         categoryName: 'もち麦',
         categoryType: 'medium',
-        parentCategoryId: 13
+        parentCategoryId: '13'
     end
     let(:category_type) { 'large' }
 
@@ -129,7 +129,29 @@ describe RakutenWebService::Recipe::Category do
     subject { category.absolute_category_id }
 
     it "should be concatinations with parent category ids" do
-      expect(subject).to be_eql("")
+      expect(subject).to be_eql("13-706")
+    end
+
+    context 'for small category' do
+      let(:category) do
+        RWS::Recipe::Category.new \
+          categoryId: 2007,
+          categoryName: 'もち麦',
+          categoryType: 'small',
+          parentCategoryId: '706'
+      end
+
+      before do
+        response = JSON.parse(fixture('recipe/category.json'))
+
+        stub_request(:get, endpoint).
+          with(query: expected_query.merge(categoryType: 'medium')).
+          to_return(body: response.to_json)
+      end
+
+      it 'should concatinations with parent category ids' do
+        expect(subject).to be_eql("13-706-2007")
+      end
     end
   end
 end
