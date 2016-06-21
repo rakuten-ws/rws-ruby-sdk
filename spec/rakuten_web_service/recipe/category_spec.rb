@@ -154,4 +154,32 @@ describe RakutenWebService::Recipe::Category do
       end
     end
   end
+
+  describe '#ranking' do
+    let(:category) do
+      RWS::Recipe::Category.new \
+        categoryId: 706,
+        categoryName: 'もち麦',
+        categoryType: 'medium',
+        parentCategoryId: '13'
+    end
+    let(:category_type) { 'large' }
+
+    before do
+      response = JSON.parse(fixture('recipe/category.json'))
+
+      @expected_request = stub_request(:get, endpoint).
+        with(query: expected_query).to_return(body: response.to_json)
+    end
+
+    after do
+      RakutenWebService::Recipe.instance_variable_set(:@categories, nil)
+    end
+
+    it 'should call ranking method with category codes' do
+      expect(RakutenWebService::Recipe).to receive(:ranking).with('13-706')
+
+      category.ranking
+    end
+  end
 end

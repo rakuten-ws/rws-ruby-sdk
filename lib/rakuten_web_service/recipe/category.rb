@@ -29,6 +29,10 @@ module RakutenWebService
 
       attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId, :categoryType
 
+      def ranking
+        Recipe.ranking(absolute_category_id)
+      end
+
       def parent_category
         return nil if parent_category_type.nil?
         Recipe.categories(parent_category_type).find { |c| c.id.to_i === parent_category_id.to_i }
