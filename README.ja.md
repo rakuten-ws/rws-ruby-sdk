@@ -53,6 +53,11 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 * [楽天Kobo電子書籍検索API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
 * [楽天Koboジャンル検索API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
+### 楽天レシピ系API
+
+* [楽天レシピカテゴリ一覧API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
+* [楽天レシピカテゴリ別ランキングAPI](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
+
 ### 楽天GORA系API
 
 * [楽天GORAゴルフ場検索API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
@@ -113,7 +118,7 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
     puts ranking['itemName']
   end
 
-  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking　# "水・ソフトドリンク" ジャンルのTOP 30
+  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking # "水・ソフトドリンク" ジャンルのTOP 30
   ranking_by_genre.each do |ranking|
     puts ranking['itemName']
   end
