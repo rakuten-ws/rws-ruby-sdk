@@ -48,6 +48,11 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
 * [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
 
+### 楽天レシピ系API
+
+* [Rakuten Recipe Category List API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
+* [Rakuten Recipe Category Ranking API](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
+
 ### Rakuten GORA APIs
 
 * [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
