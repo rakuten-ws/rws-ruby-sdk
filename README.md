@@ -4,6 +4,12 @@
 [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
 [![Coverage Status](https://coveralls.io/repos/github/rakuten-ws/rws-ruby-sdk/badge.svg?branch=master)](https://coveralls.io/github/rakuten-ws/rws-ruby-sdk?branch=master)
 
+This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
+
+## Prerequisite
+
+* Ruby 2.1.0 or later
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -20,6 +26,8 @@ Or install it yourself as:
 
     $ gem install rakuten_web_service
 
+
+## Supported APIS
 
 Now rakuten\_web\_service is supporting the following APIs:
 
@@ -68,7 +76,7 @@ If you have not got it, register your application [here](https://webservice.raku
 
 ### Configuration
 
-`RakutenWebService.configuration` allows you to specify your application's key called application\_id and your affiliate id(optional).
+At first, you have to specify your application's key. And you can tell the client your afiiliate id with `RakutenWebService.configuration`.
 
 ```ruby
   RakutenWebService.configuration do |c|
@@ -85,6 +93,27 @@ Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIAT
   items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enumerable object
   items.first(10).each do |item|
     puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash.
+  end
+```
+
+### Pagerizing
+
+Responses of resources' `search` such as `RakutenWebService::Ichiba::Item.search` have methods for paginating fetched resources.
+
+```ruby
+  items = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby')
+  items.count #=> 30. In default, the API returns up to 30 items matched with given keywords.
+
+  items = items.page(3) # Skips first 2 pages.
+
+  # Go to the last page
+  while items.has_next_page?
+    items = items.next_page
+  end
+
+  # Shows the title of the last 30 items
+  items.each do |item|
+    puts item.name
   end
 ```
 
