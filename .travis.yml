@@ -1,16 +1,20 @@
 language: ruby
+
 rvm:
-- 2.0.0-p598
-- 2.1.5
-- 2.2.2
-- 2.3.1
-- ruby-head
+  - 2.1.5
+  - 2.2.10
+  - 2.3.1
+  - ruby-head
+
 cache: bundler
+
 before_install:
-- gem install bundler
+  - gem install bundler
+
 matrix:
   allow_failures:
   - rvm: ruby-head
+
 addons:
   code_climate:
     repo_token:
