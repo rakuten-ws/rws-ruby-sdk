@@ -64,7 +64,7 @@ Now rakuten\_web\_service is supporting the following APIs:
 ### Prerequisite: Getting Application ID
 
 You need to get Application ID for your application to access to Rakuten Web Service APIs. 
-If you have not got it, register your appplication [here](https://webservice.rakuten.co.jp/app/create). 
+If you have not got it, register your application [here](https://webservice.rakuten.co.jp/app/create). 
 
 ### Configuration
 
@@ -77,7 +77,7 @@ If you have not got it, register your appplication [here](https://webservice.rak
   end
 ```
 
-Please note that you neet to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIATE_ID'` with actual ones you have.
+Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIATE_ID'` with actual ones you have.
 
 ### Search Ichiba Items
 
