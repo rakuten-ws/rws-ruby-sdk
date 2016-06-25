@@ -43,5 +43,8 @@ describe RakutenWebService::Recipe do
 
       expect(@expected_request).to have_been_made.once
     end
+    it 'shoudl return an array of Reciep' do
+      expect(subject).to be_all { |r| r.is_a?(RWS::Recipe) }
+    end
   end
 end
