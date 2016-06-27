@@ -64,15 +64,19 @@ Responses of resources' `search` such as `RakutenWebService::Ichiba::Item.search
   items = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby')
   items.count #=> 30. In default, the API returns up to 30 items matched with given keywords.
 
-  items = items.page(3) # Skips first 2 pages.
+  last_items = items.page(3) # Skips first 2 pages.
 
   # Go to the last page
-  while items.has_next_page?
-    items = items.next_page
+  while last_items.has_next_page?
+    last_items = last_items.next_page
   end
 
   # Shows the title of the last 30 items
-  items.each do |item|
+  last_items.each do |item|
+    puts item.name
+  end
+
+  items.all do |item|
     puts item.name
   end
 ```
