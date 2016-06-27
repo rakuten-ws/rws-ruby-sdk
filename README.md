@@ -27,46 +27,6 @@ Or install it yourself as:
     $ gem install rakuten_web_service
 
 
-## Supported APIS
-
-Now rakuten\_web\_service is supporting the following APIs:
-
-### Rakuten Ichiba APIs
-
-* [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
-* [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
-* [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
-* [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
-
-
-### Rakuten Books APIs
-
-* [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
-* [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
-* [Rakuten Books CD Search API](http://webservice.rakuten.co.jp/api/bookscdsearch/)
-* [Rakuten Books DVD/Blu-ray Search API](http://webservice.rakuten.co.jp/api/booksdvdsearch/)
-* [Rakuten Books ForeignBook Search API](http://webservice.rakuten.co.jp/api/booksforeignbooksearch/)
-* [Rakuten Books Magazine Search API](http://webservice.rakuten.co.jp/api/booksmagazinesearch/)
-* [Rakuten Books Game Search API](http://webservice.rakuten.co.jp/api/booksgamesearch/)
-* [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
-* [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
-
-### Rakuten Kobo APIs
-
-* [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
-* [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
-
-### 楽天レシピ系API
-
-* [Rakuten Recipe Category List API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
-* [Rakuten Recipe Category Ranking API](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
-
-### Rakuten GORA APIs
-
-* [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
-* [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
-* [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/api/goraplansearch/)
-
 ## Usage
 
 ### Prerequisite: Getting Application ID
@@ -147,6 +107,45 @@ Genre class provides an interface to traverse sub genres.
     puts ranking['itemName']
   end
 ```
+
+## Supported APIS
+
+Now rakuten\_web\_service is supporting the following APIs:
+
+### Rakuten Ichiba APIs
+
+* [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
+* [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
+* [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
+* [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
+
+### Rakuten Books APIs
+
+* [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
+* [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
+* [Rakuten Books CD Search API](http://webservice.rakuten.co.jp/api/bookscdsearch/)
+* [Rakuten Books DVD/Blu-ray Search API](http://webservice.rakuten.co.jp/api/booksdvdsearch/)
+* [Rakuten Books ForeignBook Search API](http://webservice.rakuten.co.jp/api/booksforeignbooksearch/)
+* [Rakuten Books Magazine Search API](http://webservice.rakuten.co.jp/api/booksmagazinesearch/)
+* [Rakuten Books Game Search API](http://webservice.rakuten.co.jp/api/booksgamesearch/)
+* [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
+* [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
+
+### Rakuten Kobo APIs
+
+* [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
+* [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
+
+### 楽天レシピ系API
+
+* [Rakuten Recipe Category List API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
+* [Rakuten Recipe Category Ranking API](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
+
+### Rakuten GORA APIs
+
+* [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
+* [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
+* [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/api/goraplansearch/)
 
 ## Contributing
 
