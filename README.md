@@ -17,7 +17,7 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
   * [Pagerizing](#pagerizing)
   * [Genre](#genre)
   * [Ichiba Item Ranking](#ichiba-item-ranking)
-* [Supported APIS](#supported-apis)
+* [Supported APIs](#supported-apis)
   * [Rakuten Ichiba APIs](#rakuten-ichiba-apis)
   * [Rakuten Books APIs](#rakuten-books-apis)
   * [Rakuten Kobo APIs](#rakuten-kobo-apis)
@@ -132,7 +132,7 @@ Genre class provides an interface to traverse sub genres.
   end
 ```
 
-## Supported APIS
+## Supported APIs
 
 Now rakuten\_web\_service is supporting the following APIs:
 
