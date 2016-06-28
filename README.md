@@ -6,6 +6,26 @@
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
 
+# Table of Contents
+
+* [Prerequisite](#prerequisite)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Prerequisite: Getting Application ID](#prerequisite-getting-application-id)
+  * [Configuration](#configuration)
+  * [Search Ichiba Items](#search-ichiba-items)
+  * [Pagerizing](#pagerizing)
+  * [Genre](#genre)
+  * [Ichiba Item Ranking](#ichiba-item-ranking)
+* [Supported APIS](#supported-apis)
+  * [Rakuten Ichiba APIs](#rakuten-ichiba-apis)
+  * [Rakuten Books APIs](#rakuten-books-apis)
+  * [Rakuten Kobo APIs](#rakuten-kobo-apis)
+  * [楽天レシピ系API](#%E6%A5%BD%E5%A4%A9%E3%83%AC%E3%82%B7%E3%83%94%E7%B3%BBapi)
+  * [Rakuten GORA APIs](#rakuten-gora-apis)
+* [Contributing](#contributing)
+
+
 ## Prerequisite
 
 * Ruby 2.1.0 or later
