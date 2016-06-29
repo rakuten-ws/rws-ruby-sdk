@@ -21,7 +21,7 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
   * [Rakuten Ichiba APIs](#rakuten-ichiba-apis)
   * [Rakuten Books APIs](#rakuten-books-apis)
   * [Rakuten Kobo APIs](#rakuten-kobo-apis)
-  * [Rakuten Recipe APIs](#%E6%A5%BD%E5%A4%A9%E3%83%AC%E3%82%B7%E3%83%94%E7%B3%BBapi)
+  * [Rakuten Recipe APIs](#rakuten-recipe-apis)
   * [Rakuten GORA APIs](#rakuten-gora-apis)
 * [Contributing](#contributing)
 
