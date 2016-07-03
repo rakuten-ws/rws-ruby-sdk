@@ -109,7 +109,8 @@ Responses of resources' `search` such as `RakutenWebService::Ichiba::Item.search
     puts item.name
   end
 
-  items.all do |item|
+  # Easier way to fetch all resources page 3 and latter
+  items.page(3).all do |item|
     puts item.name
   end
 ```
