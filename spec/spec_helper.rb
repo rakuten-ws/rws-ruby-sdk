@@ -10,7 +10,7 @@ require File.expand_path(File.join(__dir__, '..', 'lib', 'rakuten_web_service'))
 
 require 'webmock/rspec'
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__), "support/**/*.rb"))].each { |f| require f }
+Dir[File.expand_path(File.join(__dir__, "support/**/*.rb"))].each { |f| require f }
 
 RSpec.configure do |c|
   c.mock_with :rspec
