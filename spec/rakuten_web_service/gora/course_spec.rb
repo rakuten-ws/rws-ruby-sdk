@@ -52,12 +52,16 @@ describe RakutenWebService::Gora::Course do
 
         subject { @courses.first }
 
-        it { should be_a RakutenWebService::Gora::Course }
+        it { is_expected.to be_a RakutenWebService::Gora::Course }
         specify 'should be accessed by key' do
           expect(subject['golfCourseName']).to eq(expected_json['golfCourseName'])
           expect(subject['golf_course_name']).to eq(expected_json['golfCourseName'])
         end
-        its(:golf_course_name) { should eq(expected_json['golfCourseName']) }
+
+        describe '#golf_course_name' do
+          subject { super().golf_course_name }
+          it { is_expected.to eq(expected_json['golfCourseName']) }
+        end
       end
 
       context 'after that, call each' do

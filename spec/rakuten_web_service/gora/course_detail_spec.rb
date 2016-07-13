@@ -37,13 +37,17 @@ describe RakutenWebService::Gora::CourseDetail do
 
         subject { RakutenWebService::Gora::CourseDetail.find(expected_query[:golfCourseId]) }
 
-        it { should be_a RakutenWebService::Gora::CourseDetail }
+        it { is_expected.to be_a RakutenWebService::Gora::CourseDetail }
 
         specify 'should be accessed by key' do
           expect(subject['golfCourseName']).to eq(expected_json['golfCourseName'])
           expect(subject['golf_course_name']).to eq(expected_json['golfCourseName'])
         end
-        its(:golf_course_name) { should eq(expected_json['golfCourseName']) }
+
+        describe '#golf_course_name' do
+          subject { super().golf_course_name }
+          it { is_expected.to eq(expected_json['golfCourseName']) }
+        end
 
         specify 'should be accessed to ratings' do
           expect(subject.ratings.size).to eq(expected_json['ratings'].size)

@@ -44,7 +44,11 @@ describe RakutenWebService::Ichiba::Genre do
       expect(subject['genreName']).to eq(expected_json['current']['genreName'])
       expect(subject['genre_name']).to eq(expected_json['current']['genreName'])
     end
-    its(:name) { should eq(expected_json['current']['genreName']) }
+
+    describe '#name' do
+      subject { super().name }
+      it { is_expected.to eq(expected_json['current']['genreName']) }
+    end
   end
 
   describe '.new' do
@@ -148,7 +152,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     specify "should call RankingItem's search with genre_id option" do
-      RakutenWebService::Ichiba::RankingItem.should_receive(:search).with(:genre_id => genre_id)
+      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with(:genre_id => genre_id)
       expect { genre.ranking }.to_not raise_error
     end
   end
@@ -162,7 +166,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     specify "should call Product search with genre_id option" do
-      RakutenWebService::Ichiba::Product.should_receive(:search).with(:genre_id => genre_id)
+      expect(RakutenWebService::Ichiba::Product).to receive(:search).with(:genre_id => genre_id)
       expect { genre.products }.to_not raise_error
     end
   end

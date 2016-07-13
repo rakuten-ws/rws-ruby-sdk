@@ -41,8 +41,16 @@ describe RakutenWebService::Ichiba::RankingItem do
       expect(subject['itemName']).to eq(expected_json['itemName'])
       expect(subject['item_name']).to eq(expected_json['itemName'])
     end
-    its(:rank) { should eq(1) }
-    its(:name) { should eq(expected_json['itemName']) }
+
+    describe '#rank' do
+      subject { super().rank }
+      it { is_expected.to eq(1) }
+    end
+
+    describe '#name' do
+      subject { super().name }
+      it { is_expected.to eq(expected_json['itemName']) }
+    end
   end
 
 end
