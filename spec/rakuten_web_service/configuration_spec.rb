@@ -13,8 +13,15 @@ describe RakutenWebService::Configuration do
 
       subject { RakutenWebService.configuration }
 
-      its(:affiliate_id) { should eq('dummy_affiliate_id') }
-      its(:application_id) { should eq('dummy_application_id') }
+      describe '#affiliate_id' do
+        subject { super().affiliate_id }
+        it { is_expected.to eq('dummy_affiliate_id') }
+      end
+
+      describe '#application_id' do
+        subject { super().application_id }
+        it { is_expected.to eq('dummy_application_id') }
+      end
     end
 
     context 'given block has more or less one arity' do
@@ -70,7 +77,7 @@ describe RakutenWebService::Configuration do
 
       it 'should return true' do
         expect(configuration).to be_debug_mode
-        expect(configuration.debug).to be_false
+        expect(configuration.debug).to be_falsey
       end
     end
   end

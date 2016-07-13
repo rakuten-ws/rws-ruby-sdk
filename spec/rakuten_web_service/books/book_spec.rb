@@ -58,7 +58,7 @@ describe RakutenWebService::Books::Book do
     specify 'genretes RWS::Books::Genre object' do
       book = RWS::Books::Book.search(:title => 'Ruby').first
 
-      RWS::Books::Genre.should_receive(:new).with(response['Items'][0]['Item']['booksGenreId'])
+      expect(RWS::Books::Genre).to receive(:new).with(response['Items'][0]['Item']['booksGenreId'])
       expect(book.genre).to be_a(Array)
     end
 
@@ -66,7 +66,7 @@ describe RakutenWebService::Books::Book do
       genre_id = '001004008007/001021001010'
       book = RWS::Books::Book.new(:booksGenreId => genre_id) 
       genre_id.split('/').each do |id|
-        RWS::Books::Genre.should_receive(:new).with(id)
+        expect(RWS::Books::Genre).to receive(:new).with(id)
       end
       
       expect(book.genres).to be_a(Array)

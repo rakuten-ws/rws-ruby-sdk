@@ -52,12 +52,16 @@ describe RakutenWebService::Ichiba::Item do
 
         subject { @items.first }
 
-        it { should be_a RakutenWebService::Ichiba::Item }
+        it { is_expected.to be_a RakutenWebService::Ichiba::Item }
         specify 'shoud be access by key' do
           expect(subject['itemName']).to eq(expected_json['itemName'])
           expect(subject['item_name']).to eq(expected_json['itemName'])
         end 
-        its(:name) { should eq(expected_json['itemName']) }
+
+        describe '#name' do
+          subject { super().name }
+          it { is_expected.to eq(expected_json['itemName']) }
+        end
         specify 'should have xxx? method if the object has xxx_flag' do
           expect(subject.tax?).to eq(expected_json['taxFlag'] == 1)
         end
@@ -110,7 +114,7 @@ describe RakutenWebService::Ichiba::Item do
       context 'When TooManyRequest error raised' do
         let(:client) do 
           c = double('client')
-          c.stub(:get).and_raise(RWS::TooManyRequests)
+          allow(c).to receive(:get).and_raise(RWS::TooManyRequests)
           c
         end
 
@@ -151,7 +155,7 @@ describe RakutenWebService::Ichiba::Item do
 
   describe '.ranking' do
     before do
-      RakutenWebService::Ichiba::RankingItem.should_receive(:search).with({})
+      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with({})
     end
 
     specify "call RakutenWebService::Ichiba::RankingItem's search" do
@@ -167,7 +171,7 @@ describe RakutenWebService::Ichiba::Item do
         to_return(:body => response.to_json)
 
       expected_item = response['Items'][0]['Item']
-      RakutenWebService::Ichiba::Genre.should_receive('new').with(expected_item['genreId']) 
+      expect(RakutenWebService::Ichiba::Genre).to receive('new').with(expected_item['genreId']) 
     end
 
     subject { RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.genre }
