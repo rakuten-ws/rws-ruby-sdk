@@ -19,10 +19,6 @@ RSpec.configure do |c|
     WebMock.disable_net_connect!(:allow => "codeclimate.com")
   end
 
-  c.before :suite, integration: true do
-    WebMock.allow_net_connect!
-  end
-
   c.after :each do
     WebMock.reset!
   end
