@@ -2,6 +2,12 @@
 
 ## Enhancements
 
+* Upgrade the version of RSpec and refactoring the configuration. [#36](https://github.com/rakuten-ws/rws-ruby-sdk/pull/36) and [#37](https://github.com/rakuten-ws/rws-ruby-sdk/pull/36)
+
+# v1.0.0.rc1
+
+## Enhancements
+
 * Started supporting Gora APIs by @kamatama41 .[#29](https://github.com/rakuten-ws/rws-ruby-sdk/pull/29)
 * Started supporting Recipe APIs. [#31](https://github.com/rakuten-ws/rws-ruby-sdk/pull/31)
 * Updated versions of supported Rakuten Web Service APIs.
