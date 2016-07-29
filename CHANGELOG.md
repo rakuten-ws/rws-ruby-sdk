@@ -2,8 +2,8 @@
 
 ## Enhancements
 
-* Started supporting Gora APIs. Thank you for your contribution @kamatama41 .[#29](https://github.com/rakuten-ws/rws-ruby-sdk/pull/29)
-* Started supporting Recipe APIs.
+* Started supporting Gora APIs by @kamatama41 .[#29](https://github.com/rakuten-ws/rws-ruby-sdk/pull/29)
+* Started supporting Recipe APIs. [#31](https://github.com/rakuten-ws/rws-ruby-sdk/pull/31)
 * Updated versions of supported Rakuten Web Service APIs.
 
 ## Compatibility Changes
@@ -12,6 +12,12 @@
 * Any resource's `search` such as `RakutenWebService::Ichiba::Item` returns Enumerator which provides resources fetched at one page.
   It used to provide all resources by auto-pagerize. From this version provides methods for pagerizing. Please refer to [the sample in README](https://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.md#pagerizing).
 * Deprecated calling `RakutenWebService.configuration` with a block, recommending to use `RakutenWebService.configure`.
+
+## Thanks
+
+At first, I should appreciate all users of the gems.
+One of the enhancements, supporting Gora APIs, is realized by @kamatama41 's seminal work.
+Thank you for your contribution!
 
 # v0.6.3
 
