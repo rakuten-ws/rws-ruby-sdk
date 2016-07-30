@@ -1,7 +1,7 @@
 # RakutenWebService
 
-[![Build Status](https://travis-ci.org/rakuten-ws/rws-ruby-sdk.png?branch=master)](https://travis-ci.org/rakuten-ws/rws-ruby-sdk)
-[![Gem Version](https://badge.fury.io/rb/rakuten_web_service.png)](http://badge.fury.io/rb/rakuten_web_service)
+[![Build Status](https://travis-ci.org/rakuten-ws/rws-ruby-sdk.svg?branch=master)](https://travis-ci.org/rakuten-ws/rws-ruby-sdk)
+[![Gem Version](https://badge.fury.io/rb/rakuten_web_service.svg)](https://badge.fury.io/rb/rakuten_web_service)
 [![Coverage Status](https://coveralls.io/repos/github/rakuten-ws/rws-ruby-sdk/badge.svg?branch=master)](https://coveralls.io/github/rakuten-ws/rws-ruby-sdk?branch=master)
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
