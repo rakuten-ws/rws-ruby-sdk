@@ -23,7 +23,7 @@ module RakutenWebService
 
     def get(params)
       params = RakutenWebService.configuration.generate_parameters(params)
-      response = connection.get(path, params)
+      response = request(path, params)
       case response.status
       when 200
         return RakutenWebService::Response.new(@resource_class, response.body)
@@ -41,6 +41,10 @@ module RakutenWebService
     end
 
     private
+    def request(path, params)
+      connection.get(path, params)
+    end
+
     def connection
       return @connection if @connection
       @connection = Faraday.new(:url => url) do |conn|
