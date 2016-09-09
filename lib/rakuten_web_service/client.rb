@@ -12,37 +12,42 @@ module RakutenWebService
   class ServiceUnavailable < StandardError; end
 
   class Client
-    attr_reader :url, :path
+    attr_reader :url
 
     def initialize(resource_class)
       @resource_class = resource_class
-      url = URI.parse(@resource_class.endpoint)
-      @url = "#{url.scheme}://#{url.host}"
-      @path = url.path
+      @url = URI.parse(@resource_class.endpoint)
     end
 
     def get(params)
       params = RakutenWebService.configuration.generate_parameters(params)
-      response = request(path, params)
-      case response.status
+      response = request(url.path, params)
+      body = JSON.parse(response.body)
+      case response.code.to_i
       when 200
-        return RakutenWebService::Response.new(@resource_class, response.body)
+        return RakutenWebService::Response.new(@resource_class, body)
       when 400
-        raise WrongParameter, response.body['error_description']
+        raise WrongParameter, body['error_description']
       when 404
-        raise NotFound, response.body['error_description']
+        raise NotFound, body['error_description']
       when 429
-        raise TooManyRequests, response.body['error_description']
+        raise TooManyRequests, body['error_description']
       when 500
-        raise SystemError, response.body['error_description']
+        raise SystemError, body['error_description']
       when 503
-        raise ServiceUnavailable, response.body['error_description']
+        raise ServiceUnavailable, body['error_description']
       end
     end
 
     private
     def request(path, params)
-      connection.get(path, params)
+      http = Net::HTTP.new(@url.host, @url.port)
+      http.use_ssl = true
+      path = "#{path}?#{params.map { |k, v| "#{k}=#{URI.encode(v.to_s)}" }.join('&')}"
+      header = {
+        'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
+      }
+      http.get(path, header)
     end
 
     def connection

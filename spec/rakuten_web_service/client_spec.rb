@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Client do
-  let(:endpoint) { 'http://api.example.com/resources' }
+  let(:endpoint) { 'https://api.example.com/resources' }
   let(:resource_class) do
     double('resource_class', endpoint: endpoint)
   end
