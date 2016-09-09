@@ -47,16 +47,5 @@ module RakutenWebService
       }
       http.get(path, header)
     end
-
-    def connection
-      return @connection if @connection
-      @connection = Faraday.new(:url => url) do |conn|
-        conn.request :url_encoded
-        conn.response :json
-        conn.response :logger if RakutenWebService.configuration.debug
-        conn.adapter Faraday.default_adapter
-        conn.headers['User-Agent'] = "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
-      end
-    end
   end
 end
