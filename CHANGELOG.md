@@ -1,3 +1,9 @@
+# v1.0.1
+
+## Enhancements
+
+* Remove the dependency on faraday, using `Net::HTTP`. [#39](https://github.com/rakuten-ws/rws-ruby-sdk/pull/39)
+
 # v1.0.0
 
 ## Enhancements
