@@ -1,5 +1,5 @@
 require 'uri'
-
+require 'json'
 require 'rakuten_web_service/response'
 
 module RakutenWebService
