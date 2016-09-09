@@ -9,6 +9,7 @@ end
 require File.expand_path(File.join(__dir__, '..', 'lib', 'rakuten_web_service'))
 
 require 'webmock/rspec'
+require 'tapp'
 
 Dir[File.expand_path(File.join(__dir__, "support/**/*.rb"))].each { |f| require f }
 
