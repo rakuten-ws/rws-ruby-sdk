@@ -1,14 +1,9 @@
 require 'uri'
 require 'json'
 require 'rakuten_web_service/response'
+require 'rakuten_web_service/error'
 
 module RakutenWebService
-  class WrongParameter < StandardError; end
-  class NotFound < StandardError; end
-  class TooManyRequests < StandardError; end
-  class SystemError < StandardError; end
-  class ServiceUnavailable < StandardError; end
-
   class Client
     attr_reader :url
 
@@ -21,19 +16,11 @@ module RakutenWebService
       params = RakutenWebService.configuration.generate_parameters(params)
       response = request(url.path, params)
       body = JSON.parse(response.body)
-      case response.code.to_i
-      when 200
+
+      if Net::HTTPSuccess === response
         return RakutenWebService::Response.new(@resource_class, body)
-      when 400
-        raise WrongParameter, body['error_description']
-      when 404
-        raise NotFound, body['error_description']
-      when 429
-        raise TooManyRequests, body['error_description']
-      when 500
-        raise SystemError, body['error_description']
-      when 503
-        raise ServiceUnavailable, body['error_description']
+      else
+        raise RakutenWebService::Error.repository[response.code.to_i], body['error_description']
       end
     end
 
