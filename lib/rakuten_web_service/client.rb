@@ -1,14 +1,9 @@
 require 'uri'
 require 'json'
 require 'rakuten_web_service/response'
+require 'rakuten_web_service/error'
 
 module RakutenWebService
-  class WrongParameter < StandardError; end
-  class NotFound < StandardError; end
-  class TooManyRequests < StandardError; end
-  class SystemError < StandardError; end
-  class ServiceUnavailable < StandardError; end
-
   class Client
     attr_reader :url
 
