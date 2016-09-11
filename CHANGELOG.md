@@ -3,6 +3,7 @@
 ## Enhancements
 
 * Remove the dependency on faraday, using `Net::HTTP`. [#39](https://github.com/rakuten-ws/rws-ruby-sdk/pull/39)
+* Allows users to rescue any exception with `RakutenWebService::Error` which is a superclass of all the error class like `RakutenWebService::NotFound`. [#41](https://github.com/rakuten-ws/rws-ruby-sdk/pull/41)
 
 # v1.0.0
 
