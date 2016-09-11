@@ -24,5 +24,3 @@ module RakutenWebService
   class ServiceUnavailable < Error; end
   Error.register(503, ServiceUnavailable)
 end
-
-
