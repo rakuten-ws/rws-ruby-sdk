@@ -1,11 +1,11 @@
-# v1.0.1
+# v1.1.0 (2016/09/12)
 
 ## Enhancements
 
 * Remove the dependency on faraday, using `Net::HTTP`. [#39](https://github.com/rakuten-ws/rws-ruby-sdk/pull/39)
 * Allows users to rescue any exception with `RakutenWebService::Error` which is a superclass of all the error class like `RakutenWebService::NotFound`. [#41](https://github.com/rakuten-ws/rws-ruby-sdk/pull/41)
 
-# v1.0.0
+# v1.0.0 (2016/07/29)
 
 ## Enhancements
 
@@ -32,7 +32,7 @@ At first, I should appreciate all users of the gems.
 One of the enhancements, supporting Gora APIs, is realized by @kamatama41 's seminal work.
 Thank you for your contribution!
 
-# v0.6.3
+# v0.6.3 (2015/07/03)
 
 * Update a gem dependency by @45deg
 * Fix typo by @45deg
