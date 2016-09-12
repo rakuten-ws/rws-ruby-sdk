@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'rakuten_web_service/resource'
 
 module RakutenWebService
