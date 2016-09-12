@@ -1,3 +1,9 @@
+# v1.1.1 (2016/09/12)
+
+## Bug Fix
+
+* Fixed `RakutenWebService::Ichiba::Genre#ranking` ignores given options to be passed to Ichiba Ranking API. [#43](https://github.com/rakuten-ws/rws-ruby-sdk/pull/43)
+
 # v1.1.0 (2016/09/12)
 
 ## Enhancements
