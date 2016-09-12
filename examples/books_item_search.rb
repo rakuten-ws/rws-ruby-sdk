@@ -1,6 +1,4 @@
-# encoding: utf-8
-#
-# This is a sample script f Rakuten Books APIs. 
+# This is a sample script of Rakuten Books APIs. 
 # RWS Ruby SDK supports Books API. The inteface is similar to ones Ichiba API. 
 # If you want to search CDs dealt in Rakuten Books, you can do it with `RakutenWebService::Books::CD`. 
 # As for other resources, there are `RakutenWebService::Books::Book`, `RakutenWebService::Books::DVD` and so on. 

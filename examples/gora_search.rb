@@ -1,6 +1,4 @@
-# encoding: utf-8
-#
-# This is a sample script f Rakuten Gora APIs.
+# This is a sample script of Rakuten Gora APIs.
 # RWS Ruby SDK supports Gora API. The inteface is similar to ones Ichiba API.
 # If you want to search courses dealt in Rakuten Gora, you can do it with `RakutenWebService::Gora::Course`.
 # As for other resources, there are `RakutenWebService::Gora::CourseDetail`, `RakutenWebService::Gora::Plan` and so on.

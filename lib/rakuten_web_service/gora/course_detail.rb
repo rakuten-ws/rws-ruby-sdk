@@ -34,7 +34,7 @@ module RakutenWebService
 
       class Rating < Resource
         class << self
-          def search(options)
+          def search(_options)
             raise 'There is no API endpoint for this resource.'
           end
         end
@@ -44,7 +44,7 @@ module RakutenWebService
 
       class Plan < Resource
         class << self
-          def search(options)
+          def search(_options)
             raise 'There is no API endpoint for this resource.'
           end
         end
