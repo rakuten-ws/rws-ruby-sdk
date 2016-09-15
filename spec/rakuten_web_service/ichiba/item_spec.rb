@@ -30,6 +30,7 @@ describe RakutenWebService::Ichiba::Item do
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
+      response['pageCount'] = 2
       @second_request = stub_request(:get, endpoint).
         with(:query => expected_query.merge(:page => 2)).
         to_return(:body => response.to_json)
@@ -139,6 +140,7 @@ describe RakutenWebService::Ichiba::Item do
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
+      response['pageCount'] = 2
       @second_request = stub_request(:get, endpoint).
         with(:query => expected_query.merge(:page => 2)).
         to_return(:body => response.to_json)
