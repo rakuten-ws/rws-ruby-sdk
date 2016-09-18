@@ -60,5 +60,9 @@ module RakutenWebService
     def children
       @params['children'] ||= self.class.search(self.class.genre_id_key => self.id).first.children
     end
+
+    def parents
+      @params['parents'] ||= self.class.search(self.class.genre_id_key => self.id).first.parents
+    end
   end
 end
