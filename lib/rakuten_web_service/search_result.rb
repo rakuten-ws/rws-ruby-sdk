@@ -1,4 +1,5 @@
 require 'rakuten_web_service/all_proxy'
+require 'rakuten_web_service/genre_information'
 
 module RakutenWebService
   class SearchResult
@@ -72,6 +73,10 @@ module RakutenWebService
 
     def page(num)
       search(:page => num)
+    end
+
+    def genre_information
+      RWS::GenreInformation.new
     end
 
     private

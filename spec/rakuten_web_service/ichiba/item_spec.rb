@@ -1,5 +1,3 @@
-
-
 require 'spec_helper'
 
 describe RakutenWebService::Ichiba::Item do
@@ -217,6 +215,20 @@ describe RakutenWebService::Ichiba::Item do
 
       expect(first_query.params[:sort]).to be_nil
       expect(second_query.params[:sort]).to eq('-affiliateRate')
+    end
+  end
+
+  describe '#genre_information' do
+    before do
+      response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
+      @expected_request = stub_request(:get, endpoint).
+        with(query: expected_query).to_return(body: response.to_json)
+    end
+
+    subject { RWS::Ichiba::Item.search(keyword: 'Ruby').genre_information }
+
+    it "should be a GenreInformation" do
+      expect(subject).to be_a(RWS::GenreInformation)
     end
   end
 end
