@@ -76,7 +76,7 @@ module RakutenWebService
     end
 
     def genre_information
-      RWS::GenreInformation.new
+      RWS::GenreInformation.new(response['GenreInformation'][0])
     end
 
     private
