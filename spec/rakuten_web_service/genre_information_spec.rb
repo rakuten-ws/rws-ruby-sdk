@@ -44,6 +44,9 @@ describe RakutenWebService::GenreInformation do
       it "has its genre level" do
         expect(subject.level).to eq('1')
       end
+      it "has its item count" do
+        expect(subject.item_count).to eq('5')
+      end
     end
   end
 end

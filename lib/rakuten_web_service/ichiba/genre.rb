@@ -7,7 +7,7 @@ module RakutenWebService
     class Genre < RakutenWebService::BaseGenre
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20120723'
 
-      attribute :genreId, :genreName, :genreLevel
+      attribute :genreId, :genreName, :genreLevel, :itemCount
 
       root_id 0
 
