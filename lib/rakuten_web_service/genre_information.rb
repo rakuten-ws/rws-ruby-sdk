@@ -5,6 +5,7 @@ module RakutenWebService
     def initialize(params)
       @parent = Array(params['parent']).first
       @current = Array(params['current']).first
+      @current = RWS::Ichiba::Genre.new(@current) if @current
       @children = params['children'].map { |child| RWS::Ichiba::Genre.new(child['child']) }
     end
   end
