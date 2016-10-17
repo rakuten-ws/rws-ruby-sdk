@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RakutenWebService::GenreInformation do
   describe '#initialize' do
-    subject { RakutenWebService::GenreInformation.new(expected_params) }
+    subject { RakutenWebService::GenreInformation.new(expected_params, RWS::Ichiba::Genre) }
 
     context "When given params only has children genres" do
       let(:expected_params) do
