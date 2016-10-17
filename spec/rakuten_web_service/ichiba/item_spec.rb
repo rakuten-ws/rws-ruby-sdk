@@ -163,6 +163,14 @@ describe RakutenWebService::Ichiba::Item do
     end
   end
 
+  describe ".genre_class" do
+    subject { RakutenWebService::Ichiba::Item }
+
+    it "returns RakutenWebService::Ichiba::Genre" do
+      expect(subject.genre_class).to eq(RakutenWebService::Ichiba::Genre)
+    end
+  end
+
   describe '#genre' do
     let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
 
