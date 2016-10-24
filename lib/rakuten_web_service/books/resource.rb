@@ -20,6 +20,10 @@ module RakutenWebService
         end
       end
 
+      def self.genre_class
+        RakutenWebService::Books::Genre
+      end
+
       def genre
         @genre ||= self.books_genre_id.split('/').map do |id|
           Books::Genre.new(id)

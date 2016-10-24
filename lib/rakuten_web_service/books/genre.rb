@@ -7,7 +7,7 @@ module RakutenWebService
 
       endpoint 'https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128'
 
-      attribute :booksGenreId, :booksGenreName, :genreLevel
+      attribute :booksGenreId, :booksGenreName, :genreLevel, :itemCount
 
       root_id '000'
 
