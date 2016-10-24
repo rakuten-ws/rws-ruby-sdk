@@ -36,6 +36,29 @@ describe RakutenWebService::Kobo::Ebook do
     end
   end
 
+  describe "#genre_information" do
+    before do
+      response = JSON.parse(fixture('kobo/ebook_search_with_Ruby.json'))
+      stub_request(:get, endpoint).
+        with(:query => expected_query).to_return(:body => response.to_json)
+    end
+
+    subject { RakutenWebService::Kobo::Ebook.search(title: 'Ruby') }
+
+    it "returns GenreInformation object" do
+      expect(subject.genre_information).to be_a(RakutenWebService::GenreInformation)
+    end
+
+    describe "its current attributes" do
+      subject { super().genre_information.current }
+
+      it "returns the current genre information" do
+        expect(subject.name).to eq("電子書籍")
+        expect(subject.item_count).to eq("660")
+      end
+    end
+  end
+
   describe '#genre' do
     let(:response) { JSON.parse(fixture('kobo/ebook_search_with_Ruby.json')) }
 

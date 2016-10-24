@@ -18,6 +18,10 @@ module RakutenWebService
         response['Items'].map { |i| self.new(i['Item']) }
       end
 
+      def self.genre_class
+        RakutenWebService::Kobo::Genre
+      end
+
       def genre
         Kobo::Genre.new(self.kobo_genre_id)
       end
