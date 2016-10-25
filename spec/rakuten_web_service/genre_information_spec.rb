@@ -66,9 +66,7 @@ describe RakutenWebService::GenreInformation do
           ]
         }
       end
-
-      specify "its parent should be nil" do
-        expect(subject.parent).to be_nil
+specify "its parent should be nil" do expect(subject.parent).to be_nil
       end
       specify "its current should be a Genre object" do
         expect(subject.current).to be_a(RWS::Ichiba::Genre)
@@ -109,6 +107,18 @@ describe RakutenWebService::GenreInformation do
       end
       specify "its children should be empty" do
         expect(subject.children).to be_empty
+      end
+
+      context "After re-initialize Genre with same genre id" do
+        let(:genre) { RWS::Ichiba::Genre.new('560029') }
+
+        before do
+          subject.current
+        end
+
+        it "doesn't have item_count value" do
+          expect(genre.item_count).to be_nil
+        end
       end
     end
   end
