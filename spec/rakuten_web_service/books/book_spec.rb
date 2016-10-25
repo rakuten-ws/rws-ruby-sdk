@@ -42,6 +42,30 @@ describe RakutenWebService::Books::Book do
     end
   end
 
+  describe "#genre_information" do
+    before do
+      response = JSON.parse(fixture('books/book_search_with_keyword_Ruby.json'))
+      @expected_request = stub_request(:get, endpoint).
+        with(:query => expected_query).to_return(:body => response.to_json)
+    end
+
+    subject { RakutenWebService::Books::Book.search(title: 'Ruby') }
+
+    it "responds GenreInformation object" do
+      expect(subject.genre_information).to be_a(RakutenWebService::GenreInformation)
+    end
+
+
+    describe "its attributes" do
+      subject { super().genre_information }
+
+      it "have current genre" do
+        expect(subject.current).to be_a(RakutenWebService::Books::Genre)
+        expect(subject.current.item_count).to eq('115')
+      end
+    end
+  end
+
   describe '#genre' do
     let(:response) { JSON.parse(fixture('books/book_search_with_keyword_Ruby.json')) }
 

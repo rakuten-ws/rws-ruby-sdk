@@ -22,7 +22,11 @@ module RakutenWebService
     def self.new(params)
       case params
       when Integer, String
-        repository[params.to_s] || search(genre_id_key => params.to_s).first
+        if cache = repository[params.to_s]
+          self.new(cache)
+        else
+          search(genre_id_key => params.to_s).first
+        end
       when Hash
         super
       end
@@ -41,7 +45,7 @@ module RakutenWebService
     end
 
     def self.[](id)
-      repository[id.to_s] || new(id)
+      self.new(repository[id.to_s] || id)
     end
 
     def self.[]=(id, genre)
@@ -54,7 +58,7 @@ module RakutenWebService
 
     def initialize(params)
       super
-      self.class[self.id.to_s] = self
+      self.class[self.id.to_s] = @params.reject { |k, v| k == 'itemCount' }
     end
 
     def children

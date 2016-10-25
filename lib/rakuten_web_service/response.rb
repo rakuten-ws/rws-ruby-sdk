@@ -24,6 +24,12 @@ module RakutenWebService
       end
     end
 
+    def genre_information
+      return unless @resource_class.respond_to?(:genre_class)
+      return if self['GenreInformation'].empty?
+      RWS::GenreInformation.new(self['GenreInformation'][0], @resource_class.genre_class)
+    end
+
     def resources
       @resources ||= @resource_class.parse_response(@json)
     end

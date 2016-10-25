@@ -7,6 +7,10 @@ module RakutenWebService
         def ranking(options={})
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
+
+        def genre_class
+          RakutenWebService::Ichiba::Genre
+        end
       end
 
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222'
