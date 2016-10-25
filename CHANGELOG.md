@@ -1,3 +1,10 @@
+# v1.2.0 (2016/10/25)
+
+## Ehancements
+
+* Started supporting GenreInformation. [#45](https://github.com/rakuten-ws/rws-ruby-sdk/pull/45)
+* `RakutenWebService::BaseGenre#parent` returns Genre object of the parent genre. [#44](https://github.com/rakuten-ws/rws-ruby-sdk/pull/44)
+
 # v1.1.1 (2016/09/12)
 
 ## Bug Fix
