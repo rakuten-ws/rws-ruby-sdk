@@ -73,5 +73,18 @@ module RakutenWebService
     def get_attribute(name)
       @params[name.to_s]
     end
+
+    def ==(genre)
+      raise ArgumentError unless genre.is_a?(RakutenWebService::Resource)
+
+      self.params.keys.all? do |k|
+        @params[k] == genre.params[k]
+      end
+    end
+
+    protected
+      def params
+        @params
+      end
   end
 end
