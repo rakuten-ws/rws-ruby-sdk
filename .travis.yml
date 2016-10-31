@@ -1,21 +1,22 @@
 language: ruby
-
 rvm:
-  - 2.1.10
-  - 2.2.5
-  - 2.3.1
-  - ruby-head
-
+- 2.1.10
+- 2.2.5
+- 2.3.1
+- ruby-head
 cache: bundler
-
 before_install:
-  - gem install bundler
-
+- gem install bundler
 matrix:
   allow_failures:
   - rvm: ruby-head
-
 addons:
   code_climate:
     repo_token:
       secure: Z23O936LoCDGJ/OyYsLzxTUI+CMWyrfeN1PtQdCNMdF4vxwaCsAHr3ulTdudGhKMrVZGENSEK6fq0Xal3o3oPaH9aGM9sUQ/ibRM+J94Lx6Owu4okTsIHoEy4vFeW+A/62aiwxPcoi7PFrvC8FOfaZg+b+vvYAQcitVe6qwBHiE=
+
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: RYuIFjh/T6Hlj9nJ0RjmlTlES+9ZWcDNe1o2KRqMdH8cK1epIEgcEzMsFP6wKPRMQqOVw6Tu5gBMltDgu26sAW8HkTnMlzYtF6AVeOgsC6VVO9XzdaoVWWQX5J/Xn21vNV1vcncuOuMByz6dmzWngZv3T0u1mcvPje00EDNo27M=
