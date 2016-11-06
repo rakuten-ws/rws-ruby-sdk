@@ -2,6 +2,24 @@ require 'spec_helper'
 require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
+  describe '#initialize' do
+    context "environment variable RWS_APPLICATION_ID is defined" do
+      before do
+        ENV['RWS_APPLICATION_ID'] = 'env_application_id'
+      end
+
+      after do
+        ENV.delete 'RWS_APPLICATION_ID'
+      end
+
+      subject { RakutenWebService::Configuration.new }
+
+      specify "the application id is set by the environment variable" do
+        expect(subject.application_id).to eq 'env_application_id'
+      end
+    end
+  end
+
   describe '.configure' do
     context 'given block has one arity' do
       before do
