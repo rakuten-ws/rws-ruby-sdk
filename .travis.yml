@@ -1,15 +1,23 @@
 language: ruby
 rvm:
-- 2.1.10
-- 2.2.5
-- 2.3.1
-- ruby-head
+  - 2.1.10
+  - 2.2.5
+  - 2.3.1
+  - ruby-head
+
 cache: bundler
+
 before_install:
-- gem install bundler
+  - gem install bundler
+
+script:
+  - bundle exec rake
+  - bundle exec codeclimate-test-reporter
+
 matrix:
   allow_failures:
   - rvm: ruby-head
+
 addons:
   code_climate:
     repo_token:
