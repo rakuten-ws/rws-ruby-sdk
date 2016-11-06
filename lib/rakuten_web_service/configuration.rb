@@ -5,6 +5,8 @@ module RakutenWebService
     attr_accessor :application_id, :affiliate_id, :max_retries, :debug
 
     def initialize
+      @application_id = ENV['RWS_APPLICATION_ID']
+      @affiliate_id = ENV['RWS_AFFILIATE_ID']
       @max_retries = 5
     end
 

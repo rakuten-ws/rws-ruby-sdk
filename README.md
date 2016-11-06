@@ -59,6 +59,8 @@ If you have not got it, register your application [here](https://webservice.raku
 
 At first, you have to specify your application's key. And you can tell the client your afiiliate id with `RakutenWebService.configuration`.
 
+#### In Your Code
+
 ```ruby
   RakutenWebService.configuration do |c|
     # (Required) Appliction ID for your application.
@@ -80,6 +82,11 @@ At first, you have to specify your application's key. And you can tell the clien
 ```
 
 Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIATE_ID'` with actual ones you have.
+
+#### Environment Variables
+
+You can configure `application_id` and `affiliate_id` by defining environment variables `RWS_APPLICATION_ID` and `RWS_AFFILIATION_ID`.
+
 
 ### Search Ichiba Items
 
