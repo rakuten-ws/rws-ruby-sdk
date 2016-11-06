@@ -3,19 +3,22 @@ require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
   describe '#initialize' do
-    context "environment variable RWS_APPLICATION_ID is defined" do
+    context "environment variable RWS_APPLICATION_ID and RWS_AFFILIATE_ID are defined" do
       before do
         ENV['RWS_APPLICATION_ID'] = 'env_application_id'
+        ENV['RWS_AFFILIATE_ID'] = 'env_affiliate_id'
       end
 
       after do
         ENV.delete 'RWS_APPLICATION_ID'
+        ENV.delete 'RWS_AFFILIATE_ID'
       end
 
       subject { RakutenWebService::Configuration.new }
 
       specify "the application id is set by the environment variable" do
         expect(subject.application_id).to eq 'env_application_id'
+        expect(subject.affiliate_id).to eq 'env_affiliate_id'
       end
     end
   end
