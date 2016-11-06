@@ -1,7 +1,4 @@
 if ENV['CI']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
-
   require 'coveralls'
   Coveralls.wear!
 end
