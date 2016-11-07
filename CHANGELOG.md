@@ -1,3 +1,13 @@
+# v1.3.0 (2016/11/08)
+
+## Enhancements
+
+* Loads Application ID and Affiliate ID from environment varaibles `RWS_APPLICATION_ID` and `RWS_AFFILIATE_ID` respectively. [#47](https://github.com/rakuten-ws/rws-ruby-sdk/pull/47)
+
+## Improvements
+
+* Upgraded `codeclimate-test-reporter`. [#48](https://github.com/rakuten-ws/rws-ruby-sdk/pull/48)
+
 # v1.2.0 (2016/10/25)
 
 ## Ehancements
