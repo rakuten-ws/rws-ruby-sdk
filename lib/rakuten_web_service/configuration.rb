@@ -13,7 +13,7 @@ module RakutenWebService
     end
 
     def default_parameters 
-      raise if application_id.nil?
+      raise if application_id.nil? || application_id == ''
       { application_id: application_id, affiliate_id: affiliate_id }
     end
 

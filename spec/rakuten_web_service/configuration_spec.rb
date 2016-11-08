@@ -128,5 +128,14 @@ describe RakutenWebService::Configuration do
         }.to raise_error RuntimeError
       end
     end
+    context "When application id is an empty string" do
+      let(:application_id) { '' }
+
+      it "raises an error" do
+        expect {
+          RakutenWebService.configuration.default_parameters
+        }.to raise_error RuntimeError
+      end
+    end
   end
 end
