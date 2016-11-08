@@ -13,7 +13,8 @@ module RakutenWebService
     end
 
     def default_parameters 
-      { :application_id => application_id, :affiliate_id => affiliate_id }
+      raise if application_id.nil?
+      { application_id: application_id, affiliate_id: affiliate_id }
     end
 
     def debug_mode?

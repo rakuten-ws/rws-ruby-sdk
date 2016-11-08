@@ -102,4 +102,31 @@ describe RakutenWebService::Configuration do
       end
     end
   end
+
+  describe "#default_parameters" do
+    before do
+      RakutenWebService.configure do |c|
+        c.application_id = application_id
+      end
+    end
+
+    context "When application id is given" do
+      let(:application_id) { 'app_id' }
+
+      subject { RakutenWebService.configuration.default_parameters }
+
+      it "has application_id key and its value is a given value" do
+        expect(subject[:application_id]).to eq 'app_id'
+      end
+    end
+    context "When application id is not given" do
+      let(:application_id) { nil }
+
+      it "raises an error" do
+        expect {
+          RakutenWebService.configuration.default_parameters
+        }.to raise_error RuntimeError
+      end
+    end
+  end
 end
