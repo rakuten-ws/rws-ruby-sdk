@@ -12,8 +12,13 @@ module RakutenWebService
       convert_snake_key_to_camel_key(default_parameters.merge(params))
     end
 
-    def default_parameters 
-      { :application_id => application_id, :affiliate_id => affiliate_id }
+    def default_parameters
+      raise "Application ID is not defined" unless has_required_options?
+      { application_id: application_id, affiliate_id: affiliate_id }
+    end
+
+    def has_required_options?
+      application_id && application_id != ''
     end
 
     def debug_mode?
