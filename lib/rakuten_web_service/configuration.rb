@@ -12,8 +12,8 @@ module RakutenWebService
       convert_snake_key_to_camel_key(default_parameters.merge(params))
     end
 
-    def default_parameters 
-      raise if application_id.nil? || application_id == ''
+    def default_parameters
+      raise "Application ID is not defined" if application_id.nil? || application_id == ''
       { application_id: application_id, affiliate_id: affiliate_id }
     end
 

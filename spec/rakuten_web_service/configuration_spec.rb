@@ -125,7 +125,7 @@ describe RakutenWebService::Configuration do
       it "raises an error" do
         expect {
           RakutenWebService.configuration.default_parameters
-        }.to raise_error RuntimeError
+        }.to raise_error(RuntimeError, "Application ID is not defined")
       end
     end
     context "When application id is an empty string" do
@@ -134,7 +134,7 @@ describe RakutenWebService::Configuration do
       it "raises an error" do
         expect {
           RakutenWebService.configuration.default_parameters
-        }.to raise_error RuntimeError
+        }.to raise_error(RuntimeError, "Application ID is not defined")
       end
     end
   end
