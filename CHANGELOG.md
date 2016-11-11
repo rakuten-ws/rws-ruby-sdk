@@ -1,3 +1,10 @@
+# v1.4.0 (2016/11/11)
+
+## Enhancements
+
+* Raise RuntimeError if required option `application_id` is not set when generating parameters. [#51](https://github.com/rakuten-ws/rws-ruby-sdk/pull/51)
+
+
 # v1.3.0 (2016/11/08)
 
 ## Enhancements
