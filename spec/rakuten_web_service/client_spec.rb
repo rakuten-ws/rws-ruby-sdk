@@ -51,6 +51,24 @@ describe RakutenWebService::Client do
         expect(@expected_request).to have_been_made.once
       end
     end
+
+    context "giving 'sort' option" do
+      let(:expected_query) do
+        {
+          applicationId: application_id,
+          affiliateId: affiliate_id,
+          sort: '+itemPrice'
+        }
+      end
+
+      before do
+        client.get(sort: '+itemPrice')
+      end
+
+      specify "encodes '+' in sort option" do
+        expect(@expected_request).to have_been_made.once
+      end
+    end
   end
 
   describe 'about exceptions' do
