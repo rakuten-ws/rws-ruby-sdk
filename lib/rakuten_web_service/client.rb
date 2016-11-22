@@ -28,6 +28,9 @@ module RakutenWebService
     def request(path, params)
       http = Net::HTTP.new(@url.host, @url.port)
       http.use_ssl = true
+      if RakutenWebService.configuration.debug_mode?
+        http.set_debug_output($stderr)
+      end
       path = "#{path}?#{params.map { |k, v| "#{k}=#{URI.encode(v.to_s)}" }.join('&')}"
       header = {
         'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
