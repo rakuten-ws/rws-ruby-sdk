@@ -57,16 +57,27 @@ describe RakutenWebService::Client do
         {
           applicationId: application_id,
           affiliateId: affiliate_id,
-          sort: '+itemPrice'
+          sort: sort_option
         }
       end
 
       before do
-        client.get(sort: '+itemPrice')
+        client.get(sort: sort_option)
       end
 
-      specify "encodes '+' in sort option" do
-        expect(@expected_request).to have_been_made.once
+      context "Specifying asceding order" do
+        let(:sort_option) { '+itemPrice' }
+
+        specify "encodes '+' in sort option" do
+          expect(@expected_request).to have_been_made.once
+        end
+      end
+      context "Specifying descending order" do
+        let(:sort_option) { '-itemPrice' }
+
+        specify "encodes '+' in sort option" do
+          expect(@expected_request).to have_been_made.once
+        end
       end
     end
   end
