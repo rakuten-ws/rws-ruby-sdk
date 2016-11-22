@@ -1,4 +1,5 @@
 require 'uri'
+require 'cgi'
 require 'json'
 require 'rakuten_web_service/response'
 require 'rakuten_web_service/error'
@@ -28,7 +29,7 @@ module RakutenWebService
     def request(path, params)
       http = Net::HTTP.new(@url.host, @url.port)
       http.use_ssl = true
-      path = "#{path}?#{params.map { |k, v| "#{k}=#{URI.encode(v.to_s)}" }.join('&')}"
+      path = "#{path}?#{params.map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.join('&')}"
       header = {
         'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
       }
