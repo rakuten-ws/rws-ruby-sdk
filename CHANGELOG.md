@@ -1,3 +1,15 @@
+# v1.4.1 (2016/11/22)
+
+## Bug Fix
+
+* Fixed: `WrongParameter` raises when giving any `sort` option to `RakutenWebService::Resource.serch`. [#54](https://github.com/rakuten-ws/rws-ruby-sdk/pull/54)
+
+## Thanks
+
+I'm pleased to say thanks to @sho-yamane since he reporeted the bug #53. If he didn't do it, I would find the bug much later.
+Thanks, @sho-yamane.
+
+
 # v1.4.0 (2016/11/11)
 
 ## Enhancements
