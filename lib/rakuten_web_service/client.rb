@@ -1,4 +1,5 @@
 require 'uri'
+require 'cgi'
 require 'json'
 require 'rakuten_web_service/response'
 require 'rakuten_web_service/error'
@@ -31,7 +32,7 @@ module RakutenWebService
       if RakutenWebService.configuration.debug_mode?
         http.set_debug_output($stderr)
       end
-      path = "#{path}?#{params.map { |k, v| "#{k}=#{URI.encode(v.to_s)}" }.join('&')}"
+      path = "#{path}?#{params.map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.join('&')}"
       header = {
         'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
       }
