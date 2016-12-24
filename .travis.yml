@@ -27,4 +27,4 @@ notifications:
   email: false
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/448544a3d5f2afca3714
+      - https://webhooks.gitter.im/e/059b85fcc75550b7bc39
