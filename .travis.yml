@@ -25,6 +25,6 @@ addons:
 
 notifications:
   email: false
-  hipchat:
-    rooms:
-      secure: RYuIFjh/T6Hlj9nJ0RjmlTlES+9ZWcDNe1o2KRqMdH8cK1epIEgcEzMsFP6wKPRMQqOVw6Tu5gBMltDgu26sAW8HkTnMlzYtF6AVeOgsC6VVO9XzdaoVWWQX5J/Xn21vNV1vcncuOuMByz6dmzWngZv3T0u1mcvPje00EDNo27M=
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/448544a3d5f2afca3714
