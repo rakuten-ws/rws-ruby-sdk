@@ -47,8 +47,8 @@ module RakutenWebService
                            "+#{key}"
                          end
       elsif options.to_s == 'standard'
-        new_params[:sort] = 'standard' 
-      else 
+        new_params[:sort] = 'standard'
+      else
         raise ArgumentError, "Invalid Sort Option: #{options.inspect}"
       end
       self.class.new(new_params, @resource_class)
@@ -68,11 +68,11 @@ module RakutenWebService
     end
 
     def next_page
-      search(:page => response.page + 1)
+      search(page: response.page + 1)
     end
 
     def page(num)
-      search(:page => num)
+      search(page: num)
     end
 
     def genre_information
@@ -81,7 +81,7 @@ module RakutenWebService
 
     private
     def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)
-      begin 
+      begin
         yield
       rescue RWS::TooManyRequests => e
         if max_retries > 0

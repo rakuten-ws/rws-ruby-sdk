@@ -7,9 +7,9 @@ describe RWS::Kobo::Genre do
   let(:genre_id) { '101' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :koboGenreId => genre_id
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      koboGenreId: genre_id
     }
   end
   let(:expected_json) do
@@ -18,8 +18,8 @@ describe RWS::Kobo::Genre do
 
   before do
     @expected_request = stub_request(:get, endpoint).
-      with(:query => expected_query).
-      to_return(:body => expected_json.to_json)
+      with(query: expected_query).
+      to_return(body: expected_json.to_json)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -29,7 +29,7 @@ describe RWS::Kobo::Genre do
 
   describe '.search' do
     before do
-      @genre = RWS::Kobo::Genre.search(:koboGenreId => genre_id).first
+      @genre = RWS::Kobo::Genre.search(koboGenreId: genre_id).first
     end
 
     specify 'call the endpoint once' do
@@ -39,8 +39,8 @@ describe RWS::Kobo::Genre do
 
   describe '#search' do
     before do
-      stub_request(:get, endpoint).with(:query => expected_query).
-        to_return(:body => expected_json.to_json)
+      stub_request(:get, endpoint).with(query: expected_query).
+        to_return(body: expected_json.to_json)
     end
 
     context 'Without arguments' do
@@ -53,7 +53,7 @@ describe RWS::Kobo::Genre do
     context 'With arguments' do
       specify 'should call RWS::Kobo::Ebook.search with given arguments and genre id' do
         options = { title: 'Ruby' }
-        expect(RWS::Kobo::Ebook).to receive(:search).with(:title => 'Ruby', RWS::Kobo::Genre.genre_id_key => genre_id)
+        expect(RWS::Kobo::Ebook).to receive(:search).with(title: 'Ruby', RWS::Kobo::Genre.genre_id_key => genre_id)
 
         RWS::Kobo::Genre.root.search(options)
       end

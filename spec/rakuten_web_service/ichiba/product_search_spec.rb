@@ -6,9 +6,9 @@ describe RakutenWebService::Ichiba::Product do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :keyword => 'Ruby'
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      keyword: 'Ruby'
     }
   end
 
@@ -23,18 +23,18 @@ describe RakutenWebService::Ichiba::Product do
     before do
       response = JSON.parse(fixture('ichiba/product_search.json'))
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
       @second_request = stub_request(:get, endpoint).
-        with(:query => expected_query.merge(:page => 2)).
-        to_return(:body => response.to_json)
+        with(query: expected_query.merge(page: 2)).
+        to_return(body: response.to_json)
     end
 
-    subject { RakutenWebService::Ichiba::Product.search(:keyword => 'Ruby') }
+    subject { RakutenWebService::Ichiba::Product.search(keyword: 'Ruby') }
 
     specify '' do
       expect(subject.count).to eq(30)
@@ -44,7 +44,7 @@ describe RakutenWebService::Ichiba::Product do
       let(:expected_product) do
         JSON.parse(fixture('ichiba/product_search.json'))['Products'].first['Product']
       end
-      let(:product) { RakutenWebService::Ichiba::Product.search(:keyword => 'Ruby').first }
+      let(:product) { RakutenWebService::Ichiba::Product.search(keyword: 'Ruby').first }
 
       specify 'should have methods to respond keys following with "product"' do
         expect(product.id).to eq(expected_product['productId'])

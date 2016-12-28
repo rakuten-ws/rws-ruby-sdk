@@ -7,9 +7,9 @@ describe RWS::Books::Genre do
   let(:genre_id) { '000' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :booksGenreId => genre_id
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      booksGenreId: genre_id
     }
   end
   let(:expected_json) do
@@ -22,8 +22,8 @@ describe RWS::Books::Genre do
 
   before do
     @expected_request = stub_request(:get, endpoint).
-      with(:query => expected_query).
-      to_return(:body => expected_json.to_json)
+      with(query: expected_query).
+      to_return(body: expected_json.to_json)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -33,7 +33,7 @@ describe RWS::Books::Genre do
 
   describe '.search' do
     before do
-      @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
+      @genre = RWS::Books::Genre.search(booksGenreId: genre_id).first
     end
 
     specify 'call the endpoint once' do
@@ -57,11 +57,11 @@ describe RWS::Books::Genre do
     let(:genre_id) { '007' }
     let(:expected_json) do
       {
-        :current => {
-          :booksGenreId => genre_id,
-          :booksGenreName => 'DummyGenre',
-          :genreLevel => '2'
-        }
+        current: {
+                  booksGenreId: genre_id,
+                  booksGenreName: 'DummyGenre',
+                  genreLevel: '2'
+                }
       }
     end
 
@@ -91,7 +91,7 @@ describe RWS::Books::Genre do
   describe '#children' do
     context 'When get search method' do
       before do
-        @genre = RWS::Books::Genre.search(:booksGenreId => genre_id).first
+        @genre = RWS::Books::Genre.search(booksGenreId: genre_id).first
       end
 
       specify 'are Books::Genre objects' do
@@ -104,7 +104,7 @@ describe RWS::Books::Genre do
 
     context 'when the genre object has no children information' do
       specify 'call the endpoint to get children' do
-        genre = RWS::Books::Genre.new(:booksGenreId => genre_id)
+        genre = RWS::Books::Genre.new(booksGenreId: genre_id)
         genre.children
 
         expect(@expected_request).to have_been_made.once
@@ -114,14 +114,14 @@ describe RWS::Books::Genre do
 
   describe '#search' do
     before do
-      @genre = RWS::Books::Genre.new(:booksGenreId => genre_id)
+      @genre = RWS::Books::Genre.new(booksGenreId: genre_id)
     end
 
     context 'if the genre_id starts with "001"' do
       let(:genre_id) { '001001' }
 
       specify 'delegate Books::Book.search' do
-        expect(RWS::Books::Book).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::Book).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
@@ -131,7 +131,7 @@ describe RWS::Books::Genre do
       let(:genre_id) { '002101' }
 
       specify 'delegate Books::CD.search' do
-        expect(RWS::Books::CD).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::CD).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
@@ -141,7 +141,7 @@ describe RWS::Books::Genre do
       let(:genre_id) { '003201' }
 
       specify 'delegate Books::DVD.search' do
-        expect(RWS::Books::DVD).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::DVD).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
@@ -151,7 +151,7 @@ describe RWS::Books::Genre do
       let(:genre_id) { '004301' }
 
       specify 'delegate Books::Software.search' do
-        expect(RWS::Books::Software).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::Software).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
@@ -161,7 +161,7 @@ describe RWS::Books::Genre do
       let(:genre_id) { '005401' }
 
       specify 'delegate Books::ForeignBook.search' do
-        expect(RWS::Books::ForeignBook).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::ForeignBook).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
@@ -171,17 +171,17 @@ describe RWS::Books::Genre do
       let(:genre_id) { '006501' }
 
       specify 'delegate Books::Game.search' do
-        expect(RWS::Books::Game).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::Game).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
     end
-    
+
     context 'if the genre_id starts with "007"' do
       let(:genre_id) { '007601' }
 
       specify 'delegate Books::Magazine.search' do
-        expect(RWS::Books::Magazine).to receive(:search).with(:booksGenreId => genre_id)
+        expect(RWS::Books::Magazine).to receive(:search).with(booksGenreId: genre_id)
 
         @genre.search
       end
