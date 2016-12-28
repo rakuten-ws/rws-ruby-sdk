@@ -6,9 +6,9 @@ describe RakutenWebService::Recipe::Category do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :categoryType => category_type
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      categoryType: category_type
     }
   end
 

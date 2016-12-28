@@ -17,7 +17,7 @@ module RakutenWebService
       end
 
       def products(options={})
-        options = options.merge(:genre_id => self.id)
+        options = options.merge(genre_id: self.id)
         RakutenWebService::Ichiba::Product.search(options)
       end
     end

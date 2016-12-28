@@ -16,7 +16,7 @@ RakutenWebService.configure do |c|
   c.application_id = application_id
 end
 
-c = RakutenWebService::Gora::Course.search(:keyword => keyword).first
+c = RakutenWebService::Gora::Course.search(keyword: keyword).first
 id = c.golf_course_id
 puts id
 puts c.golf_course_name
@@ -35,7 +35,7 @@ end
 
 next_week = Date.today + 7
 chiba_and_kanagawa = '12,14'
-plans = RWS::Gora::Plan.search(:areaCode => chiba_and_kanagawa, :playDate => next_week.strftime('%Y-%m-%d'))
+plans = RWS::Gora::Plan.search(areaCode: chiba_and_kanagawa, playDate: next_week.strftime('%Y-%m-%d'))
 plans.first(5).each { |p|
   puts "#{p.golf_course_id}, #{p.golf_course_name}"
   p.plan_info.each { |pi|

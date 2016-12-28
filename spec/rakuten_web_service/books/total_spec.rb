@@ -6,9 +6,9 @@ describe RakutenWebService::Books::Total do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :keyword => 'Ruby'
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      keyword: 'Ruby'
     }
   end
 
@@ -23,11 +23,11 @@ describe RakutenWebService::Books::Total do
     before do
       response = JSON.parse(fixture('books/total_search_with_keyword_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do
-      items = RakutenWebService::Books::Total.search(:keyword => 'Ruby')
+      items = RakutenWebService::Books::Total.search(keyword: 'Ruby')
       expect(@expected_request).to_not have_been_made
 
       item = items.first

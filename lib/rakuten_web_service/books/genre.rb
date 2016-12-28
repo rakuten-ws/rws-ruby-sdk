@@ -12,7 +12,7 @@ module RakutenWebService
       root_id '000'
 
       def search(params={})
-        params = params.merge(:booksGenreId => self.id)
+        params = params.merge(booksGenreId: self.id)
         resource = Books::Resource.find_resource_by_genre_id(self.id)
         resource.search(params)
       end

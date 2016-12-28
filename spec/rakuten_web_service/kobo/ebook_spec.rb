@@ -6,9 +6,9 @@ describe RakutenWebService::Kobo::Ebook do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :title => 'Ruby'
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      title: 'Ruby'
     }
   end
 
@@ -23,11 +23,11 @@ describe RakutenWebService::Kobo::Ebook do
     before do
       response = JSON.parse(fixture('kobo/ebook_search_with_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do
-      ebooks = RakutenWebService::Kobo::Ebook.search(:title => 'Ruby')
+      ebooks = RakutenWebService::Kobo::Ebook.search(title: 'Ruby')
       expect(@expected_request).to_not have_been_made
 
       ebook = ebooks.first
@@ -40,7 +40,7 @@ describe RakutenWebService::Kobo::Ebook do
     before do
       response = JSON.parse(fixture('kobo/ebook_search_with_Ruby.json'))
       stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
     end
 
     subject { RakutenWebService::Kobo::Ebook.search(title: 'Ruby') }
@@ -63,13 +63,13 @@ describe RakutenWebService::Kobo::Ebook do
     let(:response) { JSON.parse(fixture('kobo/ebook_search_with_Ruby.json')) }
 
     specify 'respond Kobo::Genre object' do
-      stub_request(:get, endpoint).with(:query => expected_query).
-        to_return(:body => response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query).
+        to_return(body: response.to_json)
 
       expected_item = response['Items'][0]['Item']
       expect(RakutenWebService::Kobo::Genre).to receive('new').with(expected_item['koboGenreId'])
 
-      RakutenWebService::Kobo::Ebook.search(:title => 'Ruby').first.genre
+      RakutenWebService::Kobo::Ebook.search(title: 'Ruby').first.genre
     end
   end
 end

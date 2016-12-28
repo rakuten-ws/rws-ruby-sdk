@@ -6,9 +6,9 @@ describe RakutenWebService::Ichiba::Item do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id,
-      :keyword => 'Ruby'
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      keyword: 'Ruby'
     }
   end
 
@@ -23,20 +23,20 @@ describe RakutenWebService::Ichiba::Item do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
       @second_request = stub_request(:get, endpoint).
-        with(:query => expected_query.merge(:page => 2)).
-        to_return(:body => response.to_json)
+        with(query: expected_query.merge(page: 2)).
+        to_return(body: response.to_json)
     end
 
     context 'just call the search method' do
       before do
-        @items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby')
+        @items = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby')
       end
 
       specify 'endpoint should not be called' do
@@ -55,7 +55,7 @@ describe RakutenWebService::Ichiba::Item do
         specify 'shoud be access by key' do
           expect(subject['itemName']).to eq(expected_json['itemName'])
           expect(subject['item_name']).to eq(expected_json['itemName'])
-        end 
+        end
 
         describe '#name' do
           subject { super().name }
@@ -79,7 +79,7 @@ describe RakutenWebService::Ichiba::Item do
 
       context 'chain calling' do
         before do
-          @items2 = @items.search(:keyword => 'Go')
+          @items2 = @items.search(keyword: 'Go')
         end
 
         specify "2 search resutls should be independent" do
@@ -111,7 +111,7 @@ describe RakutenWebService::Ichiba::Item do
       end
 
       context 'When TooManyRequest error raised' do
-        let(:client) do 
+        let(:client) do
           c = double('client')
           allow(c).to receive(:get).and_raise(RWS::TooManyRequests)
           c
@@ -133,22 +133,22 @@ describe RakutenWebService::Ichiba::Item do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
       @second_request = stub_request(:get, endpoint).
-        with(:query => expected_query.merge(:page => 2)).
-        to_return(:body => response.to_json)
+        with(query: expected_query.merge(page: 2)).
+        to_return(body: response.to_json)
     end
 
     context 'When givne a block' do
       specify '' do
-        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_control.exactly(60).times
+        expect { |b| RWS::Ichiba::Item.all({keyword: 'Ruby'}, &b) }.to yield_control.exactly(60).times
 
-        expect { |b| RWS::Ichiba::Item.all({:keyword => 'Ruby'}, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
+        expect { |b| RWS::Ichiba::Item.all({keyword: 'Ruby'}, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
       end
     end
   end
@@ -175,14 +175,14 @@ describe RakutenWebService::Ichiba::Item do
     let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
 
     before do
-      stub_request(:get, endpoint).with(:query => expected_query).
-        to_return(:body => response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query).
+        to_return(body: response.to_json)
 
       expected_item = response['Items'][0]['Item']
-      expect(RakutenWebService::Ichiba::Genre).to receive('new').with(expected_item['genreId']) 
+      expect(RakutenWebService::Ichiba::Genre).to receive('new').with(expected_item['genreId'])
     end
 
-    subject { RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.genre }
+    subject { RakutenWebService::Ichiba::Item.search(keyword: 'Ruby').first.genre }
 
     specify 'respond Genre object' do
       expect { subject }.to_not raise_error
@@ -194,12 +194,12 @@ describe RakutenWebService::Ichiba::Item do
     let(:expected_item) { response['Items'][0]['Item'] }
 
     before do
-      stub_request(:get, endpoint).with(:query => expected_query).
-        to_return(:body => response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query).
+        to_return(body: response.to_json)
     end
 
     subject do
-      RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').first.shop
+      RakutenWebService::Ichiba::Item.search(keyword: 'Ruby').first.shop
     end
 
     specify 'responds Shop object' do
@@ -212,13 +212,13 @@ describe RakutenWebService::Ichiba::Item do
 
   describe '#order' do
     specify 'convert sort parameter' do
-      query = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby').order(affiliate_rate: :desc)
+      query = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby').order(affiliate_rate: :desc)
 
       expect(query.params[:sort]).to eq('-affiliateRate')
     end
 
     specify 'reproduces new SearchResult object' do
-      first_query = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby')
+      first_query = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby')
       second_query = first_query.order(affiliate_rate: :desc)
 
       expect(first_query.params[:sort]).to be_nil

@@ -6,9 +6,9 @@ describe RakutenWebService::Gora::CourseDetail do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-        :affiliateId => affiliate_id,
-        :applicationId => application_id,
-        :golfCourseId => 120092
+        affiliateId: affiliate_id,
+        applicationId: application_id,
+        golfCourseId: 120092
     }
   end
 
@@ -23,7 +23,7 @@ describe RakutenWebService::Gora::CourseDetail do
     before do
       response = JSON.parse(fixture('gora/course_detail_search.json'))
       @expected_request = stub_request(:get, endpoint).
-          with(:query => expected_query).to_return(:body => response.to_json)
+          with(query: expected_query).to_return(body: response.to_json)
     end
 
     context 'call the find method' do
