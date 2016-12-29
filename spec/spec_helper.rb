@@ -1,3 +1,11 @@
+if ENV['CI']
+  require 'simplecov'
+
+  SimpleCov.start do
+    add_filter "/spec/"
+  end
+end
+
 require File.expand_path(File.join(__dir__, '..', 'lib', 'rakuten_web_service'))
 
 require 'webmock/rspec'
