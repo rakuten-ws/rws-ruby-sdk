@@ -1,2 +1,6 @@
 inherit_from:
   - ./.rubocop_todo.yml
+
+Bundler/OrderedGems:
+  Include:
+    - 'Gemfile'
