@@ -4,3 +4,6 @@ inherit_from:
 Bundler/OrderedGems:
   Include:
     - 'Gemfile'
+
+Lint/AssignmentInCondition:
+  Enabled: false
