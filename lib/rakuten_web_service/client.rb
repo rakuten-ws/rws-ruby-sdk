@@ -26,6 +26,7 @@ module RakutenWebService
     end
 
     private
+
     def request(path, params)
       http = Net::HTTP.new(@url.host, @url.port)
       http.use_ssl = true

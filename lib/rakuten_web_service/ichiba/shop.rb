@@ -6,8 +6,8 @@ module RakutenWebService
     class Shop < Resource
       attribute :shopName, :shopCode, :shopUrl, :shopAffiliateUrl
 
-      def items(options={})
-        options = options.merge(shop_code: self.code)
+      def items(options = {})
+        options = options.merge(shop_code: code)
         RakutenWebService::Ichiba::Item.search(options)
       end
     end

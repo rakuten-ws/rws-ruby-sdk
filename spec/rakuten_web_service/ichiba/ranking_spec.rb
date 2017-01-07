@@ -13,8 +13,8 @@ describe RakutenWebService::Ichiba::RankingItem do
 
   before do
     response = JSON.parse(fixture('ichiba/ranking_search.json'))
-    @expected_request = stub_request(:get, endpoint).
-      with(query: expected_query).to_return(body: response.to_json)
+    @expected_request = stub_request(:get, endpoint)
+                        .with(query: expected_query).to_return(body: response.to_json)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -52,5 +52,4 @@ describe RakutenWebService::Ichiba::RankingItem do
       it { is_expected.to eq(expected_json['itemName']) }
     end
   end
-
 end

@@ -16,10 +16,10 @@ describe RakutenWebService::Client do
   end
 
   before do
-    @expected_request = stub_request(:get, endpoint).
-      with(query: expected_query,
-           headers: { 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])" }).
-      to_return(expected_response)
+    @expected_request = stub_request(:get, endpoint)
+                        .with(query: expected_query,
+                              headers: { 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])" })
+                        .to_return(expected_response)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = 'default_affiliate_id'
@@ -65,14 +65,14 @@ describe RakutenWebService::Client do
         client.get(sort: sort_option)
       end
 
-      context "Specifying asceding order" do
+      context 'Specifying asceding order' do
         let(:sort_option) { '+itemPrice' }
 
         specify "encodes '+' in sort option" do
           expect(@expected_request).to have_been_made.once
         end
       end
-      context "Specifying descending order" do
+      context 'Specifying descending order' do
         let(:sort_option) { '-itemPrice' }
 
         specify "encodes '+' in sort option" do
@@ -87,27 +87,24 @@ describe RakutenWebService::Client do
       let(:expected_response) do
         { status: 400,
           body: '{"error": "wrong_parameter",
-                               "error_description": "specify valid applicationId"}'
-        }
+                               "error_description": "specify valid applicationId"}' }
       end
 
       specify 'raises WrongParameter exception' do
         expect { client.get({}) }.to raise_error(RWS::WrongParameter, 'specify valid applicationId')
       end
-
     end
 
     context 'Too many requests' do
       let(:expected_response) do
         { status: 429,
           body: '{ "error": "too_many_requests",
-                      "error_description": "number of allowed requests has been exceeded for this API. please try again soon." }'
-        }
+                      "error_description": "number of allowed requests has been exceeded for this API. please try again soon." }' }
       end
 
       specify 'raises TooManyRequests exception' do
         expect { client.get({}) }.to raise_error(RWS::TooManyRequests,
-          'number of allowed requests has been exceeded for this API. please try again soon.')
+                                                 'number of allowed requests has been exceeded for this API. please try again soon.')
       end
     end
 
@@ -115,8 +112,7 @@ describe RakutenWebService::Client do
       let(:expected_response) do
         { status: 500,
           body: '{ "error": "system_error",
-                                "error_description": "api logic error" }'
-        }
+                                "error_description": "api logic error" }' }
       end
 
       specify 'raises SystemError exception' do
@@ -128,8 +124,7 @@ describe RakutenWebService::Client do
       let(:expected_response) do
         { status: 503,
           body: '{ "error": "service_unavailable",
-                                "error_description": "XXX/XXX is under maintenance" }'
-        }
+                                "error_description": "XXX/XXX is under maintenance" }' }
       end
 
       specify 'raises ServiceUnavailable exception' do
@@ -141,8 +136,7 @@ describe RakutenWebService::Client do
       let(:expected_response) do
         { status: 404,
           body: '{ "error": "not_found",
-                                "error_description": "This genre data does not exist"}'
-        }
+                                "error_description": "This genre data does not exist"}' }
       end
 
       specify 'raises NotFound exception' do

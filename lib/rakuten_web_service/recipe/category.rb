@@ -1,6 +1,5 @@
 module RakutenWebService
   class Recipe < Resource
-
     def self.large_categories
       categories('large')
     end
@@ -47,14 +46,13 @@ module RakutenWebService
       end
 
       private
-        def parent_category_type
-          case type
-          when 'small' then 'medium'
-          when 'medium' then 'large'
-          else
-            nil
-          end
+
+      def parent_category_type
+        case type
+        when 'small' then 'medium'
+        when 'medium' then 'large'
         end
+      end
     end
   end
 end

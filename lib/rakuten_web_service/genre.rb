@@ -7,11 +7,11 @@ module RakutenWebService
         current = response['current']
         if children = response['children']
           children = children.map { |child| klass.new(child['child']) }
-          current.merge!('children' => children)
+          current['children'] = children
         end
         if parents = response['parents']
           parents = parents.map { |parent| klass.new(parent['parent']) }
-          current.merge!('parents' => parents)
+          current['parents'] = parents
         end
 
         genre = klass.new(current)
@@ -23,7 +23,7 @@ module RakutenWebService
       case params
       when Integer, String
         if cache = repository[params.to_s]
-          self.new(cache)
+          new(cache)
         else
           search(genre_id_key => params.to_s).first
         end
@@ -36,16 +36,16 @@ module RakutenWebService
       :"#{resource_name}_id"
     end
 
-    def self.root_id(id=nil)
+    def self.root_id(id = nil)
       @root_id = id || @root_id
     end
 
     def self.root
-      self.new(root_id)
+      new(root_id)
     end
 
     def self.[](id)
-      self.new(repository[id.to_s] || id)
+      new(repository[id.to_s] || id)
     end
 
     def self.[]=(id, genre)
@@ -58,15 +58,15 @@ module RakutenWebService
 
     def initialize(params)
       super
-      self.class[self.id.to_s] = @params.reject { |k, v| k == 'itemCount' }
+      self.class[id.to_s] = @params.reject { |k, _v| k == 'itemCount' }
     end
 
     def children
-      @params['children'] ||= self.class.search(self.class.genre_id_key => self.id).first.children
+      @params['children'] ||= self.class.search(self.class.genre_id_key => id).first.children
     end
 
     def parents
-      @params['parents'] ||= self.class.search(self.class.genre_id_key => self.id).first.parents
+      @params['parents'] ||= self.class.search(self.class.genre_id_key => id).first.parents
     end
   end
 end

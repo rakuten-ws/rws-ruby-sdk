@@ -22,8 +22,8 @@ describe RakutenWebService::Kobo::Ebook do
   describe '.search' do
     before do
       response = JSON.parse(fixture('kobo/ebook_search_with_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do
@@ -36,25 +36,25 @@ describe RakutenWebService::Kobo::Ebook do
     end
   end
 
-  describe "#genre_information" do
+  describe '#genre_information' do
     before do
       response = JSON.parse(fixture('kobo/ebook_search_with_Ruby.json'))
-      stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      stub_request(:get, endpoint)
+        .with(query: expected_query).to_return(body: response.to_json)
     end
 
     subject { RakutenWebService::Kobo::Ebook.search(title: 'Ruby') }
 
-    it "returns GenreInformation object" do
+    it 'returns GenreInformation object' do
       expect(subject.genre_information).to be_a(RakutenWebService::GenreInformation)
     end
 
-    describe "its current attributes" do
+    describe 'its current attributes' do
       subject { super().genre_information.current }
 
-      it "returns the current genre information" do
-        expect(subject.name).to eq("電子書籍")
-        expect(subject.item_count).to eq("660")
+      it 'returns the current genre information' do
+        expect(subject.name).to eq('電子書籍')
+        expect(subject.item_count).to eq('660')
       end
     end
   end
@@ -63,8 +63,8 @@ describe RakutenWebService::Kobo::Ebook do
     let(:response) { JSON.parse(fixture('kobo/ebook_search_with_Ruby.json')) }
 
     specify 'respond Kobo::Genre object' do
-      stub_request(:get, endpoint).with(query: expected_query).
-        to_return(body: response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query)
+                                  .to_return(body: response.to_json)
 
       expected_item = response['Items'][0]['Item']
       expect(RakutenWebService::Kobo::Genre).to receive('new').with(expected_item['koboGenreId'])

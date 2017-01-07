@@ -8,7 +8,7 @@ module RakutenWebService
       attribute :title, :titleKana, :japaneseTitle,
                 :author, :authorKana,
                 :publishName, :isbn, :itemCaption, :salesDate,
-                :itemPrice, :listPrice, 
+                :itemPrice, :listPrice,
                 :discountRate, :discountPrice,
                 :itemUrl, :affiliateUrl,
                 :smallImageUrl, :mediumImageUrl, :largeImageUrl,

@@ -22,15 +22,15 @@ describe RakutenWebService::Books::CD do
   describe '.search' do
     before do
       response = JSON.parse(fixture('books/cd_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
-      @second_request = stub_request(:get, endpoint).
-        with(query: expected_query.merge(page: 2)).
-        to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do
@@ -49,9 +49,9 @@ describe RakutenWebService::Books::CD do
     end
 
     before do
-      @expected_request = stub_request(:get, endpoint).
-        with(query: { affiliateId: affiliate_id, applicationId: application_id, jan: '12345' }).
-        to_return(body: { Items: [ { Item: { title: 'foo' } } ] }.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: { affiliateId: affiliate_id, applicationId: application_id, jan: '12345' })
+                          .to_return(body: { Items: [{ Item: { title: 'foo' } }] }.to_json)
     end
 
     specify 'retrieves automatically if accessing the value of lack attribute' do

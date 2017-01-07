@@ -31,9 +31,9 @@ describe RakutenWebService::Recipe do
     before do
       response = JSON.parse(fixture('recipe/ranking.json'))
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).
-        to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query)
+                          .to_return(body: response.to_json)
     end
 
     subject { RakutenWebService::Recipe.ranking(category_id) }

@@ -17,9 +17,9 @@ describe RakutenWebService::Ichiba::Genre do
   end
 
   before do
-    @expected_request = stub_request(:get, endpoint).
-      with(query: expected_query).
-      to_return(body: fixture('ichiba/genre_search.json'))
+    @expected_request = stub_request(:get, endpoint)
+                        .with(query: expected_query)
+                        .to_return(body: fixture('ichiba/genre_search.json'))
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -28,7 +28,6 @@ describe RakutenWebService::Ichiba::Genre do
   end
 
   describe '.search' do
-
     before do
       @genre = RakutenWebService::Ichiba::Genre.search(genreId: genre_id).first
     end
@@ -75,15 +74,15 @@ describe RakutenWebService::Ichiba::Genre do
       context 'the genre_id has not fetched yet' do
         let(:new_genre_id) { 1981 }
         before do
-          @expected_request = stub_request(:get, endpoint).
-            with(query: {
-                                  affiliateId: affiliate_id,
-                                  applicationId: application_id,
-                                  genreId: new_genre_id }).
-            to_return(body: {current: { genreId: new_genre_id,
-                                                                                          genreName: 'DummyGenre',
-                                                                                          genreLevel: 3 }
-                                                     }.to_json)
+          @expected_request = stub_request(:get, endpoint)
+                              .with(query: {
+                                      affiliateId: affiliate_id,
+                                      applicationId: application_id,
+                                      genreId: new_genre_id
+                                    })
+                              .to_return(body: { current: { genreId: new_genre_id,
+                                                            genreName: 'DummyGenre',
+                                                            genreLevel: 3 } }.to_json)
 
           @genre = RakutenWebService::Ichiba::Genre.new(new_genre_id)
         end
@@ -101,8 +100,8 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     specify 'should be equal genre object with id 0' do
-      expect(RakutenWebService::Ichiba::Genre.root).
-        to eq(RakutenWebService::Ichiba::Genre[0])
+      expect(RakutenWebService::Ichiba::Genre.root)
+        .to eq(RakutenWebService::Ichiba::Genre[0])
     end
   end
 
@@ -119,15 +118,15 @@ describe RakutenWebService::Ichiba::Genre do
       let(:target_genre) { expected_json['children'].first['child'] }
 
       before do
-        @additional_request = stub_request(:get, endpoint).
-          with(query: {
-                              affiliateId: affiliate_id,
-                              applicationId: application_id,
-                              genreId: target_genre['genreId']
-                         }).to_return(body: {
-                                   current: target_genre,
-                                   children: []
-                                 }.to_json)
+        @additional_request = stub_request(:get, endpoint)
+                              .with(query: {
+                                      affiliateId: affiliate_id,
+                                      applicationId: application_id,
+                                      genreId: target_genre['genreId']
+                                    }).to_return(body: {
+                                      current: target_genre,
+                                      children: []
+                                    }.to_json)
       end
 
       subject { root_genre.children.first }
@@ -136,12 +135,11 @@ describe RakutenWebService::Ichiba::Genre do
         expect(subject.children.size).to eq(0)
         expect(@additional_request).to have_been_made
       end
-
     end
   end
 
   describe '#parents' do
-    let(:genre_id) { 559887 }
+    let(:genre_id) { 559_887 }
     let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
 
     before do
@@ -154,7 +152,7 @@ describe RakutenWebService::Ichiba::Genre do
       ).to_return(body: fixture('ichiba/parents_genre_search.json'))
     end
 
-    specify "should respond an array of parents Genres" do
+    specify 'should respond an array of parents Genres' do
       expect(genre.parents).to be_a(Array)
     end
   end
@@ -163,8 +161,8 @@ describe RakutenWebService::Ichiba::Genre do
     let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
 
     before do
-      stub_request(:get, endpoint).with(query: expected_query).
-        to_return(body: fixture('ichiba/genre_search.json'))
+      stub_request(:get, endpoint).with(query: expected_query)
+                                  .to_return(body: fixture('ichiba/genre_search.json'))
     end
 
     specify "should call RankingItem's search with genre_id option" do
@@ -181,11 +179,11 @@ describe RakutenWebService::Ichiba::Genre do
     let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
 
     before do
-      stub_request(:get, endpoint).with(query: expected_query).
-        to_return(body: fixture('ichiba/genre_search.json'))
+      stub_request(:get, endpoint).with(query: expected_query)
+                                  .to_return(body: fixture('ichiba/genre_search.json'))
     end
 
-    specify "should call Product search with genre_id option" do
+    specify 'should call Product search with genre_id option' do
       expect(RakutenWebService::Ichiba::Product).to receive(:search).with(genre_id: genre_id)
       expect { genre.products }.to_not raise_error
     end

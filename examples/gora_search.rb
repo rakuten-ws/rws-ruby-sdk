@@ -36,11 +36,11 @@ end
 next_week = Date.today + 7
 chiba_and_kanagawa = '12,14'
 plans = RWS::Gora::Plan.search(areaCode: chiba_and_kanagawa, playDate: next_week.strftime('%Y-%m-%d'))
-plans.first(5).each { |p|
+plans.first(5).each do |p|
   puts "#{p.golf_course_id}, #{p.golf_course_name}"
-  p.plan_info.each { |pi|
+  p.plan_info.each do |pi|
     puts "  #{pi.plan_id}, #{pi.plan_name}, #{pi.price}"
     ci = pi.call_info
     puts "    #{ci.play_date}, #{ci.stock_status}"
-  }
-}
+  end
+end

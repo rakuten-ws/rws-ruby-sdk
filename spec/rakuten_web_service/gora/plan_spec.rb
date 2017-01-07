@@ -6,10 +6,10 @@ describe RakutenWebService::Gora::Plan do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-        affiliateId: affiliate_id,
-        applicationId: application_id,
-        areaCode: '12,14',
-        playDate: '2016-04-24',
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      areaCode: '12,14',
+      playDate: '2016-04-24'
     }
   end
 
@@ -23,8 +23,8 @@ describe RakutenWebService::Gora::Plan do
   describe '.search' do
     before do
       response = JSON.parse(fixture('gora/plan_search_with_area_code.json'))
-      @expected_request = stub_request(:get, endpoint).
-          with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'endpoint should not be called' do

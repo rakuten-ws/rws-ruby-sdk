@@ -21,9 +21,9 @@ describe RWS::Books::Genre do
   end
 
   before do
-    @expected_request = stub_request(:get, endpoint).
-      with(query: expected_query).
-      to_return(body: expected_json.to_json)
+    @expected_request = stub_request(:get, endpoint)
+                        .with(query: expected_query)
+                        .to_return(body: expected_json.to_json)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -58,10 +58,10 @@ describe RWS::Books::Genre do
     let(:expected_json) do
       {
         current: {
-                  booksGenreId: genre_id,
-                  booksGenreName: 'DummyGenre',
-                  genreLevel: '2'
-                }
+          booksGenreId: genre_id,
+          booksGenreName: 'DummyGenre',
+          genreLevel: '2'
+        }
       }
     end
 

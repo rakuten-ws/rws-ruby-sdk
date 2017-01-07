@@ -6,20 +6,19 @@ module RakutenWebService
     class << self
       def attribute(*attributes)
         attributes.each do |attribute|
-          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |matched|
-            "#{$1}_#{$2}"
+          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |_matched|
+            "#{Regexp.last_match(1)}_#{Regexp.last_match(2)}"
           end.downcase
-          method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
+          method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { Regexp.last_match(1) }
           instance_eval do
             define_method method_name do
               get_attribute(attribute.to_s)
             end
           end
-          if method_name =~ /(.+)_flag$/
-            instance_eval do
-              define_method "#{$1}?" do
-                get_attribute(attribute.to_s) == 1
-              end
+          next unless method_name =~ /(.+)_flag$/
+          instance_eval do
+            define_method "#{Regexp.last_match(1)}?" do
+              get_attribute(attribute.to_s) == 1
             end
           end
         end
@@ -38,14 +37,14 @@ module RakutenWebService
       end
 
       def resource_name
-        @resource_name ||= self.name.split('::').last.downcase
+        @resource_name ||= name.split('::').last.downcase
       end
 
       def set_resource_name(name)
         @resource_name = name
       end
 
-      def endpoint(url=nil)
+      def endpoint(url = nil)
         @endpoint = url || @endpoint
       end
 
@@ -66,7 +65,7 @@ module RakutenWebService
     end
 
     def [](key)
-      camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{$1}#{$2.capitalize}" }
+      camel_key = key.gsub(/([a-z]+)_(\w{1})/) { "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}" }
       @params[key] || @params[camel_key]
     end
 
@@ -77,14 +76,13 @@ module RakutenWebService
     def ==(genre)
       raise ArgumentError unless genre.is_a?(RakutenWebService::Resource)
 
-      self.params.keys.all? do |k|
+      params.keys.all? do |k|
         @params[k] == genre.params[k]
       end
     end
 
     protected
-      def params
-        @params
-      end
+
+    attr_reader :params
   end
 end
