@@ -116,7 +116,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     context 'when children of the genre have not been fetched' do
-      let(:target_genre) { expected_json['children'].first['child'] }
+      let(:target_genre) { expected_json['children'].first }
 
       before do
         @additional_request = stub_request(:get, endpoint).
