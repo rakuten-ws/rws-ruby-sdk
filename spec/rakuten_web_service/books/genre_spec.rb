@@ -97,7 +97,7 @@ describe RWS::Books::Genre do
       specify 'are Books::Genre objects' do
         expect(@genre.children).to be_all { |child| child.is_a? RWS::Books::Genre }
         expect(@genre.children).to be_all do |child|
-          expected_json['children'].any? { |c| c['child']['booksGenreId'] == child['booksGenreId'] }
+          expected_json['children'].any? { |c| c['booksGenreId'] == child['booksGenreId'] }
         end
       end
     end

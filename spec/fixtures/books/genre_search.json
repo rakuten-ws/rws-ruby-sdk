@@ -1,1 +1,45 @@
-{"current":{"booksGenreId":"000","booksGenreName":"","genreLevel":0},"children":[{"child":{"booksGenreId":"001","booksGenreName":"本","genreLevel":1}},{"child":{"booksGenreId":"002","booksGenreName":"CD","genreLevel":1}},{"child":{"booksGenreId":"003","booksGenreName":"DVD","genreLevel":1}},{"child":{"booksGenreId":"004","booksGenreName":"PCソフト・周辺機器","genreLevel":1}},{"child":{"booksGenreId":"005","booksGenreName":"洋書","genreLevel":1}},{"child":{"booksGenreId":"006","booksGenreName":"ゲーム","genreLevel":1}},{"child":{"booksGenreId":"007","booksGenreName":"雑誌","genreLevel":1}}],"parents":[]}
+{
+  "current": {
+    "booksGenreId": "000",
+    "booksGenreName": "",
+    "genreLevel": 0
+  },
+  "children": [
+    {
+      "booksGenreId": "001",
+      "booksGenreName": "本",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "002",
+      "booksGenreName": "CD",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "003",
+      "booksGenreName": "DVD",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "004",
+      "booksGenreName": "PCソフト・周辺機器",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "005",
+      "booksGenreName": "洋書",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "006",
+      "booksGenreName": "ゲーム",
+      "genreLevel": 1
+    },
+    {
+      "booksGenreId": "007",
+      "booksGenreName": "雑誌",
+      "genreLevel": 1
+    }
+  ],
+  "parents": []
+}
