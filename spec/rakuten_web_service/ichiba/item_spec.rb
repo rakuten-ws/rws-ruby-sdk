@@ -46,7 +46,7 @@ describe RakutenWebService::Ichiba::Item do
       describe 'a respond object' do
         let(:expected_json) do
           response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
-          response['Items'][0]['Item']
+          response['Items'][0]
         end
 
         subject { @items.first }
@@ -178,7 +178,7 @@ describe RakutenWebService::Ichiba::Item do
       stub_request(:get, endpoint).with(query: expected_query).
         to_return(body: response.to_json)
 
-      expected_item = response['Items'][0]['Item']
+      expected_item = response['Items'][0]
       expect(RakutenWebService::Ichiba::Genre).to receive('new').with(expected_item['genreId'])
     end
 
@@ -191,7 +191,7 @@ describe RakutenWebService::Ichiba::Item do
 
   describe '#shop' do
     let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
-    let(:expected_item) { response['Items'][0]['Item'] }
+    let(:expected_item) { response['Items'][0] }
 
     before do
       stub_request(:get, endpoint).with(query: expected_query).
