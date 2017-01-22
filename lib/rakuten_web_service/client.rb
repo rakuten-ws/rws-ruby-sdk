@@ -1,4 +1,5 @@
 require 'uri'
+require 'net/http'
 require 'cgi'
 require 'json'
 require 'rakuten_web_service/response'
