@@ -1,3 +1,17 @@
+# v1.4.2 (2017/01/22)
+
+## Bug Fixes
+
+* `Net::HTTP` is NOT `reuquire`d anywhere in the codebase. [#67](https://github.com/rakuten-ws/rws-ruby-sdk/pull/67)
+
+   The version 1.4.1 or earlier of this gem doesn't `require 'net/http'` by itself.
+   @gouf found the bug report in [teratail](https://teratail.com/questions/62804) and made a pull-request to fix it. Thanks!
+
+## Improvements
+
+* `debug_mode` has come again! if you want to see responses from Rakuten Web Service APIs, you can see the ones by set `debug_mode` `true`. [#56](https://github.com/rakuten-ws/rws-ruby-sdk/pull/56)
+* Refactoring: use new Hash syntax as supporting ruby 1.9 series has been stopped already. [#60](https://github.com/rakuten-ws/rws-ruby-sdk/pull/60)
+
 # v1.4.1 (2016/11/22)
 
 ## Bug Fix
@@ -6,7 +20,7 @@
 
 ## Thanks
 
-I'm pleased to say thanks to @sho-yamane since he reporeted the bug #53. If he didn't do it, I would find the bug much later.
+I'm pleased to say thanks to @sho-yamane since he reported the bug #53. If he didn't do it, I would find the bug much later.
 Thanks, @sho-yamane.
 
 
