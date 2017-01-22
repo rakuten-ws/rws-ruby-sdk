@@ -3,7 +3,7 @@ require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
   describe '#initialize' do
-    context "environment variable RWS_APPLICATION_ID and RWS_AFFILIATE_ID are defined" do
+    context 'environment variable RWS_APPLICATION_ID and RWS_AFFILIATE_ID are defined' do
       before do
         ENV['RWS_APPLICATION_ID'] = 'env_application_id'
         ENV['RWS_AFFILIATE_ID'] = 'env_affiliate_id'
@@ -16,7 +16,7 @@ describe RakutenWebService::Configuration do
 
       subject { RakutenWebService::Configuration.new }
 
-      specify "the application id is set by the environment variable" do
+      specify 'the application id is set by the environment variable' do
         expect(subject.application_id).to eq 'env_application_id'
         expect(subject.affiliate_id).to eq 'env_affiliate_id'
       end
@@ -103,38 +103,38 @@ describe RakutenWebService::Configuration do
     end
   end
 
-  describe "#default_parameters" do
+  describe '#default_parameters' do
     before do
       RakutenWebService.configure do |c|
         c.application_id = application_id
       end
     end
 
-    context "When application id is given" do
+    context 'When application id is given' do
       let(:application_id) { 'app_id' }
 
       subject { RakutenWebService.configuration.default_parameters }
 
-      it "has application_id key and its value is a given value" do
+      it 'has application_id key and its value is a given value' do
         expect(subject[:application_id]).to eq 'app_id'
       end
     end
-    context "When application id is not given" do
+    context 'When application id is not given' do
       let(:application_id) { nil }
 
-      it "raises an error" do
-        expect {
+      it 'raises an error' do
+        expect do
           RakutenWebService.configuration.default_parameters
-        }.to raise_error(RuntimeError, "Application ID is not defined")
+        end.to raise_error(RuntimeError, 'Application ID is not defined')
       end
     end
-    context "When application id is an empty string" do
+    context 'When application id is an empty string' do
       let(:application_id) { '' }
 
-      it "raises an error" do
-        expect {
+      it 'raises an error' do
+        expect do
           RakutenWebService.configuration.default_parameters
-        }.to raise_error(RuntimeError, "Application ID is not defined")
+        end.to raise_error(RuntimeError, 'Application ID is not defined')
       end
     end
   end

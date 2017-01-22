@@ -6,9 +6,9 @@ describe RakutenWebService::Gora::Course do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-        affiliateId: affiliate_id,
-        applicationId: application_id,
-        keyword: '軽井沢'
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      keyword: '軽井沢'
     }
   end
 
@@ -22,15 +22,15 @@ describe RakutenWebService::Gora::Course do
   describe '.search' do
     before do
       response = JSON.parse(fixture('gora/course_search_with_Karuizawa.json'))
-      @expected_request = stub_request(:get, endpoint).
-          with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
-      @second_request = stub_request(:get, endpoint).
-          with(query: expected_query.merge(page: 2)).
-          to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     context 'just call the search method' do
@@ -96,7 +96,7 @@ describe RakutenWebService::Gora::Course do
 
         context 'call an enumerable method like each' do
           before do
-            @courses.all.each { |i| i.to_s }
+            @courses.all.each(&:to_s)
           end
 
           specify 'endpoint should be called' do

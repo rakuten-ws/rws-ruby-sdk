@@ -11,23 +11,23 @@ module RakutenWebService
       end
 
       attribute :productId, :productName, :productNo, :brandName,
-        :productUrlPC, :productUrlMobile, :affiliateUrl,
-        :smallImageUrl, :mediumImageUrl,
-        :productCaption, :releaseDate,
-        :makerCode, :makerName, :makerNameKana, :makerNameFormal,
-        :makerPageUrlPC, :makerPageUrlMobile,
-        :itemCount, :salesItemCount,
-        :usedExcludeCount, :usedExcludeSalesItemCount,
-        :maxPrice, :salesMaxPrice, :usedExcludeMaxPrice, :usedExcludeSalesMaxPrice,
-        :minPrice, :salesMinPrice, :usedExcludeMinPrice, :usedExcludeSalesMinPrice,
-        :averagePrice,
-        :reviewCount, :reviewAverage, :reviewUrlPC, :reviewUrlMobile,
-        :rankTargetGenreId, :rankTargetProductCount,
-        :genreId, :genreName,
-        :ProductDetails
+                :productUrlPC, :productUrlMobile, :affiliateUrl,
+                :smallImageUrl, :mediumImageUrl,
+                :productCaption, :releaseDate,
+                :makerCode, :makerName, :makerNameKana, :makerNameFormal,
+                :makerPageUrlPC, :makerPageUrlMobile,
+                :itemCount, :salesItemCount,
+                :usedExcludeCount, :usedExcludeSalesItemCount,
+                :maxPrice, :salesMaxPrice, :usedExcludeMaxPrice, :usedExcludeSalesMaxPrice,
+                :minPrice, :salesMinPrice, :usedExcludeMinPrice, :usedExcludeSalesMinPrice,
+                :averagePrice,
+                :reviewCount, :reviewAverage, :reviewUrlPC, :reviewUrlMobile,
+                :rankTargetGenreId, :rankTargetProductCount,
+                :genreId, :genreName,
+                :ProductDetails
 
       def genre
-        RakutenWebService::Ichiba::Genre.new(self.genre_id)
+        RakutenWebService::Ichiba::Genre.new(genre_id)
       end
     end
   end

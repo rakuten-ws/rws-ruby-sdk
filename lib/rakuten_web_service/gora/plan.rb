@@ -6,7 +6,7 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20150706'
 
       set_parser do |response|
-        response['Items'].map { |item| self.new(item['Item']) }
+        response['Items'].map { |item| new(item['Item']) }
       end
 
       attribute :golfCourseId, :golfCourseName, :golfCourseAbbr, :golfCourseNameKana, :golfCourseCaption,
@@ -14,7 +14,7 @@ module RakutenWebService
                 :golfCourseImageUrl, :evaluation
 
       def plan_info
-        get_attribute('planInfo').map {|plan| PlanInfo.new(plan['plan'])}
+        get_attribute('planInfo').map { |plan| PlanInfo.new(plan['plan']) }
       end
 
       class PlanInfo < Resource
@@ -24,7 +24,7 @@ module RakutenWebService
           end
         end
         attribute :planId, :planName, :planType, :limitedTimeFlag, :price, :basePrice, :salesTax, :courseUseTax,
-                  :otherTax, :playerNumMin, :playerNumMax, :startTimeZone, :round, :caddie, :cart, :assu2sum,:addFee2bFlag,
+                  :otherTax, :playerNumMin, :playerNumMax, :startTimeZone, :round, :caddie, :cart, :assu2sum, :addFee2bFlag,
                   :addFee2b, :assortment2bFlag, :addFee3bFlag, :addFee3b, :assortment3bFlag, :discount4sumFlag, :lunch,
                   :drink, :stay, :lesson, :planOpenCompe, :compePlayGroupMin, :compePlayMemberMin, :compePrivilegeFree,
                   :compeOption, :other, :pointFlag, :point

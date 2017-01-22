@@ -11,13 +11,13 @@ module RakutenWebService
 
       root_id 0
 
-      def ranking(options={})
-        options = options.merge(genre_id: self.id)
+      def ranking(options = {})
+        options = options.merge(genre_id: id)
         RakutenWebService::Ichiba::RankingItem.search(options)
       end
 
-      def products(options={})
-        options = options.merge(genre_id: self.id)
+      def products(options = {})
+        options = options.merge(genre_id: id)
         RakutenWebService::Ichiba::Product.search(options)
       end
     end

@@ -5,7 +5,7 @@ module RakutenWebService
   module Books
     class Resource < RakutenWebService::Resource
       set_parser do |response|
-        response['Items'].map { |item| self.new(item['Item']) }
+        response['Items'].map { |item| new(item['Item']) }
       end
 
       def self.find_resource_by_genre_id(genre_id)
@@ -25,7 +25,7 @@ module RakutenWebService
       end
 
       def genre
-        @genre ||= self.books_genre_id.split('/').map do |id|
+        @genre ||= books_genre_id.split('/').map do |id|
           Books::Genre.new(id)
         end
       end
@@ -34,10 +34,11 @@ module RakutenWebService
       def get_attribute(name)
         name = name.to_s
         update_params unless @params[name]
-        @params[name] 
+        @params[name]
       end
 
       private
+
       def update_params
         item = self.class.search(update_key => self[update_key]).first
         @params = item.params
@@ -48,6 +49,7 @@ module RakutenWebService
       end
 
       protected
+
       def params
         @params.dup
       end

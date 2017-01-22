@@ -17,8 +17,8 @@ module RakutenWebService
       end
     end
 
-    %w[count hits page first last carrier pageCount].each do |name|
-      method_name = name.gsub(/([a-z])([A-Z]{1})/) { "#{$1}_#{$2.downcase}" }
+    %w(count hits page first last carrier pageCount).each do |name|
+      method_name = name.gsub(/([a-z])([A-Z]{1})/) { "#{Regexp.last_match(1)}_#{Regexp.last_match(2).downcase}" }
       define_method method_name do
         self[name]
       end
@@ -35,7 +35,7 @@ module RakutenWebService
     end
 
     def has_next_page?
-      page && (not last_page?)
+      page && !last_page?
     end
 
     def last_page?

@@ -22,16 +22,16 @@ describe RakutenWebService::Ichiba::Item do
   describe '.search' do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
-      @second_request = stub_request(:get, endpoint).
-        with(query: expected_query.merge(page: 2)).
-        to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     context 'just call the search method' do
@@ -82,7 +82,7 @@ describe RakutenWebService::Ichiba::Item do
           @items2 = @items.search(keyword: 'Go')
         end
 
-        specify "2 search resutls should be independent" do
+        specify '2 search resutls should be independent' do
           expect(@items.params[:keyword]).to eq('Ruby')
           expect(@items2.params[:keyword]).to eq('Go')
         end
@@ -100,7 +100,7 @@ describe RakutenWebService::Ichiba::Item do
 
         context 'call an enumerable method like each' do
           before do
-            @items.all.each { |i| i.to_s }
+            @items.all.each(&:to_s)
           end
 
           specify 'endpoint should be called' do
@@ -132,23 +132,23 @@ describe RakutenWebService::Ichiba::Item do
   describe '.all' do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
-      @second_request = stub_request(:get, endpoint).
-        with(query: expected_query.merge(page: 2)).
-        to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     context 'When givne a block' do
       specify '' do
-        expect { |b| RWS::Ichiba::Item.all({keyword: 'Ruby'}, &b) }.to yield_control.exactly(60).times
+        expect { |b| RWS::Ichiba::Item.all({ keyword: 'Ruby' }, &b) }.to yield_control.exactly(60).times
 
-        expect { |b| RWS::Ichiba::Item.all({keyword: 'Ruby'}, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
+        expect { |b| RWS::Ichiba::Item.all({ keyword: 'Ruby' }, &b) }.to yield_successive_args(*([RakutenWebService::Ichiba::Item] * 60))
       end
     end
   end
@@ -163,10 +163,10 @@ describe RakutenWebService::Ichiba::Item do
     end
   end
 
-  describe ".genre_class" do
+  describe '.genre_class' do
     subject { RakutenWebService::Ichiba::Item }
 
-    it "returns RakutenWebService::Ichiba::Genre" do
+    it 'returns RakutenWebService::Ichiba::Genre' do
       expect(subject.genre_class).to eq(RakutenWebService::Ichiba::Genre)
     end
   end
@@ -175,8 +175,8 @@ describe RakutenWebService::Ichiba::Item do
     let(:response) { JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json')) }
 
     before do
-      stub_request(:get, endpoint).with(query: expected_query).
-        to_return(body: response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query)
+                                  .to_return(body: response.to_json)
 
       expected_item = response['Items'][0]['Item']
       expect(RakutenWebService::Ichiba::Genre).to receive('new').with(expected_item['genreId'])
@@ -194,8 +194,8 @@ describe RakutenWebService::Ichiba::Item do
     let(:expected_item) { response['Items'][0]['Item'] }
 
     before do
-      stub_request(:get, endpoint).with(query: expected_query).
-        to_return(body: response.to_json)
+      stub_request(:get, endpoint).with(query: expected_query)
+                                  .to_return(body: response.to_json)
     end
 
     subject do
@@ -229,13 +229,13 @@ describe RakutenWebService::Ichiba::Item do
   describe '#genre_information' do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     subject { RWS::Ichiba::Item.search(keyword: 'Ruby').genre_information }
 
-    it "should be a GenreInformation" do
+    it 'should be a GenreInformation' do
       expect(subject).to be_a(RWS::GenreInformation)
     end
   end

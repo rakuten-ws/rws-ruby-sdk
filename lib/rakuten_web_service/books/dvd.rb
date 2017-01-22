@@ -9,7 +9,7 @@ module RakutenWebService
                 :label, :jan, :makerCode,
                 :itemCaption, :salesDate,
                 :itemPrice, :listPrice,
-                :discountRate, :discountPrice, 
+                :discountRate, :discountPrice,
                 :itemUrl, :affiliateUrl,
                 :smallImageUrl, :mediumImageUrl, :largeImageUrl,
                 :availability,

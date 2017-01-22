@@ -22,8 +22,8 @@ describe RakutenWebService::Books::Total do
   describe '.search' do
     before do
       response = JSON.parse(fixture('books/total_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do

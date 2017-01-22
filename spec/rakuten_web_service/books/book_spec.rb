@@ -22,15 +22,15 @@ describe RakutenWebService::Books::Book do
   describe '.search' do
     before do
       response = JSON.parse(fixture('books/book_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
-      @second_request = stub_request(:get, endpoint).
-        with(query: expected_query.merge(page: 2)).
-        to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     specify 'call endpoint when accessing results' do
@@ -42,24 +42,23 @@ describe RakutenWebService::Books::Book do
     end
   end
 
-  describe "#genre_information" do
+  describe '#genre_information' do
     before do
       response = JSON.parse(fixture('books/book_search_with_keyword_Ruby.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     subject { RakutenWebService::Books::Book.search(title: 'Ruby') }
 
-    it "responds GenreInformation object" do
+    it 'responds GenreInformation object' do
       expect(subject.genre_information).to be_a(RakutenWebService::GenreInformation)
     end
 
-
-    describe "its attributes" do
+    describe 'its attributes' do
       subject { super().genre_information }
 
-      it "have current genre" do
+      it 'have current genre' do
         expect(subject.current).to be_a(RakutenWebService::Books::Genre)
         expect(subject.current.item_count).to eq('115')
       end
@@ -75,8 +74,8 @@ describe RakutenWebService::Books::Book do
       res['first'] = 1
       res['last'] = 30
 
-      stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: res.to_json)
+      stub_request(:get, endpoint)
+        .with(query: expected_query).to_return(body: res.to_json)
     end
 
     specify 'genretes RWS::Books::Genre object' do
@@ -103,9 +102,9 @@ describe RakutenWebService::Books::Book do
     end
 
     before do
-      @expected_request = stub_request(:get, endpoint).
-        with(query: { affiliateId: affiliate_id, applicationId: application_id, isbn: '12345' }).
-        to_return(body: { Items: [ { Item: { title: 'foo' } } ] }.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: { affiliateId: affiliate_id, applicationId: application_id, isbn: '12345' })
+                          .to_return(body: { Items: [{ Item: { title: 'foo' } }] }.to_json)
     end
 
     specify 'retrieves automatically if accessing the value of lack attribute' do

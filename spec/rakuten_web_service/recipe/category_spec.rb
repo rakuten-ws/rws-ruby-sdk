@@ -25,8 +25,8 @@ describe RakutenWebService::Recipe::Category do
     before do
       response = JSON.parse(fixture('recipe/category.json'))
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     after do
@@ -69,11 +69,10 @@ describe RakutenWebService::Recipe::Category do
       expect(RWS::Recipe).to receive(:categories).with('small')
 
       RakutenWebService::Recipe.small_categories
-
     end
   end
 
-  describe "#parent_category" do
+  describe '#parent_category' do
     let(:category) do
       RWS::Recipe::Category.new \
         categoryId: 2007,
@@ -86,8 +85,8 @@ describe RakutenWebService::Recipe::Category do
     before do
       response = JSON.parse(fixture('recipe/category.json'))
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     after do
@@ -96,10 +95,10 @@ describe RakutenWebService::Recipe::Category do
 
     subject { category.parent_category }
 
-    it "should be a Category" do
+    it 'should be a Category' do
       expect(subject).to be_a(RWS::Recipe::Category)
     end
-    it "should call the endpoint once to get medium categories" do
+    it 'should call the endpoint once to get medium categories' do
       subject
       expect(@expected_request).to have_been_made.once
     end
@@ -118,8 +117,8 @@ describe RakutenWebService::Recipe::Category do
     before do
       response = JSON.parse(fixture('recipe/category.json'))
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     after do
@@ -128,8 +127,8 @@ describe RakutenWebService::Recipe::Category do
 
     subject { category.absolute_category_id }
 
-    it "should be concatinations with parent category ids" do
-      expect(subject).to be_eql("13-706")
+    it 'should be concatinations with parent category ids' do
+      expect(subject).to be_eql('13-706')
     end
 
     context 'for small category' do
@@ -144,13 +143,13 @@ describe RakutenWebService::Recipe::Category do
       before do
         response = JSON.parse(fixture('recipe/category.json'))
 
-        stub_request(:get, endpoint).
-          with(query: expected_query.merge(categoryType: 'medium')).
-          to_return(body: response.to_json)
+        stub_request(:get, endpoint)
+          .with(query: expected_query.merge(categoryType: 'medium'))
+          .to_return(body: response.to_json)
       end
 
       it 'should concatinations with parent category ids' do
-        expect(subject).to be_eql("13-706-2007")
+        expect(subject).to be_eql('13-706-2007')
       end
     end
   end
@@ -168,8 +167,8 @@ describe RakutenWebService::Recipe::Category do
     before do
       response = JSON.parse(fixture('recipe/category.json'))
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     after do

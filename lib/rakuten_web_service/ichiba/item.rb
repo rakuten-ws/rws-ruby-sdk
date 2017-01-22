@@ -4,7 +4,7 @@ module RakutenWebService
   module Ichiba
     class Item < Resource
       class << self
-        def ranking(options={})
+        def ranking(options = {})
           RakutenWebService::Ichiba::RankingItem.search(options)
         end
 
@@ -20,31 +20,29 @@ module RakutenWebService
       end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
-        :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
-        :smallImageUrls, :mediumImageUrls,
-        :availability, :taxFlag, 
-        :postageFlag, :creditCardFlag,
-        :shopOfTheYearFlag,
-        :shipOverseasFlag, :shipOverseasArea,
-        :asurakuFlag, :asurakuClosingTime, :asurakuArea,
-        :affiliateRate,
-        :startTime, :endTime,
-        :reviewCount, :reviewAverage,
-        :pointRate, :pointRateStartTime, :pointRateEndTime,
-        :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
-        :genreId
+                :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
+                :smallImageUrls, :mediumImageUrls,
+                :availability, :taxFlag,
+                :postageFlag, :creditCardFlag,
+                :shopOfTheYearFlag,
+                :shipOverseasFlag, :shipOverseasArea,
+                :asurakuFlag, :asurakuClosingTime, :asurakuArea,
+                :affiliateRate,
+                :startTime, :endTime,
+                :reviewCount, :reviewAverage,
+                :pointRate, :pointRateStartTime, :pointRateEndTime,
+                :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
+                :genreId
 
       def genre
-        Genre.new(self.genre_id)
+        Genre.new(genre_id)
       end
 
       def shop
-        Shop.new({
-          'shopName' => self.shop_name,
-          'shopCode' => self.shop_code,
-          'shopUrl' => self.shop_url,
-          'shopAffiliateUrl' => self.shop_affiliate_url
-        })
+        Shop.new('shopName' => shop_name,
+                 'shopCode' => shop_code,
+                 'shopUrl' => shop_url,
+                 'shopAffiliateUrl' => shop_affiliate_url)
       end
     end
   end

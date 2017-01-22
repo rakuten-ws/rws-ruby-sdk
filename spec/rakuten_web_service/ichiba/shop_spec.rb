@@ -39,8 +39,8 @@ describe RakutenWebService::Ichiba::Shop do
     end
 
     before do
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call the endpoint with the shopCode' do

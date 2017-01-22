@@ -22,16 +22,16 @@ describe RakutenWebService::Ichiba::Product do
   describe '.search' do
     before do
       response = JSON.parse(fixture('ichiba/product_search.json'))
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).to_return(body: response.to_json)
+      @expected_request = stub_request(:get, endpoint)
+                          .with(query: expected_query).to_return(body: response.to_json)
 
       response['page'] = 2
       response['first'] = 31
       response['last'] = 60
       response['pageCount'] = 2
-      @second_request = stub_request(:get, endpoint).
-        with(query: expected_query.merge(page: 2)).
-        to_return(body: response.to_json)
+      @second_request = stub_request(:get, endpoint)
+                        .with(query: expected_query.merge(page: 2))
+                        .to_return(body: response.to_json)
     end
 
     subject { RakutenWebService::Ichiba::Product.search(keyword: 'Ruby') }
