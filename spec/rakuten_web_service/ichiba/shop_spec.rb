@@ -14,6 +14,7 @@ describe RakutenWebService::Ichiba::Shop do
     {
       'affiliateId' => affiliate_id,
       'applicationId' => application_id,
+      'formatVersion' => '2',
       'shopCode' => 'hogeshop'
     }
   end

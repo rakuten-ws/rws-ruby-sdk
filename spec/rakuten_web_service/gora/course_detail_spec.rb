@@ -8,6 +8,7 @@ describe RakutenWebService::Gora::CourseDetail do
     {
         affiliateId: affiliate_id,
         applicationId: application_id,
+        formatVersion: '2',
         golfCourseId: 120092
     }
   end

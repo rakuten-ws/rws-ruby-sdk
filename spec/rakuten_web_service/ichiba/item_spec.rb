@@ -8,6 +8,7 @@ describe RakutenWebService::Ichiba::Item do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       keyword: 'Ruby'
     }
   end

@@ -8,6 +8,7 @@ describe RakutenWebService::Kobo::Ebook do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       title: 'Ruby'
     }
   end

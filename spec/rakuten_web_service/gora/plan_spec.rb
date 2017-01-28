@@ -8,6 +8,7 @@ describe RakutenWebService::Gora::Plan do
     {
         affiliateId: affiliate_id,
         applicationId: application_id,
+        formatVersion: '2',
         areaCode: '12,14',
         playDate: '2016-04-24',
     }

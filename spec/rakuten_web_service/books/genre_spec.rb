@@ -9,6 +9,7 @@ describe RWS::Books::Genre do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       booksGenreId: genre_id
     }
   end

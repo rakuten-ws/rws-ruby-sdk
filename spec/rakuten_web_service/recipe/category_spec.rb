@@ -8,6 +8,7 @@ describe RakutenWebService::Recipe::Category do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       categoryType: category_type
     }
   end

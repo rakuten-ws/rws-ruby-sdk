@@ -8,6 +8,7 @@ describe RakutenWebService::Books::Software do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       keyword: 'Ruby'
     }
   end
@@ -43,7 +44,7 @@ describe RakutenWebService::Books::Software do
 
     before do
       @expected_request = stub_request(:get, endpoint).
-        with(query: { affiliateId: affiliate_id, applicationId: application_id, jan: '12345' }).
+        with(query: { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2', jan: '12345' }).
         to_return(body: { Items: [ { Item: { title: 'foo' } } ] }.to_json)
     end
 

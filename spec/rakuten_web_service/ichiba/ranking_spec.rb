@@ -7,7 +7,9 @@ describe RakutenWebService::Ichiba::RankingItem do
   let(:application_id) { 'application_id' }
   let(:expected_query) do
     {
-      affiliateId: affiliate_id, applicationId: application_id
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      formatVersion: '2'
     }
   end
 

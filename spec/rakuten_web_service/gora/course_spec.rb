@@ -8,6 +8,7 @@ describe RakutenWebService::Gora::Course do
     {
         affiliateId: affiliate_id,
         applicationId: application_id,
+        formatVersion: '2',
         keyword: '軽井沢'
     }
   end
