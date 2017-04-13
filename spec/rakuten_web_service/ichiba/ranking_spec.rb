@@ -27,7 +27,7 @@ describe RakutenWebService::Ichiba::RankingItem do
   describe '.search' do
     let(:expected_json) do
       response = JSON.parse(fixture('ichiba/ranking_search.json'))
-      response['Items'][0]['Item']
+      response['Items'][0]
     end
 
     before do

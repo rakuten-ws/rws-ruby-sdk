@@ -43,7 +43,7 @@ describe RakutenWebService::Ichiba::Product do
 
     describe 'For an response' do
       let(:expected_product) do
-        JSON.parse(fixture('ichiba/product_search.json'))['Products'].first['Product']
+        JSON.parse(fixture('ichiba/product_search.json'))['Products'].first
       end
       let(:product) { RakutenWebService::Ichiba::Product.search(keyword: 'Ruby').first }
 
