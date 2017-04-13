@@ -12,6 +12,12 @@ describe RakutenWebService::Recipe do
       categoryId: category_id
     }
   end
+  let(:expected_query_without_category_id) do
+    {
+      affiliateId: affiliate_id,
+      applicationId: application_id
+    }
+  end
 
   before do
     RakutenWebService.configure do |c|
@@ -27,25 +33,48 @@ describe RakutenWebService::Recipe do
   end
 
   describe '.ranking' do
-    let(:category_id) { '30' }
+    context 'get ranking without category_id' do
+      before do
+        response = JSON.parse(fixture('recipe/ranking.json'))
 
-    before do
-      response = JSON.parse(fixture('recipe/ranking.json'))
+        @expected_request = stub_request(:get, endpoint).
+          with(query: expected_query_without_category_id).
+          to_return(body: response.to_json)
+      end
 
-      @expected_request = stub_request(:get, endpoint).
-        with(query: expected_query).
-        to_return(body: response.to_json)
+      subject { RakutenWebService::Recipe.ranking }
+
+      it 'should call search without category_id' do
+        subject.first
+
+        expect(@expected_request).to have_been_made.once
+      end
+      it 'should return an array of Recipe' do
+        expect(subject).to be_all { |r| r.is_a?(RWS::Recipe) }
+      end
     end
 
-    subject { RakutenWebService::Recipe.ranking(category_id) }
+    context 'get ranking with category_id' do
+      let(:category_id) { '30' }
 
-    it 'should call search with category id' do
-      subject.first
+      before do
+        response = JSON.parse(fixture('recipe/ranking.json'))
 
-      expect(@expected_request).to have_been_made.once
-    end
-    it 'shoudl return an array of Reciep' do
-      expect(subject).to be_all { |r| r.is_a?(RWS::Recipe) }
+        @expected_request = stub_request(:get, endpoint).
+          with(query: expected_query).
+          to_return(body: response.to_json)
+      end
+
+      subject { RakutenWebService::Recipe.ranking(category_id) }
+
+      it 'should call search with category_id' do
+        subject.first
+
+        expect(@expected_request).to have_been_made.once
+      end
+      it 'should return an array of Recipe' do
+        expect(subject).to be_all { |r| r.is_a?(RWS::Recipe) }
+      end
     end
   end
 end

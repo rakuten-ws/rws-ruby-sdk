@@ -1,3 +1,14 @@
+# v1.5.0 (2017/03/31)
+
+## Improvements
+
+* Allows to call `RakutenWebService::Recipe.ranking` without `category_id`. [#70](https://github.com/rakuten-ws/rws-ruby-sdk/pull/70)
+
+## Thanks
+
+I'm pleasured to say thanks to @kakakakakku. His work has made the usage of `RWS::Recipe.raning` easy to get the ranking in all genres.
+Thanks!
+
 # v1.4.2 (2017/01/22)
 
 ## Bug Fixes
