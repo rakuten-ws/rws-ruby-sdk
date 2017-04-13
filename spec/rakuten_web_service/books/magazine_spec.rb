@@ -45,7 +45,7 @@ describe RakutenWebService::Books::Magazine do
     before do
       @expected_request = stub_request(:get, endpoint).
         with(query: { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2', jan: '12345' }).
-        to_return(body: { Items: [ { Item: { title: 'foo' } } ] }.to_json)
+        to_return(body: { Items: [ { title: 'foo' } ] }.to_json)
     end
 
     specify 'retrieves automatically if accessing the value of lack attribute' do

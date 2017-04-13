@@ -7,8 +7,8 @@ module RakutenWebService
 
       set_parser do |response|
         response['Items'].map do |item|
-          resource_class = find_resource_by_genre_id(item['Item']['booksGenreId'])
-          resource_class.new(item['Item'])
+          resource_class = find_resource_by_genre_id(item['booksGenreId'])
+          resource_class.new(item)
         end
       end
     end
