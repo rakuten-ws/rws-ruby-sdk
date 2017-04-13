@@ -15,7 +15,7 @@ module RakutenWebService
         :koboGenreId
 
       set_parser do |response|
-        response['Items'].map { |i| self.new(i['Item']) }
+        response['Items'].map { |i| self.new(i) }
       end
 
       def self.genre_class

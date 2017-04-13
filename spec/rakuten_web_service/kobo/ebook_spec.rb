@@ -55,7 +55,6 @@ describe RakutenWebService::Kobo::Ebook do
 
       it "returns the current genre information" do
         expect(subject.name).to eq("電子書籍")
-        expect(subject.item_count).to eq("660")
       end
     end
   end
@@ -67,7 +66,7 @@ describe RakutenWebService::Kobo::Ebook do
       stub_request(:get, endpoint).with(query: expected_query).
         to_return(body: response.to_json)
 
-      expected_item = response['Items'][0]['Item']
+      expected_item = response['Items'][0]
       expect(RakutenWebService::Kobo::Genre).to receive('new').with(expected_item['koboGenreId'])
 
       RakutenWebService::Kobo::Ebook.search(title: 'Ruby').first.genre
