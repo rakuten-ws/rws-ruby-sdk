@@ -16,7 +16,7 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222'
 
       set_parser do |response|
-        response['Items'].map { |item| Item.new(item['Item']) }
+        response['Items'].map { |item| Item.new(item) }
       end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,

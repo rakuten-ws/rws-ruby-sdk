@@ -9,6 +9,7 @@ describe RakutenWebService::Ichiba::Genre do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       genreId: genre_id
     }
   end
@@ -79,6 +80,7 @@ describe RakutenWebService::Ichiba::Genre do
             with(query: {
                                   affiliateId: affiliate_id,
                                   applicationId: application_id,
+                                  formatVersion: '2',
                                   genreId: new_genre_id }).
             to_return(body: {current: { genreId: new_genre_id,
                                                                                           genreName: 'DummyGenre',
@@ -116,13 +118,14 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     context 'when children of the genre have not been fetched' do
-      let(:target_genre) { expected_json['children'].first['child'] }
+      let(:target_genre) { expected_json['children'].first }
 
       before do
         @additional_request = stub_request(:get, endpoint).
           with(query: {
                               affiliateId: affiliate_id,
                               applicationId: application_id,
+                              formatVersion: '2',
                               genreId: target_genre['genreId']
                          }).to_return(body: {
                                    current: target_genre,

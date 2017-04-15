@@ -9,7 +9,7 @@ describe RakutenWebService::Client do
   let(:application_id) { 'default_application_id' }
   let(:affiliate_id) { 'default_affiliate_id' }
   let(:expected_query) do
-    { affiliateId: affiliate_id, applicationId: application_id }
+    { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2' }
   end
   let(:expected_response) do
     { body: '{"status":"ok"}' }
@@ -57,6 +57,7 @@ describe RakutenWebService::Client do
         {
           applicationId: application_id,
           affiliateId: affiliate_id,
+          formatVersion: '2',
           sort: sort_option
         }
       end

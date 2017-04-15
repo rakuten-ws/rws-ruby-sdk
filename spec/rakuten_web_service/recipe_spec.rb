@@ -8,13 +8,15 @@ describe RakutenWebService::Recipe do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       categoryId: category_id
     }
   end
   let(:expected_query_without_category_id) do
     {
       affiliateId: affiliate_id,
-      applicationId: application_id
+      applicationId: application_id,
+      formatVersion: '2'
     }
   end
 

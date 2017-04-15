@@ -6,7 +6,7 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20150706'
 
       set_parser do |response|
-        response['Items'].map { |item| self.new(item['Item']) }
+        response['Items'].map { |item| self.new(item) }
       end
 
       attribute :golfCourseId, :golfCourseName, :golfCourseAbbr, :golfCourseNameKana, :golfCourseCaption,

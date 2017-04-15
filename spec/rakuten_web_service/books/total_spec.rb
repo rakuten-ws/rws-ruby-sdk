@@ -1,4 +1,4 @@
-require 'rspec'
+require 'spec_helper'
 
 describe RakutenWebService::Books::Total do
   let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522' }
@@ -8,6 +8,7 @@ describe RakutenWebService::Books::Total do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       keyword: 'Ruby'
     }
   end

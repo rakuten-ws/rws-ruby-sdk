@@ -8,6 +8,7 @@ describe RakutenWebService::Books::Book do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       title: 'Ruby'
     }
   end
@@ -61,7 +62,7 @@ describe RakutenWebService::Books::Book do
 
       it "have current genre" do
         expect(subject.current).to be_a(RakutenWebService::Books::Genre)
-        expect(subject.current.item_count).to eq('115')
+        expect(subject.current.item_count).to eq('119')
       end
     end
   end
@@ -82,7 +83,7 @@ describe RakutenWebService::Books::Book do
     specify 'genretes RWS::Books::Genre object' do
       book = RWS::Books::Book.search(title: 'Ruby').first
 
-      expect(RWS::Books::Genre).to receive(:new).with(response['Items'][0]['Item']['booksGenreId'])
+      expect(RWS::Books::Genre).to receive(:new).with(response['Items'][0]['booksGenreId'])
       expect(book.genre).to be_a(Array)
     end
 
@@ -104,8 +105,8 @@ describe RakutenWebService::Books::Book do
 
     before do
       @expected_request = stub_request(:get, endpoint).
-        with(query: { affiliateId: affiliate_id, applicationId: application_id, isbn: '12345' }).
-        to_return(body: { Items: [ { Item: { title: 'foo' } } ] }.to_json)
+        with(query: { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2', isbn: '12345' }).
+        to_return(body: { Items: [ { title: 'foo' } ] }.to_json)
     end
 
     specify 'retrieves automatically if accessing the value of lack attribute' do

@@ -7,7 +7,9 @@ describe RakutenWebService::Ichiba::RankingItem do
   let(:application_id) { 'application_id' }
   let(:expected_query) do
     {
-      affiliateId: affiliate_id, applicationId: application_id
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      formatVersion: '2'
     }
   end
 
@@ -25,7 +27,7 @@ describe RakutenWebService::Ichiba::RankingItem do
   describe '.search' do
     let(:expected_json) do
       response = JSON.parse(fixture('ichiba/ranking_search.json'))
-      response['Items'][0]['Item']
+      response['Items'][0]
     end
 
     before do

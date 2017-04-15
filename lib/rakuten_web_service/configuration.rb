@@ -14,7 +14,7 @@ module RakutenWebService
 
     def default_parameters
       raise "Application ID is not defined" unless has_required_options?
-      { application_id: application_id, affiliate_id: affiliate_id }
+      { application_id: application_id, affiliate_id: affiliate_id, format_version: '2' }
     end
 
     def has_required_options?

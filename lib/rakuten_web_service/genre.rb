@@ -6,7 +6,7 @@ module RakutenWebService
       klass.set_parser do |response|
         current = response['current']
         if children = response['children']
-          children = children.map { |child| klass.new(child['child']) }
+          children = children.map { |child| klass.new(child) }
           current.merge!('children' => children)
         end
         if parents = response['parents']

@@ -9,6 +9,7 @@ describe RWS::Kobo::Genre do
     {
       affiliateId: affiliate_id,
       applicationId: application_id,
+      formatVersion: '2',
       koboGenreId: genre_id
     }
   end

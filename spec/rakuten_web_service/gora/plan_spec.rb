@@ -8,6 +8,7 @@ describe RakutenWebService::Gora::Plan do
     {
         affiliateId: affiliate_id,
         applicationId: application_id,
+        formatVersion: '2',
         areaCode: '12,14',
         playDate: '2016-04-24',
     }
@@ -43,7 +44,7 @@ describe RakutenWebService::Gora::Plan do
       describe 'a respond object' do
         let(:expected_json) do
           response = JSON.parse(fixture('gora/plan_search_with_area_code.json'))
-          response['Items'][0]['Item']
+          response['Items'][0]
         end
 
         subject { @plans.first }

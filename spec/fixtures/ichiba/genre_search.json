@@ -1,1 +1,192 @@
-{"parents":[],"current":{"genreId":0,"genreName":"","genreLevel":0},"children":[{"child":{"genreId":211742,"genreName":"TV・オーディオ・カメラ","genreLevel":1}},{"child":{"genreId":100371,"genreName":"レディースファッション","genreLevel":1}},{"child":{"genreId":100316,"genreName":"水・ソフトドリンク","genreLevel":1}},{"child":{"genreId":100005,"genreName":"花・ガーデン・DIY","genreLevel":1}},{"child":{"genreId":510901,"genreName":"日本酒・焼酎","genreLevel":1}},{"child":{"genreId":200163,"genreName":"不動産・住まい","genreLevel":1}},{"child":{"genreId":101213,"genreName":"ペット・ペットグッズ","genreLevel":1}},{"child":{"genreId":558929,"genreName":"腕時計","genreLevel":1}},{"child":{"genreId":510915,"genreName":"ビール・洋酒","genreLevel":1}},{"child":{"genreId":216131,"genreName":"バッグ・小物・ブランド雑貨","genreLevel":1}},{"child":{"genreId":100227,"genreName":"食品","genreLevel":1}},{"child":{"genreId":101114,"genreName":"車・バイク","genreLevel":1}},{"child":{"genreId":551167,"genreName":"スイーツ・お菓子","genreLevel":1}},{"child":{"genreId":101240,"genreName":"CD・DVD・楽器","genreLevel":1}},{"child":{"genreId":551177,"genreName":"メンズファッション","genreLevel":1}},{"child":{"genreId":551169,"genreName":"医薬品・コンタクト・介護","genreLevel":1}},{"child":{"genreId":100939,"genreName":"美容・コスメ・香水","genreLevel":1}},{"child":{"genreId":101438,"genreName":"学び・サービス・保険","genreLevel":1}},{"child":{"genreId":100533,"genreName":"キッズ・ベビー・マタニティ","genreLevel":1}},{"child":{"genreId":216129,"genreName":"ジュエリー・アクセサリー","genreLevel":1}},{"child":{"genreId":503190,"genreName":"車用品・バイク用品","genreLevel":1}},{"child":{"genreId":562637,"genreName":"家電","genreLevel":1}},{"child":{"genreId":100938,"genreName":"ダイエット・健康","genreLevel":1}},{"child":{"genreId":558944,"genreName":"キッチン用品・食器・調理器具","genreLevel":1}},{"child":{"genreId":101164,"genreName":"おもちゃ・ホビー・ゲーム","genreLevel":1}},{"child":{"genreId":101070,"genreName":"スポーツ・アウトドア","genreLevel":1}},{"child":{"genreId":100804,"genreName":"インテリア・寝具・収納","genreLevel":1}},{"child":{"genreId":215783,"genreName":"日用品雑貨・文房具・手芸","genreLevel":1}},{"child":{"genreId":200162,"genreName":"本・雑誌・コミック","genreLevel":1}},{"child":{"genreId":101381,"genreName":"旅行・出張・チケット","genreLevel":1}},{"child":{"genreId":402853,"genreName":"デジタルコンテンツ","genreLevel":1}},{"child":{"genreId":100433,"genreName":"インナー・下着・ナイトウエア","genreLevel":1}},{"child":{"genreId":558885,"genreName":"靴","genreLevel":1}},{"child":{"genreId":100000,"genreName":"百貨店・総合通販・ギフト","genreLevel":1}},{"child":{"genreId":100026,"genreName":"パソコン・周辺機器","genreLevel":1}}]}
+{
+  "parents": [],
+  "current": {
+    "genreId": 0,
+    "genreName": "",
+    "genreLevel": 0
+  },
+  "brothers": [],
+  "children": [
+    {
+      "genreId": 101240,
+      "genreName": "CD・DVD・楽器",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100804,
+      "genreName": "インテリア・寝具・収納",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101164,
+      "genreName": "おもちゃ・ホビー・ゲーム",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100533,
+      "genreName": "キッズ・ベビー・マタニティ",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 215783,
+      "genreName": "日用品雑貨・文房具・手芸",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 216129,
+      "genreName": "ジュエリー・アクセサリー",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101070,
+      "genreName": "スポーツ・アウトドア",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100938,
+      "genreName": "ダイエット・健康",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100316,
+      "genreName": "水・ソフトドリンク",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100026,
+      "genreName": "パソコン・周辺機器",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 216131,
+      "genreName": "バッグ・小物・ブランド雑貨",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100371,
+      "genreName": "レディースファッション",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100005,
+      "genreName": "花・ガーデン・DIY",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101213,
+      "genreName": "ペット・ペットグッズ",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 211742,
+      "genreName": "TV・オーディオ・カメラ",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101114,
+      "genreName": "車・バイク",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100227,
+      "genreName": "食品",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100939,
+      "genreName": "美容・コスメ・香水",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 200162,
+      "genreName": "本・雑誌・コミック",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101381,
+      "genreName": "旅行・出張・チケット",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 101438,
+      "genreName": "学び・サービス・保険",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100000,
+      "genreName": "百貨店・総合通販・ギフト",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 402853,
+      "genreName": "デジタルコンテンツ",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 503190,
+      "genreName": "車用品・バイク用品",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 100433,
+      "genreName": "インナー・下着・ナイトウエア",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 510901,
+      "genreName": "日本酒・焼酎",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 510915,
+      "genreName": "ビール・洋酒",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 551167,
+      "genreName": "スイーツ・お菓子",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 551169,
+      "genreName": "医薬品・コンタクト・介護",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 551177,
+      "genreName": "メンズファッション",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 558885,
+      "genreName": "靴",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 558929,
+      "genreName": "腕時計",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 558944,
+      "genreName": "キッチン用品・食器・調理器具",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 562637,
+      "genreName": "家電",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 564500,
+      "genreName": "スマートフォン・タブレット",
+      "genreLevel": 1
+    },
+    {
+      "genreId": 565004,
+      "genreName": "光回線・モバイル通信",
+      "genreLevel": 1
+    }
+  ],
+  "tagGroups": []
+}
