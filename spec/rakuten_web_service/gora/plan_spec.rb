@@ -44,7 +44,7 @@ describe RakutenWebService::Gora::Plan do
       describe 'a respond object' do
         let(:expected_json) do
           response = JSON.parse(fixture('gora/plan_search_with_area_code.json'))
-          response['Items'][0]['Item']
+          response['Items'][0]
         end
 
         subject { @plans.first }

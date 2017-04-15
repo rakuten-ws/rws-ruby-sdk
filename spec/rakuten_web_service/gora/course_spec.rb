@@ -23,6 +23,7 @@ describe RakutenWebService::Gora::Course do
   describe '.search' do
     before do
       response = JSON.parse(fixture('gora/course_search_with_Karuizawa.json'))
+      response['pageCount'] = 2
       @expected_request = stub_request(:get, endpoint).
           with(query: expected_query).to_return(body: response.to_json)
 
@@ -46,7 +47,7 @@ describe RakutenWebService::Gora::Course do
       describe 'a respond object' do
         let(:expected_json) do
           response = JSON.parse(fixture('gora/course_search_with_Karuizawa.json'))
-          response['Items'][0]['Item']
+          response['Items'][0]
         end
 
         subject { @courses.first }

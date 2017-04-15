@@ -50,12 +50,12 @@ describe RakutenWebService::Gora::CourseDetail do
 
         specify 'should be accessed to ratings' do
           expect(subject.ratings.size).to eq(expected_json['ratings'].size)
-          expect(subject.ratings.first.nick_name).to eq(expected_json['ratings'].first['rating']['nickName'])
+          expect(subject.ratings.first.nick_name).to eq(expected_json['ratings'].first['nickName'])
         end
 
         specify 'should be accessed to new_plans' do
           expect(subject.new_plans.size).to eq(expected_json['newPlans'].size)
-          expect(subject.new_plans.first.name).to eq(expected_json['newPlans'].first['plan']['planName'])
+          expect(subject.new_plans.first.name).to eq(expected_json['newPlans'].first['planName'])
         end
       end
     end

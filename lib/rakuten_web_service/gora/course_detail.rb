@@ -25,11 +25,11 @@ module RakutenWebService
                 :meal, :course, :costperformance, :distance, :fairway, :reserveCalUrl, :voiceUrl, :layoutUrl, :routeMapUrl
 
       def ratings
-        get_attribute('ratings').map {|rating| Rating.new(rating['rating'])}
+        get_attribute('ratings').map {|rating| Rating.new(rating)}
       end
 
       def new_plans
-        get_attribute('newPlans').map {|plan| Plan.new(plan['plan'])}
+        get_attribute('newPlans').map {|plan| Plan.new(plan)}
       end
 
       class Rating < Resource
