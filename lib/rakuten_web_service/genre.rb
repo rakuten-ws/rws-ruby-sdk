@@ -54,7 +54,7 @@ module RakutenWebService
 
     def initialize(params)
       super
-      self.class[self.id.to_s] = @params.reject { |k, v| k == 'itemCount' }
+      self.class[self.id.to_s] = @params.reject { |k, _| k == 'itemCount' }
     end
 
     def children
