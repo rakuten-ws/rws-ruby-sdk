@@ -41,11 +41,11 @@ module RakutenWebService
         key, sort_order = *(options.to_a.last)
         key = camelize(key.to_s)
         new_params[:sort] = case sort_order.to_s.downcase
-                         when 'desc'
-                           "-#{key}"
-                         when 'asc'
-                           "+#{key}"
-                         end
+                            when 'desc'
+                              "-#{key}"
+                            when 'asc'
+                              "+#{key}"
+                            end
       elsif options.to_s == 'standard'
         new_params[:sort] = 'standard'
       else

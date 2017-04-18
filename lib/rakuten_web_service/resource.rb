@@ -6,7 +6,7 @@ module RakutenWebService
     class << self
       def attribute(*attributes)
         attributes.each do |attribute|
-          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |matched|
+          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |_|
             "#{$1}_#{$2}"
           end.downcase
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
