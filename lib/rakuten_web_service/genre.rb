@@ -5,14 +5,10 @@ module RakutenWebService
     def self.inherited(klass)
       klass.set_parser do |response|
         current = response['current']
-        if children = response['children']
-          children = children.map { |child| klass.new(child) }
-          current.merge!('children' => children)
-        end
-        if parents = response['parents']
-          parents = parents.map { |parent| klass.new(parent['parent']) }
-          current.merge!('parents' => parents)
-        end
+        children = Array(response['children']).map { |child| klass.new(child) }
+        current.merge!('children' => children)
+        parents = Array(response['parents']).map { |parent| klass.new(parent) }
+        current.merge!('parents' => parents)
 
         genre = klass.new(current)
         [genre]
