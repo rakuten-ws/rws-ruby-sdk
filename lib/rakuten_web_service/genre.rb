@@ -18,8 +18,8 @@ module RakutenWebService
     def self.new(params)
       case params
       when Integer, String
-        if cache = repository[params.to_s]
-          self.new(cache)
+        unless repository[params.to_s].nil?
+          self.new(repository[params.to_s])
         else
           search(genre_id_key => params.to_s).first
         end
