@@ -5,14 +5,10 @@ module RakutenWebService
     def self.inherited(klass)
       klass.set_parser do |response|
         current = response['current']
-        if children = response['children']
-          children = children.map { |child| klass.new(child) }
-          current.merge!('children' => children)
-        end
-        if parents = response['parents']
-          parents = parents.map { |parent| klass.new(parent['parent']) }
-          current.merge!('parents' => parents)
-        end
+        children = Array(response['children']).map { |child| klass.new(child) }
+        current.merge!('children' => children)
+        parents = Array(response['parents']).map { |parent| klass.new(parent) }
+        current.merge!('parents' => parents)
 
         genre = klass.new(current)
         [genre]
@@ -22,8 +18,8 @@ module RakutenWebService
     def self.new(params)
       case params
       when Integer, String
-        if cache = repository[params.to_s]
-          self.new(cache)
+        unless repository[params.to_s].nil?
+          self.new(repository[params.to_s])
         else
           search(genre_id_key => params.to_s).first
         end
@@ -58,7 +54,7 @@ module RakutenWebService
 
     def initialize(params)
       super
-      self.class[self.id.to_s] = @params.reject { |k, v| k == 'itemCount' }
+      self.class[self.id.to_s] = @params.reject { |k, _| k == 'itemCount' }
     end
 
     def children
