@@ -27,6 +27,14 @@
             "args": [
                 "${file}"
             ]
+        },
+        {
+            "taskName": "bunlde install",
+            "suppressTaskName": true,
+            "command": "bundle",
+            "args": [
+                "install"
+            ]
         }
     ]
 }
