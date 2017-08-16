@@ -9,6 +9,8 @@ module RakutenWebService
         current.merge!('children' => children)
         parents = Array(response['parents']).map { |parent| klass.new(parent) }
         current.merge!('parents' => parents)
+        brothers = Array(response['brothers']).map { |brother| klass.new(brother) }
+        current.merge!('brothers' => brothers)
 
         genre = klass.new(current)
         [genre]
@@ -59,6 +61,10 @@ module RakutenWebService
 
     def children
       @params['children'] ||= self.class.search(self.class.genre_id_key => self.id).first.children
+    end
+
+    def brothers
+      @params['brothers'] ||= self.class.search(self.class.genre_id_key => self.id).first.brothers
     end
 
     def parents

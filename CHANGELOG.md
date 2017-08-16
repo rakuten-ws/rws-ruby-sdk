@@ -1,3 +1,9 @@
+# v1.6.0 (TBD)
+
+## Improvements
+
+* Added `RakutenWebService::BaseGenre#brothers`. [#74](https://github.com/rakuten-ws/rws-ruby-sdk/pull/74)
+
 # v1.5.0 (2017/03/31)
 
 ## Improvements
