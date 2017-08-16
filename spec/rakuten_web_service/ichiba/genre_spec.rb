@@ -78,14 +78,17 @@ describe RakutenWebService::Ichiba::Genre do
         before do
           @expected_request = stub_request(:get, endpoint).
             with(query: {
-                                  affiliateId: affiliate_id,
-                                  applicationId: application_id,
-                                  formatVersion: '2',
-                                  genreId: new_genre_id }).
-            to_return(body: {current: { genreId: new_genre_id,
-                                                                                          genreName: 'DummyGenre',
-                                                                                          genreLevel: 3 }
-                                                     }.to_json)
+              affiliateId: affiliate_id,
+              applicationId: application_id,
+              formatVersion: '2',
+              genreId: new_genre_id }).
+            to_return(body: {
+              current: {
+                genreId: new_genre_id,
+                genreName: 'DummyGenre',
+                genreLevel: 3
+              }
+              }.to_json)
 
           @genre = RakutenWebService::Ichiba::Genre.new(new_genre_id)
         end
@@ -123,14 +126,14 @@ describe RakutenWebService::Ichiba::Genre do
       before do
         @additional_request = stub_request(:get, endpoint).
           with(query: {
-                              affiliateId: affiliate_id,
-                              applicationId: application_id,
-                              formatVersion: '2',
-                              genreId: target_genre['genreId']
-                         }).to_return(body: {
-                                   current: target_genre,
-                                   children: []
-                                 }.to_json)
+            affiliateId: affiliate_id,
+            applicationId: application_id,
+            formatVersion: '2',
+            genreId: target_genre['genreId']
+          }).to_return(body: {
+            current: target_genre,
+            children: []
+          }.to_json)
       end
 
       subject { root_genre.children.first }
