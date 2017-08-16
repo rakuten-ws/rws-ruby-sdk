@@ -165,6 +165,25 @@ describe RakutenWebService::Ichiba::Genre do
     end
   end
 
+  describe "#brothers" do
+    let(:genre_id) { 559887 }
+    let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
+
+    before do
+      stub_request(:get, endpoint).with(
+        query: {
+          affiliateId: affiliate_id,
+          aplicationId: application_id,
+          genreId: genre_id
+        }
+      ).to_return(body: fixture('ichiba/parents_genre_search.json'))
+    end
+
+    specify "should respond an array of brother Genres" do
+      expect(genre.brothers).to be_a(Array)
+    end
+  end
+
   describe '#ranking' do
     let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
 
