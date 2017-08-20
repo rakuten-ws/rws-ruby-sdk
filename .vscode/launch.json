@@ -25,6 +25,16 @@
             "args": [
                 "${file}"
             ]
+        },
+        {
+            "name": "RSpec - active spec line only",
+            "type": "Ruby",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/bin/rspec",
+            "args": [
+                "${file}:${lineNumber}"
+            ]
         }
     ]
 }
