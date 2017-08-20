@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Ichiba::Genre do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20120723' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:genre_id) { 0 }
