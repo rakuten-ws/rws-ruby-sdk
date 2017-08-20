@@ -13,14 +13,15 @@ describe RakutenWebService::Ichiba::Genre do
       genreId: genre_id
     }
   end
+  let(:fixture_file) { 'ichiba/genre_search.json' }
   let(:expected_json) do
-    JSON.parse(fixture('ichiba/genre_search.json'))
+    JSON.parse(fixture(fixture_file))
   end
 
   before do
     @expected_request = stub_request(:get, endpoint).
       with(query: expected_query).
-      to_return(body: fixture('ichiba/genre_search.json'))
+      to_return(body: fixture(fixture_file))
 
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
@@ -166,21 +167,15 @@ describe RakutenWebService::Ichiba::Genre do
   end
 
   describe "#brothers" do
-    let(:genre_id) { 559887 }
+    let(:genre_id) { 201351 }
     let(:genre) { RakutenWebService::Ichiba::Genre.new(genre_id) }
-
-    before do
-      stub_request(:get, endpoint).with(
-        query: {
-          affiliateId: affiliate_id,
-          aplicationId: application_id,
-          genreId: genre_id
-        }
-      ).to_return(body: fixture('ichiba/parents_genre_search.json'))
-    end
+    let(:fixture_file) { 'ichiba/parents_genre_search.json' }
 
     specify "should respond an array of brother Genres" do
       expect(genre.brothers).to be_a(Array)
+    end
+    specify "should have some brothers" do
+      expect(genre.brothers).to_not be_empty
     end
   end
 
