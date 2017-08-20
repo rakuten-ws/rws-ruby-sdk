@@ -12,12 +12,12 @@ describe RakutenWebService::BaseGenre do
       },
       'children' => [
         {
-          dummyGenreId: 1,
+          dummyGenreId: 2,
           dummyGenreName: "ChildOne",
           genreLevel: 3
         },
         {
-          dummyGenreId: 2,
+          dummyGenreId: 3,
           dummyGenreName: "ChildTwo",
           genreLevel: 3
         }
@@ -31,7 +31,7 @@ describe RakutenWebService::BaseGenre do
       ],
       'brothers' => [
         {
-          dummyGenreId: 3,
+          dummyGenreId: 4,
           dummyGenreName: "BrotherOne",
           genreLevel: 1
         }
@@ -66,6 +66,10 @@ describe RakutenWebService::BaseGenre do
     end
   end
 
+  after do
+    RakutenWebService::BaseGenre.instance_variable_set(:@repository, {})
+  end
+
   describe ".genre_id_key" do
     it { expect(genre_class.genre_id_key).to be_eql(:dummy_genre_id) }
   end
@@ -75,10 +79,30 @@ describe RakutenWebService::BaseGenre do
   end
 
   describe ".new" do
-    specify "should call search" do
-      genre_class.new(genre_id)
+    context "When given string or integer" do
+      specify "should call search" do
+        genre_class.new(genre_id)
 
-      expect(expected_request).to have_been_made.once
+        expect(expected_request).to have_been_made.once
+      end
+
+      specify "should call once if the same instance was initialized twice" do
+        2.times { genre_class.new(genre_id) }
+
+        expect(expected_request).to have_been_made.once
+      end
+    end
+
+    context "When a Hash is given" do
+      subject { genre_class.new(dummyGenreId: 10, dummyGenreName: "NewGenre") }
+
+      specify "API request should not been called" do
+        expect(expected_request).to_not have_been_made
+      end
+      it "shoud respond apropriate attributes" do
+        expect(subject.id).to be_eql(10)
+        expect(subject.name).to be_eql("NewGenre")
+      end
     end
   end
 
@@ -87,6 +111,75 @@ describe RakutenWebService::BaseGenre do
       2.times { genre_class[genre_id] }
 
       expect(expected_request).to have_been_made.once
+    end
+  end
+
+  describe "#children" do
+    subject { genre_class.new(genre_id).children }
+
+    it { is_expected.to_not be_empty }
+
+    context "children's children" do
+      before do
+        subject
+      end
+
+      it "should search again" do
+        expect(genre_class).to receive(:search).
+          with(dummy_genre_id: 2).
+          and_return([
+            double(:genre, children: [])
+          ])
+
+        expect(subject.first.children).to_not be_nil
+        expect(subject.first.children).to be_empty
+      end
+    end
+  end
+
+  describe "#parents" do
+    subject { genre_class.new(genre_id).children }
+
+    it { is_expected.to_not be_empty }
+
+    context "children's parents" do
+      before do
+        subject
+      end
+
+      it "should search again" do
+        expect(genre_class).to receive(:search).
+          with(dummy_genre_id: 2).
+          and_return([
+            double(:genre, parents: [])
+          ])
+
+        expect(subject.first.parents).to be_empty
+        expect(subject.first.parents).to_not be_nil
+      end
+    end
+  end
+
+  describe "#brothers" do
+    subject { genre_class.new(genre_id).children }
+
+    it { is_expected.to_not be_empty }
+
+    context "children's brothers" do
+      before do
+        subject
+      end
+
+      it "should search again" do
+        expect(genre_class).to receive(:search).
+          with(dummy_genre_id: 2).
+          and_return([
+            double(:genre, brothers: [])
+          ])
+
+        expect(subject.first.brothers).to be_empty
+        expect(subject.first.brothers).to_not be_nil
+      end
     end
   end
 end
