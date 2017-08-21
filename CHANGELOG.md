@@ -1,3 +1,9 @@
+# v1.6.1 (2017/08/21)
+
+## Bug Fix
+
+* `RakutenWebService::Ichiba::Genre#brothers` always returns an empty array. [#75](https://github.com/rakuten-ws/rws-ruby-sdk/pull/75)
+
 # v1.6.0 (2017/08/16)
 
 ## Improvements
