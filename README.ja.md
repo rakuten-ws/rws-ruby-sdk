@@ -6,7 +6,7 @@
 
 rakuten\_web\_serviceは、 Rubyから楽天が提供しているAPIに簡単にアクセスできるSDK(Software Development Kit)です。
 
-English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.en.md).
+English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.md).
 
 ## インストール方法
 
@@ -73,10 +73,10 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 
 ### 設定
 
-`RakutenWebService.configuration` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
+`RakutenWebService.configure` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
 
 ```ruby
-  RakutenWebService.configuration do |c|
+  RakutenWebService.configure do |c|
     c.application_id = 'YOUR_APPLICATION_ID'
     c.affiliate_id = 'YOUR_AFFILIATE_ID'
   end
