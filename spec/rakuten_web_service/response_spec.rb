@@ -31,5 +31,17 @@ describe RakutenWebService::Response do
       it { is_expected.to have_previous_page }
       it { is_expected.to_not be_first_page }
     end
+    context "When current page is in pages" do
+      let(:json) do
+        {
+          'page' => 2, 'pageCount' => 3
+        }
+      end
+
+      it { is_expected.to have_next_page }
+      it { is_expected.to_not be_last_page }
+      it { is_expected.to have_previous_page }
+      it { is_expected.to_not be_last_page }
+    end
   end
 end
