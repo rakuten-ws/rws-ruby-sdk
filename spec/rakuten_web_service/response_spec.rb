@@ -2,17 +2,34 @@ require 'spec_helper'
 
 describe RakutenWebService::Response do
 
-  describe "#has_next_page?" do
+  describe "Pagenate helpers" do
     let(:resource_class) { double(:resource_class) }
-    let(:json) do
-      {
-        'page' => 1,
-        'pageCount' => 2
-      }
-    end
 
     subject { RakutenWebService::Response.new(resource_class, json) }
 
-    it { is_expected.to have_next_page }
+    context "When page is less than pageCount" do
+      let(:json) do
+        {
+          'page' => 1, 'pageCount' => 2
+        }
+      end
+
+      it { is_expected.to have_next_page }
+      it { is_expected.to_not be_last_page }
+      it { is_expected.to_not have_previous_page }
+      it { is_expected.to be_first_page }
+    end
+    context "When page is equal to pageCount" do
+      let(:json) do
+        {
+          'page' => 2, 'pageCount' => 2
+        }
+      end
+
+      it { is_expected.to_not have_next_page }
+      it { is_expected.to be_last_page }
+      it { is_expected.to have_previous_page }
+      it { is_expected.to_not be_first_page }
+    end
   end
 end
