@@ -71,6 +71,14 @@ module RakutenWebService
       search(page: response.page + 1)
     end
 
+    def has_previous_page?
+      response.has_previous_page?
+    end
+
+    def previous_page
+      search(page: response.page - 1)
+    end
+
     def page(num)
       search(page: num)
     end
