@@ -38,6 +38,14 @@ module RakutenWebService
       page && (not last_page?)
     end
 
+    def has_previous_page?
+      page && (not first_page?)
+    end
+
+    def first_page?
+      page == 1
+    end
+
     def last_page?
       page >= page_count
     end
