@@ -1,3 +1,18 @@
+# v1.7.0 (2017/09/17)
+
+## Enhancements
+
+* Add Helpers for pagination. [#78](https://github.com/rakuten-ws/rws-ruby-sdk/pull/78)
+
+## Improvements
+
+* Minor fix for README.ja.md [#77](https://github.com/rakuten-ws/rws-ruby-sdk/pull/77)
+* Suppressing installing gems required for debugging with VSCode in CI. [#79](https://github.com/rakuten-ws/rws-ruby-sdk/pull/79)
+
+## Thanks
+
+I'm pleasured to say thanks to @jinco13. He fixed wrong method names and links in README.ja.md.
+
 # v1.6.1 (2017/08/21)
 
 ## Bug Fix
