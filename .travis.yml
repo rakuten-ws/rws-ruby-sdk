@@ -11,7 +11,7 @@ cache: bundler
 before_install:
   - gem install bundler
 
-bundle_args:  --without vscode
+bundler_args:  --without vscode
 
 script:
   - bundle exec rake
