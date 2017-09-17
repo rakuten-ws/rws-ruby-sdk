@@ -22,6 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock", "~> 1.20.4"
   spec.add_development_dependency "rspec", '~> 3.5.0'
   spec.add_development_dependency "tapp"
-  spec.add_development_dependency "ruby-debug-ide", "~> 0.6.0"
-  spec.add_development_dependency "debase", "0.2.2.beta10"
 end
