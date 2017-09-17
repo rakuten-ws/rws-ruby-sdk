@@ -9,7 +9,9 @@ rvm:
 cache: bundler
 
 before_install:
-  - gem install bundler --without vscode
+  - gem install bundler
+
+bundle_args:  --without vscode
 
 script:
   - bundle exec rake
