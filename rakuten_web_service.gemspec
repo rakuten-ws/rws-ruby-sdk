@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = '>= 2.1.0'
 
-  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "bundler", '~> 1.3'
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "webmock", "~> 1.20.4"
-  spec.add_development_dependency "rspec", '~> 3.5.0'
+  spec.add_development_dependency "rspec", '~> 3.7.0'
   spec.add_development_dependency "tapp"
+  spec.add_development_dependency "webmock", '~> 3.1.1'
 end
