@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = RakutenWebService::VERSION
   spec.authors       = ['Tatsuya Sato']
   spec.email         = ['tatsuya.b.sato@mail.rakuten.com']
-  spec.description   = %q( Ruby Client for Rakuten Web Service )
-  spec.summary       = %q( Ruby Client for Rakuten Web Service )
+  spec.description   = 'Ruby Client for Rakuten Web Service'
+  spec.summary       = 'Ruby Client for Rakuten Web Service'
   spec.homepage      = 'http://webservice.rakuten.co.jp/'
   spec.license       = 'MIT'
 
