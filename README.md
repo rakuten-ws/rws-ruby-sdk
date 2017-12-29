@@ -30,7 +30,7 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
 
 ## Prerequisite
 
-* Ruby 2.1.0 or later
+* Ruby 2.2 or later
 
 ## Installation
 
