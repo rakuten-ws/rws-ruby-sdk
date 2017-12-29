@@ -1,3 +1,14 @@
+# v1.8.0 (2017/12/30)
+
+## Enhancements
+
+* Add `RWS::Resource#attributes` method. [#85](https://github.com/rakuten-ws/rws-ruby-sdk/pull/85)
+
+## Improvements
+
+* Start supporting Ruby 2.5 and drop 2.1 from supported versions. [#83](https://github.com/rakuten-ws/rws-ruby-sdk/pull/83)
+* Update outdated gems. [#84](https://github.com/rakuten-ws/rws-ruby-sdk/pull/84)
+
 # v1.7.0 (2017/09/17)
 
 ## Enhancements
