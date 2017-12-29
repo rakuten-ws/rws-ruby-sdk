@@ -61,7 +61,7 @@ module RakutenWebService
     end
 
     def initialize(params)
-      @params = params.dup
+      @params = {}
       params.each { |k, v| @params[k.to_s] = v }
     end
 
@@ -72,6 +72,10 @@ module RakutenWebService
 
     def get_attribute(name)
       @params[name.to_s]
+    end
+
+    def attributes
+      params.keys
     end
 
     def ==(genre)
