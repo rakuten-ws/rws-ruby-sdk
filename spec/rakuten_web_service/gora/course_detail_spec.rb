@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Gora::CourseDetail do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20140410' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

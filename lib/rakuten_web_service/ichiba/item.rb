@@ -13,26 +13,26 @@ module RakutenWebService
         end
       end
 
-      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20140222'
+      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
 
       set_parser do |response|
         response['Items'].map { |item| Item.new(item) }
       end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
-        :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
-        :smallImageUrls, :mediumImageUrls,
-        :availability, :taxFlag, 
-        :postageFlag, :creditCardFlag,
-        :shopOfTheYearFlag,
-        :shipOverseasFlag, :shipOverseasArea,
-        :asurakuFlag, :asurakuClosingTime, :asurakuArea,
-        :affiliateRate,
-        :startTime, :endTime,
-        :reviewCount, :reviewAverage,
-        :pointRate, :pointRateStartTime, :pointRateEndTime,
-        :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
-        :genreId
+                :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
+                :smallImageUrls, :mediumImageUrls,
+                :availability, :taxFlag,
+                :postageFlag, :creditCardFlag,
+                :shopOfTheYearFlag,
+                :shipOverseasFlag, :shipOverseasArea,
+                :asurakuFlag, :asurakuClosingTime, :asurakuArea,
+                :affiliateRate,
+                :startTime, :endTime,
+                :reviewCount, :reviewAverage,
+                :pointRate, :pointRateStartTime, :pointRateEndTime,
+                :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
+                :genreId
 
       def genre
         Genre.new(self.genre_id)

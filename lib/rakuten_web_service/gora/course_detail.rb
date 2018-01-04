@@ -9,7 +9,7 @@ module RakutenWebService
         end
       end
 
-      endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20140410'
+      endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623'
 
       set_parser do |response|
         [self.new(response['Item'])]

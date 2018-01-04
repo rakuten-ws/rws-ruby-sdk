@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Books::ForeignBook do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksForeignBook/Search/20130522' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksForeignBook/Search/20170404' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

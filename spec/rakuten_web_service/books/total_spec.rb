@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Books::Total do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
@@ -31,7 +31,7 @@ describe RakutenWebService::Books::Total do
       items = RakutenWebService::Books::Total.search(keyword: 'Ruby')
       expect(@expected_request).to_not have_been_made
 
-      item = items.first
+      items.first
       expect(@expected_request).to have_been_made.once
     end
   end
