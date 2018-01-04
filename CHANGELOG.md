@@ -1,3 +1,9 @@
+# v1.9.0 (2018/01/04)
+
+## Enhancements
+
+* Update supported API versions. [#87](https://github.com/rakuten-ws/rws-ruby-sdk/pull/87)
+
 # v1.8.0 (2017/12/30)
 
 ## Enhancements
