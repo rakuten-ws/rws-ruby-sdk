@@ -31,7 +31,7 @@ describe RakutenWebService::Books::Total do
       items = RakutenWebService::Books::Total.search(keyword: 'Ruby')
       expect(@expected_request).to_not have_been_made
 
-      item = items.first
+      items.first
       expect(@expected_request).to have_been_made.once
     end
   end

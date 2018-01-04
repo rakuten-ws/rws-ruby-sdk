@@ -6,6 +6,10 @@ rvm:
   - 2.5.0
   - ruby-head
 
+env:
+  - INTEGRATION=yes
+  - INTEGRATION=no
+
 group: travis_lts
 
 cache: bundler
@@ -22,6 +26,15 @@ script:
 matrix:
   allow_failures:
   - rvm: ruby-head
+  exclude:
+  - rvm: 2.2.9
+    env: INTEGRATION=yes
+  - rvm: 2.3.6
+    env: INTEGRATION=yes
+  - rvm: 2.4.3
+    env: INTEGRATION=yes
+  - rvm: ruby-head
+    env: INTEGRATION=yes
 
 addons:
   code_climate:
