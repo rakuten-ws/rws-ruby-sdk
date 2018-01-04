@@ -20,19 +20,19 @@ module RakutenWebService
       end
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
-        :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
-        :smallImageUrls, :mediumImageUrls,
-        :availability, :taxFlag,
-        :postageFlag, :creditCardFlag,
-        :shopOfTheYearFlag,
-        :shipOverseasFlag, :shipOverseasArea,
-        :asurakuFlag, :asurakuClosingTime, :asurakuArea,
-        :affiliateRate,
-        :startTime, :endTime,
-        :reviewCount, :reviewAverage,
-        :pointRate, :pointRateStartTime, :pointRateEndTime,
-        :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
-        :genreId
+                :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
+                :smallImageUrls, :mediumImageUrls,
+                :availability, :taxFlag,
+                :postageFlag, :creditCardFlag,
+                :shopOfTheYearFlag,
+                :shipOverseasFlag, :shipOverseasArea,
+                :asurakuFlag, :asurakuClosingTime, :asurakuArea,
+                :affiliateRate,
+                :startTime, :endTime,
+                :reviewCount, :reviewAverage,
+                :pointRate, :pointRateStartTime, :pointRateEndTime,
+                :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
+                :genreId
 
       def genre
         Genre.new(self.genre_id)
