@@ -4,7 +4,7 @@ require 'rakuten_web_service/recipe/category'
 
 module RakutenWebService
   class Recipe < Resource
-    endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20121121'
+    endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426'
 
     attribute :recipeId, :recipeTitle, :recipeUrl,
       :foodImageUrl, :mediumImageUrl, :smallImageUrl,

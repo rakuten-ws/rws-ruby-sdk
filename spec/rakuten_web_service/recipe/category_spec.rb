@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Recipe::Category do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20121121' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

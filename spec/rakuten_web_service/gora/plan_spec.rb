@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Gora::Plan do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20150706' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20170623' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

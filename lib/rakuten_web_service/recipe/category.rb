@@ -25,7 +25,7 @@ module RakutenWebService
     end
 
     class Category < Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20121121'
+      endpoint 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426'
 
       attribute :categoryId, :categoryName, :categoryUrl, :parentCategoryId, :categoryType
 
