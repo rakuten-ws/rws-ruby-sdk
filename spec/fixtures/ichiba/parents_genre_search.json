@@ -1,0 +1,385 @@
+{
+  "parents": [
+    {
+      "genreId": 100316,
+      "genreName": "水・ソフトドリンク",
+      "genreLevel": 1
+    }
+  ],
+  "current": {
+    "genreId": 201351,
+    "genreName": "水・ミネラルウォーター",
+    "genreLevel": 2
+  },
+  "brothers": [
+    {
+      "genreId": 559934,
+      "genreName": "ウォーターサーバー",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 100344,
+      "genreName": "ソフトドリンク",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 100356,
+      "genreName": "コーヒー",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 502131,
+      "genreName": "ココア",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 100351,
+      "genreName": "紅茶",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 100361,
+      "genreName": "日本茶",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 200029,
+      "genreName": "中国茶",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 201439,
+      "genreName": "ハーブティー",
+      "genreLevel": 2
+    },
+    {
+      "genreId": 101785,
+      "genreName": "その他",
+      "genreLevel": 2
+    }
+  ],
+  "children": [],
+  "tagGroups": [
+    {
+      "tagGroupName": "水のブランド",
+      "tagGroupId": 1000190,
+      "tags": [
+        {
+          "tagId": 1003704,
+          "tagName": "クリスタルガイザー",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003706,
+          "tagName": "コントレックス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003703,
+          "tagName": "エビアン",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003708,
+          "tagName": "サンペレグリノ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003712,
+          "tagName": "ペリエ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003705,
+          "tagName": "ゲロルシュタイナー",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003713,
+          "tagName": "ボルヴィック",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003707,
+          "tagName": "サンベネデット",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003701,
+          "tagName": "ヴィッテル",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003702,
+          "tagName": "ウリベート",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003698,
+          "tagName": "アイスエイジ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003699,
+          "tagName": "ヴァルス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003700,
+          "tagName": "ヴィシーセレスタン",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003709,
+          "tagName": "シャテルドン",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003710,
+          "tagName": "ティナント",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003711,
+          "tagName": "ハイドロキシダーゼ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003714,
+          "tagName": "マハロ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003715,
+          "tagName": "ローレターナ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003716,
+          "tagName": "ロケッタ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003717,
+          "tagName": "ボルジョミ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003718,
+          "tagName": "サンタニオル",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003719,
+          "tagName": "ヴィッチーカタラン",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003720,
+          "tagName": "フォンドール",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003721,
+          "tagName": "ソランデカブラス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003722,
+          "tagName": "ディープ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003723,
+          "tagName": "ヴォス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003724,
+          "tagName": "アイランドチル",
+          "parentTagId": 0
+        }
+      ]
+    },
+    {
+      "tagGroupName": "水の容量",
+      "tagGroupId": 1000191,
+      "tags": [
+        {
+          "tagId": 1003725,
+          "tagName": "～499mL",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003726,
+          "tagName": "500mL～999mL",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003727,
+          "tagName": "1L～2L",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003728,
+          "tagName": "2.1L～",
+          "parentTagId": 0
+        }
+      ]
+    },
+    {
+      "tagGroupName": "採水国",
+      "tagGroupId": 1000192,
+      "tags": [
+        {
+          "tagId": 1003729,
+          "tagName": "アメリカ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003730,
+          "tagName": "イギリス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003731,
+          "tagName": "イタリア",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003732,
+          "tagName": "カナダ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003733,
+          "tagName": "ドイツ",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003734,
+          "tagName": "フランス",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003735,
+          "tagName": "グルジア",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003736,
+          "tagName": "スペイン",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003737,
+          "tagName": "ニュージーランド",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003738,
+          "tagName": "ノルウェー",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003739,
+          "tagName": "フィジー",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003740,
+          "tagName": "日本",
+          "parentTagId": 0
+        }
+      ]
+    },
+    {
+      "tagGroupName": "水の硬度",
+      "tagGroupId": 1000193,
+      "tags": [
+        {
+          "tagId": 1003741,
+          "tagName": "軟水（1～100）",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003742,
+          "tagName": "中硬水（101～300）",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003743,
+          "tagName": "硬水（301～）",
+          "parentTagId": 0
+        }
+      ]
+    },
+    {
+      "tagGroupName": "水の特徴",
+      "tagGroupId": 1000194,
+      "tags": [
+        {
+          "tagId": 1003744,
+          "tagName": "アルカリイオン水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003749,
+          "tagName": "クラスター水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003750,
+          "tagName": "ゲルマニウム水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003751,
+          "tagName": "バナジウム水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003748,
+          "tagName": "温泉水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003745,
+          "tagName": "海洋深層水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003746,
+          "tagName": "酵素水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003800,
+          "tagName": "酸素水",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003747,
+          "tagName": "水素水",
+          "parentTagId": 0
+        }
+      ]
+    },
+    {
+      "tagGroupName": "発泡タイプ",
+      "tagGroupId": 1000201,
+      "tags": [
+        {
+          "tagId": 1003797,
+          "tagName": "発泡",
+          "parentTagId": 0
+        },
+        {
+          "tagId": 1003798,
+          "tagName": "無発泡",
+          "parentTagId": 0
+        }
+      ]
+    }
+  ]
+}

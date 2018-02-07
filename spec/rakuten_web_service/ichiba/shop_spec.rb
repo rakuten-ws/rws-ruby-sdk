@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rakuten_web_service'
 
 describe RakutenWebService::Ichiba::Shop do
   let(:params) do
@@ -8,19 +7,20 @@ describe RakutenWebService::Ichiba::Shop do
       'shopUrl' => 'http://www.rakuten.co.jp/hogeshop' }
   end
   let(:shop) { RakutenWebService::Ichiba::Shop.new(params) }
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
       'affiliateId' => affiliate_id,
       'applicationId' => application_id,
+      'formatVersion' => '2',
       'shopCode' => 'hogeshop'
     }
   end
 
   before do
-    RakutenWebService.configuration do |c|
+    RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
     end
@@ -41,7 +41,7 @@ describe RakutenWebService::Ichiba::Shop do
 
     before do
       @expected_request = stub_request(:get, endpoint).
-        with(:query => expected_query).to_return(:body => response.to_json)
+        with(query: expected_query).to_return(body: response.to_json)
     end
 
     specify 'call the endpoint with the shopCode' do

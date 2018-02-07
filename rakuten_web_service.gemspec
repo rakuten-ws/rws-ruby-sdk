@@ -1,30 +1,25 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rakuten_web_service/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rakuten_web_service"
+  spec.name          = 'rakuten_web_service'
   spec.version       = RakutenWebService::VERSION
-  spec.authors       = ["Tatsuya Sato"]
-  spec.email         = ["tatsuya.b.sato@mail.rakuten.com"]
-  spec.description   = %q{Ruby Client for Rakuten Web Service}
-  spec.summary       = %q{Ruby Client for Rakuten Web Service}
-  spec.homepage      = "http://webservice.rakuten.co.jp/"
-  spec.license       = "MIT"
+  spec.authors       = ['Tatsuya Sato']
+  spec.email         = ['tatsuya.b.sato@mail.rakuten.com']
+  spec.description   = 'Ruby Client for Rakuten Web Service'
+  spec.summary       = 'Ruby Client for Rakuten Web Service'
+  spec.homepage      = 'http://webservice.rakuten.co.jp/'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-  spec.required_ruby_version = '> 1.9.2'
+  spec.require_paths = ['lib']
+  spec.required_ruby_version = '>= 2.2.0'
 
-  spec.add_dependency 'faraday', '~> 0.8.8'
-  spec.add_dependency 'faraday_middleware'
-
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "tapp"
+  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'rake', '~> 12.3.0'
+  spec.add_development_dependency 'rspec', '~> 3.7.0'
+  spec.add_development_dependency 'tapp', '~> 1.5.1'
+  spec.add_development_dependency 'webmock', '~> 3.1.1'
 end

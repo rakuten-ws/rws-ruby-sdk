@@ -3,7 +3,7 @@ require 'rakuten_web_service/books/resource'
 module RakutenWebService
   module Books
     class Game < Books::Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/BooksGame/Search/20130522'
+      endpoint 'https://app.rakuten.co.jp/services/api/BooksGame/Search/20170404'
 
       attribute :title, :titleKana, :hardware, :jan, :makerCode,
                 :itemCaption,

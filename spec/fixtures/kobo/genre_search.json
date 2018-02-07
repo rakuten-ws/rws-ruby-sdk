@@ -1,0 +1,105 @@
+{
+  "current": {
+    "koboGenreId": "101",
+    "koboGenreName": "電子書籍",
+    "genreLevel": 1
+  },
+  "children": [
+    {
+      "koboGenreId": "101901",
+      "koboGenreName": "小説・エッセイ",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101902",
+      "koboGenreName": "ミステリー・サスペンス",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101903",
+      "koboGenreName": "ライトノベル",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101904",
+      "koboGenreName": "漫画（コミック）",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101905",
+      "koboGenreName": "ビジネス・経済・就職",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101906",
+      "koboGenreName": "語学・学習参考書・資格",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101907",
+      "koboGenreName": "人文・思想・社会",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101908",
+      "koboGenreName": "科学・医学・技術",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101909",
+      "koboGenreName": "美容・暮らし・健康・料理",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101910",
+      "koboGenreName": "ホビー・スポーツ・美術",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101911",
+      "koboGenreName": "旅行・留学・アウトドア",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101912",
+      "koboGenreName": "PC・システム開発",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101913",
+      "koboGenreName": "エンターテインメント",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101914",
+      "koboGenreName": "ノンフィクション",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101915",
+      "koboGenreName": "写真集",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101916",
+      "koboGenreName": "絵本・児童書",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101940",
+      "koboGenreName": "ボーイズラブ（BL）・ティーンズラブ(TL)",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101950",
+      "koboGenreName": "雑誌",
+      "genreLevel": 2
+    },
+    {
+      "koboGenreId": "101970",
+      "koboGenreName": "洋書",
+      "genreLevel": 2
+    }
+  ],
+  "parents": []
+}

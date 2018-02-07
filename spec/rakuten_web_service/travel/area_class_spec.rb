@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'spec_helper'
 require 'rakuten_web_service'
 
@@ -9,18 +7,19 @@ describe RakutenWebService::Travel::AreaClass do
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
     {
-      :affiliateId => affiliate_id,
-      :applicationId => application_id
+      affiliateId: affiliate_id,
+      applicationId: application_id,
+      formatVersion: 2
     }
   end
   let(:response) { JSON.parse(fixture('travel/area_class.json')) }
   let!(:expected_request) do
-    stub_request(:get, endpoint).
-     with(:query => expected_query).to_return(:body => response.to_json)
+    stub_request(:get, endpoint)
+      .with(query: expected_query).to_return(body: response.to_json)
   end
 
   before do
-    RakutenWebService.configuration do |c|
+    RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
     end

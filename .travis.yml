@@ -1,4 +1,48 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.2.9
+  - 2.3.6
+  - 2.4.3
+  - 2.5.0
+  - ruby-head
+
+env:
+  - INTEGRATION=yes
+  - INTEGRATION=no
+
+group: travis_lts
+
+cache: bundler
+
+before_install:
+  - gem install bundler
+
+bundler_args:  --without vscode
+
+script:
+  - bundle exec rake
+  - bundle exec codeclimate-test-reporter
+
+matrix:
+  allow_failures:
+  - rvm: ruby-head
+  exclude:
+  - rvm: 2.2.9
+    env: INTEGRATION=yes
+  - rvm: 2.3.6
+    env: INTEGRATION=yes
+  - rvm: 2.4.3
+    env: INTEGRATION=yes
+  - rvm: ruby-head
+    env: INTEGRATION=yes
+
+addons:
+  code_climate:
+    repo_token:
+      secure: Z23O936LoCDGJ/OyYsLzxTUI+CMWyrfeN1PtQdCNMdF4vxwaCsAHr3ulTdudGhKMrVZGENSEK6fq0Xal3o3oPaH9aGM9sUQ/ibRM+J94Lx6Owu4okTsIHoEy4vFeW+A/62aiwxPcoi7PFrvC8FOfaZg+b+vvYAQcitVe6qwBHiE=
+
+notifications:
+  email: false
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/059b85fcc75550b7bc39

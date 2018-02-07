@@ -1,3 +1,3 @@
 module RakutenWebService
-  VERSION = "0.2.4"
+  VERSION = '1.9.0'.freeze
 end

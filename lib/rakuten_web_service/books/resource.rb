@@ -5,7 +5,7 @@ module RakutenWebService
   module Books
     class Resource < RakutenWebService::Resource
       set_parser do |response|
-        response['Items'].map { |item| self.new(item['Item']) }
+        response['Items'].map { |item| self.new(item) }
       end
 
       def self.find_resource_by_genre_id(genre_id)
@@ -18,6 +18,10 @@ module RakutenWebService
         when /^006/ then RWS::Books::Game
         when /^007/ then RWS::Books::Magazine
         end
+      end
+
+      def self.genre_class
+        RakutenWebService::Books::Genre
       end
 
       def genre

@@ -8,9 +8,9 @@ module RakutenWebService
     class << self
       def attribute(*attributes)
         attributes.each do |attribute|
-          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |matched|
-            "#{$1}_#{$2.downcase}"
-          end
+          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |_|
+            "#{$1}_#{$2}"
+          end.downcase
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
           instance_eval do
             define_method method_name do
@@ -31,6 +31,14 @@ module RakutenWebService
         SearchResult.new(options, self)
       end
 
+      def all(options, &block)
+        if block
+          search(options).all(&block)
+        else
+          search(options).all
+        end
+      end
+
       def resource_name
         @resource_name ||= self.name.split('::').last.downcase
       end
@@ -40,7 +48,7 @@ module RakutenWebService
       end
 
       def endpoint(url=nil)
-        @endpoint = url || @endpoint 
+        @endpoint = url || @endpoint
       end
 
       def client
@@ -55,7 +63,7 @@ module RakutenWebService
     end
 
     def initialize(params)
-      @params = params.dup
+      @params = {}
       params.each { |k, v| @params[k.to_s] = v }
     end
 
@@ -67,5 +75,22 @@ module RakutenWebService
     def get_attribute(name)
       @params[name.to_s]
     end
+
+    def attributes
+      params.keys
+    end
+
+    def ==(genre)
+      raise ArgumentError unless genre.is_a?(RakutenWebService::Resource)
+
+      self.params.keys.all? do |k|
+        @params[k] == genre.params[k]
+      end
+    end
+
+    protected
+      def params
+        @params
+      end
   end
 end

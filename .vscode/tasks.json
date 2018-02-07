@@ -1,0 +1,70 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "${workspaceRoot}/bin/rake",
+    "isShellCommand": true,
+    "tasks": [
+        {
+            "taskName": "build",
+            "isBuildCommand": true
+        },
+        {
+            "taskName": "release",
+            "args": [
+                "--trace"
+            ]
+        },
+        {
+            "taskName": "spec",
+            "args": [],
+            "showOutput": "always",
+            "echoCommand": true,
+            "isTestCommand": true,
+            "problemMatcher": {
+                "owner": "ruby",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^rspec\\s+([\\./\\w]+):(\\d+)\\s+#\\s+(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "taskName": "Nearest Spec",
+            "suppressTaskName": true,
+            "command": "${workspaceRoot}/bin/rspec",
+            "args": [
+                "${file}:${lineNumber}"
+            ]
+        },
+        {
+            "taskName": "Current Spec",
+            "suppressTaskName": true,
+            "command": "${workspaceRoot}/bin/rspec",
+            "args": [
+                "${file}"
+            ],
+            "problemMatcher": {
+                "owner": "ruby",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^rspec\\s+([\\./\\w]+):(\\d+)\\s+#\\s+(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "taskName": "bunlde install",
+            "suppressTaskName": true,
+            "command": "bundle",
+            "args": [
+                "install"
+            ]
+        }
+    ]
+}

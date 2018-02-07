@@ -4,10 +4,10 @@ require 'rakuten_web_service/ichiba/item'
 module RakutenWebService
   module Ichiba
     class Shop < Resource
-      attribute :shopName, :shopCode, :shopUrl
+      attribute :shopName, :shopCode, :shopUrl, :shopAffiliateUrl
 
       def items(options={})
-        options = options.merge(:shop_code => self.code)
+        options = options.merge(shop_code: self.code)
         RakutenWebService::Ichiba::Item.search(options)
       end
     end
