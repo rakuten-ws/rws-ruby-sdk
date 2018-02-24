@@ -6,7 +6,7 @@ module RakutenWebService
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20170623'
 
       set_parser do |response|
-        response['Items'].map { |item| self.new(item) }
+        response['Items'].map { |item| new(item) }
       end
 
       attribute :golfCourseId, :golfCourseName, :golfCourseAbbr, :golfCourseNameKana, :golfCourseCaption,
@@ -14,7 +14,7 @@ module RakutenWebService
                 :golfCourseImageUrl, :evaluation
 
       def plan_info
-        get_attribute('planInfo').map {|plan| PlanInfo.new(plan['plan'])}
+        get_attribute('planInfo').map { |plan| PlanInfo.new(plan['plan']) }
       end
 
       class PlanInfo < Resource

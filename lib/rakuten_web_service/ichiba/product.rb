@@ -27,7 +27,7 @@ module RakutenWebService
         :ProductDetails
 
       def genre
-        RakutenWebService::Ichiba::Genre.new(self.genre_id)
+        RakutenWebService::Ichiba::Genre.new(genre_id)
       end
     end
   end

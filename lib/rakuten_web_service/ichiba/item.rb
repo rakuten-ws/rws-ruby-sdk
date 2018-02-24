@@ -35,16 +35,16 @@ module RakutenWebService
                 :genreId
 
       def genre
-        Genre.new(self.genre_id)
+        Genre.new(genre_id)
       end
 
       def shop
-        Shop.new({
-          'shopName' => self.shop_name,
-          'shopCode' => self.shop_code,
-          'shopUrl' => self.shop_url,
-          'shopAffiliateUrl' => self.shop_affiliate_url
-        })
+        Shop.new(
+          'shopName' => shop_name,
+          'shopCode' => shop_code,
+          'shopUrl' => shop_url,
+          'shopAffiliateUrl' => shop_affiliate_url
+        )
       end
     end
   end

@@ -19,8 +19,8 @@ module RakutenWebService
 
     def self.ranking(category_id = nil)
       params = {}
-      params.merge!(category_id: category_id) unless category_id.nil?
-      self.search(params)
+      params = params.merge(category_id: category_id) unless category_id.nil?
+      search(params)
     end
 
     class << self
