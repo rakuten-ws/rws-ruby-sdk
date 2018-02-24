@@ -39,12 +39,12 @@ module RakutenWebService
       end
 
       def shop
-        Shop.new({
+        Shop.new(
           'shopName' => shop_name,
           'shopCode' => shop_code,
           'shopUrl' => shop_url,
           'shopAffiliateUrl' => shop_affiliate_url
-        })
+        )
       end
     end
   end
