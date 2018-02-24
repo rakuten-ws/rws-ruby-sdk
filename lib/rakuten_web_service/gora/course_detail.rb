@@ -5,14 +5,14 @@ module RakutenWebService
     class CourseDetail < Resource
       class << self
         def find(golf_course_id)
-          search({golfCourseId: golf_course_id}).first
+          search(golfCourseId: golf_course_id).first
         end
       end
 
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623'
 
       set_parser do |response|
-        [self.new(response['Item'])]
+        [new(response['Item'])]
       end
 
       attribute :carrier, :golfCourseId, :golfCourseName, :golfCourseAbbr, :golfCourseNameKana, :golfCourseCaption,
@@ -25,11 +25,11 @@ module RakutenWebService
                 :meal, :course, :costperformance, :distance, :fairway, :reserveCalUrl, :voiceUrl, :layoutUrl, :routeMapUrl
 
       def ratings
-        get_attribute('ratings').map {|rating| Rating.new(rating)}
+        get_attribute('ratings').map { |rating| Rating.new(rating) }
       end
 
       def new_plans
-        get_attribute('newPlans').map {|plan| Plan.new(plan)}
+        get_attribute('newPlans').map { |plan| Plan.new(plan) }
       end
 
       class Rating < Resource

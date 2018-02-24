@@ -13,7 +13,7 @@ module RakutenWebService
     end
 
     def default_parameters
-      raise "Application ID is not defined" unless has_required_options?
+      raise 'Application ID is not defined' unless has_required_options?
       { application_id: application_id, affiliate_id: affiliate_id, format_version: '2' }
     end
 
@@ -22,10 +22,11 @@ module RakutenWebService
     end
 
     def debug_mode?
-      ENV.has_key?('RWS_SDK_DEBUG') || debug
+      ENV.key?('RWS_SDK_DEBUG') || debug
     end
 
     private
+
     def convert_snake_key_to_camel_key(params)
       params.inject({}) do |h, (k, v)|
         k = k.to_s.gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
@@ -38,17 +39,15 @@ module RakutenWebService
   def configure(&block)
     @configuration ||= Configuration.new
     if block
-      if block.arity != 1
-        raise ArgumentError, 'Block is required to have one argument' 
-      end
-      block.call(@configuration)
+      raise ArgumentError, 'Block is required to have one argument' if block.arity != 1
+      yield @configuration
     end
-    return @configuration
+    @configuration
   end
 
   def configuration(&block)
-    $stderr.puts "Warning: RakutenWebService.configuration is deprecated. Use RakutenWebService.configure." if block_given?
-    self.configure(&block)
+    warn 'Warning: RakutenWebService.configuration is deprecated. Use RakutenWebService.configure.' if block_given?
+    configure(&block)
   end
 
   module_function :configure, :configuration
