@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RakutenWebService
   class Configuration
     attr_accessor :application_id, :affiliate_id, :max_retries, :debug

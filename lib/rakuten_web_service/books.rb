@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/version'
 require 'rakuten_web_service/configuration'
 

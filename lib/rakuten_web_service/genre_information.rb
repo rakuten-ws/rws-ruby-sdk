@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RakutenWebService
   class GenreInformation
     attr_reader :parent, :current, :children

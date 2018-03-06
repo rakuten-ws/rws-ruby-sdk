@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/all_proxy'
 require 'rakuten_web_service/genre_information'
 
