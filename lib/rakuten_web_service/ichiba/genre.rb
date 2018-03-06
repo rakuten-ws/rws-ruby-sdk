@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/genre'
 require 'rakuten_web_service/ichiba/ranking'
 require 'rakuten_web_service/ichiba/product'

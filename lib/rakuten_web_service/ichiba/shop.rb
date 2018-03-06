@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/resource'
 require 'rakuten_web_service/ichiba/item'
 
