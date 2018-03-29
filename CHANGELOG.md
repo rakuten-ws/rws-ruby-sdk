@@ -1,3 +1,10 @@
+# v1.9.1 (2018/03/30)
+
+## Improvements
+
+* Use the magic comment to frozen all string literals.[#93](https://github.com/rakuten-ws/rws-ruby-sdk/pull/93)
+* Drop ruby 2.2 from supported ruby versions since it goes to the EOL. [#95](https://github.com/rakuten-ws/rws-ruby-sdk/pull/95)
+
 # v1.9.0 (2018/01/04)
 
 ## Enhancements
