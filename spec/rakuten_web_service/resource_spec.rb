@@ -9,6 +9,36 @@ describe RakutenWebService::Resource do
     end
   end
 
+  describe '.subclasses' do
+    before do
+      resource_class
+    end
+
+    subject { RakutenWebService::Resource.subclasses }
+
+    specify 'returns all sub classes of Resource' do
+      expect(subject).to include(resource_class)
+    end
+
+    context 'When some resources are inherited from other resource' do
+      let(:other_resource_class) do
+        Class.new(resource_class) do
+          set_resource_name 'NestedResource'
+
+          attribute :name, :someOtherAttribute
+        end
+      end
+
+      before do
+        other_resource_class
+      end
+
+      specify 'includes nested resources' do
+        expect(subject).to include(resource_class, other_resource_class)
+      end
+    end
+  end
+
   describe '#attributes' do
     let(:params) do
       {

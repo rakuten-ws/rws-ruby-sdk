@@ -8,6 +8,15 @@ module RakutenWebService
     attr_reader :params
 
     class << self
+      def inherited(subclass)
+        @@subclasses ||= []
+        @@subclasses.push(subclass)
+      end
+
+      def subclasses
+        @@subclasses || []
+      end
+
       def attribute(*attributes)
         attributes.each do |attribute|
           method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/, '\1_\2').downcase
