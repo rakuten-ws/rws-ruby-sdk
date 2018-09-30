@@ -9,12 +9,12 @@ module RakutenWebService
 
     class << self
       def inherited(subclass)
-        @subclasses ||= []
-        @subclasses.push(subclass)
+        @@subclasses ||= []
+        @@subclasses.push(subclass)
       end
 
       def subclasses
-        @subclasses || []
+        @@subclasses || []
       end
 
       def attribute(*attributes)

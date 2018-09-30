@@ -5,6 +5,8 @@ require 'rakuten_web_service/resource'
 module RakutenWebService
   class BaseGenre < RakutenWebService::Resource
     def self.inherited(klass)
+      super
+
       klass.set_parser do |response|
         current = response['current']
         %w[children parents brothers].each do |type|
