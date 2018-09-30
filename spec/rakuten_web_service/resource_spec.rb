@@ -9,6 +9,18 @@ describe RakutenWebService::Resource do
     end
   end
 
+  describe '.subclasses' do
+    before do
+      resource_class
+    end
+
+    subject { RakutenWebService::Resource.subclasses }
+
+    specify 'returns all sub classes of Resource' do
+      expect(subject).to include(resource_class)
+    end
+  end
+
   describe '#attributes' do
     let(:params) do
       {
