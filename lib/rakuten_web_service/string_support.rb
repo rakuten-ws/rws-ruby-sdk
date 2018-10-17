@@ -8,7 +8,10 @@ module RakutenWebService
       end
 
       def to_camel
-        gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
+        gsub(/([a-z]{1})_([a-z]{1})/) do |matched|
+          matched = matched.split('_')
+          matched[0] + matched[1].capitalize
+        end
       end
     end
   end
