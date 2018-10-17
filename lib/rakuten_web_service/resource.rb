@@ -3,9 +3,13 @@
 require 'rakuten_web_service/client'
 require 'rakuten_web_service/search_result'
 
+require 'rakuten_web_service/string_support'
+
 module RakutenWebService
   class Resource
     attr_reader :params
+
+    using RakutenWebService::StringSupport
 
     class << self
       def inherited(subclass)
@@ -19,7 +23,7 @@ module RakutenWebService
 
       def attribute(*attributes)
         attributes.each do |attribute|
-          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/, '\1_\2').downcase
+          method_name = attribute.to_s.to_snake
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/, '\1')
           instance_eval do
             define_method method_name do
@@ -76,8 +80,8 @@ module RakutenWebService
     end
 
     def [](key)
-      camel_key = key.split('_').map(&:capitalize).join
-      camel_key[0] = camel_key[0].downcase
+      camel_key = key.to_camel
+      # camel_key[0] = camel_key[0].downcase
       @params[key] || @params[camel_key]
     end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rakuten_web_service/string_support'
+
 module RakutenWebService
   class Configuration
     attr_accessor :application_id, :affiliate_id, :max_retries, :debug
@@ -29,9 +31,11 @@ module RakutenWebService
 
     private
 
+    using RakutenWebService::StringSupport
+
     def convert_snake_key_to_camel_key(params)
       params.inject({}) do |h, (k, v)|
-        k = k.to_s.gsub(/([a-z]{1})_([a-z]{1})/) { "#{$1}#{$2.capitalize}" }
+        k = k.to_s.to_camel
         h[k] = v
         h
       end

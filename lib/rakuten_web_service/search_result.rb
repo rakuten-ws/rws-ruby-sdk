@@ -2,10 +2,13 @@
 
 require 'rakuten_web_service/all_proxy'
 require 'rakuten_web_service/genre_information'
+require 'rakuten_web_service/string_support'
 
 module RakutenWebService
   class SearchResult
     include Enumerable
+
+    using RakutenWebService::StringSupport
 
     def initialize(params, resource_class)
       @params = params.dup
@@ -38,7 +41,7 @@ module RakutenWebService
       new_params = params.dup
       if options.is_a? Hash
         key, sort_order = *options.to_a.last
-        key = camelize(key.to_s)
+        key = key.to_s.to_camel
         new_params[:sort] = case sort_order.to_s.downcase
                             when 'desc'
                               "-#{key}"
@@ -95,13 +98,6 @@ module RakutenWebService
       max_retries -= 1
       sleep 1
       retry
-    end
-
-    def camelize(str)
-      str = str.downcase
-      str = str.split('_').map(&:capitalize).join
-      str[0] = str[0].downcase
-      str
     end
   end
 end
