@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.7.0'
   spec.add_development_dependency 'tapp', '~> 1.5.1'
   spec.add_development_dependency 'terminal-table', '~> 1.8.0'
-  spec.add_development_dependency 'webmock', '~> 3.1.1'
+  spec.add_development_dependency 'webmock', '~> 3.5.0'
 end
