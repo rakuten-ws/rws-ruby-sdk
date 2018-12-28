@@ -1,3 +1,9 @@
+# v1.9.2 (2018/12/28)
+
+## Enhancements
+
+* Ruby 2.6 has been released :tada: this version joined the supported versions! [#100](https://github.com/rakuten-ws/rws-ruby-sdk/pull/100)
+
 # v1.9.1 (2018/03/30)
 
 ## Improvements
