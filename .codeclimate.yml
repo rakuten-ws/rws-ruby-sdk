@@ -12,5 +12,8 @@ ratings:
     - lib/**/*.rb
 
 exclude_paths:
+  - bin/*
   - spec/**/*
   - examples/*.rb
+  - *.md
+  - *.json
