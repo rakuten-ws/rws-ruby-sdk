@@ -11,9 +11,9 @@ ratings:
   paths:
     - lib/**/*.rb
 
-exclude_paths:
+exclude_patterns:
   - bin/*
   - spec/**/*
   - examples/*.rb
-  - ./*.md
-  - ./*.json
+  - "*.md"
+  - "*.json"
