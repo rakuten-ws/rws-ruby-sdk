@@ -15,5 +15,3 @@ exclude_patterns:
   - bin/*
   - spec/**/*
   - examples/*.rb
-  - "*.md"
-  - "*.json"
