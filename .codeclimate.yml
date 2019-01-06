@@ -15,5 +15,5 @@ exclude_paths:
   - bin/*
   - spec/**/*
   - examples/*.rb
-  - *.md
-  - *.json
+  - ./*.md
+  - ./*.json
