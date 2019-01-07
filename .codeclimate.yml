@@ -1,4 +1,4 @@
-version: 2
+version: "2"
 plugins:
   rubocop:
     enabled: true
@@ -8,6 +8,6 @@ plugins:
       languages:
         - ruby
 exclude_patterns:
-  - bin/*
-  - spec/**/*
-  - examples/*.rb
+  - "bin/"
+  - "spec/"
+  - "examples/"
