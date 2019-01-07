@@ -1,4 +1,5 @@
-engines:
+version: 2
+plugins:
   rubocop:
     enabled: true
   duplication:
@@ -7,11 +8,14 @@ engines:
       languages:
         - ruby
 
-ratings:
-  paths:
-    - lib/**/*.rb
-
 exclude_patterns:
   - bin/*
   - spec/**/*
   - examples/*.rb
+  - README.md
+  - README.ja.md
+  - CHANGELOG.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - Gemfile
+  - Gemfile.lock
