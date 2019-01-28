@@ -15,13 +15,18 @@ group: travis_lts
 cache: bundler
 
 before_install:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
   - gem install bundler
 
 bundler_args:  --without vscode
 
 script:
   - bundle exec rake
-  - bundle exec codeclimate-test-reporter
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 matrix:
   allow_failures:
@@ -33,11 +38,6 @@ matrix:
     env: INTEGRATION=yes
   - rvm: ruby-head
     env: INTEGRATION=yes
-
-addons:
-  code_climate:
-    repo_token:
-      secure: Z23O936LoCDGJ/OyYsLzxTUI+CMWyrfeN1PtQdCNMdF4vxwaCsAHr3ulTdudGhKMrVZGENSEK6fq0Xal3o3oPaH9aGM9sUQ/ibRM+J94Lx6Owu4okTsIHoEy4vFeW+A/62aiwxPcoi7PFrvC8FOfaZg+b+vvYAQcitVe6qwBHiE=
 
 notifications:
   email: false
