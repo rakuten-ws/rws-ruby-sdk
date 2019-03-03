@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Travel::Hotel do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20131024' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do

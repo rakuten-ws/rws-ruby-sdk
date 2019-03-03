@@ -20,7 +20,7 @@ module RakutenWebService
           def inherited(klass)
             class_name = klass.to_s.split('::').last
             area_level = class_name.to_s[/\A(\w*)Class\Z/, 1].downcase
-            class << klass 
+            class << klass
               attr_reader :area_level
             end
             klass.instance_variable_set(:@area_level, area_level)
@@ -50,17 +50,18 @@ module RakutenWebService
 
         def initialize(data, parent=nil)
           @parent = parent
-          @params, @children = *(case class_data = data["#{self.class.area_level}Class"]
+          class_data = data
+          @params, @children = *(case class_data
                               when Array
                                 class_data.first(2)
                               when Hash
                                 [class_data, nil]
                               end)
 
-          if not(children.nil?) and not(children.empty?)
+          if !(children.nil?) and !(children.empty?)
             children_class = children.keys.map { |k| k[/\A(\w*)Classes\Z/, 1] }.first rescue data.tapp
             @params["#{children_class}Classes"] = children["#{children_class}Classes"].map do |child_data|
-              Base.area_classes[children_class].new(child_data, self)
+              Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
             end
             @children = @params["#{children_class}Classes"]
           else
