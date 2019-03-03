@@ -1,27 +1,39 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/client'
 require 'rakuten_web_service/search_result'
 
+require 'rakuten_web_service/string_support'
+
 module RakutenWebService
   class Resource
-    include StringHelper
+    attr_reader :params
+
+    using RakutenWebService::StringSupport
 
     class << self
+      def inherited(subclass)
+        @@subclasses ||= []
+        @@subclasses.push(subclass)
+      end
+
+      def subclasses
+        @@subclasses || []
+      end
+
       def attribute(*attributes)
         attributes.each do |attribute|
-          method_name = attribute.to_s.gsub(/([a-z]+)([A-Z]{1})/) do |_|
-            "#{$1}_#{$2}"
-          end.downcase
-          method_name = method_name.sub(/^#{resource_name}_(\w+)$/) { $1 }
+          method_name = attribute.to_s.to_snake
+          method_name = method_name.sub(/^#{resource_name}_(\w+)$/, '\1')
           instance_eval do
             define_method method_name do
               get_attribute(attribute.to_s)
             end
           end
-          if method_name =~ /(.+)_flag$/
-            instance_eval do
-              define_method "#{$1}?" do
-                get_attribute(attribute.to_s) == 1
-              end
+          next if method_name !~ /(.+)_flag$/
+          instance_eval do
+            define_method "#{$1}?" do
+              get_attribute(attribute.to_s) == 1
             end
           end
         end
@@ -40,14 +52,14 @@ module RakutenWebService
       end
 
       def resource_name
-        @resource_name ||= self.name.split('::').last.downcase
+        @resource_name ||= name.split('::').last.downcase
       end
 
       def set_resource_name(name)
         @resource_name = name
       end
 
-      def endpoint(url=nil)
+      def endpoint(url = nil)
         @endpoint = url || @endpoint
       end
 
@@ -68,7 +80,8 @@ module RakutenWebService
     end
 
     def [](key)
-      camel_key = to_camelcase(key)
+      camel_key = key.to_camel
+      # camel_key[0] = camel_key[0].downcase
       @params[key] || @params[camel_key]
     end
 
@@ -80,17 +93,12 @@ module RakutenWebService
       params.keys
     end
 
-    def ==(genre)
-      raise ArgumentError unless genre.is_a?(RakutenWebService::Resource)
+    def ==(other)
+      raise ArgumentError unless other.is_a?(RakutenWebService::Resource)
 
-      self.params.keys.all? do |k|
-        @params[k] == genre.params[k]
+      params.keys.all? do |k|
+        @params[k] == other.params[k]
       end
     end
-
-    protected
-      def params
-        @params
-      end
   end
 end

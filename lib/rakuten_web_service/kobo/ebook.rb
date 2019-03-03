@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/resource'
 
 module RakutenWebService
@@ -15,7 +17,7 @@ module RakutenWebService
         :koboGenreId
 
       set_parser do |response|
-        response['Items'].map { |i| self.new(i) }
+        response['Items'].map { |i| new(i) }
       end
 
       def self.genre_class
@@ -23,7 +25,7 @@ module RakutenWebService
       end
 
       def genre
-        Kobo::Genre.new(self.kobo_genre_id)
+        Kobo::Genre.new(kobo_genre_id)
       end
     end
   end

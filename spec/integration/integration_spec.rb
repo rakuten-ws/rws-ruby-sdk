@@ -51,7 +51,7 @@ describe 'Call all APIs', type: 'integration' do
       expect { RWS::Recipe.categories('large') }.not_to raise_error
     end
     it do
-      expect { RWS::Recipe.categories('large').first.ranking.first }
+      expect { RWS::Recipe.categories('large').first.ranking.first }.not_to raise_error
     end
   end
 

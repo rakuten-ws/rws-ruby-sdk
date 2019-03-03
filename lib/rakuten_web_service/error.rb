@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RakutenWebService
   class Error < StandardError
     def self.register(status_code, error)

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'rakuten_web_service/string_support'
+
 module RakutenWebService
   class Response
     include Enumerable
@@ -17,8 +21,10 @@ module RakutenWebService
       end
     end
 
+    using RakutenWebService::StringSupport
+
     %w[count hits page first last carrier pageCount].each do |name|
-      method_name = name.gsub(/([a-z])([A-Z]{1})/) { "#{$1}_#{$2.downcase}" }
+      method_name = name.to_snake
       define_method method_name do
         self[name]
       end

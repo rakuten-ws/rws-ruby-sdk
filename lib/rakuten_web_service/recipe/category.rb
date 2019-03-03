@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RakutenWebService
   class Recipe < Resource
 
@@ -35,7 +37,7 @@ module RakutenWebService
 
       def parent_category
         return nil if parent_category_type.nil?
-        Recipe.categories(parent_category_type).find { |c| c.id.to_i === parent_category_id.to_i }
+        Recipe.categories(parent_category_type).find { |c| c.id.to_i == parent_category_id.to_i }
       end
 
       def absolute_category_id
@@ -47,14 +49,13 @@ module RakutenWebService
       end
 
       private
-        def parent_category_type
-          case type
-          when 'small' then 'medium'
-          when 'medium' then 'large'
-          else
-            nil
-          end
+
+      def parent_category_type
+        case type
+        when 'small' then 'medium'
+        when 'medium' then 'large'
         end
+      end
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/genre'
 
 module RakutenWebService
@@ -11,8 +13,8 @@ module RakutenWebService
 
       attribute :koboGenreId, :koboGenreName, :genreLevel, :itemCount
 
-      def search(options={})
-        options = options.merge(self.class.genre_id_key => self.id)
+      def search(options = {})
+        options = options.merge(self.class.genre_id_key => id)
         RWS::Kobo::Ebook.search(options)
       end
     end

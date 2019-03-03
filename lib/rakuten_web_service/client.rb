@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'uri'
 require 'net/http'
 require 'cgi'
@@ -21,12 +23,12 @@ module RakutenWebService
 
       if Net::HTTPSuccess === response
         return RakutenWebService::Response.new(@resource_class, body)
-      else
-        raise RakutenWebService::Error.repository[response.code.to_i], body['error_description']
       end
+      raise RakutenWebService::Error.repository[response.code.to_i], body['error_description']
     end
 
     private
+
     def request(path, params)
       http = Net::HTTP.new(@url.host, @url.port)
       http.use_ssl = true

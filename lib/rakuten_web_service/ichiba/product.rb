@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/resource'
 require 'rakuten_web_service/ichiba/genre'
 
@@ -27,7 +29,7 @@ module RakutenWebService
         :ProductDetails
 
       def genre
-        RakutenWebService::Ichiba::Genre.new(self.genre_id)
+        RakutenWebService::Ichiba::Genre.new(genre_id)
       end
     end
   end

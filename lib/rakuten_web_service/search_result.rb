@@ -1,11 +1,14 @@
-require 'rakuten_web_service/string_helper'
+# frozen_string_literal: true
+
 require 'rakuten_web_service/all_proxy'
 require 'rakuten_web_service/genre_information'
+require 'rakuten_web_service/string_support'
 
 module RakutenWebService
   class SearchResult
     include Enumerable
-    include StringHelper
+
+    using RakutenWebService::StringSupport
 
     def initialize(params, resource_class)
       @params = params.dup
@@ -26,11 +29,8 @@ module RakutenWebService
 
     def all(&block)
       proxy = AllProxy.new(self)
-      if block
-        proxy.each(&block)
-      else
-        return proxy
-      end
+      proxy.each(&block) if block
+      proxy
     end
 
     def params
@@ -44,8 +44,8 @@ module RakutenWebService
     def order(options)
       new_params = params.dup
       if options.is_a? Hash
-        key, sort_order = *(options.to_a.last)
-        key = to_camelcase(key.to_s)
+        key, sort_order = *options.to_a.last
+        key = key.to_s.to_camel
         new_params[:sort] = case sort_order.to_s.downcase
                             when 'desc'
                               "-#{key}"
@@ -94,18 +94,14 @@ module RakutenWebService
     end
 
     private
-    def ensure_retries(max_retries=RakutenWebService.configuration.max_retries)
-      begin
-        yield
-      rescue RWS::TooManyRequests => e
-        if max_retries > 0
-          max_retries -= 1
-          sleep 1
-          retry
-        else
-          raise e
-        end
-      end
+
+    def ensure_retries(max_retries = RakutenWebService.configuration.max_retries)
+      yield
+    rescue RWS::TooManyRequests => e
+      raise e if max_retries <= 0
+      max_retries -= 1
+      sleep 1
+      retry
     end
   end
 end

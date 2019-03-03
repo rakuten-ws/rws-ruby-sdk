@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rakuten_web_service/genre'
 
 module RakutenWebService
@@ -11,9 +13,9 @@ module RakutenWebService
 
       root_id '000'
 
-      def search(params={})
-        params = params.merge(booksGenreId: self.id)
-        resource = Books::Resource.find_resource_by_genre_id(self.id)
+      def search(params = {})
+        params = params.merge(booksGenreId: id)
+        resource = Books::Resource.find_resource_by_genre_id(id)
         resource.search(params)
       end
     end
