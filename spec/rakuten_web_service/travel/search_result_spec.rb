@@ -40,4 +40,26 @@ describe RakutenWebService::Travel::SearchResult do
       end
     end
   end
+
+  describe 'next_page' do
+    let(:response) do
+      double().tap do |d|
+        allow(d).to receive('[]').with('pagingInfo').and_return(pagingInfo)
+      end
+    end
+
+    before do
+      allow(search_result).to receive(:response).and_return(response)
+    end
+
+    let(:pagingInfo) do
+      { 'page' => 2, 'pageCount' => 3 }
+    end
+
+    it 'shold call search to fetch next page results.' do
+      expect(search_result).to receive(:search).with(page: 3)
+
+      search_result.next_page
+    end
+  end
 end

@@ -20,6 +20,10 @@ module RakutenWebService
         (page < page_count)
       end
 
+      def next_page
+        search(page: page + 1)
+      end
+
       private
 
       def paging_info
