@@ -17,7 +17,7 @@ module RakutenWebService
     end
 
     def search(params)
-      SearchResult.new(self.params.dup.merge!(params), @resource_class)
+      self.class.new(self.params.dup.merge!(params), @resource_class)
     end
     alias with search
 

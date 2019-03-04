@@ -10,7 +10,7 @@ describe RakutenWebService::Travel::SearchResult do
     RakutenWebService::Travel::SearchResult.new({}, resource_class)
   end
 
-  describe 'has_next_page?' do
+  describe '#has_next_page?' do
     let(:response) do
       double().tap do |d|
         allow(d).to receive('[]').with('pagingInfo').and_return(pagingInfo)
@@ -41,7 +41,7 @@ describe RakutenWebService::Travel::SearchResult do
     end
   end
 
-  describe 'next_page' do
+  describe '#next_page' do
     let(:response) do
       double().tap do |d|
         allow(d).to receive('[]').with('pagingInfo').and_return(pagingInfo)
@@ -60,6 +60,12 @@ describe RakutenWebService::Travel::SearchResult do
       expect(search_result).to receive(:search).with(page: 3)
 
       search_result.next_page
+    end
+  end
+
+  describe '#search' do
+    it 'should return trave\'s search result' do
+      expect(search_result.search({})).to be_a(RakutenWebService::Travel::SearchResult)
     end
   end
 end
