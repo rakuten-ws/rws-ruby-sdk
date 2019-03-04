@@ -1,0 +1,31 @@
+require 'spec_helper'
+
+describe RakutenWebService::Travel::SearchResult do
+  let(:resource_class) do
+    Class.new(RakutenWebService::Resource) do
+      endpoint 'https://api.example.com/SearchDummyResource'
+    end
+  end
+  let(:search_result) do
+    RakutenWebService::Travel::SearchResult.new({}, resource_class)
+  end
+
+  describe 'has_next_page?' do
+    let(:response) do
+      r = double()
+      allow(r).to receive('[]').with('pagingInfo').and_return({
+        'page' => 1,
+        'pageCount' => 10
+      })
+      r
+    end
+
+    before do
+      allow(search_result).to receive(:response).and_return(response)
+    end
+
+    it 'should have next page' do
+      expect(search_result).to have_next_page
+    end
+  end
+end

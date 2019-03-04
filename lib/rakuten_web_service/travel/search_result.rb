@@ -12,9 +12,23 @@ module RakutenWebService
         @params.merge('page' => (paging_info['page'] + 1))
       end
 
+      using RakutenWebService::StringSupport
+
+      %w[page pageCount recordCount first last].each do |name|
+        method_name = name.to_snake
+        define_method method_name do
+          paging_info[name]
+        end
+      end
+
+      def has_next_page?
+        (page < page_count)
+      end
+
       private
+
       def paging_info
-        @response.body['pagingInfo']
+        response['pagingInfo']
       end
     end
   end
