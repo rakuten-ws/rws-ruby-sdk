@@ -9,7 +9,7 @@ module RakutenWebService
 
       using RakutenWebService::StringSupport
 
-      %w[page pageCount recordCount first last].each do |name|
+      %w[page pageCount recordCount].each do |name|
         method_name = name.to_snake
         define_method method_name do
           paging_info[name]
@@ -21,7 +21,7 @@ module RakutenWebService
       end
 
       def next_page
-        search(page: page + 1)
+        search(params_to_get_next_page)
       end
 
       private
