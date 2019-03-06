@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'rakuten_web_service/travel'
+require 'rakuten_web_service/travel/open_struct'
 
 describe RakutenWebService::Travel::OpenStruct do
   let(:object) { RakutenWebService::Travel::OpenStruct.new(params) }

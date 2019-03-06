@@ -1,4 +1,4 @@
-require 'rakuten_web_service/resource'
+require 'rakuten_web_service/travel/resource'
 
 module RakutenWebService
   module Travel
