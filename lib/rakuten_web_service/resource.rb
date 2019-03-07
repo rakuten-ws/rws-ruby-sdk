@@ -63,10 +63,6 @@ module RakutenWebService
         @endpoint = url || @endpoint
       end
 
-      def client
-        @client ||= RakutenWebService::Client.new(endpoint)
-      end
-
       def set_parser(&block)
         instance_eval do
           define_singleton_method :parse_response, block
