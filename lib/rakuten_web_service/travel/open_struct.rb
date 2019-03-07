@@ -5,10 +5,11 @@ module RakutenWebService
 
       def initialize(hash)
         @table = {}
-        hash.keys.each do |key|
-          v = hash[key].is_a?(Hash) ? self.class.new(hash[key]) : hash[key]
+        hash.each do |(key, val)|
+          val = self.class.new(val) if val.is_a?(Hash)
+          val = val.map { |v| self.class.new(v) } if val.is_a?(Array)
           name = key.to_sym
-          @table[name] = v
+          @table[name] = val
           define_singleton_method(name) { @table[name] }
           define_singleton_method(name.to_s.to_snake) { @table[name] }
         end

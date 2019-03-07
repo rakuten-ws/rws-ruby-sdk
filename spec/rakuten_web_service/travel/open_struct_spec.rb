@@ -34,4 +34,20 @@ describe RakutenWebService::Travel::OpenStruct do
       expect(object.address.city).to eql(:tokyo)
     end
   end
+
+  context 'Giving an array of hash' do
+    let(:params) do
+      {
+        array: [
+          { foo: 'bar' },
+          { hoge: 'fuga' }
+        ]
+      }
+    end
+
+    specify 'the array should be converted to OpenStruct' do
+      expect(object.array[0].foo).to eql('bar')
+      expect(object.array[1].hoge).to eql('fuga')
+    end
+  end
 end
