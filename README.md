@@ -25,6 +25,7 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
   * [Rakuten Kobo APIs](#rakuten-kobo-apis)
   * [Rakuten Recipe APIs](#rakuten-recipe-apis)
   * [Rakuten GORA APIs](#rakuten-gora-apis)
+  * [Rakuten Travel APIs](#rakuten-travel-apis)
 * [Contributing](#contributing)
 
 
@@ -53,8 +54,8 @@ Or install it yourself as:
 
 ### Prerequisite: Getting Application ID
 
-You need to get Application ID for your application to access to Rakuten Web Service APIs. 
-If you have not got it, register your application [here](https://webservice.rakuten.co.jp/app/create). 
+You need to get Application ID for your application to access to Rakuten Web Service APIs.
+If you have not got it, register your application [here](https://webservice.rakuten.co.jp/app/create).
 
 ### Configuration
 
@@ -70,8 +71,8 @@ At first, you have to specify your application's key. And you can tell the clien
     # (Optional) Affiliate ID for your Rakuten account.
     c.affiliate_id = 'YOUR_AFFILIATE_ID' # default: nil
 
-    # (Optional) # of retries to send requests when the client receives 
-    # When the number of requests in some period overcomes the limit, the endpoints will return 
+    # (Optional) # of retries to send requests when the client receives
+    # When the number of requests in some period overcomes the limit, the endpoints will return
     # too many requests error. Then the client tries to retry to send the same request after a
     # while.
     c.max_retries = 3 # default: 5
@@ -193,6 +194,11 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
 * [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
 * [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/api/goraplansearch/)
+
+### Rakuten Travel APIs
+
+* [Rakuten Travel Simple Hotel API](https://webservice.rakuten.co.jp/api/simplehotelsearch/)
+* [Rakuten Travel Get Area Class API](https://webservice.rakuten.co.jp/api/getareaclass/)
 
 ## Contributing
 
