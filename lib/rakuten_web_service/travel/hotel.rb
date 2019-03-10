@@ -13,11 +13,16 @@ module RakutenWebService
 
       def initialize(params)
         @params = {}
-        @params['hotelBasicInfo'] = params[0]['hotelBasicInfo']
-        @params['hotelRatingInfo'] = params[1]['hotelRatingInfo']
+        self.class.attribute_names.each_with_index do |key, i|
+          @params[key] = params[i][key] if params[i]
+        end
       end
 
-      attribute :hotelBasicInfo, :hotelRatingInfo
+      def self.attribute_names
+        %w(hotelBasicInfo hotelRatingInfo hotelDetailInfo hotelFacilitiesInfo hotelPolicyInfo hotelOtherInfo)
+      end
+
+      attribute *attribute_names
     end
   end
 end
