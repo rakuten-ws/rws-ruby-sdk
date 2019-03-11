@@ -8,7 +8,7 @@
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
 
-# Table of Contents
+## Table of Contents
 
 * [Prerequisite](#prerequisite)
 * [Installation](#installation)
@@ -28,7 +28,6 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
   * [Rakuten Travel APIs](#rakuten-travel-apis)
 * [Contributing](#contributing)
 
-
 ## Prerequisite
 
 * Ruby 2.2 or later
@@ -43,12 +42,11 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install rakuten_web_service
-
+    gem install rakuten_web_service
 
 ## Usage
 
@@ -88,7 +86,6 @@ Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIAT
 #### Environment Variables
 
 You can configure `application_id` and `affiliate_id` by defining environment variables `RWS_APPLICATION_ID` and `RWS_AFFILIATION_ID`.
-
 
 ### Search Ichiba Items
 
@@ -139,7 +136,6 @@ Genre class provides an interface to traverse sub genres.
   # Use genre id to fetch genre object
   RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
 ```
-
 
 ### Ichiba Item Ranking
 
