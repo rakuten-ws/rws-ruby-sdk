@@ -1,3 +1,9 @@
+# v1.10.0
+
+## Enhancements
+
+* Starts Support of two Travel APIs: SimpleHotelSearch and GetAreaClass. [#91](https://github.com/rakuten-ws/rws-ruby-sdk/pull/91)
+
 # v1.9.2 (2018/12/28)
 
 ## Enhancements
