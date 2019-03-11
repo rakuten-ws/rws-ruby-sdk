@@ -3,6 +3,24 @@ require 'rakuten_web_service/travel/resource'
 module RakutenWebService
   module Travel
     module AreaClass
+      def search(options={})
+        Base.search(options)
+      end
+
+      def [](class_code)
+        LargeClass[class_code] or
+          MiddleClass[class_code] or
+          SmallClass[class_code] or
+          DetailClass[class_code]
+      end
+      module_function :search, :[]
+    end
+  end
+end
+
+module RakutenWebService
+  module Travel
+    module AreaClass
       class Base < RakutenWebService::Travel::Resource
         endpoint 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
 
@@ -86,6 +104,12 @@ module RakutenWebService
           query = query.merge(parent.to_query) unless parent.nil?
           query
         end
+
+        def search(params={})
+          params = to_query.merge(params)
+
+          Hotel.search(params)
+        end
       end
 
       class LargeClass < Base
@@ -99,18 +123,6 @@ module RakutenWebService
 
       class DetailClass < Base
       end
-
-      def search(options={})
-        Base.search(options)
-      end
-
-      def [](class_code)
-        LargeClass[class_code] or
-          MiddleClass[class_code] or
-          SmallClass[class_code] or
-          DetailClass[class_code]
-      end
-      module_function :search, :[]
     end
   end
 end
