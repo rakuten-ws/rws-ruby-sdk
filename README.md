@@ -8,7 +8,7 @@
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
 
-# Table of Contents
+## Table of Contents
 
 * [Prerequisite](#prerequisite)
 * [Installation](#installation)
@@ -25,12 +25,12 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
   * [Rakuten Kobo APIs](#rakuten-kobo-apis)
   * [Rakuten Recipe APIs](#rakuten-recipe-apis)
   * [Rakuten GORA APIs](#rakuten-gora-apis)
+  * [Rakuten Travel APIs](#rakuten-travel-apis)
 * [Contributing](#contributing)
-
 
 ## Prerequisite
 
-* Ruby 2.2 or later
+* Ruby 2.3 or later
 
 ## Installation
 
@@ -42,19 +42,18 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install rakuten_web_service
-
+    gem install rakuten_web_service
 
 ## Usage
 
 ### Prerequisite: Getting Application ID
 
-You need to get Application ID for your application to access to Rakuten Web Service APIs. 
-If you have not got it, register your application [here](https://webservice.rakuten.co.jp/app/create). 
+You need to get Application ID for your application to access to Rakuten Web Service APIs.
+If you have not got it, register your application [here](https://webservice.rakuten.co.jp/app/create).
 
 ### Configuration
 
@@ -70,8 +69,8 @@ At first, you have to specify your application's key. And you can tell the clien
     # (Optional) Affiliate ID for your Rakuten account.
     c.affiliate_id = 'YOUR_AFFILIATE_ID' # default: nil
 
-    # (Optional) # of retries to send requests when the client receives 
-    # When the number of requests in some period overcomes the limit, the endpoints will return 
+    # (Optional) # of retries to send requests when the client receives
+    # When the number of requests in some period overcomes the limit, the endpoints will return
     # too many requests error. Then the client tries to retry to send the same request after a
     # while.
     c.max_retries = 3 # default: 5
@@ -87,7 +86,6 @@ Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIAT
 #### Environment Variables
 
 You can configure `application_id` and `affiliate_id` by defining environment variables `RWS_APPLICATION_ID` and `RWS_AFFILIATION_ID`.
-
 
 ### Search Ichiba Items
 
@@ -138,7 +136,6 @@ Genre class provides an interface to traverse sub genres.
   # Use genre id to fetch genre object
   RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
 ```
-
 
 ### Ichiba Item Ranking
 
@@ -193,6 +190,11 @@ Now rakuten\_web\_service is supporting the following APIs:
 * [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
 * [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
 * [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/api/goraplansearch/)
+
+### Rakuten Travel APIs
+
+* [Rakuten Travel Simple Hotel API](https://webservice.rakuten.co.jp/api/simplehotelsearch/)
+* [Rakuten Travel Get Area Class API](https://webservice.rakuten.co.jp/api/getareaclass/)
 
 ## Contributing
 

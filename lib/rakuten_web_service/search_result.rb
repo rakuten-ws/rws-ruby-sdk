@@ -17,7 +17,7 @@ module RakutenWebService
     end
 
     def search(params)
-      SearchResult.new(self.params.dup.merge!(params), @resource_class)
+      self.class.new(self.params.dup.merge!(params), @resource_class)
     end
     alias with search
 
@@ -35,6 +35,10 @@ module RakutenWebService
 
     def params
       @params ||= {}
+    end
+
+    def params_to_get_next_page
+      @params.merge('page' => @response.body['page'] + 1)
     end
 
     def order(options)

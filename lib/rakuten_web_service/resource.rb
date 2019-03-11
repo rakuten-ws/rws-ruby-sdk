@@ -21,19 +21,21 @@ module RakutenWebService
         @@subclasses || []
       end
 
-      def attribute(*attributes)
-        attributes.each do |attribute|
-          method_name = attribute.to_s.to_snake
+      def attribute(*attribute_names)
+        attribute_names.each do |attribute_name|
+          attribute_name = attribute_name.to_s
+          method_name = attribute_name.to_snake
           method_name = method_name.sub(/^#{resource_name}_(\w+)$/, '\1')
+
           instance_eval do
             define_method method_name do
-              get_attribute(attribute.to_s)
+              get_attribute(attribute_name)
             end
           end
           next if method_name !~ /(.+)_flag$/
           instance_eval do
             define_method "#{$1}?" do
-              get_attribute(attribute.to_s) == 1
+              get_attribute(attribute_name) == 1
             end
           end
         end
@@ -61,10 +63,6 @@ module RakutenWebService
 
       def endpoint(url = nil)
         @endpoint = url || @endpoint
-      end
-
-      def client
-        @client ||= RakutenWebService::Client.new(endpoint)
       end
 
       def set_parser(&block)
