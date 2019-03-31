@@ -1,3 +1,9 @@
+# (Next Release)
+
+## Improvements
+
+* Drop ruby 2.3 from supported ruby versions. [#104](https://github.com/rakuten-ws/rws-ruby-sdk/pull/104)
+
 # v1.10.0
 
 ## Enhancements
