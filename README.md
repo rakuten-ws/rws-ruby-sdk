@@ -57,12 +57,12 @@ If you have not got it, register your application [here](https://webservice.raku
 
 ### Configuration
 
-At first, you have to specify your application's key. And you can tell the client your afiiliate id with `RakutenWebService.configuration`.
+At first, you have to specify your application's key. And you can tell the client your afiiliate id with `RakutenWebService.configure`.
 
 #### In Your Code
 
 ```ruby
-  RakutenWebService.configuration do |c|
+  RakutenWebService.configure do |c|
     # (Required) Appliction ID for your application.
     c.application_id = 'YOUR_APPLICATION_ID'
 
