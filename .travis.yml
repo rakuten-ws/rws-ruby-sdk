@@ -33,6 +33,8 @@ matrix:
   exclude:
   - rvm: 2.4.3
     env: INTEGRATION=yes
+  - rvm: 2.5.0
+    env: INTEGRATION=yes
   - rvm: ruby-head
     env: INTEGRATION=yes
 
