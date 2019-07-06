@@ -41,18 +41,4 @@ module RakutenWebService
       end
     end
   end
-
-  def configure(&block)
-    if block
-      raise ArgumentError, 'Block is required to have one argument' if block.arity != 1
-      yield configuration
-    end
-    configuration
-  end
-
-  def configuration
-    @configuration ||= Configuration.new
-  end
-
-  module_function :configure, :configuration
 end
