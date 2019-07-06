@@ -3,7 +3,7 @@ require 'rakuten_web_service/travel/resource'
 module RakutenWebService
   module Travel
     module AreaClass
-      def search(options={})
+      def search(options = {})
         Base.search(options)
       end
 
@@ -66,22 +66,23 @@ module RakutenWebService
 
         attr_reader :parent, :children
 
-        def initialize(data, parent=nil)
+        def initialize(data, parent = nil)
           @parent = parent
           class_data = data
           @params, @children = *(case class_data
-                              when Array
-                                class_data.first(2)
-                              when Hash
-                                [class_data, nil]
-                              end)
+                                 when Array
+                                   class_data.first(2)
+                                 when Hash
+                                   [class_data, nil]
+                                 end)
 
-          if !(children.nil?) and !(children.empty?)
-            children_class = children.keys.map { |k| k[/\A(\w*)Classes\Z/, 1] }.first rescue data.tapp
-            @params["#{children_class}Classes"] = children["#{children_class}Classes"].map do |child_data|
+          if !children.nil? && !children.empty?
+            children_class = children.keys.first[/\A(\w*)Classes\Z/, 1] rescue data
+            class_name = "#{children_class}Classes"
+            @params[class_name] = children[class_name].map do |child_data|
               Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
             end
-            @children = @params["#{children_class}Classes"]
+            @children = @params[class_name]
           else
             @children = []
           end
@@ -105,7 +106,7 @@ module RakutenWebService
           query
         end
 
-        def search(params={})
+        def search(params = {})
           params = to_query.merge(params)
 
           Hotel.search(params)
