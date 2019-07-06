@@ -62,19 +62,6 @@ describe RakutenWebService::Configuration do
     end
   end
 
-  describe '.configuration' do
-    context 'When calling with a block' do
-      specify 'should show warning message' do
-        $stderr = StringIO.new
-        RakutenWebService.configuration do |c|
-          c.application_id = 'dummy_affiliate_id'
-        end
-        expect($stderr.string).to match(/Warning: /)
-        $stderr = STDERR
-      end
-    end
-  end
-
   describe '#debug_mode?' do
     let(:configuration) { RakutenWebService.configuration }
 
