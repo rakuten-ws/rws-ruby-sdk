@@ -77,7 +77,7 @@ module RakutenWebService
                                  end)
 
           if !children.nil? && !children.empty?
-            children_class = children.keys.first[/\A(\w*)Classes\Z/, 1] rescue data
+            children_class = children.keys.first[/\A(\w*)Classes\Z/, 1]
             class_name = "#{children_class}Classes"
             @params[class_name] = children[class_name].map do |child_data|
               Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
