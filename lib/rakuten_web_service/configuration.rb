@@ -41,20 +41,4 @@ module RakutenWebService
       end
     end
   end
-
-  def configure(&block)
-    @configuration ||= Configuration.new
-    if block
-      raise ArgumentError, 'Block is required to have one argument' if block.arity != 1
-      yield @configuration
-    end
-    @configuration
-  end
-
-  def configuration(&block)
-    warn 'Warning: RakutenWebService.configuration is deprecated. Use RakutenWebService.configure.' if block_given?
-    configure(&block)
-  end
-
-  module_function :configure, :configuration
 end
