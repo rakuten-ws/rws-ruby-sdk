@@ -14,13 +14,7 @@ module RakutenWebService
           DetailClass[class_code]
       end
       module_function :search, :[]
-    end
-  end
-end
 
-module RakutenWebService
-  module Travel
-    module AreaClass
       class Base < RakutenWebService::Travel::Resource
         endpoint 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
 
