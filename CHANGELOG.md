@@ -1,10 +1,12 @@
-# (Next Release)
+# v1.11.0 (2019/07/11)
 
 ## Improvements
 
 * Drop ruby 2.3 from supported ruby versions. [#104](https://github.com/rakuten-ws/rws-ruby-sdk/pull/104)
+* Fixes some issues reported by CoceClimate [#108](https://github.com/rakuten-ws/rws-ruby-sdk/pull/108)
+* `RWS.configuration` no longer accepsts block [#107](https://github.com/rakuten-ws/rws-ruby-sdk/pull/107)
 
-# v1.10.0
+# v1.10.0 (2019/03/11)
 
 ## Enhancements
 
