@@ -1,19 +1,17 @@
 {
   "tagGroups": [
     {
-      "tagGroup": {
-        "tags": [
-          {
-            "tag": {
-              "parentTagId": 0,
-              "tagName": "SS",
-              "tagId": 1000317
-            }
+      "tags": [
+        {
+          "tag": {
+            "parentTagId": 0,
+            "tagName": "SS",
+            "tagId": 1000317
           }
-        ],
-        "tagGroupId": 1000041,
-        "tagGroupName": "サイズ（S/M/L）"
-      }
+        }
+      ],
+      "tagGroupId": 1000041,
+      "tagGroupName": "サイズ（S/M/L）"
     }
   ]
 }

@@ -42,14 +42,14 @@ describe RakutenWebService::Ichiba::TagGroup do
     end
 
     specify 'should be access by key' do
-      expect(subject['tagGroupId']).to eq(expected_json['tagGroup']['tagGroupId'])
-      expect(subject['tag_group_id']).to eq(expected_json['tagGroup']['tagGroupId'])
+      expect(subject['tagGroupId']).to eq(expected_json['tagGroupId'])
+      expect(subject['tag_group_id']).to eq(expected_json['tagGroupId'])
     end
   end
 
   describe '#tags' do
     let(:response) { JSON.parse(fixture('ichiba/tag_search.json')) }
-    let(:expected_tag) { response['tagGroups'][0]['tagGroup']['tags'][0]['tag'] }
+    let(:expected_tag) { response['tagGroups'][0]['tags'][0]['tag'] }
 
     before do
       @tag_group = RakutenWebService::Ichiba::TagGroup.search(tagId: '1000317').first
