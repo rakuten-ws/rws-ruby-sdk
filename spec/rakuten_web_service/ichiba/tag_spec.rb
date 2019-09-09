@@ -6,13 +6,13 @@ describe RakutenWebService::Ichiba::Tag do
       'tagName' => 'SS',
       'parentTagId' => 1 }
   end
-  let(:shop) { RakutenWebService::Ichiba::Tag.new(params) }
+  let(:tag) { RakutenWebService::Ichiba::Tag.new(params) }
 
   describe '.new' do
     specify 'returned object should have methods to fetch values' do
-      expect(shop.id).to eq(100)
-      expect(shop.name).to eq('SS')
-      expect(shop['parentTagId']).to eq(1)
+      expect(tag.id).to eq(100)
+      expect(tag.name).to eq('SS')
+      expect(tag['parentTagId']).to eq(1)
     end
   end
 end

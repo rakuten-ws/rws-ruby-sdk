@@ -49,7 +49,7 @@ describe RakutenWebService::Ichiba::TagGroup do
 
   describe '#tags' do
     let(:response) { JSON.parse(fixture('ichiba/tag_search.json')) }
-    let(:expected_tag) { response['tagGroups'][0]['tags'][0]['tag'] }
+    let(:expected_tag) { response['tagGroups'][0]['tags'][0] }
 
     before do
       @tag_group = RakutenWebService::Ichiba::TagGroup.search(tagId: '1000317').first

@@ -14,12 +14,11 @@ module RakutenWebService
       attribute :tagGroupName, :tagGroupId
 
       def tags
-        self['tags'].map do |tag|
-          data = tag['tag']
+        get_attribute('tags').map do |tag|
           Tag.new(
-            'tagId' => data['tagId'],
-            'tagName' => data['tagName'],
-            'parentTagId' => data['parentTagId']
+            'tagId' => tag['tagId'],
+            'tagName' => tag['tagName'],
+            'parentTagId' => tag['parentTagId']
           )
         end
       end

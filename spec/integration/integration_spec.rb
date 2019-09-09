@@ -15,7 +15,7 @@ describe 'Call all APIs', type: 'integration' do
       expect { RWS::Ichiba::RankingItem.search(age: 30, sex: 0).first }.not_to raise_error
     end
     it do
-      expect { RWS::Ichiba::TagGroup.search(tagId: 1000317).first }.not_to raise_error
+      expect { RWS::Ichiba::TagGroup.search(tagId: 1000317).first.tags }.not_to raise_error
     end
   end
 
