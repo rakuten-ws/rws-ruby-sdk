@@ -34,7 +34,7 @@ module RakutenWebService
                 :reviewCount, :reviewAverage,
                 :pointRate, :pointRateStartTime, :pointRateEndTime,
                 :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
-                :genreId
+                :genreId, :tagIds
 
       def genre
         Genre.new(genre_id)
