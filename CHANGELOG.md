@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.12.0 (2019/09/09)
+
+### Enhancements
+
+- Starts Support Ichiba Tag API. [#110](https://github.com/rakuten-ws/rws-ruby-sdk/pull/110)
+
+### Thanks
+
+We are pleased to say thanks to @keisukeponpoko. This release is made by their seminal work.
+
 ## v1.11.0 (2019/07/11)
 
 ### Improvements
