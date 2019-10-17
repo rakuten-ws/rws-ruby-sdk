@@ -15,11 +15,7 @@ module RakutenWebService
 
       def tags
         get_attribute('tags').map do |tag|
-          Tag.new(
-            'tagId' => tag['tagId'],
-            'tagName' => tag['tagName'],
-            'parentTagId' => tag['parentTagId']
-          )
+          Tag.new(tag)
         end
       end
     end

@@ -15,4 +15,21 @@ describe RakutenWebService::Ichiba::Tag do
       expect(tag['parentTagId']).to eq(1)
     end
   end
+
+  describe '#search' do
+    context 'When no given additional parameters' do
+      specify 'it calls Ichiba::Item.search with its tag id' do
+        expect(RWS::Ichiba::Item).to receive(:search).with({tagId: params['tagId']}).and_return([])
+
+        tag.search
+      end
+    end
+    context 'When given required parameter' do
+      specify 'it calls Ichiba::Item.search with the given parameters and its tag id' do
+        expect(RWS::Ichiba::Item).to receive(:search).with({keyword: 'Ruby', tagId: params['tagId']}).and_return([])
+
+        tag.search(keyword: 'Ruby')
+      end
+    end
+  end
 end
