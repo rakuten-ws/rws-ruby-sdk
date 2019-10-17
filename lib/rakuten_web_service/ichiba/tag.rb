@@ -7,8 +7,9 @@ module RakutenWebService
     class Tag < Resource
       attribute :tagId, :tagName, :parentTagId
 
-      def search
-        RakutenWebService::Ichiba::Item.search({tagId: id})
+      def search(params = {})
+        params = params.merge(tagId: id)
+        RakutenWebService::Ichiba::Item.search(params)
       end
     end
   end
