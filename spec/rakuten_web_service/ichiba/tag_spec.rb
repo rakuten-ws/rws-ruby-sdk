@@ -15,4 +15,12 @@ describe RakutenWebService::Ichiba::Tag do
       expect(tag['parentTagId']).to eq(1)
     end
   end
+
+  describe '#search' do
+    specify 'it calls Ichiba::Item#search with its tag id' do
+      expect(RWS::Ichiba::Item).to receive(:search).with({tagId: params['tagId']}).and_return([])
+
+      tag.search
+    end
+  end
 end

@@ -6,6 +6,10 @@ module RakutenWebService
   module Ichiba
     class Tag < Resource
       attribute :tagId, :tagName, :parentTagId
+
+      def search
+        RakutenWebService::Ichiba::Item.search({tagId: id})
+      end
     end
   end
 end
