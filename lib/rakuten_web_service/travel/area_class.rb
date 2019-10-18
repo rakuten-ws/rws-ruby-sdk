@@ -62,26 +62,17 @@ module RakutenWebService
 
         attr_reader :parent, :children
 
-        def initialize(data, parent = nil)
+        def initialize(class_data, parent = nil)
           @parent = parent
-          class_data = data
-          @params, @children = *(case class_data
-                                 when Array
-                                   class_data.first(2)
-                                 when Hash
-                                   [class_data, nil]
-                                 end)
-
-          if !children.nil? && !children.empty?
-            children_class = children.keys.first[/\A(\w*)Classes\Z/, 1]
-            class_name = "#{children_class}Classes"
-            @params[class_name] = children[class_name].map do |child_data|
-              Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
-            end
-            @children = @params[class_name]
-          else
-            @children = []
+          case class_data
+          when Array
+            @params = class_data.shift
+            @children = class_data.shift
+          when Hash
+            @params = class_data
+            @children = nil
           end
+          parse_children_attributes
         end
 
         def area_level
@@ -106,6 +97,19 @@ module RakutenWebService
           params = to_query.merge(params)
 
           Hotel.search(params)
+        end
+
+        private
+
+        def parse_children_attributes
+          return @children = [] if children.nil? || children.empty?
+
+          children_class = children.keys.first[/\A(\w*)Classes\Z/, 1]
+          class_name = "#{children_class}Classes"
+          params[class_name] = children[class_name].map do |child_data|
+            Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
+          end
+          @children = params[class_name]
         end
       end
 
