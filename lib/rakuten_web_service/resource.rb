@@ -24,20 +24,10 @@ module RakutenWebService
       def attribute(*attribute_names)
         attribute_names.each do |attribute_name|
           attribute_name = attribute_name.to_s
-          method_name = attribute_name.to_snake
-          method_name = method_name.sub(/^#{resource_name}_(\w+)$/, '\1')
 
-          instance_eval do
-            define_method method_name do
-              get_attribute(attribute_name)
-            end
-          end
-          next if method_name !~ /(.+)_flag$/
-          instance_eval do
-            define_method "#{$1}?" do
-              get_attribute(attribute_name) == 1
-            end
-          end
+          define_getter_for_attribute(attribute_name)
+          next unless attribute_name.end_with?('Flag')
+          define_asking_method_for_attribute(attribute_name)
         end
       end
 
@@ -68,6 +58,27 @@ module RakutenWebService
       def set_parser(&block)
         instance_eval do
           define_singleton_method :parse_response, block
+        end
+      end
+
+      private
+
+      def define_getter_for_attribute(attribute_name)
+        method_name = attribute_name.to_snake
+        method_name.sub!(/^#{resource_name}_(\w+)$/, '\1')
+
+        define_method method_name do
+          get_attribute(attribute_name)
+        end
+      end
+
+      def define_asking_method_for_attribute(attribute_name)
+        method_name = attribute_name.to_snake
+        method_name.sub!(/^#{resource_name}_(\w+)$/, '\1')
+        method_name.sub!(/(.+)_flag$/, '\1')
+
+        define_method "#{method_name}?" do
+          get_attribute(attribute_name) == 1
         end
       end
     end
