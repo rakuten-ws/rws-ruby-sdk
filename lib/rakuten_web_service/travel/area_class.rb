@@ -66,9 +66,11 @@ module RakutenWebService
           @parent = parent
           case class_data
           when Array
-            @params, @children = *(class_data.first(2))
+            @params = class_data.shift
+            @children = class_data.shift
           when Hash
-            @params, @children = class_data, nil
+            @params = class_data
+            @children = nil
           end
           parse_children_attributes
         end
@@ -98,17 +100,16 @@ module RakutenWebService
         end
 
         private
+
         def parse_children_attributes
-          if !children.nil? && !children.empty?
-            children_class = children.keys.first[/\A(\w*)Classes\Z/, 1]
-            class_name = "#{children_class}Classes"
-            params[class_name] = children[class_name].map do |child_data|
-              Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
-            end
-            @children = params[class_name]
-          else
-            @children = []
+          return @children = [] if children.nil? || children.empty?
+
+          children_class = children.keys.first[/\A(\w*)Classes\Z/, 1]
+          class_name = "#{children_class}Classes"
+          params[class_name] = children[class_name].map do |child_data|
+            Base.area_classes[children_class].new(child_data["#{children_class}Class"], self)
           end
+          @children = params[class_name]
         end
       end
 
