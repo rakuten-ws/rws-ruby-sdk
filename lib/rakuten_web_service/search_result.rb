@@ -43,19 +43,18 @@ module RakutenWebService
 
     def order(options)
       new_params = params.dup
-      if options.is_a? Hash
-        key, sort_order = *options.to_a.last
-        key = key.to_s.to_camel
-        new_params[:sort] = case sort_order.to_s.downcase
-                            when 'desc'
-                              "-#{key}"
-                            when 'asc'
-                              "+#{key}"
-                            end
-      elsif options.to_s == 'standard'
+      if options.to_s == 'standard'
         new_params[:sort] = 'standard'
-      else
+        return self.class.new(new_params, @resource_class)
+      end
+      unless options.is_a? Hash
         raise ArgumentError, "Invalid Sort Option: #{options.inspect}"
+      end
+
+      key, sort_order = *options.to_a.last
+      case sort_order.to_s.downcase
+      when 'desc' then new_params[:sort] = "-#{key}".to_camel
+      when 'asc' then new_params[:sort] = "+#{key}".to_camel
       end
       self.class.new(new_params, @resource_class)
     end
