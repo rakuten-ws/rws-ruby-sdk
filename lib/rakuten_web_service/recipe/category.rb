@@ -37,7 +37,9 @@ module RakutenWebService
 
       def parent_category
         return nil if parent_category_type.nil?
-        Recipe.categories(parent_category_type).find { |c| c.id.to_i == parent_category_id.to_i }
+        Recipe.categories(parent_category_type).find do |c|
+          c.id.to_i == parent_category_id.to_i
+        end
       end
 
       def absolute_category_id
