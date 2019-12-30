@@ -10,9 +10,9 @@ module RakutenWebService
       end
 
       def [](class_code)
-        LargeClass[class_code] or
-          MiddleClass[class_code] or
-          SmallClass[class_code] or
+        LargeClass[class_code] ||
+          MiddleClass[class_code] ||
+          SmallClass[class_code] ||
           DetailClass[class_code]
       end
       module_function :search, :[]
