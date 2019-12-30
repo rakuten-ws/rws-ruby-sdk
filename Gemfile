@@ -8,6 +8,6 @@ group :test do
 end
 
 group :vscode do
-  gem 'debase', '0.2.2'
+  gem 'debase', '~> 0.2', '>= 0.2.4.1'
   gem 'ruby-debug-ide', '~> 0.6.0'
 end

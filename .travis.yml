@@ -1,8 +1,9 @@
 language: ruby
 rvm:
-  - 2.4.3
-  - 2.5.0
-  - 2.6.0
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
   - ruby-head
 
 env:
@@ -31,9 +32,11 @@ matrix:
   allow_failures:
   - rvm: ruby-head
   exclude:
-  - rvm: 2.4.3
+  - rvm: 2.4
     env: INTEGRATION=yes
-  - rvm: 2.5.0
+  - rvm: 2.5
+    env: INTEGRATION=yes
+  - rvm: 2.6
     env: INTEGRATION=yes
   - rvm: ruby-head
     env: INTEGRATION=yes
