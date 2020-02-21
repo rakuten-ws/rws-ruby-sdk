@@ -8,6 +8,8 @@
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
 
+日本語のドキュメントは[こちら](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.ja.md)。
+
 ## Table of Contents
 
 * [Prerequisite](#prerequisite)
@@ -37,16 +39,20 @@ This gem provides a client for easily accessing [Rakuten Web Service APIs](https
 Add this line to your application's Gemfile:
 
 ```ruby
-  gem 'rakuten_web_service'
+gem 'rakuten_web_service'
 ```
 
 And then execute:
 
-    bundle
+```sh
+bundle
+```
 
 Or install it yourself as:
 
-    gem install rakuten_web_service
+```sh
+gem install rakuten_web_service
+```
 
 ## Usage
 

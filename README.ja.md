@@ -8,25 +8,137 @@ rakuten\_web\_serviceは、 Rubyから楽天が提供しているAPIに簡単に
 
 English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.md).
 
+## 前提条件
+
+* Ruby 2.3 またはそれ以上のバージョンであること
+
 ## インストール方法
 
 bundlerを利用したアプリケーションの場合、Gemfileに以下の1行を追加します。
 
 ```ruby
-  gem 'rakuten_web_service'
+gem 'rakuten_web_service'
 ```
 
 そして`bundle`コマンドでインストール。
 
-    $ bundle
+```sh
+bundle
+```
 
 もしくは、`gem`コマンドにより
 
-    $ gem install rakuten_web_service
+```sh
+gem install rakuten_web_service
+```
 
 とすることでインストールできます。
 
 現在rakuten\_web\_serviceは下記のAPIをサポートしています。
+
+## 使用方法
+
+### 事前準備: アプリケーションIDの取得
+
+楽天ウェブサービスAPIを利用の際に、アプリケーションIDが必要です。
+まだ取得していない場合は、楽天ウェブサービスAPIの[アプリケーション登録](https://webservice.rakuten.co.jp/app/create)を行い、アプリケーションIDを取得してください。
+
+### 設定
+
+`RakutenWebService.configure` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
+
+```ruby
+  RakutenWebService.configure do |c|
+    # (必須) アプリケーションID
+    c.application_id = 'YOUR_APPLICATION_ID'
+
+    # (任意) 楽天アフィリエイトID
+    c.affiliate_id = 'YOUR_AFFILIATE_ID' # default: nil
+
+    # (任意) リクエストのリトライ回数
+    # 一定期間の間のリクエスト数が制限を超えた時、APIはリクエスト過多のエラーを返す。
+    # その後、クライアントは少し間を空けた後に同じリクエストを再度送る。
+    c.max_retries = 3 # default: 5
+
+    # (任意) デバッグモード
+    # trueの時、クライアントはすべてのHTTPリクエストとレスポンスを
+    # 標準エラー出力に流す。
+    c.debug = true # default: false
+  end
+```
+
+`'YOUR_APPLICATION_ID'` と `'YOUR_AFFILIATE_ID'` は、実際のアプリケーションIDとアフィリエイトIDに置き換えてください。
+
+#### 環境変数
+
+`application_id` と `affiliate_id` はそれぞれ、環境変数`RWS_APPLICATION_ID`と`RWS_AFFILIATION_ID`を定義することでも設定できる。
+
+### 市場商品の検索
+
+```ruby
+  items = RakutenWebService::Ichiba::Item.search(keyword:  'Ruby') # Enumerable オブジェクトが返ってくる
+  items.first(10).each do |item|
+    puts "#{item['itemName']}, #{item.price} yen" # Hashのように値を参照できる
+  end
+```
+
+### ページング
+
+`RakutenWebService::Ichiba::Item.search` など`search`メソッドはページングのためのメソッドを持ったオブジェクトを返します。
+
+```ruby
+  items = RakutenWebService::Ichiba::Item.search(keyword: 'Ruby')
+  items.count #=> 30. デフォルトで1度のリクエストで30件の商品情報が返ってくる
+
+  last_items = items.page(3) # 3ページ目の情報を取る
+
+  # 最後のページまでスキップする
+  while last_items.has_next_page?
+    last_items = last_items.next_page
+  end
+
+  # 最後のページの商品名を表示
+  last_items.each do |item|
+    puts item.name
+  end
+
+  # 上記の処理をより完結に書くと以下のようになる
+  items.page(3).all do |item|
+    puts item.name
+  end
+```
+
+### ジャンル
+
+Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。
+
+```ruby
+  root = RakutenWebService::Ichiba::Genre.root # ジャンルのルート
+  # children はそのジャンルの直下のサブジャンルを返す
+  root.children.each do |child|
+    puts "[#{child.id}] #{child.name}"
+  end
+
+  # ジャンルの情報を引くため、ジャンルIDを用る
+  RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
+```
+
+### 市場商品ランキング
+
+```ruby
+  ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # 30代男性 のランキングTOP 30
+  ranking_by_age.each do |ranking|
+    # 'itemName'以外の属性については右記を参照 http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
+    puts ranking['itemName']
+  end
+
+  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking # "水・ソフトドリンク" ジャンルのTOP 30
+  ranking_by_genre.each do |ranking|
+    puts ranking['itemName']
+  end
+```
+
+## サポートしているAPI
 
 ### 楽天市場API
 
@@ -34,7 +146,7 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 * [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
 * [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
 * [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
-
+* [Rakuten Ichiba Tag Search API](https://webservice.rakuten.co.jp/api/ichibatagsearch/)
 
 ### 楽天ブックス系API
 
@@ -63,66 +175,6 @@ bundlerを利用したアプリケーションの場合、Gemfileに以下の1�
 * [楽天GORAゴルフ場検索API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
 * [楽天GORAゴルフ場詳細API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
 * [楽天GORAプラン検索API](https://webservice.rakuten.co.jp/api/goraplansearch/)
-
-## 使用方法
-
-### 事前準備: アプリケーションIDの取得
-
-楽天ウェブサービスAPIを利用の際に、アプリケーションIDが必要です。
-まだ取得していない場合は、楽天ウェブサービスAPIの[アプリケーション登録](https://webservice.rakuten.co.jp/app/create)を行い、アプリケーションIDを取得してください。
-
-### 設定
-
-`RakutenWebService.configure` メソッドを使い、Application IDとAffiliate ID（オプション）を指定することができます。
-
-```ruby
-  RakutenWebService.configure do |c|
-    c.application_id = 'YOUR_APPLICATION_ID'
-    c.affiliate_id = 'YOUR_AFFILIATE_ID'
-  end
-```
-
-`'YOUR_APPLICATION_ID'` と `'YOUR_AFFILIATE_ID'` は、実際のアプリケーションIDとアフィリエイトIDに置き換えてください。
-
-### 市場商品の検索
-
-```ruby
-  items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby') # This returns Enumerable object
-  items.first(10).each do |item|
-    puts "#{item['itemName']}, #{item.price} yen" # You can refer to values as well as Hash.
-  end
-```
-
-### ジャンル
-
-Genreクラスは、`children`や`parent`といったジャンル階層を辿るインターフェースを持っています。
-
-```ruby
-  root = RakutenWebService::Ichiba::Genre.root # root genre
-  # children returns sub genres
-  root.children.each do |child|
-    puts "[#{child.id}] #{child.name}"
-  end
-
-  # Use genre id to fetch genre object
-  RakutenWebService::Ichiba::Genre[100316].name # => "水・ソフトドリンク"
-```
-
-
-### 市場商品ランキング
-
-```ruby
-  ranking_by_age = RakutenWebService::Ichiba::Item.ranking(:age => 30, :sex => 1) # 30代男性 のランキングTOP 30
-  ranking_by_age.each do |ranking|
-    # 'itemName'以外の属性については右記を参照 http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
-    puts ranking['itemName']
-  end
-
-  ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking # "水・ソフトドリンク" ジャンルのTOP 30
-  ranking_by_genre.each do |ranking|
-    puts ranking['itemName']
-  end
-```
 
 ## Contributing
 
