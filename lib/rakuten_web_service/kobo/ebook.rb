@@ -20,6 +20,7 @@ module RakutenWebService
         response['Items'].map { |i| new(i) }
       end
 
+      # @private
       def self.genre_class
         RakutenWebService::Kobo::Genre
       end

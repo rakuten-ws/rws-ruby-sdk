@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module RakutenWebService
+  # @private
   class AllProxy
     include Enumerable
 

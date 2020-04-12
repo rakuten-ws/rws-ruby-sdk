@@ -12,21 +12,25 @@ module RakutenWebService
     using RakutenWebService::StringSupport
 
     class << self
+      # @private
       def inherited(subclass)
         @@subclasses ||= []
         @@subclasses.push(subclass)
       end
 
+      # @private
       def subclasses
         @@subclasses || []
       end
 
+      # @private
       def attribute(*attribute_names)
         attribute_names.each do |attribute_name|
           attribute_name = attribute_name.to_s
 
           define_getter_for_attribute(attribute_name)
           next unless attribute_name.end_with?('Flag')
+
           define_asking_method_for_attribute(attribute_name)
         end
       end
@@ -35,6 +39,7 @@ module RakutenWebService
         SearchResult.new(options, self)
       end
 
+      # @return []
       def all(options, &block)
         if block
           search(options).all(&block)
@@ -43,18 +48,26 @@ module RakutenWebService
         end
       end
 
+      # @private
       def resource_name
         @resource_name ||= name.split('::').last.downcase
       end
 
+      # @private
       def set_resource_name(name)
         @resource_name = name
       end
 
+      # @!macro [attach] resource.endpoin
+      #   @!method endpoint
+      #   Returns this resource class's endpoint.
+      #   @return [String] endoint URL
+      #   @see $1
       def endpoint(url = nil)
         @endpoint = url || @endpoint
       end
 
+      # @private
       def set_parser(&block)
         instance_eval do
           define_singleton_method :parse_response, block

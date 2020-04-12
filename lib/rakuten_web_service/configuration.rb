@@ -4,7 +4,27 @@ require 'rakuten_web_service/string_support'
 
 module RakutenWebService
   class Configuration
-    attr_accessor :application_id, :affiliate_id, :max_retries, :debug
+    # Application ID issued for your client
+    # @return [String]
+    # @see https://webservice.rakuten.co.jp/app/create
+    attr_accessor :application_id
+
+    # Affiliate ID
+    # @return [String]
+    # @see https://affiliate.rakuten.co.jp/
+    attr_accessor :affiliate_id
+
+    # This value sets how much RakutenWebService::SearchResult tries to send a request.
+    # When all tries fail, RakutenWebService::SearchResult raises TooManyRequests.
+    # @return [Integer]
+    # @see RakutenWebService::SearchResult
+    attr_accessor :max_retries
+
+    # Sets debug mode. When debug mode is on, all http requests and responses are printed to STDERR.
+    #
+    # @return [Boolean] true if debug mode is on, otherwise false
+    # @see https://docs.ruby-lang.org/ja/latest/method/Net=3a=3aHTTP/i/set_debug_output.html Net::HTTP#set_debug_output
+    attr_accessor :debug
 
     def initialize
       @application_id = ENV['RWS_APPLICATION_ID']

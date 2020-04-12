@@ -10,6 +10,7 @@ module RakutenWebService
         response['Items'].map { |item| new(item) }
       end
 
+      # @private
       def self.find_resource_by_genre_id(genre_id)
         case genre_id
         when /^001/ then RWS::Books::Book
@@ -22,10 +23,12 @@ module RakutenWebService
         end
       end
 
+      # @private
       def self.genre_class
         RakutenWebService::Books::Genre
       end
 
+      # @return [Array<RakutenWebService::Books::Genre>]
       def genre
         @genre ||= books_genre_id.split('/').map do |id|
           Books::Genre.new(id)

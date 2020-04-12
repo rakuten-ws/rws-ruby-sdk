@@ -8,9 +8,14 @@ module RakutenWebService
     class Shop < Resource
       attribute :shopName, :shopCode, :shopUrl, :shopAffiliateUrl
 
-      def items(options = {})
-        options = options.merge(shop_code: code)
-        RakutenWebService::Ichiba::Item.search(options)
+      # Returns SearchResult object fetching Items of the Shop object.
+      # @param parameters [Hash] input parameters to fetches items
+      #   of the shop
+      # @return [RakutenWebService::SearchResult]
+      # @see RakutenWebService::Ichiba::Item
+      def items(parameters = {})
+        parameters = parameters.merge(shop_code: code)
+        RakutenWebService::Ichiba::Item.search(parameters)
       end
     end
   end

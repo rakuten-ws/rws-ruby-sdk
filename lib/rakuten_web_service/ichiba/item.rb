@@ -6,10 +6,15 @@ module RakutenWebService
   module Ichiba
     class Item < Resource
       class << self
-        def ranking(options={})
-          RakutenWebService::Ichiba::RankingItem.search(options)
+        # Calls Rakuten Ichiba Ranking API
+        #
+        # @param [Hash] parameters
+        # @see RakutenWebService::Ichiba::RankingItem
+        def ranking(parameters = {})
+          RakutenWebService::Ichiba::RankingItem.search(parameters)
         end
 
+        # @private
         def genre_class
           RakutenWebService::Ichiba::Genre
         end
@@ -36,10 +41,17 @@ module RakutenWebService
                 :shopName, :shopCode, :shopUrl, :shopAffiliateUrl,
                 :genreId, :tagIds
 
+      # Returns a Genre object for the Item's genre_id
+      #
+      # @return [Genre]
       def genre
         Genre.new(genre_id)
       end
 
+      # Returns a Shop object containing information of the shop
+      # dealing with the Item
+      #
+      # @return [Shop]
       def shop
         Shop.new(
           'shopName' => shop_name,
