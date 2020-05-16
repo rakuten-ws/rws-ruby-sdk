@@ -38,6 +38,7 @@ module RakutenWebService
 
     def default_parameters
       raise 'Application ID is not defined' unless has_required_options?
+
       { application_id: application_id, affiliate_id: affiliate_id, format_version: '2' }
     end
 
@@ -45,6 +46,9 @@ module RakutenWebService
       application_id && application_id != ''
     end
 
+    # Setting `configuration.debug` true or defining the environment variable `RWS_SDK_DEBUG` sets debug mode on.
+    #
+    # @return [Boolean] true if debug mode is on
     def debug_mode?
       ENV.key?('RWS_SDK_DEBUG') || debug
     end

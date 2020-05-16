@@ -39,7 +39,6 @@ module RakutenWebService
         SearchResult.new(options, self)
       end
 
-      # @return []
       def all(options, &block)
         if block
           search(options).all(&block)

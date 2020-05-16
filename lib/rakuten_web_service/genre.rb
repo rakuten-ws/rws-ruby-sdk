@@ -22,6 +22,7 @@ module RakutenWebService
       case params
       when Integer, String
         return new(repository[params.to_s]) unless repository[params.to_s].nil?
+
         search(genre_id_key => params.to_s).first
       when Hash
         super
@@ -36,6 +37,7 @@ module RakutenWebService
       @root_id = id || @root_id
     end
 
+    # @return [self]
     def self.root
       new(root_id)
     end
