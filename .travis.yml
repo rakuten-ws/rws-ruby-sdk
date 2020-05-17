@@ -35,6 +35,8 @@ matrix:
     env: INTEGRATION=yes
   - rvm: 2.6
     env: INTEGRATION=yes
+  - rvm: 2.7
+    env: INTEGRATION=yes
   - rvm: ruby-head
     env: INTEGRATION=yes
 
