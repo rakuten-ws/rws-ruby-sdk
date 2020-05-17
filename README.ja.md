@@ -138,6 +138,24 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
   end
 ```
 
+### レシピ
+
+```ruby
+  categories = RakutenWebService::Recipe.small_categories
+
+  # 全種類の小カテゴリーを表示
+  categories.each do |category|
+    category.name
+  end
+
+  recipes = categories.first.ranking
+
+  # カテゴリーに対応するレシピを表示
+  recipes.each do |recipe|
+    recipe.title
+  end
+```
+
 ## サポートしているAPI
 
 ### 楽天市場API

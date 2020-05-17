@@ -158,6 +158,24 @@ Genre class provides an interface to traverse sub genres.
   end
 ```
 
+### Recipe
+
+```ruby
+  categories = RakutenWebService::Recipe.small_categories
+
+  # Search all small recipe categories.
+  categories.each do |category|
+    category.name
+  end
+
+  recipes = categories.first.ranking
+
+  # Search category recipes.
+  recipes.each do |recipe|
+    recipe.title
+  end
+```
+
 ## Supported APIs
 
 Now rakuten\_web\_service is supporting the following APIs:
