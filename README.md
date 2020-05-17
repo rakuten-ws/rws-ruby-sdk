@@ -149,12 +149,12 @@ Genre class provides an interface to traverse sub genres.
   ranking_by_age = RakutenWebService::Ichiba::Item.ranking(age: 30, sex: 1) # returns the TOP 30 items for Male in 30s
   # For attributes other than 'itemName', see: http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
   ranking_by_age.each do |ranking|
-    puts ranking['itemName']
+    puts item.name
   end
 
   ranking_by_genre = RakutenWebService::Ichiba::Genre[200162].ranking # the TOP 30 items in "水・ソフトドリンク" genre
   ranking_by_genre.each do |ranking|
-    puts ranking['itemName']
+    puts item.name
   end
 ```
 

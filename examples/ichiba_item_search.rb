@@ -10,5 +10,5 @@ end
 items = RakutenWebService::Ichiba::Item.search(keyword: keyword)
 
 items.first(10).each do |item|
-  puts "#{item['itemName']}, #{item['itemPrice']} yen"
+  puts "#{item.name}, #{item.price} yen"
 end
