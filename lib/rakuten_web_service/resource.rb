@@ -102,7 +102,6 @@ module RakutenWebService
 
     def [](key)
       camel_key = key.to_camel
-      # camel_key[0] = camel_key[0].downcase
       @params[key] || @params[camel_key]
     end
 
