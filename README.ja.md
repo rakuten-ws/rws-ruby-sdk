@@ -102,7 +102,7 @@ gem install rakuten_web_service
     puts item.name
   end
 
-  # 上記の処理をより完結に書くと以下のようになる
+  # 上記の処理をより簡潔に書くと以下のようになる
   items.page(3).all do |item|
     puts item.name
   end
