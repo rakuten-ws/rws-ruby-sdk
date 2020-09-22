@@ -16,7 +16,7 @@ module RakutenWebService
         :reviewCount, :reviewAverage,
         :koboGenreId
 
-      set_parser do |response|
+      parser do |response|
         response['Items'].map { |i| new(i) }
       end
 

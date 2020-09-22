@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RakutenWebService::Resource do
   let(:resource_class) do
     Class.new(RakutenWebService::Resource) do
-      set_resource_name 'Dummy'
+      self.resource_name = 'Dummy'
 
       attribute :name, :dummySampleAttribute
     end
@@ -23,7 +23,7 @@ describe RakutenWebService::Resource do
     context 'When some resources are inherited from other resource' do
       let(:other_resource_class) do
         Class.new(resource_class) do
-          set_resource_name 'NestedResource'
+          self.resource_name = 'NestedResource'
 
           attribute :name, :someOtherAttribute
         end

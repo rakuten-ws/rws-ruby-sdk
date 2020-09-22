@@ -15,7 +15,7 @@ module RakutenWebService
       :recipeIndication, :recipeCost,
       :recipePublishday, :rank
 
-    set_parser do |response|
+    parser do |response|
       response['result'].map { |r| Recipe.new(r) }
     end
 

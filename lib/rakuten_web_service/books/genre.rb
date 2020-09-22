@@ -5,7 +5,7 @@ require 'rakuten_web_service/genre'
 module RakutenWebService
   module Books
     class Genre < RakutenWebService::BaseGenre
-      set_resource_name 'books_genre'
+      self.resource_name = 'books_genre'
 
       endpoint 'https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128'
 

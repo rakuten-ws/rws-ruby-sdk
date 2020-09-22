@@ -20,7 +20,7 @@ module RakutenWebService
       class Base < RakutenWebService::Travel::Resource
         endpoint 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
 
-        set_parser do |response|
+        parser do |response|
           response['areaClasses']['largeClasses'].map do |data|
             LargeClass.new(data)
           end

@@ -13,7 +13,7 @@ module RakutenWebService
 
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623'
 
-      set_parser do |response|
+      parser do |response|
         [new(response['Item'])]
       end
 

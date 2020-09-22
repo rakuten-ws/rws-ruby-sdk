@@ -7,7 +7,7 @@ module RakutenWebService
     def self.inherited(klass)
       super
 
-      klass.set_parser do |response|
+      klass.parser do |response|
         current = response['current']
         %w[children parents brothers].each do |type|
           elements = Array(response[type]).map { |e| klass.new(e) }

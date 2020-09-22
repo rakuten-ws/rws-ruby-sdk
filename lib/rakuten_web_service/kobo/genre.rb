@@ -5,7 +5,7 @@ require 'rakuten_web_service/genre'
 module RakutenWebService
   module Kobo
     class Genre < RakutenWebService::BaseGenre
-      set_resource_name :kobo_genre
+      self.resource_name = :kobo_genre
 
       root_id '101'
 

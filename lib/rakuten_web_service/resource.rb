@@ -12,6 +12,8 @@ module RakutenWebService
     using RakutenWebService::StringSupport
 
     class << self
+      attr_writer :resource_name
+
       def inherited(subclass)
         @@subclasses ||= []
         @@subclasses.push(subclass)
@@ -27,6 +29,7 @@ module RakutenWebService
 
           define_getter_for_attribute(attribute_name)
           next unless attribute_name.end_with?('Flag')
+
           define_asking_method_for_attribute(attribute_name)
         end
       end
@@ -47,15 +50,11 @@ module RakutenWebService
         @resource_name ||= name.split('::').last.downcase
       end
 
-      def set_resource_name(name)
-        @resource_name = name
-      end
-
       def endpoint(url = nil)
         @endpoint = url || @endpoint
       end
 
-      def set_parser(&block)
+      def parser(&block)
         instance_eval do
           define_singleton_method :parse_response, block
         end
