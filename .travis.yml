@@ -18,8 +18,6 @@ before_install:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - gem install bundler
-
-before_script:
   - bundle config set without 'vscode'
   - bundle config set jobs 4
 
