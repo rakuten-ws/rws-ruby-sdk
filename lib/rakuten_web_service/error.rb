@@ -6,6 +6,11 @@ module RakutenWebService
       repository[status_code] = error
     end
 
+    def self.for(response)
+      error_class = repository[response.code.to_i]
+      error_class.new(JSON.parse(response.body)['error_description'])
+    end
+
     def self.repository
       @repository ||= {}
     end
