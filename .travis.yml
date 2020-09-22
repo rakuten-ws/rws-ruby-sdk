@@ -18,8 +18,7 @@ before_install:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - gem install bundler
-
-bundler_args:  --without vscode
+  - bundle config set without 'vscode'
 
 script:
   - bundle exec rake
