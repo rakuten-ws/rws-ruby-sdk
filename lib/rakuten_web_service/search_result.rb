@@ -68,16 +68,16 @@ module RakutenWebService
       @response ||= query
     end
 
-    def has_next_page?
-      response.has_next_page?
+    def next_page?
+      response.next_page?
     end
 
     def next_page
       search(page: response.page + 1)
     end
 
-    def has_previous_page?
-      response.has_previous_page?
+    def previous_page?
+      response.previous_page?
     end
 
     def previous_page

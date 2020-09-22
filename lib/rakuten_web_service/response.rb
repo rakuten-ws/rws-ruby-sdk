@@ -33,6 +33,7 @@ module RakutenWebService
     def genre_information
       return unless @resource_class.respond_to?(:genre_class)
       return if self['GenreInformation'].empty?
+
       RWS::GenreInformation.new(self['GenreInformation'][0], @resource_class.genre_class)
     end
 
@@ -40,12 +41,12 @@ module RakutenWebService
       @resources ||= @resource_class.parse_response(@json)
     end
 
-    def has_next_page?
-      page && (not last_page?)
+    def next_page?
+      page && !last_page?
     end
 
-    def has_previous_page?
-      page && (not first_page?)
+    def previous_page?
+      page && !first_page?
     end
 
     def first_page?

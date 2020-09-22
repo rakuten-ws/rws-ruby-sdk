@@ -10,7 +10,7 @@ describe RakutenWebService::Travel::SearchResult do
     RakutenWebService::Travel::SearchResult.new({}, resource_class)
   end
 
-  describe '#has_next_page?' do
+  describe '#next_page?' do
     let(:response) do
       double().tap do |d|
         allow(d).to receive('[]').with('pagingInfo').and_return(pagingInfo)
@@ -27,7 +27,7 @@ describe RakutenWebService::Travel::SearchResult do
       end
 
       it 'should have next page' do
-        expect(search_result).to have_next_page
+        expect(search_result).to be_next_page
       end
     end
     context 'when current page reaches at the last page' do
@@ -36,7 +36,7 @@ describe RakutenWebService::Travel::SearchResult do
       end
 
       it 'should not have next page' do
-        expect(search_result).to_not have_next_page
+        expect(search_result).to_not be_next_page
       end
     end
   end

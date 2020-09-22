@@ -14,7 +14,8 @@ module RakutenWebService
         search_result.each do |resource|
           yield resource
         end
-        break unless search_result.has_next_page?
+        break unless search_result.next_page?
+
         search_result = search_result.next_page
       end
     end
