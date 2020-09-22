@@ -19,7 +19,6 @@ before_install:
   - ./cc-test-reporter before-build
   - gem install bundler
   - bundle config set without 'vscode'
-  - bundle config set jobs 4
 
 script:
   - bundle exec rake
