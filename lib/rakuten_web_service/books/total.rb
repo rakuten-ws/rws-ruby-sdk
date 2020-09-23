@@ -7,7 +7,7 @@ module RakutenWebService
     class Total < Books::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404'
 
-      set_parser do |response|
+      parser do |response|
         response['Items'].map do |item|
           resource_class = find_resource_by_genre_id(item['booksGenreId'])
           resource_class.new(item)

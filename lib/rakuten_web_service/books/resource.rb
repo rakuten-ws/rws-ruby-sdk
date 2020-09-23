@@ -6,7 +6,7 @@ require 'rakuten_web_service/books/genre'
 module RakutenWebService
   module Books
     class Resource < RakutenWebService::Resource
-      set_parser do |response|
+      parser do |response|
         response['Items'].map { |item| new(item) }
       end
 

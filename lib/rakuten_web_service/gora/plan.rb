@@ -7,7 +7,7 @@ module RakutenWebService
     class Plan < Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20170623'
 
-      set_parser do |response|
+      parser do |response|
         response['Items'].map { |item| new(item) }
       end
 

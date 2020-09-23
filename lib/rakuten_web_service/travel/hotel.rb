@@ -7,7 +7,7 @@ module RakutenWebService
     class Hotel < RakutenWebService::Travel::Resource
       endpoint 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426'
 
-      set_parser do |response|
+      parser do |response|
         response['hotels'].map do |hotel_info|
           Hotel.new(hotel_info)
         end

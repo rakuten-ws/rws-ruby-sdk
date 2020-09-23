@@ -12,6 +12,8 @@ module RakutenWebService
     using RakutenWebService::StringSupport
 
     class << self
+      attr_writer :resource_name
+
       # @private
       def inherited(subclass)
         @@subclasses ||= []
@@ -52,11 +54,6 @@ module RakutenWebService
         @resource_name ||= name.split('::').last.downcase
       end
 
-      # @private
-      def set_resource_name(name)
-        @resource_name = name
-      end
-
       # @!macro [attach] resource.endpoin
       #   @!method endpoint
       #   Returns this resource class's endpoint.
@@ -67,7 +64,7 @@ module RakutenWebService
       end
 
       # @private
-      def set_parser(&block)
+      def parser(&block)
         instance_eval do
           define_singleton_method :parse_response, block
         end

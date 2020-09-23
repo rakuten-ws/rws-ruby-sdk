@@ -16,7 +16,7 @@ module RakutenWebService
         end
       end
 
-      def has_next_page?
+      def next_page?
         (page < page_count)
       end
 

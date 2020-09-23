@@ -42,7 +42,7 @@ describe RakutenWebService::BaseGenre do
 
     Class.new(RakutenWebService::BaseGenre) do
       endpoint "https://api.example.com/dummy_genre"
-      set_resource_name 'dummy_genre'
+      self.resource_name = 'dummy_genre'
       root_id 0
       attribute :dummyGenreId, :dummyGenreName, :genreLevel
     end

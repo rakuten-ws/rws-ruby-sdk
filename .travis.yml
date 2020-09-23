@@ -5,10 +5,6 @@ rvm:
   - 2.7
   - ruby-head
 
-env:
-  - INTEGRATION=yes
-  - INTEGRATION=no
-
 group: travis_lts
 
 cache: bundler
@@ -18,8 +14,7 @@ before_install:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - gem install bundler
-
-bundler_args:  --without vscode
+  - bundle config set without 'vscode'
 
 script:
   - bundle exec rake
@@ -30,15 +25,6 @@ after_script:
 matrix:
   allow_failures:
   - rvm: ruby-head
-  exclude:
-  - rvm: 2.5
-    env: INTEGRATION=yes
-  - rvm: 2.6
-    env: INTEGRATION=yes
-  - rvm: 2.7
-    env: INTEGRATION=yes
-  - rvm: ruby-head
-    env: INTEGRATION=yes
 
 notifications:
   email: false

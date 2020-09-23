@@ -7,7 +7,7 @@ module RakutenWebService
     class TagGroup < Resource
       endpoint 'https://app.rakuten.co.jp/services/api/IchibaTag/Search/20140222'
 
-      set_parser do |response|
+      parser do |response|
         response['tagGroups'].map { |tag_group| TagGroup.new(tag_group) }
       end
 

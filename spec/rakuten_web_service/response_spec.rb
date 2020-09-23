@@ -14,9 +14,9 @@ describe RakutenWebService::Response do
         }
       end
 
-      it { is_expected.to have_next_page }
+      it { is_expected.to be_next_page }
       it { is_expected.to_not be_last_page }
-      it { is_expected.to_not have_previous_page }
+      it { is_expected.to_not be_previous_page }
       it { is_expected.to be_first_page }
     end
     context "When page is equal to pageCount" do
@@ -26,9 +26,9 @@ describe RakutenWebService::Response do
         }
       end
 
-      it { is_expected.to_not have_next_page }
+      it { is_expected.to_not be_next_page }
       it { is_expected.to be_last_page }
-      it { is_expected.to have_previous_page }
+      it { is_expected.to be_previous_page }
       it { is_expected.to_not be_first_page }
     end
     context "When current page is in pages" do
@@ -38,9 +38,9 @@ describe RakutenWebService::Response do
         }
       end
 
-      it { is_expected.to have_next_page }
+      it { is_expected.to be_next_page }
       it { is_expected.to_not be_last_page }
-      it { is_expected.to have_previous_page }
+      it { is_expected.to be_previous_page }
       it { is_expected.to_not be_last_page }
     end
   end
