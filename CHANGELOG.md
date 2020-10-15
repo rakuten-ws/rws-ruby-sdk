@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v1.13.0 (2020/10/15)
+
+### Enhancements
+
+- Adds `RakutenWebService::Ichiba::Tab.search` [#112](https://github.com/rakuten-ws/rws-ruby-sdk/pull/112)
+
+### Improvements
+
+- Adds `rexml` to development dependencies to run tests in ruby 3.0 [#127](https://github.com/rakuten-ws/rws-ruby-sdk/pull/127)
+- Abolishes integration spec [#126](https://github.com/rakuten-ws/rws-ruby-sdk/pull/126)
+- Suppresses deprecation warning for bundle install's option [#125](https://github.com/rakuten-ws/rws-ruby-sdk/pull/125)
+- Updates README.ja.md by fuyuton [#124](https://github.com/rakuten-ws/rws-ruby-sdk/pull/124)
+- Removes comment out by 4geru [#123](https://github.com/rakuten-ws/rws-ruby-sdk/pull/123)
+- Use instance variable in ichiba item example code by 4geru [#122](https://github.com/rakuten-ws/rws-ruby-sdk/pull/122)
+- Updates .travis.yml by 4geru [#121](https://github.com/rakuten-ws/rws-ruby-sdk/pull/121)
+- Adds recipe example code by @4geru [#119](https://github.com/rakuten-ws/rws-ruby-sdk/pull/119) [#120](https://github.com/rakuten-ws/rws-ruby-sdk/pull/120)
+- Drop v2.4 from supported ruby versions [#118](https://github.com/rakuten-ws/rws-ruby-sdk/pull/118)
+- Update supported ruby versions: welcome ruby 2.7 [#117](https://github.com/rakuten-ws/rws-ruby-sdk/pull/117)
+- Inserts frozen string literal comments to travel api codes [#113](https://github.com/rakuten-ws/rws-ruby-sdk/pull/113)
+- Refactoring: Extract process from `Travel::Areaclass::Base` constructor [#114](https://github.com/rakuten-ws/rws-ruby-sdk/pull/114)
+- Refactoring: decompose `RakutenWebService::Resource.attribute` to reduce its complexity [#115](https://github.com/rakuten-ws/rws-ruby-sdk/pull/115)
+- Refactoring: fix some style issues [#116](https://github.com/rakuten-ws/rws-ruby-sdk/pull/116)
+
+### Thanks
+
+We are pleased to say thanks to @4geru and @fuyuton. This release includes their seminal works.
+Thanks :tada:
+
 ## v1.12.0 (2019/09/09)
 
 ### Enhancements
