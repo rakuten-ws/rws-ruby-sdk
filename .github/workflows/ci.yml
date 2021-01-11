@@ -17,11 +17,12 @@ jobs:
           - 2.6
           - 2.7
           - "3.0"
-          - head
 
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
+        env:
+          BUNDLE_WITHOUT: vscode
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
