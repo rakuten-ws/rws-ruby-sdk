@@ -93,7 +93,7 @@ gem install rakuten_web_service
   last_items = items.page(3) # 3ページ目の情報を取る
 
   # 最後のページまでスキップする
-  while last_items.has_next_page?
+  while last_items.next_page?
     last_items = last_items.next_page
   end
 
