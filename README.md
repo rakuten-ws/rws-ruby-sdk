@@ -113,7 +113,7 @@ Responses of resources' `search` such as `RakutenWebService::Ichiba::Item.search
   last_items = items.page(3) # Skips first 2 pages.
 
   # Go to the last page
-  while last_items.has_next_page?
+  while last_items.next_page?
     last_items = last_items.next_page
   end
 
