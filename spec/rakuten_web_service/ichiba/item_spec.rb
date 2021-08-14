@@ -130,6 +130,19 @@ describe RakutenWebService::Ichiba::Item do
     end
   end
 
+  describe '.search(no items)' do
+    before do
+      response = JSON.parse(fixture('ichiba/item_search_with_no_items.json'))
+      @expected_request = stub_request(:get, endpoint).with(query: expected_query).to_return(body: response.to_json)
+    end
+
+    subject { RakutenWebService::Ichiba::Item.search(keyword: 'Ruby').first(1) }
+    specify '' do
+      expect { subject }.to_not raise_error
+    end
+    it { is_expected.to eq [] }
+  end
+
   describe '.all' do
     before do
       response = JSON.parse(fixture('ichiba/item_search_with_keyword_Ruby.json'))
