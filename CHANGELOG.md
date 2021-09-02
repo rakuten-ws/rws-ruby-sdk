@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v1.13.1 (2021/09/02)
+
+### Improvements
+
+- Fixed the issue when item can't be found by specifying elements [#132](https://github.com/rakuten-ws/rws-ruby-sdk/pull/132)
+- Removed abolished methods from sample codes in README [#131](https://github.com/rakuten-ws/rws-ruby-sdk/pull/131)
+- Migrated CI for this repo from Travis CI to GitHub Actions [#130](https://github.com/rakuten-ws/rws-ruby-sdk/pull/130)
+- Add ruby 3.0 support [#129](https://github.com/rakuten-ws/rws-ruby-sdk/pull/129)
+
 ## v1.13.0 (2020/10/15)
 
 ### Enhancements
