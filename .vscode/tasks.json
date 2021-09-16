@@ -1,55 +1,79 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "version": "0.1.0",
+    "version": "2.0.0",
     "command": "${workspaceRoot}/bin/rake",
-    "isShellCommand": true,
     "tasks": [
         {
-            "taskName": "build",
-            "isBuildCommand": true
-        },
-        {
-            "taskName": "release",
+            "label": "build",
+            "type": "shell",
+            "command": "${workspaceRoot}/bin/rake",
             "args": [
-                "--trace"
-            ]
+                "build"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "_id": "build",
+                "isDefault": false
+            }
         },
         {
-            "taskName": "spec",
-            "args": [],
-            "showOutput": "always",
-            "echoCommand": true,
-            "isTestCommand": true,
+            "label": "release",
+            "type": "shell",
+            "command": "${workspaceRoot}/bin/rake",
+            "args": [
+                "release",
+                "--trace"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "spec",
+            "type": "shell",
+            "command": "${workspaceRoot}/bin/rake",
+            "args": [
+                "spec"
+            ],
             "problemMatcher": {
                 "owner": "ruby",
-                "fileLocation": ["relative", "${workspaceRoot}"],
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
                 "pattern": {
                     "regexp": "^rspec\\s+([\\./\\w]+):(\\d+)\\s+#\\s+(.+)$",
                     "file": 1,
                     "line": 2,
                     "message": 3
                 }
+            },
+            "group": {
+                "_id": "test",
+                "isDefault": false
             }
         },
         {
-            "taskName": "Nearest Spec",
-            "suppressTaskName": true,
+            "label": "Nearest Spec",
+            "type": "shell",
             "command": "${workspaceRoot}/bin/rspec",
             "args": [
                 "${file}:${lineNumber}"
-            ]
+            ],
+            "problemMatcher": []
         },
         {
-            "taskName": "Current Spec",
-            "suppressTaskName": true,
+            "label": "Current Spec",
+            "type": "shell",
             "command": "${workspaceRoot}/bin/rspec",
             "args": [
                 "${file}"
             ],
             "problemMatcher": {
                 "owner": "ruby",
-                "fileLocation": ["relative", "${workspaceRoot}"],
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
                 "pattern": {
                     "regexp": "^rspec\\s+([\\./\\w]+):(\\d+)\\s+#\\s+(.+)$",
                     "file": 1,
@@ -59,12 +83,13 @@
             }
         },
         {
-            "taskName": "bunlde install",
-            "suppressTaskName": true,
+            "label": "bunlde install",
+            "type": "shell",
             "command": "bundle",
             "args": [
                 "install"
-            ]
+            ],
+            "problemMatcher": []
         }
     ]
 }
