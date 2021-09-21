@@ -294,6 +294,8 @@ module RakutenWebService
   end
 
   class SearchResult
+    type sort_option = 'standard' | Hash[Symbol, 'desc' | 'asc']
+
     include _Each[RakutenWebService::Resource]
     include Enumerable[RakutenWebService::Resource]
     @params: intpu_parameters
@@ -307,7 +309,7 @@ module RakutenWebService
     def all: -> AllProxy
     def params: -> intpu_parameters
     def params_to_get_next_page: -> intpu_parameters
-    def order: (untyped options) -> SearchResult
+    def order: (sort_option options) -> ::RakutenWebService::SearchResult
     def query: -> untyped
     alias fetch_result query
     def response: -> untyped
