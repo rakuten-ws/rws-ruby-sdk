@@ -1,5 +1,10 @@
 # TypeProf 0.15.3
 
+class ::Object
+  def define_singleton_method: (::Symbol, untyped) -> ::Symbol |
+                               ...
+end
+
 # Classes
 module RakutenWebService
   type intpu_parameters = Hash[Symbol, String | Integer]
@@ -80,7 +85,7 @@ module RakutenWebService
 
     attr_reader url: URI::Generic
     def initialize: (nil resource_class) -> void
-    def get: (intpu_parameters params) -> bot
+    def get: (intpu_parameters params) -> ::RakutenWebService::Response
 
     private
     def request: (String path, untyped params) -> nil
@@ -266,7 +271,7 @@ module RakutenWebService
     def self.all: (untyped options) -> untyped
     def self.resource_name: -> String
     def self.endpoint: (?nil url) -> nil
-    def self.parser: -> untyped
+    def self.parser: () { (::RakutenWebService::Response) -> untyped } -> untyped
     def self.define_getter_for_attribute: (untyped attribute_name) -> untyped
     def self.define_asking_method_for_attribute: (untyped attribute_name) -> untyped
     def initialize: (untyped params) -> void
@@ -301,7 +306,7 @@ module RakutenWebService
     @params: intpu_parameters
     @resource_class: nil
     @client: Client
-    @response: untyped
+    @response: ::RakutenWebService::Response
 
     def initialize: (intpu_parameters params, nil resource_class) -> void
     def search: (intpu_parameters params) -> (SearchResult | Travel::SearchResult)
