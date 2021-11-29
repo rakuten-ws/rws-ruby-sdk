@@ -71,7 +71,7 @@ gem install rakuten_web_service
 
 #### 環境変数
 
-`application_id` と `affiliate_id` はそれぞれ、環境変数`RWS_APPLICATION_ID`と`RWS_AFFILIATION_ID`を定義することでも設定できる。
+`application_id` と `affiliate_id` はそれぞれ、環境変数`RWS_APPLICATION_ID`と`RWS_AFFILIATE_ID`を定義することでも設定できる。
 
 ### 市場商品の検索
 
