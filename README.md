@@ -91,7 +91,7 @@ Please note that you need to replace `'YOUR_APPLICATION_ID'` and `'YOUR_AFFILIAT
 
 #### Environment Variables
 
-You can configure `application_id` and `affiliate_id` by defining environment variables `RWS_APPLICATION_ID` and `RWS_AFFILIATION_ID`.
+You can configure `application_id` and `affiliate_id` by defining environment variables `RWS_APPLICATION_ID` and `RWS_AFFILIATE_ID`.
 
 ### Search Ichiba Items
 
