@@ -10,7 +10,7 @@ English version is [here](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/
 
 ## 前提条件
 
-* Ruby 2.5 またはそれ以上のバージョンであること
+* Ruby 2.7 またはそれ以上のバージョンであること
 
 ## インストール方法
 
