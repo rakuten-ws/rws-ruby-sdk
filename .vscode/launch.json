@@ -3,35 +3,20 @@
     "configurations": [
         {
             "name": "Debug Local File",
-            "type": "Ruby",
+            "type": "rdbg",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "${file}"
+            "script": "${file}",
+            "useBundler": true,
+            "askParameters": true
         },
         {
-            "name": "RSpec - all",
-            "type": "Ruby",
+            "name": "Debug with RSpec - active spec line only",
+            "type": "rdbg",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rspec",
-            "args": [ ]
-        },
-        {
-            "name": "RSpec - active spec file only",
-            "type": "Ruby",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rspec",
-            "args": [
-                "${file}"
-            ]
-        },
-        {
-            "name": "RSpec - active spec line only",
-            "type": "Ruby",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/bin/rspec",
+            "script": "${workspaceRoot}/bin/rspec",
+            "useBundler": true,
             "args": [
                 "${file}:${lineNumber}"
             ]
