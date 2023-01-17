@@ -46,7 +46,7 @@ describe RWS::Kobo::Genre do
 
     context 'Without arguments' do
       specify 'should call RWS::Kobo::Ebook.search with specifying genre id' do
-        expect(RWS::Kobo::Ebook).to receive(:search).with(RWS::Kobo::Genre.genre_id_key => genre_id)
+        expect(RWS::Kobo::Ebook).to receive(:search).with({RWS::Kobo::Genre.genre_id_key => genre_id})
 
         RWS::Kobo::Genre.root.search
       end
@@ -54,7 +54,7 @@ describe RWS::Kobo::Genre do
     context 'With arguments' do
       specify 'should call RWS::Kobo::Ebook.search with given arguments and genre id' do
         options = { title: 'Ruby' }
-        expect(RWS::Kobo::Ebook).to receive(:search).with(title: 'Ruby', RWS::Kobo::Genre.genre_id_key => genre_id)
+        expect(RWS::Kobo::Ebook).to receive(:search).with({title: 'Ruby', RWS::Kobo::Genre.genre_id_key => genre_id})
 
         RWS::Kobo::Genre.root.search(options)
       end

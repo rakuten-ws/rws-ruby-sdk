@@ -57,7 +57,7 @@ describe RakutenWebService::Travel::SearchResult do
     end
 
     it 'shold call search to fetch next page results.' do
-      expect(search_result).to receive(:search).with('page' => 3)
+      expect(search_result).to receive(:search).with({'page' => 3})
 
       search_result.next_page
     end
