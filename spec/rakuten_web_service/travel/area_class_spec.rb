@@ -96,19 +96,19 @@ describe RakutenWebService::Travel::AreaClass do
     let(:area_class) { RakutenWebService::Travel::AreaClass['sapporo'] }
 
     specify 'pass area class codes to the simple hotel API' do
-      expect(RakutenWebService::Travel::Hotel).to receive(:search).with(
+      expect(RakutenWebService::Travel::Hotel).to receive(:search).with({
         'largeClassCode' => 'japan', 'middleClassCode' => 'hokkaido', 'smallClassCode' => 'sapporo'
-      )
+      })
 
       area_class.search()
     end
 
     context 'Giving params' do
       specify 'pass area class codes with the given params to the simple hotel API' do
-        expect(RakutenWebService::Travel::Hotel).to receive(:search).with(
+        expect(RakutenWebService::Travel::Hotel).to receive(:search).with({
           'largeClassCode' => 'japan', 'middleClassCode' => 'hokkaido', 'smallClassCode' => 'sapporo',
           'responseType' => 'large'
-        )
+        })
 
         area_class.search('responseType' => 'large')
       end

@@ -188,11 +188,11 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     specify "should call RankingItem's search with genre_id option" do
-      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with(genre_id: genre_id)
+      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with({genre_id: genre_id})
       expect { genre.ranking }.to_not raise_error
     end
     specify "should call RankingItem's search with genre_id and given options" do
-      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with(genre_id: genre_id, age: 10)
+      expect(RakutenWebService::Ichiba::RankingItem).to receive(:search).with({genre_id: genre_id, age: 10})
       expect { genre.ranking(age: 10) }.to_not raise_error
     end
   end
@@ -206,7 +206,7 @@ describe RakutenWebService::Ichiba::Genre do
     end
 
     specify "should call Product search with genre_id option" do
-      expect(RakutenWebService::Ichiba::Product).to receive(:search).with(genre_id: genre_id)
+      expect(RakutenWebService::Ichiba::Product).to receive(:search).with({genre_id: genre_id})
       expect { genre.products }.to_not raise_error
     end
   end
