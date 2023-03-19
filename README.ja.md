@@ -160,39 +160,39 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
 
 ### 楽天市場API
 
-* [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
-* [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
-* [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
-* [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
-* [Rakuten Ichiba Tag Search API](https://webservice.rakuten.co.jp/api/ichibatagsearch/)
+* [Rakuten Ichiba Item Search API](https://webservice.rakuten.co.jp/documentation/ichiba-item-search/)
+* [Rakuten Ichiba Genre Search API](https://webservice.rakuten.co.jp/documentation/ichiba-genre-search/)
+* [Rakuten Ichiba Ranking API](https://webservice.rakuten.co.jp/documentation/ichiba-item-ranking/)
+* [Rakuten Product API](https://webservice.rakuten.co.jp/documentation/ichiba-product-search/)
+* [Rakuten Ichiba Tag Search API](https://webservice.rakuten.co.jp/documentation/ichiba-tag-search/)
 
 ### 楽天ブックス系API
 
-* [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
-* [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
-* [Rakuten Books CD Search API](http://webservice.rakuten.co.jp/api/bookscdsearch/)
-* [Rakuten Books DVD/Blu-ray Search API](http://webservice.rakuten.co.jp/api/booksdvdsearch/)
-* [Rakuten Books ForeignBook Search API](http://webservice.rakuten.co.jp/api/booksforeignbooksearch/)
-* [Rakuten Books Magazine Search API](http://webservice.rakuten.co.jp/api/booksmagazinesearch/)
-* [Rakuten Books Game Search API](http://webservice.rakuten.co.jp/api/booksgamesearch/)
-* [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
-* [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
+* [Rakuten Books Total Search API](https://webservice.rakuten.co.jp/documentation/books-total-search/)
+* [Rakuten Books Book Search API](https://webservice.rakuten.co.jp/documentation/books-book-search/)
+* [Rakuten Books CD Search API](https://webservice.rakuten.co.jp/documentation/books-cd-search/)
+* [Rakuten Books DVD/Blu-ray Search API](https://webservice.rakuten.co.jp/documentation/books-dvd-search/)
+* [Rakuten Books ForeignBook Search API](https://webservice.rakuten.co.jp/documentation/books-foreign-search/)
+* [Rakuten Books Magazine Search API](https://webservice.rakuten.co.jp/documentation/books-magazine-search/)
+* [Rakuten Books Game Search API](https://webservice.rakuten.co.jp/documentation/books-game-search/)
+* [Rakuten Books Software Search API](https://webservice.rakuten.co.jp/documentation/books-software-search/)
+* [Rakuten Books Genre Search API](https://webservice.rakuten.co.jp/documentation/books-genre-search/)
 
 ### 楽天Kobo系API
 
-* [楽天Kobo電子書籍検索API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
-* [楽天Koboジャンル検索API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
+* [楽天Kobo電子書籍検索API](https://webservice.rakuten.co.jp/documentation/kobo-ebook-search/)
+* [楽天Koboジャンル検索API](https://webservice.rakuten.co.jp/documentation/kobo-genre-search/)
 
 ### 楽天レシピ系API
 
-* [楽天レシピカテゴリ一覧API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
-* [楽天レシピカテゴリ別ランキングAPI](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
+* [楽天レシピカテゴリ一覧API](https://webservice.rakuten.co.jp/documentation/recipe-category-list/)
+* [楽天レシピカテゴリ別ランキングAPI](https://webservice.rakuten.co.jp/documentation/recipe-category-ranking/)
 
 ### 楽天GORA系API
 
-* [楽天GORAゴルフ場検索API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
-* [楽天GORAゴルフ場詳細API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
-* [楽天GORAプラン検索API](https://webservice.rakuten.co.jp/api/goraplansearch/)
+* [楽天GORAゴルフ場検索API](https://webservice.rakuten.co.jp/documentation/gora-golf-course-search/)
+* [楽天GORAゴルフ場詳細API](https://webservice.rakuten.co.jp/documentation/gora-golf-course-detail/)
+* [楽天GORAプラン検索API](https://webservice.rakuten.co.jp/documentation/gora-plan-search/)
 
 ## Contributing
 
