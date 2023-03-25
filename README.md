@@ -1,7 +1,6 @@
 # RakutenWebService
 
 [![CI](https://github.com/rakuten-ws/rws-ruby-sdk/workflows/CI/badge.svg)](https://github.com/rakuten-ws/rws-ruby-sdk/actions?query=workflow%3ACI+branch%3Amaster)
-[![Build Status](https://travis-ci.org/rakuten-ws/rws-ruby-sdk.svg?branch=master)](https://travis-ci.org/rakuten-ws/rws-ruby-sdk)
 [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.svg)](https://badge.fury.io/rb/rakuten_web_service)
 [![Test Coverage](https://codeclimate.com/github/rakuten-ws/rws-ruby-sdk/badges/coverage.svg)](https://codeclimate.com/github/rakuten-ws/rws-ruby-sdk/coverage)
 [![Code Climate](https://codeclimate.com/github/rakuten-ws/rws-ruby-sdk/badges/gpa.svg)](https://codeclimate.com/github/rakuten-ws/rws-ruby-sdk)
