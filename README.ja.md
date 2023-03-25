@@ -194,6 +194,11 @@ Genreクラスは、`children`や`parent`といったジャンル階層を辿る
 * [楽天GORAゴルフ場詳細API](https://webservice.rakuten.co.jp/documentation/gora-golf-course-detail/)
 * [楽天GORAプラン検索API](https://webservice.rakuten.co.jp/documentation/gora-plan-search/)
 
+### 楽天トラベル系APIs
+
+* [楽天トラベル施設検索API](https://webservice.rakuten.co.jp/documentation/simple-hotel-search/)
+* [楽天トラベル地区コードAPI](https://webservice.rakuten.co.jp/documentation/get-area-class/)
+
 ## Contributing
 
 1. Fork it
