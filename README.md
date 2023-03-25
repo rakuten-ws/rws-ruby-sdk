@@ -1,4 +1,5 @@
 # RakutenWebService
+
 [![CI](https://github.com/rakuten-ws/rws-ruby-sdk/workflows/CI/badge.svg)](https://github.com/rakuten-ws/rws-ruby-sdk/actions?query=workflow%3ACI+branch%3Amaster)
 [![Build Status](https://travis-ci.org/rakuten-ws/rws-ruby-sdk.svg?branch=master)](https://travis-ci.org/rakuten-ws/rws-ruby-sdk)
 [![Gem Version](https://badge.fury.io/rb/rakuten_web_service.svg)](https://badge.fury.io/rb/rakuten_web_service)
@@ -8,7 +9,7 @@
 
 This gem provides a client for easily accessing [Rakuten Web Service APIs](https://webservice.rakuten.co.jp/).
 
-日本語のドキュメントは[こちら](http://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.ja.md)。
+日本語のドキュメントは[こちら](https://github.com/rakuten-ws/rws-ruby-sdk/blob/master/README.ja.md)。
 
 ## Table of Contents
 
@@ -147,7 +148,7 @@ Genre class provides an interface to traverse sub genres.
 
 ```ruby
   ranking_by_age = RakutenWebService::Ichiba::Item.ranking(age: 30, sex: 1) # returns the TOP 30 items for Male in 30s
-  # For attributes other than 'itemName', see: http://webservice.rakuten.co.jp/api/ichibaitemsearch/#outputParameter
+  # For attributes other than 'itemName', see: https://webservice.rakuten.co.jp/documentation/ichibaitemsearch/#outputParameter
   ranking_by_age.each do |ranking|
     puts item.name
   end
@@ -182,44 +183,44 @@ Now rakuten\_web\_service is supporting the following APIs:
 
 ### Rakuten Ichiba APIs
 
-* [Rakuten Ichiba Item Search API](http://webservice.rakuten.co.jp/api/ichibaitemsearch/)
-* [Rakuten Ichiba Genre Search API](http://webservice.rakuten.co.jp/api/ichibagenresearch/)
-* [Rakuten Ichiba Ranking API](http://webservice.rakuten.co.jp/api/ichibaitemranking/)
-* [Rakuten Product API](http://webservice.rakuten.co.jp/api/productsearch/)
-* [Rakuten Ichiba Tag Search API](https://webservice.rakuten.co.jp/api/ichibatagsearch/)
+* [Rakuten Ichiba Item Search API](https://webservice.rakuten.co.jp/documentation/ichiba-item-search/)
+* [Rakuten Ichiba Genre Search API](https://webservice.rakuten.co.jp/documentation/ichiba-genre-search/)
+* [Rakuten Ichiba Ranking API](https://webservice.rakuten.co.jp/documentation/ichiba-item-ranking/)
+* [Rakuten Product API](https://webservice.rakuten.co.jp/documentation/ichiba-product-search/)
+* [Rakuten Ichiba Tag Search API](https://webservice.rakuten.co.jp/documentation/ichiba-tag-search/)
 
 ### Rakuten Books APIs
 
-* [Rakuten Books Total Search API](http://webservice.rakuten.co.jp/api/bookstotalsearch/)
-* [Rakuten Books Book Search API](http://webservice.rakuten.co.jp/api/booksbooksearch/)
-* [Rakuten Books CD Search API](http://webservice.rakuten.co.jp/api/bookscdsearch/)
-* [Rakuten Books DVD/Blu-ray Search API](http://webservice.rakuten.co.jp/api/booksdvdsearch/)
-* [Rakuten Books ForeignBook Search API](http://webservice.rakuten.co.jp/api/booksforeignbooksearch/)
-* [Rakuten Books Magazine Search API](http://webservice.rakuten.co.jp/api/booksmagazinesearch/)
-* [Rakuten Books Game Search API](http://webservice.rakuten.co.jp/api/booksgamesearch/)
-* [Rakuten Books Software Search API](http://webservice.rakuten.co.jp/api/bookssoftwaresearch/)
-* [Rakuten Books Genre Search API](http://webservice.rakuten.co.jp/api/booksgenresearch/)
+* [Rakuten Books Total Search API](https://webservice.rakuten.co.jp/documentation/books-total-search/)
+* [Rakuten Books Book Search API](https://webservice.rakuten.co.jp/documentation/books-book-search/)
+* [Rakuten Books CD Search API](https://webservice.rakuten.co.jp/documentation/books-cd-search/)
+* [Rakuten Books DVD/Blu-ray Search API](https://webservice.rakuten.co.jp/documentation/books-dvd-search/)
+* [Rakuten Books ForeignBook Search API](https://webservice.rakuten.co.jp/documentation/books-foreign-search/)
+* [Rakuten Books Magazine Search API](https://webservice.rakuten.co.jp/documentation/books-magazine-search/)
+* [Rakuten Books Game Search API](https://webservice.rakuten.co.jp/documentation/books-game-search/)
+* [Rakuten Books Software Search API](https://webservice.rakuten.co.jp/documentation/books-software-search/)
+* [Rakuten Books Genre Search API](https://webservice.rakuten.co.jp/documentation/books-genre-search/)
 
 ### Rakuten Kobo APIs
 
-* [Rakuten Kobo Ebook Search API](http://webservice.rakuten.co.jp/api/koboebooksearch/)
-* [Rakuten Kobo Genre Search API](http://webservice.rakuten.co.jp/api/kobogenresearch/)
+* [Rakuten Kobo Ebook Search API](https://webservice.rakuten.co.jp/documentation/kobo-ebook-search/)
+* [Rakuten Kobo Genre Search API](https://webservice.rakuten.co.jp/documentation/kobo-genre-search/)
 
 ### Rakuten Recipe APIs
 
-* [Rakuten Recipe Category List API](https://webservice.rakuten.co.jp/api/recipecategorylist/)
-* [Rakuten Recipe Category Ranking API](https://webservice.rakuten.co.jp/api/recipecategoryranking/)
+* [Rakuten Recipe Category List API](https://webservice.rakuten.co.jp/documentation/recipe-category-list/)
+* [Rakuten Recipe Category Ranking API](https://webservice.rakuten.co.jp/documentation/recipe-category-ranking/)
 
 ### Rakuten GORA APIs
 
-* [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/api/goragolfcoursesearch/)
-* [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/api/goragolfcoursedetail/)
-* [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/api/goraplansearch/)
+* [Rakuten GORA Golf Course Search API](https://webservice.rakuten.co.jp/documentation/gora-golf-course-search/)
+* [Rakuten GORA Golf Course Detail Search API](https://webservice.rakuten.co.jp/documentation/gora-golf-course-detail/)
+* [Rakuten GORA Plan Search API](https://webservice.rakuten.co.jp/documentation/gora-plan-search/)
 
 ### Rakuten Travel APIs
 
-* [Rakuten Travel Simple Hotel API](https://webservice.rakuten.co.jp/api/simplehotelsearch/)
-* [Rakuten Travel Get Area Class API](https://webservice.rakuten.co.jp/api/getareaclass/)
+* [Rakuten Travel Simple Hotel API](https://webservice.rakuten.co.jp/documentation/simple-hotel-search/)
+* [Rakuten Travel Get Area Class API](https://webservice.rakuten.co.jp/documentation/get-area-class/)
 
 ## Contributing
 
