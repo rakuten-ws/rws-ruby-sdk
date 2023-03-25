@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.13.2 (2023/03/26)
+
+### Improvements
+
+- Fixes broken links in README for Japanese [#140](https://github.com/rakuten-ws/rws-ruby-sdk/pull/140)
+- Fixes broken links in README [#141](https://github.com/rakuten-ws/rws-ruby-sdk/pull/141)
+
+### Thanks
+
+@ryosuke-endo gave the pull-request #140. This realized me that some links in README had been broken.
+Thanks :tada:
+
 ## v1.13.1 (2021/09/02)
 
 ### Improvements
