@@ -1,0 +1,412 @@
+# TypeProf 0.15.3
+
+class ::Object
+  def define_singleton_method: (::Symbol, untyped) -> ::Symbol |
+                               ...
+end
+
+# Classes
+module RakutenWebService
+  type intpu_parameters = Hash[Symbol, String | Integer]
+
+  VERSION: String
+  @configuration: untyped
+  self.@configuration: untyped
+
+  def configure: ?{ (untyped) -> String? } -> untyped
+  def configuration: -> untyped
+  def self.configure: ?{ (untyped) -> String? } -> untyped
+  def self.configuration: -> untyped
+
+  class AllProxy
+    include Enumerable
+    @search_result: SearchResult
+
+    def initialize: (SearchResult search_result) -> void
+    def each: -> nil
+  end
+
+  module Books
+    class Book
+      def update_key: -> String
+    end
+
+    class CD
+      def update_key: -> String
+    end
+
+    class DVD
+      def update_key: -> String
+    end
+
+    class ForeignBook
+      def update_key: -> String
+    end
+
+    class Game
+      def update_key: -> String
+    end
+
+    class Genre
+      def search: (?Hash[untyped, untyped] params) -> untyped
+    end
+
+    class Magazine
+      def update_key: -> String
+    end
+
+    class Resource
+      @genre: untyped
+      @params: bot
+
+      def self.find_resource_by_genre_id: (untyped genre_id) -> ((singleton(Book) | singleton(CD) | singleton(DVD) | singleton(ForeignBook) | singleton(Game) | singleton(Magazine) | singleton(Software))?)
+      def self.genre_class: -> singleton(Genre)
+      def genre: -> untyped
+      alias genres genre
+      def get_attribute: (untyped name) -> untyped
+
+      private
+      def update_params: -> bot
+      def update_key: -> bot
+      def params: -> nil
+    end
+
+    class Software < Resource
+      def update_key: -> String
+    end
+
+    class Total < Resource
+    end
+  end
+
+  class Client
+    USER_AGENT: String
+    @resource_class: nil
+
+    attr_reader url: URI::Generic
+    def initialize: (nil resource_class) -> void
+    def get: (intpu_parameters params) -> ::RakutenWebService::Response
+
+    private
+    def request: (String path, untyped params) -> nil
+  end
+
+  class Configuration
+    attr_accessor application_id: String?
+    attr_accessor affiliate_id: String?
+    attr_accessor max_retries: Integer
+    attr_accessor debug: bot
+    def initialize: -> void
+    def generate_parameters: (untyped params) -> Hash[untyped, String?]
+    def default_parameters: -> {application_id: String?, affiliate_id: String?, format_version: String}
+    def has_required_options?: -> bool?
+    def debug_mode?: -> true?
+
+    private
+    def convert_snake_key_to_camel_key: (Hash[:affiliate_id | :application_id | :format_version, String?] params) -> Hash[untyped, String?]
+  end
+
+  class Error < StandardError
+    self.@repository: Hash[untyped, untyped]
+
+    def self.register: (Integer status_code, singleton(NotFound) | singleton(ServiceUnavailable) | singleton(SystemError) | singleton(TooManyRequests) | singleton(WrongParameter) error) -> (singleton(NotFound) | singleton(ServiceUnavailable) | singleton(SystemError) | singleton(TooManyRequests) | singleton(WrongParameter))
+    def self.for: (nil response) -> untyped
+    def self.repository: -> Hash[untyped, untyped]
+  end
+
+  class WrongParameter < Error
+  end
+
+  class NotFound < Error
+  end
+
+  class TooManyRequests < Error
+  end
+
+  class SystemError < Error
+  end
+
+  class ServiceUnavailable < Error
+  end
+
+  class BaseGenre
+    self.@repository: Hash[untyped, untyped]
+    @params: bot
+    self.@root_id: (Integer | String)?
+
+    def self.inherited: (singleton(Ichiba::Genre) | singleton(Kobo::Genre) klass) -> untyped
+    def self.new: ((BaseGenre | Ichiba::Genre | Integer | Kobo::Genre | String)? params) -> ((BaseGenre | Ichiba::Genre | Kobo::Genre)?)
+    def self.genre_id_key: -> Symbol
+    def self.root_id: (?(Integer | String)? id) -> ((Integer | String)?)
+    def self.root: -> ((BaseGenre | Ichiba::Genre | Kobo::Genre)?)
+    def self.[]: (Integer id) -> ((BaseGenre | Ichiba::Genre | Kobo::Genre)?)
+    def self.[]=: (untyped id, untyped genre) -> untyped
+    def self.repository: -> Hash[untyped, untyped]
+    def initialize: (untyped params) -> void
+    def children: -> untyped
+    def brothers: -> untyped
+    def parents: -> untyped
+  end
+
+  class GenreInformation
+    attr_reader parent: (BaseGenre | Ichiba::Genre | Kobo::Genre)?
+    attr_reader current: (BaseGenre | Ichiba::Genre | Kobo::Genre)?
+    attr_reader children: untyped
+    def initialize: (untyped params, singleton(Ichiba::Genre) genre_class) -> void
+  end
+
+  module Gora
+    class Course
+    end
+
+    class CourseDetail
+      def self.find: (untyped golf_course_id) -> untyped
+      def ratings: -> untyped
+      def new_plans: -> untyped
+
+      class Rating
+        def self.search: (untyped _options) -> bot
+      end
+
+      class Plan
+        def self.search: (untyped _options) -> bot
+      end
+    end
+
+    class Plan
+      def plan_info: -> untyped
+
+      class PlanInfo
+        def self.search: (untyped _options) -> bot
+        def call_info: -> CallInfo
+
+        class CallInfo
+          def self.search: (untyped _options) -> bot
+        end
+      end
+    end
+  end
+
+  module Ichiba
+    class Genre < BaseGenre
+      self.@root_id: (Integer | String)?
+      self.@repository: Hash[untyped, untyped]
+      @params: bot
+
+      def ranking: (?Hash[untyped, untyped] options) -> untyped
+      def products: (?Hash[untyped, untyped] options) -> untyped
+    end
+
+    class Item
+      def self.ranking: (?Hash[untyped, untyped] options) -> untyped
+      def self.genre_class: -> singleton(Genre)
+      def genre: -> ((BaseGenre | Genre | Kobo::Genre)?)
+      def shop: -> untyped
+    end
+
+    class Product
+      def genre: -> ((BaseGenre | Genre | Kobo::Genre)?)
+    end
+
+    class RankingItem < Item
+    end
+
+    class Shop
+      def items: (?Hash[untyped, untyped] options) -> untyped
+    end
+
+    class Tag
+      def search: (?Hash[untyped, untyped] params) -> untyped
+    end
+
+    class TagGroup
+      def tags: -> untyped
+    end
+  end
+
+  module Kobo
+    class Ebook
+      def self.genre_class: -> untyped
+      def genre: -> untyped
+    end
+
+    class Genre < BaseGenre
+      self.@root_id: (Integer | String)?
+      self.@repository: Hash[untyped, untyped]
+      @params: bot
+
+      def search: (?{title: String} options) -> untyped
+    end
+  end
+
+  class Recipe
+    self.@categories: Hash[String?, untyped]
+
+    def self.ranking: (?String? category_id) -> untyped
+    def self.large_categories: -> untyped
+    def self.medium_categories: -> untyped
+    def self.small_categories: -> untyped
+    def self.categories: (String? category_type) -> untyped
+
+    class Category
+      def ranking: -> untyped
+      def parent_category: -> nil
+      def absolute_category_id: -> String
+
+      private
+      def parent_category_type: -> String?
+    end
+  end
+
+  class Resource
+    self.@resource_name: String
+    self.@endpoint: nil
+    @@subclasses: Array[untyped]
+
+    attr_reader params: Hash[untyped, untyped]
+    def self.inherited: (singleton(Travel::Resource) subclass) -> Array[untyped]
+    def self.subclasses: -> Array[untyped]
+    def self.attribute: (*untyped attribute_names) -> untyped
+    def self.search: (untyped options) -> untyped
+    def self.all: (untyped options) -> untyped
+    def self.resource_name: -> String
+    def self.endpoint: (?nil url) -> nil
+    def self.parser: () { (::RakutenWebService::Response) -> untyped } -> untyped
+    def self.define_getter_for_attribute: (untyped attribute_name) -> untyped
+    def self.define_asking_method_for_attribute: (untyped attribute_name) -> untyped
+    def initialize: (untyped params) -> void
+    def []: (untyped key) -> nil
+    def get_attribute: (untyped name) -> nil
+    def attributes: -> Array[untyped]
+    def ==: (untyped other) -> bool
+  end
+
+  class Response
+    include Enumerable
+    @resource_class: untyped
+    @json: untyped
+    @resources: untyped
+
+    def initialize: (untyped resource_class, untyped json) -> void
+    def []: (String key) -> untyped
+    def each: -> untyped
+    def genre_information: -> GenreInformation?
+    def resources: -> untyped
+    def next_page?: -> untyped
+    def previous_page?: -> untyped
+    def first_page?: -> untyped
+    def last_page?: -> untyped
+  end
+
+  class SearchResult
+    type sort_option = 'standard' | Hash[Symbol, 'desc' | 'asc']
+
+    include _Each[RakutenWebService::Resource]
+    include Enumerable[RakutenWebService::Resource]
+    @params: intpu_parameters
+    @resource_class: nil
+    @client: Client
+    @response: ::RakutenWebService::Response
+
+    def initialize: (intpu_parameters params, nil resource_class) -> void
+    def search: (intpu_parameters params) -> (SearchResult | Travel::SearchResult)
+    alias with search
+    def all: -> AllProxy
+    def params: -> intpu_parameters
+    def params_to_get_next_page: -> intpu_parameters
+    def order: (sort_option options) -> ::RakutenWebService::SearchResult
+    def query: -> untyped
+    alias fetch_result query
+    def response: -> untyped
+    def next_page?: -> untyped
+    def next_page: -> untyped
+    def previous_page?: -> untyped
+    def previous_page: -> untyped
+    def page: (untyped num) -> untyped
+    def genre_information: -> untyped
+
+    private
+    def ensure_retries: (?untyped max_retries) { -> untyped } -> untyped
+  end
+
+  module StringSupport
+    def to_snake: -> untyped
+    def to_camel: -> untyped
+  end
+
+  module Travel
+    module AreaClass
+      def search: (?Hash[untyped, untyped] options) -> untyped
+      def []: (String class_code) -> untyped
+      def self.search: (?Hash[untyped, untyped] options) -> untyped
+      def self.[]: (String class_code) -> untyped
+
+      class Base
+        @params: untyped
+        @@area_classes: Hash[untyped, untyped]
+        @@repository: Hash[untyped, untyped]
+
+        def self.area_classes: -> Hash[untyped, untyped]
+        def self.inherited: (singleton(DetailClass) | singleton(LargeClass) | singleton(MiddleClass) | singleton(SmallClass) klass) -> untyped
+        def self.[]: (String area_code) -> untyped
+        def self.new: (*untyped args) -> (Base | LargeClass)
+        def self.repository: -> Hash[untyped, untyped]
+        attr_reader parent: nil
+        attr_reader children: Array[untyped]?
+        def initialize: (untyped class_data, ?nil parent) -> void
+        def area_level: -> untyped
+        def class_code: -> untyped
+        def class_name: -> untyped
+        def to_query: -> Hash[String, untyped]
+        def search: (?Hash[untyped, untyped] params) -> untyped
+
+        private
+        def parse_children_attributes: -> Array[untyped]
+      end
+
+      class LargeClass < Base
+        @params: untyped
+      end
+
+      class MiddleClass < Base
+      end
+
+      class SmallClass < Base
+      end
+
+      class DetailClass < Base
+      end
+    end
+
+    class Hotel
+      @params: Hash[untyped, untyped]
+
+      def initialize: (untyped params) -> void
+      def self.attribute_names: -> [String, String, String, String, String, String]
+    end
+
+    class OpenStruct
+      @table: Hash[untyped, untyped]
+
+      def initialize: (untyped hash) -> void
+    end
+
+    class Resource < ::RakutenWebService::Resource
+      def self.search: (untyped options) -> untyped
+    end
+
+    class SearchResult < ::RakutenWebService::SearchResult
+      @params: {sort: String}
+      @response: untyped
+      @client: Client
+      @resource_class: nil
+
+      def params_to_get_next_page: -> Hash[:sort, String]
+      def next_page?: -> untyped
+      def next_page: -> (SearchResult | SearchResult)
+
+      private
+      def paging_info: -> untyped
+    end
+  end
+end
