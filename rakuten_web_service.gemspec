@@ -17,7 +17,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.7.0'
 
+  spec.add_dependency 'base64', '~> 0.2'
+  spec.add_dependency 'bigdecimal', '~> 3.1'
   spec.add_dependency 'json', '~> 2.3'
+
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'debug'
   spec.add_development_dependency 'rake', '~> 13.0'
