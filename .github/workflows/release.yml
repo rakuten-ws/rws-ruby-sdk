@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    if: startsWith(github.ref, 'refs/tags/') # Run only when tagged like v1.0.1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+
+      - name: Build gem
+        id: build
+        run: rake build
+
+      - name: Capture package name
+        id: package_name
+        run: |
+          echo "package_name=$(basename pkg/*.gem | tail -n1)" >> $GITHUB_ENV
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{steps.package_name.outputs.package_name}}
+          path: pkg/${{steps.package_name.outputs.package_name}}
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: pkg/${{steps.package_name.outputs.package_name}}
+          generate_release_notes: true
+
+      - uses: rubygems/release-gem@v1
