@@ -15,7 +15,7 @@ module RakutenWebService
         end
       end
 
-      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
+      endpoint 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601'
 
       parser do |response|
         (response['Items'] || []).map { |item| Item.new(item) }
@@ -23,6 +23,9 @@ module RakutenWebService
 
       attribute :itemName, :catchcopy, :itemCode, :itemPrice,
                 :itemCaption, :itemUrl, :affiliateUrl, :imageFlag,
+                :itemPriceBaseField,
+                :itemPriceMax1, :itemPriceMax2, :itemPriceMax3,
+                :itemPriceMin1, :itemPriceMin2, :itemPriceMin3,
                 :smallImageUrls, :mediumImageUrls,
                 :availability, :taxFlag,
                 :postageFlag, :creditCardFlag,

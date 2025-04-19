@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Ichiba::Item do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706' }
+  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
