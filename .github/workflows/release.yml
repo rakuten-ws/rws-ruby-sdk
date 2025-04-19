@@ -32,12 +32,12 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{steps.package_name.outputs.package_name}}
-          path: pkg/${{steps.package_name.outputs.package_name}}
+          name: ${{env.package_name}}
+          path: pkg/${{env.package_name}}
 
       - uses: softprops/action-gh-release@v2
         with:
-          files: pkg/${{steps.package_name.outputs.package_name}}
+          files: pkg/${{env.package_name}}
           generate_release_notes: true
 
       - uses: rubygems/release-gem@v1
