@@ -23,7 +23,7 @@ jobs:
 
       - name: Build gem
         id: build
-        run: rake build
+        run: bundle exec rake build
 
       - name: Capture package name
         id: package_name
