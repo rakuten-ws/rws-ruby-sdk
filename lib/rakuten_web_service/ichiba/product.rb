@@ -6,14 +6,14 @@ require 'rakuten_web_service/ichiba/genre'
 module RakutenWebService
   module Ichiba
     class Product < Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Product/Search/20170426'
+      endpoint 'https://openapi.rakuten.co.jp/ichibaproduct/api/Product/Search/20250801'
 
       parser do |response|
         (response['Products'] || []).map { |prod| Product.new(prod) }
       end
 
-      attribute :productId, :productName, :productNo, :brandName,
-        :productUrlPC, :productUrlMobile, :affiliateUrl,
+      attribute :productId, :productCode, :productName, :productNo, :brandName,
+        :productUrlPC, :productUrlMobile, :searchUrl, :affiliateUrl,
         :smallImageUrl, :mediumImageUrl,
         :productCaption, :releaseDate,
         :makerCode, :makerName, :makerNameKana, :makerNameFormal,
@@ -24,7 +24,7 @@ module RakutenWebService
         :minPrice, :salesMinPrice, :usedExcludeMinPrice, :usedExcludeSalesMinPrice,
         :averagePrice,
         :reviewCount, :reviewAverage, :reviewUrlPC, :reviewUrlMobile,
-        :rankTargetGenreId, :rankTargetProductCount,
+        :rank, :rankTargetGenreId, :rankTargetProductCount,
         :genreId, :genreName,
         :ProductDetails
 

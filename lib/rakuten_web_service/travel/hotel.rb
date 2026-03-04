@@ -5,7 +5,7 @@ require 'rakuten_web_service/travel/resource'
 module RakutenWebService
   module Travel
     class Hotel < RakutenWebService::Travel::Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20170426'
 
       parser do |response|
         response['hotels'].map do |hotel_info|

@@ -7,9 +7,9 @@ require 'rakuten_web_service/ichiba/product'
 module RakutenWebService
   module Ichiba
     class Genre < RakutenWebService::BaseGenre
-      endpoint 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222'
+      endpoint 'https://openapi.rakuten.co.jp/ichibagt/api/IchibaGenre/Search/20170711'
 
-      attribute :genreId, :genreName, :genreLevel, :itemCount
+      attribute :genreId, :genreName, :genreLevel, :englishName, :linkGenreId, :chopperFlg, :lowestFlg, :itemCount
 
       root_id 0
 

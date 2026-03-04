@@ -5,7 +5,7 @@ require 'rakuten_web_service/resource'
 module RakutenWebService
   module Books
     class ForeignBook < Books::Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/BooksForeignBook/Search/20170404'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/BooksForeignBook/Search/20170404'
 
       attribute :title, :titleKana, :japaneseTitle,
                 :author, :authorKana,
