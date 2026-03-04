@@ -7,7 +7,7 @@ module RakutenWebService
     class Genre < RakutenWebService::BaseGenre
       self.resource_name = 'books_genre'
 
-      endpoint 'https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/BooksGenre/Search/20121128'
 
       attribute :booksGenreId, :booksGenreName, :genreLevel, :itemCount
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RWS::Books::Genre do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128' }
+  let(:endpoint) { 'https://openapi.rakuten.co.jp/services/api/BooksGenre/Search/20121128' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:genre_id) { '000' }

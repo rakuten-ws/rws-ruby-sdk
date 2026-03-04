@@ -11,7 +11,7 @@ module RakutenWebService
         end
       end
 
-      endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/Gora/GoraGolfCourseDetail/20170623'
 
       parser do |response|
         [new(response['Item'])]

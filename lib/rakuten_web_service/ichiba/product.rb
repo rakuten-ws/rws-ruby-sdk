@@ -6,7 +6,7 @@ require 'rakuten_web_service/ichiba/genre'
 module RakutenWebService
   module Ichiba
     class Product < Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Product/Search/20170426'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/Product/Search/20170426'
 
       parser do |response|
         (response['Products'] || []).map { |prod| Product.new(prod) }

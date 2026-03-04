@@ -18,7 +18,7 @@ module RakutenWebService
       module_function :search, :[]
 
       class Base < RakutenWebService::Travel::Resource
-        endpoint 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
+        endpoint 'https://openapi.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024'
 
         parser do |response|
           response['areaClasses']['largeClasses'].map do |data|
