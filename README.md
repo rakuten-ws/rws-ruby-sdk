@@ -72,6 +72,10 @@ At first, you have to specify your application's key. And you can tell the clien
     # (Required) Appliction ID for your application.
     c.application_id = 'YOUR_APPLICATION_ID'
 
+    # (Required) Access key
+    # Note: For security purposes, we recommend retrieving this value from a secrets manager or environment variable.
+    c.access_key = 'YOUR_ACCESS_KEY'
+
     # (Optional) Affiliate ID for your Rakuten account.
     c.affiliate_id = 'YOUR_AFFILIATE_ID' # default: nil
 

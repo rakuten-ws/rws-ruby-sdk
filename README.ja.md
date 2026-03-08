@@ -51,6 +51,10 @@ gem install rakuten_web_service
     # (必須) アプリケーションID
     c.application_id = 'YOUR_APPLICATION_ID'
 
+    # (必須) アクセスキー
+    # 注意: セキュリティ上の理由から、この値はシークレットマネージャーまたは環境変数から取得することを推奨します。
+    c.access_key = 'YOUR_ACCESS_KEY'
+
     # (任意) 楽天アフィリエイトID
     c.affiliate_id = 'YOUR_AFFILIATE_ID' # default: nil
 

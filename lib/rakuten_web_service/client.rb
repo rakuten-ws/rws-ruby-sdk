@@ -39,6 +39,9 @@ module RakutenWebService
       end
       path = "#{path}?#{URI.encode_www_form(params)}"
       header = { 'User-Agent' => USER_AGENT }
+      if RakutenWebService.configuration.access_key
+        header['Authorization'] = "Bearer #{RakutenWebService.configuration.access_key}"
+      end
       http.get(path, header)
     end
   end
