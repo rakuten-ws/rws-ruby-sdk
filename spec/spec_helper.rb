@@ -25,6 +25,7 @@ RSpec.configure do |config|
     WebMock.allow_net_connect!
     RakutenWebService.configure do |c|
       c.application_id = ENV['RWS_APPLICATION_ID']
+      c.access_key = ENV['RWS_ACCESS_KEY']
     end
   end
 

@@ -17,6 +17,7 @@ describe RakutenWebService::Ichiba::Item do
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
+      c.access_key = 'dummy_access_key'
     end
   end
 

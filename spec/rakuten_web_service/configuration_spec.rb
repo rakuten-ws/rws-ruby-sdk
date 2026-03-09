@@ -3,22 +3,25 @@ require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
   describe '#initialize' do
-    context "environment variable RWS_APPLICATION_ID and RWS_AFFILIATE_ID are defined" do
+    context "environment variable RWS_APPLICATION_ID, RWS_AFFILIATE_ID and RWS_ACCESS_KEY are defined" do
       before do
         ENV['RWS_APPLICATION_ID'] = 'env_application_id'
         ENV['RWS_AFFILIATE_ID'] = 'env_affiliate_id'
+        ENV['RWS_ACCESS_KEY'] = 'env_access_key'
       end
 
       after do
         ENV.delete 'RWS_APPLICATION_ID'
         ENV.delete 'RWS_AFFILIATE_ID'
+        ENV.delete 'RWS_ACCESS_KEY'
       end
 
       subject { RakutenWebService::Configuration.new }
 
-      specify "the application id is set by the environment variable" do
+      specify "the application id, affiliate id and access key are set by the environment variables" do
         expect(subject.application_id).to eq 'env_application_id'
         expect(subject.affiliate_id).to eq 'env_affiliate_id'
+        expect(subject.access_key).to eq 'env_access_key'
       end
     end
   end
@@ -55,16 +58,23 @@ describe RakutenWebService::Configuration do
     before do
       RakutenWebService.configure do |c|
         c.application_id = application_id
+        c.access_key = access_key
       end
     end
 
-    context "When application id is given" do
+    let(:access_key) { 'access_key' }
+
+    context "When application id and access key are given" do
       let(:application_id) { 'app_id' }
 
       subject { RakutenWebService.configuration.default_parameters }
 
       it "has application_id key and its value is a given value" do
         expect(subject[:application_id]).to eq 'app_id'
+      end
+
+      it "does not include access_key in parameters" do
+        expect(subject).not_to have_key(:access_key)
       end
     end
     context "When application id is not given" do
@@ -73,7 +83,7 @@ describe RakutenWebService::Configuration do
       it "raises an error" do
         expect {
           RakutenWebService.configuration.default_parameters
-        }.to raise_error(RuntimeError, "Application ID is not defined")
+        }.to raise_error(RuntimeError, "Application ID and access key are not defined")
       end
     end
     context "When application id is an empty string" do
@@ -82,7 +92,27 @@ describe RakutenWebService::Configuration do
       it "raises an error" do
         expect {
           RakutenWebService.configuration.default_parameters
-        }.to raise_error(RuntimeError, "Application ID is not defined")
+        }.to raise_error(RuntimeError, "Application ID and access key are not defined")
+      end
+    end
+    context "When access key is not given" do
+      let(:application_id) { 'app_id' }
+      let(:access_key) { nil }
+
+      it "raises an error" do
+        expect {
+          RakutenWebService.configuration.default_parameters
+        }.to raise_error(RuntimeError, "Application ID and access key are not defined")
+      end
+    end
+    context "When access key is an empty string" do
+      let(:application_id) { 'app_id' }
+      let(:access_key) { '' }
+
+      it "raises an error" do
+        expect {
+          RakutenWebService.configuration.default_parameters
+        }.to raise_error(RuntimeError, "Application ID and access key are not defined")
       end
     end
   end

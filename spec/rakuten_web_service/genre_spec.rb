@@ -63,6 +63,7 @@ describe RakutenWebService::BaseGenre do
     RakutenWebService.configure do |c|
       c.application_id = "DUMMY_APPLICATION_ID"
       c.affiliate_id = "DUMMY_AFFILIATE_ID"
+      c.access_key = 'dummy_access_key'
     end
   end
 
