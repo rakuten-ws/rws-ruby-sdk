@@ -8,7 +8,10 @@ module RakutenWebService
 
     def self.for(response)
       error_class = repository[response.code.to_i]
-      error_class.new(JSON.parse(response.body)['error_description'])
+      json_body = JSON.parse(response.body)
+      # Note: In some case (e.g. authentication info missing), the server returns another format of error response like following:
+      #       {"errors"=>{"errorCode"=>400, "errorMessage"=>"accessKey must be present as a query parameter or in the header"}}
+      error_class.new(json_body['error_description'] || json_body.dig('errors', 'errorMessage'))
     end
 
     def self.repository
