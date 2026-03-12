@@ -40,7 +40,10 @@ module RakutenWebService
       path = "#{path}?#{URI.encode_www_form(params)}"
       header = { 'User-Agent' => USER_AGENT }
       if RakutenWebService.configuration.access_key
-        header['Authorization'] = "Bearer #{RakutenWebService.configuration.access_key}"
+        case RakutenWebService.configuration.access_key_transport
+        when :access_key_header
+          header['accessKey'] = RakutenWebService.configuration.access_key
+        end
       end
       http.get(path, header)
     end

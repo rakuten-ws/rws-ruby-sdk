@@ -54,6 +54,21 @@ describe RakutenWebService::Configuration do
     end
   end
 
+  describe '#access_key_transport=' do
+    let(:config) { RakutenWebService::Configuration.new }
+
+    %i[access_key_header query].each do |valid_value|
+      it "accepts :#{valid_value}" do
+        config.access_key_transport = valid_value
+        expect(config.access_key_transport).to eq valid_value
+      end
+    end
+
+    it 'raises ArgumentError for invalid value' do
+      expect { config.access_key_transport = :invalid }.to raise_error(ArgumentError)
+    end
+  end
+
   describe "#default_parameters" do
     before do
       RakutenWebService.configure do |c|
@@ -76,6 +91,20 @@ describe RakutenWebService::Configuration do
       it "does not include access_key in parameters" do
         expect(subject).not_to have_key(:access_key)
       end
+
+      context "when access_key_transport is :query" do
+        around do |example|
+          original = RakutenWebService.configuration.access_key_transport
+          RakutenWebService.configuration.access_key_transport = :query
+          example.run
+          RakutenWebService.configuration.access_key_transport = original
+        end
+
+        it "includes access_key in parameters" do
+          expect(subject[:access_key]).to eq 'access_key'
+        end
+      end
+
     end
     context "When application id is not given" do
       let(:application_id) { nil }
