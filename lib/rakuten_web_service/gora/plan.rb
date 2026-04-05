@@ -5,7 +5,7 @@ require 'rakuten_web_service/resource'
 module RakutenWebService
   module Gora
     class Plan < Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20170623'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/Gora/GoraPlanSearch/20170623'
 
       parser do |response|
         response['Items'].map { |item| new(item) }

@@ -5,7 +5,7 @@ require 'rakuten_web_service/books/resource'
 module RakutenWebService
   module Books
     class Total < Books::Resource
-      endpoint 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/BooksTotal/Search/20170404'
 
       parser do |response|
         response['Items'].map do |item|

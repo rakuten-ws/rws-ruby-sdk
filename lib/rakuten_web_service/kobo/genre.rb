@@ -9,7 +9,7 @@ module RakutenWebService
 
       root_id '101'
 
-      endpoint 'https://app.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010'
+      endpoint 'https://openapi.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010'
 
       attribute :koboGenreId, :koboGenreName, :genreLevel, :itemCount
 

@@ -7,6 +7,7 @@ describe RakutenWebService do
         RakutenWebService.configure do |c|
           c.affiliate_id = 'dummy_affiliate_id'
           c.application_id = 'dummy_application_id'
+          c.access_key = 'dummy_access_key'
         end
       end
 

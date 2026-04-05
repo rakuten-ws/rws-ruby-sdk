@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rakuten_web_service'
 
 describe RakutenWebService::Travel::AreaClass do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Travel/GetAreaClass/20131024' }
+  let(:endpoint) { 'https://openapi.rakuten.co.jp/engine/api/Travel/GetAreaClass/20140210' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:expected_query) do
@@ -22,6 +22,7 @@ describe RakutenWebService::Travel::AreaClass do
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
+      c.access_key = 'dummy_access_key'
     end
   end
 

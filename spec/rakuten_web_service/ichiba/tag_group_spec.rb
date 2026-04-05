@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rakuten_web_service/ichiba/tag_group'
 
 describe RakutenWebService::Ichiba::TagGroup do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaTag/Search/20140222' }
+  let(:endpoint) { 'https://openapi.rakuten.co.jp/services/api/IchibaTag/Search/20140222' }
   let(:affiliate_id) { 'affiliate_id' }
   let(:application_id) { 'application_id' }
   let(:expected_query) do
@@ -22,6 +22,7 @@ describe RakutenWebService::Ichiba::TagGroup do
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
+      c.access_key = 'dummy_access_key'
     end
   end
 

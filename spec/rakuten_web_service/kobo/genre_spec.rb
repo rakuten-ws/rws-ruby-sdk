@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RWS::Kobo::Genre do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010' }
+  let(:endpoint) { 'https://openapi.rakuten.co.jp/services/api/Kobo/GenreSearch/20131010' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:genre_id) { '101' }
@@ -25,6 +25,7 @@ describe RWS::Kobo::Genre do
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
+      c.access_key = 'dummy_access_key'
     end
   end
 

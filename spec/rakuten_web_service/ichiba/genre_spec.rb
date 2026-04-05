@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RakutenWebService::Ichiba::Genre do
-  let(:endpoint) { 'https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222' }
+  let(:endpoint) { 'https://openapi.rakuten.co.jp/ichibagt/api/IchibaGenre/Search/20170711' }
   let(:affiliate_id) { 'dummy_affiliate_id' }
   let(:application_id) { 'dummy_application_id' }
   let(:genre_id) { 0 }
@@ -26,6 +26,7 @@ describe RakutenWebService::Ichiba::Genre do
     RakutenWebService.configure do |c|
       c.affiliate_id = affiliate_id
       c.application_id = application_id
+      c.access_key = 'dummy_access_key'
     end
   end
 

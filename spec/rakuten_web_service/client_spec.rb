@@ -8,6 +8,7 @@ describe RakutenWebService::Client do
   let(:client) { RakutenWebService::Client.new(resource_class) }
   let(:application_id) { 'default_application_id' }
   let(:affiliate_id) { 'default_affiliate_id' }
+  let(:access_key) { 'default_access_key' }
   let(:expected_query) do
     { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2' }
   end
@@ -18,12 +19,16 @@ describe RakutenWebService::Client do
   before do
     @expected_request = stub_request(:get, endpoint).
       with(query: expected_query,
-           headers: { 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])" }).
+           headers: {
+             'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])",
+             'accessKey' => access_key
+           }).
       to_return(expected_response)
 
     RakutenWebService.configure do |c|
       c.affiliate_id = 'default_affiliate_id'
       c.application_id = 'default_application_id'
+      c.access_key = 'default_access_key'
     end
   end
 
@@ -79,6 +84,34 @@ describe RakutenWebService::Client do
         specify "encodes '+' in sort option" do
           expect(@expected_request).to have_been_made.once
         end
+      end
+    end
+
+    context 'when access_key_transport is :query' do
+      let(:expected_query) do
+        { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2', accessKey: access_key }
+      end
+
+      around do |example|
+        original = RakutenWebService.configuration.access_key_transport
+        RakutenWebService.configuration.access_key_transport = :query
+        example.run
+        RakutenWebService.configuration.access_key_transport = original
+      end
+
+      before do
+        @expected_request = stub_request(:get, endpoint).
+          with(query: expected_query,
+               headers: {
+                 'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])"
+               }).
+          to_return(expected_response)
+
+        client.get({})
+      end
+
+      specify 'sends access_key as query parameter' do
+        expect(@expected_request).to have_been_made.once
       end
     end
   end
