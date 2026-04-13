@@ -38,7 +38,7 @@ module RakutenWebService
     end
 
     def params_to_get_next_page
-      @params.merge('page' => @response.body['page'] + 1)
+      @params.merge(page: @response.body['page'] + 1)
     end
 
     def order(options)
