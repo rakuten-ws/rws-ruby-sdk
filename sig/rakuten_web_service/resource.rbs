@@ -1,0 +1,62 @@
+module RakutenWebService
+  # Base class for every API resource (Ichiba::Item, Books::Book, ...).
+  #
+  # Subclasses declare their fields with the `attribute` DSL, which defines
+  # reader methods (and `<name>?` predicates for `*Flag` fields) dynamically.
+  # Those generated accessors cannot be expressed statically in RBS, so reading
+  # an arbitrary attribute is done through `#[]` / `#get_attribute`, both typed
+  # as returning `untyped`.
+  class Resource
+    @@subclasses: Array[singleton(Resource)]
+
+    self.@resource_name: String
+    self.@endpoint: String?
+
+    @params: Hash[String, untyped]
+
+    # The raw response fragment backing this resource, keyed by String.
+    attr_reader params: Hash[String, untyped]
+
+    attr_writer self.resource_name: String
+
+    def self.inherited: (singleton(Resource) subclass) -> void
+
+    def self.subclasses: () -> Array[singleton(Resource)]
+
+    # Declares one or more attributes, defining reader methods for each.
+    def self.attribute: (*String | Symbol attribute_names) -> void
+
+    # Starts a search against this resource's endpoint.
+    def self.search: (Hash[Symbol | String, untyped] options) -> SearchResult
+
+    # Iterates over every page of results. Returns an AllProxy when no block is
+    # given, otherwise yields each resource and returns the proxy.
+    def self.all: (Hash[Symbol | String, untyped] options) ?{ (instance) -> void } -> AllProxy
+
+    def self.resource_name: () -> String
+
+    def self.endpoint: (?String? url) -> String?
+
+    # Registers the block used to turn a raw response into resource instances.
+    def self.parser: () { (Hash[String, untyped]) -> Array[instance] } -> void
+
+    private
+
+    def self.define_getter_for_attribute: (String attribute_name) -> void
+
+    def self.define_asking_method_for_attribute: (String attribute_name) -> void
+
+    public
+
+    def initialize: (Hash[Symbol | String, untyped] params) -> void
+
+    # Looks up a field by snake_case or camelCase key.
+    def []: (Symbol | String key) -> untyped
+
+    def get_attribute: (Symbol | String name) -> untyped
+
+    def attributes: () -> Array[String]
+
+    def ==: (untyped other) -> bool
+  end
+end

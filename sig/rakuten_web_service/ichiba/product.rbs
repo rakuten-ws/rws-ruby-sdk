@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Ichiba
+    class Product < Resource
+      def genre: () -> untyped
+    end
+  end
+end

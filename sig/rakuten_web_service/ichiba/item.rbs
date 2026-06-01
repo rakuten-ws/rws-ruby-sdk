@@ -1,0 +1,20 @@
+module RakutenWebService
+  module Ichiba
+    # An item in Rakuten Ichiba.
+    #
+    # In addition to the methods below, reader methods for every declared
+    # `attribute` (e.g. `#item_name`, `#item_price`, `#image?`) are defined
+    # dynamically at load time and therefore are not listed statically here.
+    # Use `#[]` for typed-but-loose access to any field.
+    class Item < Resource
+      # Returns the ranking search for items.
+      def self.ranking: (?Hash[Symbol | String, untyped] options) -> SearchResult
+
+      def self.genre_class: () -> singleton(Genre)
+
+      def genre: () -> Genre
+
+      def shop: () -> Shop
+    end
+  end
+end

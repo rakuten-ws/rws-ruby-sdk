@@ -1,0 +1,6 @@
+module RakutenWebService
+  module Gora
+    class Course < Resource
+    end
+  end
+end

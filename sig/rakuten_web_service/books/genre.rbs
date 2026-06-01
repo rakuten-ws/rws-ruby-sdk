@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Books
+    class Genre < RakutenWebService::BaseGenre
+      def search: (?::Hash[untyped, untyped] params) -> untyped
+    end
+  end
+end

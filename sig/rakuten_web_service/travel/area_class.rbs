@@ -1,0 +1,65 @@
+module RakutenWebService
+  module Travel
+    module AreaClass
+      def self?.search: (?::Hash[untyped, untyped] options) -> untyped
+
+      def self?.[]: (untyped class_code) -> untyped
+
+      class Base < RakutenWebService::Travel::Resource
+        @@area_classes: untyped
+
+        @@repository: untyped
+
+        @parent: untyped
+
+        @params: untyped
+
+        @children: untyped
+
+        def self.area_classes: () -> untyped
+
+        def self.inherited: (untyped klass) -> untyped
+
+        attr_reader self.area_level: untyped
+
+        def self.[]: (untyped area_code) -> untyped
+
+        def self.new: (*untyped args) -> untyped
+
+        def self.repository: () -> untyped
+
+        attr_reader parent: untyped
+
+        attr_reader children: untyped
+
+        def initialize: (untyped class_data, ?untyped? parent) -> void
+
+        def area_level: () -> untyped
+
+        def class_code: () -> untyped
+
+        def class_name: () -> untyped
+
+        def to_query: () -> untyped
+
+        def search: (?::Hash[untyped, untyped] params) -> untyped
+
+        private
+
+        def parse_children_attributes: () -> untyped
+      end
+
+      class LargeClass < Base
+      end
+
+      class MiddleClass < Base
+      end
+
+      class SmallClass < Base
+      end
+
+      class DetailClass < Base
+      end
+    end
+  end
+end

@@ -1,0 +1,25 @@
+module RakutenWebService
+  class Recipe < Resource
+    self.@categories: untyped
+
+    def self.large_categories: () -> untyped
+
+    def self.medium_categories: () -> untyped
+
+    def self.small_categories: () -> untyped
+
+    def self.categories: (untyped category_type) -> untyped
+
+    class Category < Resource
+      def ranking: () -> untyped
+
+      def parent_category: () -> (nil | untyped)
+
+      def absolute_category_id: () -> untyped
+
+      private
+
+      def parent_category_type: () -> untyped
+    end
+  end
+end

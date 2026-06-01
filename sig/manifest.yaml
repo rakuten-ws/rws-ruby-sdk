@@ -1,0 +1,5 @@
+# Declares the standard/default-gem signatures this gem's RBS depends on, so
+# that consumers resolving these types via `rbs collection` pick them up too.
+dependencies:
+  - name: json
+  - name: uri

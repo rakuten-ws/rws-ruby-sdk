@@ -1,0 +1,6 @@
+module RakutenWebService
+  module Books
+    class Total < Books::Resource
+    end
+  end
+end

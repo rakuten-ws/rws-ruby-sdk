@@ -1,0 +1,21 @@
+module RakutenWebService
+  # Thin HTTP client that performs the GET request for a resource's endpoint.
+  class Client
+    @resource_class: singleton(Resource)
+    @url: URI::Generic
+
+    USER_AGENT: ::String
+
+    attr_reader url: URI::Generic
+
+    def initialize: (singleton(Resource) resource_class) -> void
+
+    # Performs the request and wraps the result in a Response. Raises an Error
+    # subclass on a non-success status.
+    def get: (Hash[Symbol | String, untyped] params) -> Response
+
+    private
+
+    def request: (String path, Hash[Symbol | String, untyped] params) -> untyped
+  end
+end

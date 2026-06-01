@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Books
+    class Software < Books::Resource
+      def update_key: () -> "jan"
+    end
+  end
+end

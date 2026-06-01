@@ -1,0 +1,43 @@
+module RakutenWebService
+  # Holds the credentials and options used for every API request.
+  class Configuration
+    @application_id: String?
+    @affiliate_id: String?
+    @max_retries: Integer
+    @debug: bool?
+    @access_key: String?
+    @access_key_transport: Symbol?
+
+    attr_accessor application_id: String?
+
+    attr_accessor affiliate_id: String?
+
+    attr_accessor max_retries: Integer
+
+    attr_accessor debug: bool?
+
+    attr_accessor access_key: String?
+
+    # How the access key is sent: `:access_key_header` (default) or `:query`.
+    attr_reader access_key_transport: Symbol?
+
+    ALLOWED_ACCESS_KEY_TRANSPORTS: ::Array[:access_key_header | :query]
+
+    def initialize: () -> void
+
+    # Merges the given params with the defaults and converts keys to camelCase.
+    def generate_parameters: (Hash[Symbol | String, untyped] params) -> Hash[String, untyped]
+
+    def default_parameters: () -> Hash[Symbol, untyped]
+
+    def has_required_options?: () -> bool
+
+    def debug_mode?: () -> bool
+
+    def access_key_transport=: (Symbol | String | nil value) -> Symbol?
+
+    private
+
+    def convert_snake_key_to_camel_key: (Hash[Symbol | String, untyped] params) -> Hash[String, untyped]
+  end
+end

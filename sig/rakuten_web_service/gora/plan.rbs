@@ -1,0 +1,17 @@
+module RakutenWebService
+  module Gora
+    class Plan < Resource
+      def plan_info: () -> untyped
+
+      class PlanInfo < Resource
+        def self.search: (untyped _options) -> untyped
+
+        def call_info: () -> untyped
+
+        class CallInfo < Resource
+          def self.search: (untyped _options) -> untyped
+        end
+      end
+    end
+  end
+end

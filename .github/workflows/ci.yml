@@ -29,3 +29,17 @@ jobs:
           bundler-cache: true
       - name: Run test
         run: bundle exec rake
+
+  rbs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        env:
+          BUNDLE_WITHOUT: vscode
+        with:
+          ruby-version: 4.0
+          bundler-cache: true
+      - name: Validate RBS signatures
+        run: bundle exec rbs -r uri -r json -I sig validate
