@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Kobo
+    class Genre < RakutenWebService::BaseGenre
+      def search: (?::Hash[untyped, untyped] options) -> untyped
+    end
+  end
+end

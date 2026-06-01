@@ -1,0 +1,5 @@
+module RakutenWebService
+  class Recipe < Resource
+    def self.ranking: (?untyped? category_id) -> untyped
+  end
+end

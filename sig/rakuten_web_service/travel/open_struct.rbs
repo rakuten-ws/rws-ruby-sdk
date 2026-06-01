@@ -1,0 +1,9 @@
+module RakutenWebService
+  module Travel
+    class OpenStruct
+      @table: untyped
+
+      def initialize: (untyped hash) -> void
+    end
+  end
+end

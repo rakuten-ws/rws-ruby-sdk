@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Ichiba
+    class Shop < Resource
+      def items: (?::Hash[untyped, untyped] options) -> untyped
+    end
+  end
+end

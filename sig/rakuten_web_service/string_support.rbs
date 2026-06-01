@@ -1,0 +1,4 @@
+module RakutenWebService
+  module StringSupport
+  end
+end

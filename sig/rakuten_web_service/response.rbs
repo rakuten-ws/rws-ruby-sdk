@@ -1,0 +1,38 @@
+module RakutenWebService
+  # Wraps a single page of parsed JSON returned from the API.
+  class Response
+    include Enumerable[Resource]
+
+    @resource_class: singleton(Resource)
+    @json: Hash[String, untyped]
+    @resources: Array[Resource]
+
+    def initialize: (singleton(Resource) resource_class, Hash[String, untyped] json) -> void
+
+    def []: (String key) -> untyped
+
+    def each: () { (Resource) -> void } -> void
+
+    # Pagination metadata extracted from the response body.
+    def count: () -> Integer?
+    def hits: () -> Integer?
+    def page: () -> Integer?
+    def first: () -> Integer?
+    def last: () -> Integer?
+    def carrier: () -> Integer?
+    def page_count: () -> Integer?
+
+    def genre_information: () -> GenreInformation?
+
+    # Resources parsed from this page.
+    def resources: () -> Array[Resource]
+
+    def next_page?: () -> bool
+
+    def previous_page?: () -> bool
+
+    def first_page?: () -> bool
+
+    def last_page?: () -> bool
+  end
+end

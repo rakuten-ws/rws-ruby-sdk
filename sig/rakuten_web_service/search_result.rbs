@@ -1,0 +1,55 @@
+module RakutenWebService
+  # Lazy, paginated collection of resources returned by `Resource.search`.
+  class SearchResult
+    include Enumerable[Resource]
+
+    @params: Hash[Symbol | String, untyped]
+    @resource_class: singleton(Resource)
+    @client: Client
+    @response: Response
+
+    def initialize: (Hash[Symbol | String, untyped] params, singleton(Resource) resource_class) -> void
+
+    # Returns a new SearchResult with the given params merged in.
+    def search: (Hash[Symbol | String, untyped] params) -> SearchResult
+
+    alias with search
+
+    def each: () { (Resource) -> void } -> void
+
+    # Iterates across all pages. Returns an AllProxy; yields each resource when a
+    # block is given.
+    def all: () ?{ (Resource) -> void } -> AllProxy
+
+    def params: () -> Hash[Symbol | String, untyped]
+
+    def params_to_get_next_page: () -> Hash[Symbol | String, untyped]
+
+    # Returns a new SearchResult sorted by the given option(s).
+    def order: (Symbol | String | Hash[untyped, untyped] options) -> SearchResult
+
+    # Fetches the current page from the API.
+    def query: () -> Response
+
+    alias fetch_result query
+
+    # Memoized current-page response.
+    def response: () -> Response
+
+    def next_page?: () -> bool
+
+    def next_page: () -> SearchResult
+
+    def previous_page?: () -> bool
+
+    def previous_page: () -> SearchResult
+
+    def page: (Integer num) -> SearchResult
+
+    def genre_information: () -> GenreInformation?
+
+    private
+
+    def ensure_retries: (?Integer max_retries) { () -> Response } -> Response
+  end
+end

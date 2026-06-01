@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Ichiba
+    class Tag < Resource
+      def search: (?::Hash[untyped, untyped] params) -> untyped
+    end
+  end
+end

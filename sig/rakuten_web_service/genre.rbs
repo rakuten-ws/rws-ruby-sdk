@@ -1,0 +1,33 @@
+module RakutenWebService
+  # Base class for genre resources, which support tree navigation
+  # (children / parents / brothers) and id-based lookup with caching.
+  class BaseGenre < RakutenWebService::Resource
+    self.@root_id: Integer | String | nil
+    self.@repository: Hash[String, untyped]
+
+    def self.inherited: (singleton(BaseGenre) klass) -> void
+
+    # Builds a genre from a Hash, or looks one up by id (Integer/String).
+    def self.new: (Integer | String | Hash[Symbol | String, untyped] params) -> instance
+
+    def self.genre_id_key: () -> ::Symbol
+
+    def self.root_id: (?(Integer | String | nil) id) -> (Integer | String | nil)
+
+    def self.root: () -> instance
+
+    def self.[]: (Integer | String id) -> instance
+
+    def self.[]=: (Integer | String id, untyped genre) -> untyped
+
+    def self.repository: () -> Hash[String, untyped]
+
+    def initialize: (Hash[Symbol | String, untyped] params) -> void
+
+    def children: () -> Array[instance]
+
+    def brothers: () -> Array[instance]
+
+    def parents: () -> Array[instance]
+  end
+end

@@ -1,0 +1,9 @@
+module RakutenWebService
+  module Kobo
+    class Ebook < RakutenWebService::Resource
+      def self.genre_class: () -> untyped
+
+      def genre: () -> untyped
+    end
+  end
+end

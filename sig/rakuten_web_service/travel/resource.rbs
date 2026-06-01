@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Travel
+    class Resource < RakutenWebService::Resource
+      def self.search: (untyped options) -> untyped
+    end
+  end
+end

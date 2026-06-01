@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.17.0 (2026/06/02)
+
+### Improvements
+
+- Ships RBS type signatures under `sig/` so users can type-check code that uses this gem.
+
 ## v1.13.2 (2023/03/26)
 
 ### Improvements

@@ -1,0 +1,11 @@
+module RakutenWebService
+  module Travel
+    class Hotel < RakutenWebService::Travel::Resource
+      @params: untyped
+
+      def initialize: (untyped params) -> void
+
+      def self.attribute_names: () -> ::Array["hotelBasicInfo" | "hotelRatingInfo" | "hotelDetailInfo" | "hotelFacilitiesInfo" | "hotelPolicyInfo" | "hotelOtherInfo"]
+    end
+  end
+end

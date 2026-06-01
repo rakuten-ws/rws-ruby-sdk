@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Ichiba
+    class TagGroup < Resource
+      def tags: () -> untyped
+    end
+  end
+end
