@@ -3,17 +3,21 @@ require 'rakuten_web_service/configuration'
 
 describe RakutenWebService::Configuration do
   describe '#initialize' do
-    context "environment variable RWS_APPLICATION_ID, RWS_AFFILIATE_ID and RWS_ACCESS_KEY are defined" do
+    context "environment variable RWS_APPLICATION_ID, RWS_AFFILIATE_ID and RWS_ACCESS_KEY RWS_REFERER RWS ORIGIN are defined" do
       before do
         ENV['RWS_APPLICATION_ID'] = 'env_application_id'
         ENV['RWS_AFFILIATE_ID'] = 'env_affiliate_id'
         ENV['RWS_ACCESS_KEY'] = 'env_access_key'
+        ENV['RWS_REFERER'] = 'env_referer'
+        ENV['RWS_ORIGIN'] = 'env_origin'
       end
 
       after do
         ENV.delete 'RWS_APPLICATION_ID'
         ENV.delete 'RWS_AFFILIATE_ID'
         ENV.delete 'RWS_ACCESS_KEY'
+        ENV.delete 'RWS_REFERER'
+        ENV.delete 'RWS_ORIGIN'
       end
 
       subject { RakutenWebService::Configuration.new }
@@ -22,6 +26,8 @@ describe RakutenWebService::Configuration do
         expect(subject.application_id).to eq 'env_application_id'
         expect(subject.affiliate_id).to eq 'env_affiliate_id'
         expect(subject.access_key).to eq 'env_access_key'
+        expect(subject.referer).to eq 'env_referer'
+        expect(subject.origin).to eq 'env_origin'
       end
     end
   end

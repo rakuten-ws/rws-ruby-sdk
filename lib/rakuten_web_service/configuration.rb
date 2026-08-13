@@ -4,7 +4,7 @@ require 'rakuten_web_service/string_support'
 
 module RakutenWebService
   class Configuration
-    attr_accessor :application_id, :affiliate_id, :max_retries, :debug, :access_key
+    attr_accessor :application_id, :affiliate_id, :max_retries, :debug, :access_key, :referer, :origin
     attr_reader :access_key_transport
 
     ALLOWED_ACCESS_KEY_TRANSPORTS = [:access_key_header, :query].freeze
@@ -15,6 +15,8 @@ module RakutenWebService
       @max_retries = 5
       @access_key = ENV['RWS_ACCESS_KEY']
       @access_key_transport = :access_key_header
+      @referer = ENV['RWS_REFERER']
+      @origin = ENV['RWS_ORIGIN']
     end
 
     def generate_parameters(params)
@@ -23,7 +25,7 @@ module RakutenWebService
 
     def default_parameters
       raise 'Application ID and access key are not defined' unless has_required_options?
-      params = { application_id: application_id, affiliate_id: affiliate_id, format_version: '2' }
+      params = { application_id: application_id, affiliate_id: affiliate_id, format_version: '2', referer: referer, origin: origin }
       if access_key_transport == :query
         params[:access_key] = access_key
       end

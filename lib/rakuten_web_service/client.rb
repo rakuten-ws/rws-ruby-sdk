@@ -37,15 +37,25 @@ module RakutenWebService
       if RakutenWebService.configuration.debug_mode?
         http.set_debug_output($stderr)
       end
+      headers = {
+        'Referer' => params['referer'],
+        'Origin' => params['origin'],
+        'User-Agent' => USER_AGENT
+      }
+      params.delete('referer') {|key|
+        raise 'referer not defined'
+      }
+      params.delete('origin') {|key|
+        raise 'origin not defined'
+      }
       path = "#{path}?#{URI.encode_www_form(params)}"
-      header = { 'User-Agent' => USER_AGENT }
       if RakutenWebService.configuration.access_key
         case RakutenWebService.configuration.access_key_transport
         when :access_key_header
-          header['accessKey'] = RakutenWebService.configuration.access_key
+          headers['accessKey'] = RakutenWebService.configuration.access_key
         end
       end
-      http.get(path, header)
+      http.get(path, headers)
     end
   end
 end

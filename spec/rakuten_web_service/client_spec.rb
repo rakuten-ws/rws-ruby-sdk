@@ -9,6 +9,8 @@ describe RakutenWebService::Client do
   let(:application_id) { 'default_application_id' }
   let(:affiliate_id) { 'default_affiliate_id' }
   let(:access_key) { 'default_access_key' }
+  let(:referer) { 'default_referer' }
+  let(:origin) { 'default_origin' }
   let(:expected_query) do
     { affiliateId: affiliate_id, applicationId: application_id, formatVersion: '2' }
   end
@@ -20,6 +22,8 @@ describe RakutenWebService::Client do
     @expected_request = stub_request(:get, endpoint).
       with(query: expected_query,
            headers: {
+             'Referer' => referer,
+             'Origin' => origin,
              'User-Agent' => "RakutenWebService SDK for Ruby v#{RWS::VERSION}(ruby-#{RUBY_VERSION} [#{RUBY_PLATFORM}])",
              'accessKey' => access_key
            }).
@@ -29,6 +33,8 @@ describe RakutenWebService::Client do
       c.affiliate_id = 'default_affiliate_id'
       c.application_id = 'default_application_id'
       c.access_key = 'default_access_key'
+      c.referer = 'default_referer'
+      c.origin = 'default_origin'
     end
   end
 
