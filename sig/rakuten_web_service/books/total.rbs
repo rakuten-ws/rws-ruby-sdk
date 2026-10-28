@@ -1,6 +1,10 @@
 module RakutenWebService
   module Books
+    # Yields Book, CD, DVD, ... depending on each item's genre.
     class Total < Books::Resource
+      def self.search: (Hash[Symbol | String, untyped] options) -> SearchResult[Books::Resource]
+
+      def self.all: (Hash[Symbol | String, untyped] options) ?{ (Books::Resource) -> void } -> AllProxy[Books::Resource]
     end
   end
 end

@@ -1,15 +1,31 @@
 module RakutenWebService
   module Travel
-    class SearchResult < RakutenWebService::SearchResult
-      def params_to_get_next_page: () -> untyped
+    # Travel APIs report pagination under `pagingInfo`, so the paging readers
+    # here replace the ones inherited from RakutenWebService::SearchResult.
+    class SearchResult[R < Travel::Resource] < RakutenWebService::SearchResult[R]
+      def search: (Hash[Symbol | String, untyped] params) -> SearchResult[R]
 
-      def next_page?: () -> untyped
+      alias with search
 
-      def next_page: () -> untyped
+      def order: (Symbol | String | Hash[untyped, untyped] options) -> SearchResult[R]
+
+      def params_to_get_next_page: () -> Hash[Symbol | String, untyped]
+
+      def page: () -> Integer
+
+      def page_count: () -> Integer
+
+      def record_count: () -> Integer
+
+      def next_page?: () -> bool
+
+      def next_page: () -> SearchResult[R]
+
+      def previous_page: () -> SearchResult[R]
 
       private
 
-      def paging_info: () -> untyped
+      def paging_info: () -> Hash[String, untyped]
     end
   end
 end

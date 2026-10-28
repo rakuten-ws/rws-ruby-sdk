@@ -1,7 +1,7 @@
 module RakutenWebService
   module Ichiba
     class Shop < Resource
-      def items: (?::Hash[untyped, untyped] options) -> untyped
+      def items: (?Hash[Symbol | String, untyped] options) -> SearchResult[Item]
     end
   end
 end

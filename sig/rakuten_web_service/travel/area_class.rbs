@@ -42,7 +42,7 @@ module RakutenWebService
 
         def to_query: () -> untyped
 
-        def search: (?::Hash[untyped, untyped] params) -> untyped
+        def search: (?Hash[Symbol | String, untyped] params) -> Travel::SearchResult[Hotel]
 
         private
 

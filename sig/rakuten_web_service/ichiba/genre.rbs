@@ -1,9 +1,9 @@
 module RakutenWebService
   module Ichiba
     class Genre < RakutenWebService::BaseGenre
-      def ranking: (?::Hash[untyped, untyped] options) -> untyped
+      def ranking: (?Hash[Symbol | String, untyped] options) -> SearchResult[RankingItem]
 
-      def products: (?::Hash[untyped, untyped] options) -> untyped
+      def products: (?Hash[Symbol | String, untyped] options) -> SearchResult[Product]
     end
   end
 end
