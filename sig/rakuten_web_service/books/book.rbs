@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Books
+    class Book < Books::Resource
+      def update_key: () -> "isbn"
+    end
+  end
+end

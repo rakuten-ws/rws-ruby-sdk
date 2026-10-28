@@ -1,0 +1,19 @@
+module RakutenWebService
+  module Gora
+    class CourseDetail < Resource
+      def self.find: (untyped golf_course_id) -> untyped
+
+      def ratings: () -> untyped
+
+      def new_plans: () -> untyped
+
+      class Rating < Resource
+        def self.search: (untyped _options) -> untyped
+      end
+
+      class Plan < Resource
+        def self.search: (untyped _options) -> untyped
+      end
+    end
+  end
+end

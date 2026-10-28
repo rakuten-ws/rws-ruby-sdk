@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Kobo
+    class Genre < RakutenWebService::BaseGenre
+      def search: (?Hash[Symbol | String, untyped] options) -> SearchResult[Ebook]
+    end
+  end
+end

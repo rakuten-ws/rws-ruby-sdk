@@ -1,0 +1,6 @@
+module RakutenWebService
+  module Ichiba
+    class RankingItem < RakutenWebService::Ichiba::Item
+    end
+  end
+end

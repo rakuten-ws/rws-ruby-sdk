@@ -1,0 +1,27 @@
+module RakutenWebService
+  module Books
+    class Resource < RakutenWebService::Resource
+      @genre: untyped
+
+      @params: untyped
+
+      def self.find_resource_by_genre_id: (untyped genre_id) -> untyped
+
+      def self.genre_class: () -> untyped
+
+      def genre: () -> untyped
+
+      alias genres genre
+
+      def get_attribute: (untyped name) -> untyped
+
+      private
+
+      def update_params: () -> untyped
+
+      def update_key: () -> untyped
+
+      def params: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module RakutenWebService
+  @configuration: Configuration
+
+  # Yields the global Configuration so it can be set up.
+  def self?.configure: () { (Configuration) -> void } -> Configuration
+
+  # Returns the global Configuration, creating it on first access.
+  def self?.configuration: () -> Configuration
+end
+
+# Short alias for the RakutenWebService module.
+RWS: singleton(RakutenWebService)

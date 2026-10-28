@@ -1,0 +1,5 @@
+module RakutenWebService
+  class Recipe < Resource
+    def self.ranking: (?(String | Integer)? category_id) -> SearchResult[Recipe]
+  end
+end

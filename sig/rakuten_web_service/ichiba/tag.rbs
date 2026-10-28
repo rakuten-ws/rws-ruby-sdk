@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Ichiba
+    class Tag < Resource
+      def search: (?Hash[Symbol | String, untyped] params) -> SearchResult[Item]
+    end
+  end
+end

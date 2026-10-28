@@ -1,0 +1,12 @@
+module RakutenWebService
+  # Enumerates every resource across all pages of a SearchResult.
+  class AllProxy[R < Resource]
+    include Enumerable[R]
+
+    @search_result: SearchResult[R]
+
+    def initialize: (SearchResult[R] search_result) -> void
+
+    def each: () { (R) -> void } -> void
+  end
+end

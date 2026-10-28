@@ -1,0 +1,16 @@
+module RakutenWebService
+  # Parent / current / children genre context attached to a search response.
+  class GenreInformation
+    @parent: Resource?
+    @current: Resource?
+    @children: Array[Resource]
+
+    attr_reader parent: Resource?
+
+    attr_reader current: Resource?
+
+    attr_reader children: Array[Resource]
+
+    def initialize: (Hash[String, untyped] params, singleton(Resource) genre_class) -> void
+  end
+end

@@ -1,0 +1,7 @@
+module RakutenWebService
+  module Travel
+    class Resource < RakutenWebService::Resource
+      def self.search: (Hash[Symbol | String, untyped] options) -> Travel::SearchResult[instance]
+    end
+  end
+end

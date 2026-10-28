@@ -1,0 +1,35 @@
+module RakutenWebService
+  # Base error raised on a non-success API response. Subclasses are registered
+  # per HTTP status code.
+  class Error < StandardError
+    self.@repository: Hash[Integer, singleton(Error)]
+
+    # Registers an error class for the given HTTP status code.
+    def self.register: (Integer status_code, singleton(Error) error) -> singleton(Error)
+
+    # Builds the appropriate error for the given HTTP response.
+    def self.for: (untyped response) -> Error
+
+    def self.repository: () -> Hash[Integer, singleton(Error)]
+  end
+
+  # 400
+  class WrongParameter < Error
+  end
+
+  # 404
+  class NotFound < Error
+  end
+
+  # 429
+  class TooManyRequests < Error
+  end
+
+  # 500
+  class SystemError < Error
+  end
+
+  # 503
+  class ServiceUnavailable < Error
+  end
+end
