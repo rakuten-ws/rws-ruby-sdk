@@ -41,5 +41,7 @@ jobs:
         with:
           ruby-version: 4.0
           bundler-cache: true
+      - name: Check generated RBS signatures are up to date
+        run: bundle exec rake sig:check
       - name: Validate RBS signatures
         run: bundle exec rbs -r uri -r json -I sig validate

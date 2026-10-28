@@ -3,9 +3,8 @@ module RakutenWebService
   #
   # Subclasses declare their fields with the `attribute` DSL, which defines
   # reader methods (and `<name>?` predicates for `*Flag` fields) dynamically.
-  # Those generated accessors cannot be expressed statically in RBS, so reading
-  # an arbitrary attribute is done through `#[]` / `#get_attribute`, both typed
-  # as returning `untyped`.
+  # Signatures for those readers are generated into sig/generated/attributes.rbs
+  # by `rake sig:generate`.
   class Resource
     @@subclasses: Array[singleton(Resource)]
 
@@ -25,6 +24,9 @@ module RakutenWebService
 
     # Declares one or more attributes, defining reader methods for each.
     def self.attribute: (*String | Symbol attribute_names) -> void
+
+    # Names of the reader methods defined by `attribute` on this class.
+    def self.attribute_methods: () -> Array[String]
 
     # Starts a search against this resource's endpoint.
     def self.search: (Hash[Symbol | String, untyped] options) -> SearchResult

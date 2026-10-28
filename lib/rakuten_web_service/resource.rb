@@ -34,6 +34,12 @@ module RakutenWebService
         end
       end
 
+      # Names of the reader methods defined by `attribute` on this class
+      # (not including ones inherited from superclasses).
+      def attribute_methods
+        @attribute_methods ||= []
+      end
+
       def search(options)
         SearchResult.new(options, self)
       end
@@ -69,6 +75,7 @@ module RakutenWebService
         define_method method_name do
           get_attribute(attribute_name)
         end
+        attribute_methods << method_name
       end
 
       def define_asking_method_for_attribute(attribute_name)
@@ -79,6 +86,7 @@ module RakutenWebService
         define_method "#{method_name}?" do
           get_attribute(attribute_name) == 1
         end
+        attribute_methods << "#{method_name}?"
       end
     end
 

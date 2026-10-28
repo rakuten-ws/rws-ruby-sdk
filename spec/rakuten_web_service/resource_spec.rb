@@ -39,6 +39,36 @@ describe RakutenWebService::Resource do
     end
   end
 
+  describe '.attribute_methods' do
+    let(:resource_class) do
+      Class.new(RakutenWebService::Resource) do
+        self.resource_name = 'dummy'
+
+        attribute :dummyName, :sampleAttribute, :postageFlag
+      end
+    end
+
+    subject { resource_class.attribute_methods }
+
+    it { is_expected.to eq(%w[name sample_attribute postage_flag postage?]) }
+
+    context 'When the resource is inherited from other resource' do
+      let(:other_resource_class) do
+        Class.new(resource_class) do
+          self.resource_name = 'nested'
+
+          attribute :rank
+        end
+      end
+
+      subject { other_resource_class.attribute_methods }
+
+      specify 'does not include the methods defined in the superclass' do
+        expect(subject).to eq(%w[rank])
+      end
+    end
+  end
+
   describe '#attributes' do
     let(:params) do
       {
